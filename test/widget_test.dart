@@ -6,13 +6,12 @@
 // tree, read text, and verify that the values of widget properties are correct.
 
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:restaurantour/main.dart';
+import 'package:restaurant_tour/main.dart';
 
 void main() {
   testWidgets('Page loads', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const Restaurantour());
+    await tester.pumpWidget(const RestaurantTour());
 
     // Verify that tests will run
     expect(find.text('Fetch Restaurants'), findsOneWidget);

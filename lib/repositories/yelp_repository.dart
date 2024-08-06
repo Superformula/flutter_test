@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:restaurantour/models/restaurant.dart';
+import 'package:restaurant_tour/models/restaurant.dart';
 
 const _apiKey = '<PUT YOUR API KEY HERE>';
 
@@ -41,7 +41,8 @@ class YelpRepository {
   ///             "user": {
   ///               "id": "BuBCkWFNT_O2dbSnBZvpoQ",
   ///               "image_url": "https:///s3-media2.fl.yelpcdn.com/photo/v8tbTjYaFvkzh1d7iE-pcQ/o.jpg",
-  ///               "name": "Gina T."
+  ///               "name": "Gina T.",
+  ///               "text": "I love this place! The food is amazing and the service is great."
   ///             }
   ///           },
   ///           {
@@ -50,7 +51,8 @@ class YelpRepository {
   ///             "user": {
   ///               "id": "0x9xu_b0Ct_6hG6jaxpztw",
   ///               "image_url": "https:///s3-media3.fl.yelpcdn.com/photo/gjz8X6tqE3e4praK4HfCiA/o.jpg",
-  ///               "name": "Crystal L."
+  ///               "name": "Crystal L.",
+  ///               "text": "Greate place to eat"
   ///             }
   ///           },
   ///        ...
@@ -84,6 +86,7 @@ query getRestaurants {
       reviews {
         id
         rating
+        text
         user {
           id
           image_url

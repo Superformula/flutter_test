@@ -1,22 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:restaurantour/repositories/yelp_repository.dart';
+import 'package:restaurant_tour/repositories/yelp_repository.dart';
 
 void main() {
-  runApp(const Restaurantour());
+  runApp(const RestaurantTour());
 }
 
-class Restaurantour extends StatelessWidget {
-  // This widget is the root of your application.
-  const Restaurantour({Key? key}) : super(key: key);
+class RestaurantTour extends StatelessWidget {
+  const RestaurantTour({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'RestauranTour',
-      theme: ThemeData(
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: const HomePage(),
+    return const MaterialApp(
+      title: 'Restaurant Tour',
+      home: HomePage(),
     );
   }
 }
@@ -31,7 +27,7 @@ class HomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text('Restaurantour'),
+            const Text('Restaurant Tour'),
             ElevatedButton(
               child: const Text('Fetch Restaurants'),
               onPressed: () async {

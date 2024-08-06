@@ -1,4 +1,4 @@
-# RestauranTour
+# Restaurant Tour
 
 Be sure to read **all** of this document carefully, and follow the guidelines within.
 
@@ -106,8 +106,8 @@ Go to `Preferences > Languages & Frameworks > Flutter` and set the Flutter SDK p
 
 To demonstrate your experience writing different types of tests in Flutter please do the following:
 
-- Choose ONE portion of your state management and write a unit test.
-- Choose ONE widget and write a widget test.
+- We are looking to see how you write tests in Flutter. We are not looking for 100% coverage but we are looking for a good mix of unit and widget tests.
+- We are specially looking for you to cover at least one file for each domain layer (interface, application, repositories, etc).
 
 Feel free to add more tests as you see fit but the above is the minimum requirement.
 
