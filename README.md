@@ -2,14 +2,14 @@
 
 Welcome to Superformula's Coding challenge, we are excited to see what you can build!
 
-This take home tests aims to evaluate your skills in building a Flutter application. We are looking for a well-structured and well-tested application that demonstrates your knowledge of Flutter and the Dart language.
+This take home test aims to evaluate your skills in building a Flutter application. We are looking for a well-structured and well-tested application that demonstrates your knowledge of Flutter and the Dart language.
 
 We are not looking for pixel perfect designs, but we are looking for a well-structured application that demonstrates your skills and best practices developing a flutter aplication. We know there are many ways to solve a problem, and we are interested in seeing how you approach this one. If you have any questions, please don't hesitate to ask.
 
 Things we'll be looking on your submission:
 - App structure for scallability
 - Error and optional (?) handling
-- Widget three optimization
+- Widget tree optimization
 - State management
 - Test coverage
 
