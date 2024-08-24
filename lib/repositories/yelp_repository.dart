@@ -1,8 +1,13 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:restaurant_tour/models/restaurant.dart';
+import 'package:restaurant_tour/repositories/sample_json.dart';
 
-const _apiKey = '<PUT YOUR API KEY HERE>';
+const _apiKey =
+    'GzcIFZrKe4aMmED9FS9ObPxFP4vAhEOW2wN9usDA0zazBimbxQ8O2LdcpwMUcpkCU1ZYxF-LK_jWygZgGvfeE_5jSulY1XdUPs09j1FCwDtXQmyD_emQYuOEMBHKZnYx';
 
 class YelpRepository {
   late Dio dio;
@@ -60,15 +65,42 @@ class YelpRepository {
   ///   }
   /// }
   ///
+  ///
+  Future<RestaurantQueryResult?> getRestaurantsFromCache(
+      {int offset = 0}) async {
+    try {
+      return RestaurantQueryResult.fromJson(sample['data']['search']);
+    } catch (e) {
+      return null;
+    }
+  }
+
   Future<RestaurantQueryResult?> getRestaurants({int offset = 0}) async {
     try {
       final response = await dio.post<Map<String, dynamic>>(
         '/v3/graphql',
         data: _getQuery(offset),
       );
+      // saveToJson(response.data!['data']['search'], 'datastore.json');
       return RestaurantQueryResult.fromJson(response.data!['data']['search']);
     } catch (e) {
       return null;
+    }
+  }
+
+  void saveToJson(Map<String, dynamic> data, String filePath) {
+    try {
+      final file = File(filePath);
+      final directory = file.parent;
+
+      if (!directory.existsSync()) {
+        directory.createSync(recursive: true);
+      }
+
+      file.writeAsStringSync(jsonEncode(data), flush: true);
+      print('Data successfully written to $filePath');
+    } catch (e) {
+      print('Failed to write data: $e');
     }
   }
 
