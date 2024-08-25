@@ -1,6 +1,3 @@
-import 'dart:convert';
-import 'dart:io';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:restaurant_tour/models/restaurant.dart';
@@ -66,12 +63,11 @@ class YelpRepository {
   /// }
   ///
   ///
-  Future<RestaurantQueryResult?> getRestaurantsFromCache(
-      {int offset = 0}) async {
+  RestaurantQueryResult getRestaurantsFromCache({int offset = 0}) {
     try {
       return RestaurantQueryResult.fromJson(sample['data']['search']);
     } catch (e) {
-      return null;
+      throw Exception();
     }
   }
 
