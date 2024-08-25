@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_tour/models/restaurant.dart';
 
-class RestaurantDetails extends StatelessWidget {
-  const RestaurantDetails({
+class PriceAndClassificationRowWidget extends StatelessWidget {
+  const PriceAndClassificationRowWidget({
     super.key,
     required this.restaurant,
   });

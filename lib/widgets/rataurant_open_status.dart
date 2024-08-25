@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 
-class OpenStatus extends StatelessWidget {
-  const OpenStatus({super.key, required this.isOpen});
+class OpenStatusWidget extends StatelessWidget {
+  const OpenStatusWidget({super.key, required this.isOpen});
   final bool isOpen;
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisSize: MainAxisSize.min,
       children: [
         Text(
           isOpen ? 'Open Now' : 'Closed Now',
           style: Theme.of(context).textTheme.displaySmall,
         ),
-        SizedBox(
+        const SizedBox(
           width: 8,
         ),
         Icon(

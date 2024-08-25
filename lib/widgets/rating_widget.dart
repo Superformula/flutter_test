@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../theme/colors.dart';
+
 class StarRating extends StatelessWidget {
   final int rating;
   final double starSize;
@@ -9,7 +11,7 @@ class StarRating extends StatelessWidget {
     super.key,
     required this.rating, // Rating should be between 0 to 5
     this.starSize = 12.0,
-    this.starColor = Colors.amber,
+    this.starColor = ThemeColors.starColor,
   }) : assert(rating >= 0 && rating <= 5);
 
   @override

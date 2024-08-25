@@ -88,22 +88,6 @@ class YelpRepository {
     }
   }
 
-  void saveToJson(Map<String, dynamic> data, String filePath) {
-    try {
-      final file = File(filePath);
-      final directory = file.parent;
-
-      if (!directory.existsSync()) {
-        directory.createSync(recursive: true);
-      }
-
-      file.writeAsStringSync(jsonEncode(data), flush: true);
-      print('Data successfully written to $filePath');
-    } catch (e) {
-      print('Failed to write data: $e');
-    }
-  }
-
   String _getQuery(int offset) {
     return '''
 query getRestaurants {

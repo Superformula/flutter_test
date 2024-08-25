@@ -31,6 +31,8 @@ dev_dependencies:
 flutter:
   generate: true
   uses-material-design: true
+  assets: 
+    - assets/avatars/
   fonts:
     - family: Lora
       fonts:
