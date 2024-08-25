@@ -14,6 +14,6 @@ void main() {
     await tester.pumpWidget(const RestaurantTour());
 
     // Verify that tests will run
-    expect(find.text('Fetch Restaurants'), findsOneWidget);
+    expect(find.text('All restaurants'), findsOneWidget);
   });
 }
