@@ -1,5 +1,7 @@
-import 'package:dio/dio.dart';
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:restaurant_tour/cubit/cubit.dart';
 import 'package:restaurant_tour/repositories/repositories.dart';
@@ -20,8 +22,8 @@ void setup() {
   getIt.registerSingleton<FetchRestaurants>(
     FetchRestaurants(repository: getIt<YelpRepository>()),
   );
-  getIt.registerFactory<RestaurantCubit>(
-    () => RestaurantCubit(getIt<FetchRestaurants>()),
+  getIt.registerSingleton<RestaurantCubit>(
+    RestaurantCubit(getIt<FetchRestaurants>()),
   );
 }
 
@@ -30,12 +32,20 @@ class RestaurantTour extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Restaurant Tour',
-      home: const HomePageBlocProvider(),
-      theme: ThemeData(
-        fontFamily: 'Lora',
-        textTheme: ThemeText.textTheming,
+    return BlocProvider.value(
+      value: GetIt.instance<RestaurantCubit>()..fetchRestaurants(),
+      child: MaterialApp(
+        title: 'Restaurant Tour',
+        debugShowCheckedModeBanner: false,
+        home: const HomePage(),
+        theme: ThemeData(
+          fontFamily: 'Lora',
+          scaffoldBackgroundColor: const Color.fromARGB(255, 255, 255, 255),
+          appBarTheme: const AppBarTheme(
+            backgroundColor: Color.fromARGB(255, 255, 255, 255),
+          ),
+          textTheme: ThemeText.textTheming,
+        ),
       ),
     );
   }

@@ -28,3 +28,7 @@ class ThemeText {
     headlineMedium: TextStyle(fontSize: 28, fontWeight: FontWeight.w700),
   );
 }
+
+const spacingXL = 24.0;
+const spacingM = 16.0;
+const spacingSM = 8.0;

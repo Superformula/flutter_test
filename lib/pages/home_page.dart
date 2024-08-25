@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get_it/get_it.dart';
-import 'package:restaurant_tour/cubit/cubit.dart';
 import 'package:restaurant_tour/pages/restaurant_list_page_view.dart';
 
-class HomePageBlocProvider extends StatelessWidget {
-  const HomePageBlocProvider({super.key});
+// class HomePageBlocProvider extends StatelessWidget {
+//   const HomePageBlocProvider({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) =>
-          GetIt.instance<RestaurantCubit>()..fetchRestaurants(),
-      child: const HomePage(),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return BlocProvider(
+//       create: (context) =>
+//           GetIt.instance<RestaurantCubit>()..fetchRestaurants(),
+//       child: const HomePage(),
+//     );
+//   }
+// }
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});

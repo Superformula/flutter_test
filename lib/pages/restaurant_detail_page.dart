@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_tour/models/restaurant.dart';
-import 'package:restaurant_tour/widgets/divider.dart';
 import 'package:restaurant_tour/widgets/widgets.dart';
-
-const spacingXL = 24.0;
-const spacingM = 16.0;
-const spacingSM = 8.0;
+import '../theme/text.dart';
+import '../widgets/appbar.dart';
 
 class RestaurantDetailPage extends StatelessWidget {
   const RestaurantDetailPage({super.key, required this.restaurant});
@@ -13,11 +10,10 @@ class RestaurantDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(restaurant.name ?? ''),
+      appBar: RestaurantDetailAppBar(
+        restaurant: restaurant,
       ),
       body: SafeArea(
-        // minimum: const EdgeInsets.all(16),
         child: LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) {
             return SingleChildScrollView(

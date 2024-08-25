@@ -2,10 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:restaurant_tour/cubit/cubit.dart';
 import 'package:restaurant_tour/models/models.dart';
-import 'package:restaurant_tour/widgets/rataurant_open_status.dart';
-import 'package:restaurant_tour/widgets/rating_widget.dart';
-
-import '../widgets/restaurant_details.dart';
 import '../widgets/widgets.dart';
 import 'restaurant_detail_page.dart';
 
@@ -17,6 +13,10 @@ class RestaurantListPageView extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         return BlocBuilder<RestaurantCubit, RestaurantState>(
+          buildWhen: (previous, current) =>
+              current is LoadingRestaurantsState ||
+              current is RestaurantsLoadedState ||
+              current is ErrorState,
           builder: (context, state) {
             if (state is LoadingRestaurantsState) {
               return const Center(child: CircularProgressIndicator());
@@ -31,7 +31,6 @@ class RestaurantListPageView extends StatelessWidget {
                 itemBuilder: (BuildContext context, int index) {
                   return Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    // crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       ListTile(
                         restaurant: state.result.restaurants!.elementAt(index),
@@ -58,6 +57,7 @@ class ListTile extends StatelessWidget {
   });
   final Restaurant restaurant;
   final BoxConstraints constraints;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

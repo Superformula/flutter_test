@@ -9,4 +9,11 @@ class FetchRestaurants {
       await repository.getRestaurants();
   Future<RestaurantQueryResult?> getRestaurantsFromCache() async =>
       await repository.getRestaurantsFromCache();
+
+  Future<List<String>> getFavoriteRestaurants() async {
+    //this could be fetched from anywhere later... a shared prefs or another database
+    await Future.delayed(const Duration(milliseconds: 500));
+
+    return ['vHz2RLtfUMVRPFmd7VBEHA'];
+  }
 }

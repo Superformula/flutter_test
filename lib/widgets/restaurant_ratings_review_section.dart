@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_tour/models/restaurant.dart';
+import 'package:restaurant_tour/models/models.dart';
+import 'package:restaurant_tour/theme/text.dart';
 import 'package:restaurant_tour/utils/get_random_avatar.dart';
-import 'package:restaurant_tour/widgets/divider.dart';
-import 'package:restaurant_tour/widgets/rating_widget.dart';
-
-import '../pages/restaurant_detail_page.dart';
+import 'package:restaurant_tour/widgets/widgets.dart';
 import '../theme/colors.dart';
 
 class BuildRatingSection extends StatelessWidget {
