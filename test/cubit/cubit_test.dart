@@ -1,92 +1,92 @@
-import 'dart:io';
-
 import 'package:bloc_test/bloc_test.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:get_it/get_it.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:restaurant_tour/cubit/cubit.dart';
-import 'package:restaurant_tour/pages/pages.dart';
-import 'package:restaurant_tour/repositories/repositories.dart';
-import 'package:restaurant_tour/usecases/usecases.dart';
-import 'package:restaurant_tour/widgets/widgets.dart';
-
-// Mock classes
-class MockRestaurantCubit extends MockCubit<RestaurantState>
-    implements RestaurantCubit {}
-
-class MockRestaurantState extends Fake implements RestaurantState {}
+import 'package:restaurant_tour/cubit/restaurant_cubit.dart';
+import 'package:restaurant_tour/models/restaurant.dart';
+import 'package:restaurant_tour/usecases/fetch_restaurants.dart';
 
 class MockFetchRestaurantsUseCase extends Mock implements FetchRestaurants {}
 
-class MyHttpOverrides extends HttpOverrides {
-  @override
-  HttpClient createHttpClient(SecurityContext? context) {
-    return super.createHttpClient(context)
-      ..badCertificateCallback =
-          (X509Certificate cert, String host, int port) => true;
-  }
-}
+class MockRestaurantQueryResult extends Mock implements RestaurantQueryResult {}
 
 void main() {
-  late MockRestaurantCubit restaurantCubit;
+  late RestaurantCubit restaurantCubit;
   late MockFetchRestaurantsUseCase mockFetchRestaurantsUseCase;
 
-  group('Load Restaurants State successfully', () {
-    setUp(() {
-      HttpOverrides.global = MyHttpOverrides();
+  setUp(() {
+    mockFetchRestaurantsUseCase = MockFetchRestaurantsUseCase();
+    restaurantCubit = RestaurantCubit(mockFetchRestaurantsUseCase);
+  });
 
-      registerFallbackValue(MockRestaurantState());
+  tearDown(() {
+    restaurantCubit.close();
+  });
 
-      mockFetchRestaurantsUseCase = MockFetchRestaurantsUseCase();
+  blocTest(
+    'Emits Loading and Loaded states when fetchRestaurants is successful',
+    build: () {
+      final mockResult = MockRestaurantQueryResult();
+      when(() => mockFetchRestaurantsUseCase.getRestaurants())
+          .thenAnswer((_) async => mockResult);
 
-      restaurantCubit = MockRestaurantCubit();
+      when(() => mockFetchRestaurantsUseCase.getFavoriteRestaurants())
+          .thenAnswer((_) async => ['abc', 'def']);
+      return restaurantCubit;
+    },
+    act: (cubit) => cubit.fetchRestaurants(),
+    expect: () => [
+      const LoadingRestaurantsState(favoriteRestaurants: []),
+      isA<RestaurantsLoadedState>(),
+    ],
+    verify: (cubit) {
+      verify(() => mockFetchRestaurantsUseCase.getRestaurants()).called(1);
+      verify(() => mockFetchRestaurantsUseCase.getFavoriteRestaurants())
+          .called(1);
+    },
+  );
 
-      // GetIt.I.registerFactory<RestaurantCubit>(
-      //   () => RestaurantCubit(mockFetchRestaurantsUseCase),
-      // );
-    });
+  blocTest<RestaurantCubit, RestaurantState>(
+    'emits [LoadingRestaurantsState, ErrorState] when fetchRestaurants fails',
+    build: () {
+      when(() => mockFetchRestaurantsUseCase.getRestaurants())
+          .thenAnswer((_) async => null);
+      when(() => mockFetchRestaurantsUseCase.getFavoriteRestaurants())
+          .thenAnswer((_) async => []);
+      return restaurantCubit;
+    },
+    act: (cubit) => cubit.fetchRestaurants(),
+    expect: () => [
+      const LoadingRestaurantsState(favoriteRestaurants: []),
+      const ErrorState(
+        message:
+            'The server encountered a problem and we couldn\'t load the list.',
+        favoriteRestaurants: [],
+      ),
+    ],
+    verify: (cubit) {
+      verify(() => mockFetchRestaurantsUseCase.getRestaurants()).called(1);
+      verify(() => mockFetchRestaurantsUseCase.getFavoriteRestaurants())
+          .called(1);
+    },
+  );
 
-    tearDown(() {
-      // GetIt.I.reset();
-    });
-
-    testWidgets('Display loading State', (tester) async {
-      when(() => restaurantCubit.state)
-          .thenReturn(const LoadingRestaurantsState(favoriteRestaurants: []));
-
-      await tester.pumpWidget(
-        MaterialApp(
-          home: BlocProvider<RestaurantCubit>.value(
-            value: restaurantCubit,
-            child: const HomePage(),
-          ),
+  blocTest<RestaurantCubit, RestaurantState>(
+    'emits [FavoriteRestaurantState] when someone favorites or un-favorites a restaurant',
+    build: () => restaurantCubit,
+    setUp: () {
+      restaurantCubit.emit(
+        RestaurantsLoadedState(
+          result: MockRestaurantQueryResult(),
+          favoriteRestaurants: const ['1', '2'],
         ),
       );
-
-      expect(find.byType(CircularProgressIndicator), findsOneWidget);
-    });
-
-    testWidgets('Display List View State', (tester) async {
-      var fakeData = YelpRepository().getRestaurantsFromCache();
-      when(() => restaurantCubit.state).thenReturn(
-        RestaurantsLoadedState(favoriteRestaurants: [], result: fakeData),
-      );
-      await tester.runAsync(() async {
-        await tester.pumpWidget(
-          MaterialApp(
-            home: BlocProvider<RestaurantCubit>.value(
-              value: restaurantCubit,
-              child: const HomePage(),
-            ),
-          ),
-        );
-        await tester.pumpAndSettle();
-      });
-
-      expect(find.byType(HeroImageWidget), findsAny);
-    });
-  });
+    },
+    act: (cubit) => cubit.favoriteAResturant('1'),
+    expect: () => [
+      FavoriteRestaurantState(
+        result: MockRestaurantQueryResult(),
+        favoriteRestaurants: List.of(['2']),
+      ),
+    ],
+  );
 }
