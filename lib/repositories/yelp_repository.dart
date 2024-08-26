@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:restaurant_tour/env.dart';
 import 'package:restaurant_tour/models/restaurant.dart';
 import 'package:restaurant_tour/repositories/sample_json.dart';

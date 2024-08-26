@@ -43,6 +43,7 @@ class RestaurantCubit extends Cubit<RestaurantState> {
     } else {
       favoriteRestaurants.add(id);
     }
+    // await fetchRestaurantsUseCase.saveFavoriteRestaurants(favoriteRestaurants);
     emit(
       FavoriteRestaurantState(
         result: state.result!,

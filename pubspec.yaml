@@ -1,7 +1,7 @@
 name: restaurant_tour
 description: Flutter developer coding challenge starter project.
 
-publish_to: 'none'
+# publish_to: 'none'
 
 version: 1.0.0+1
 
@@ -36,6 +36,7 @@ flutter:
   uses-material-design: true
   assets: 
     - assets/avatars/
+    - assets/.env
   fonts:
     - family: Lora
       fonts:
