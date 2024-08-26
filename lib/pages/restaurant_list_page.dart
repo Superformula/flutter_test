@@ -25,15 +25,16 @@ class RestaurantListPageView extends StatelessWidget {
                 child: Text(state.message),
               );
             }
-            if (state is RestaurantsLoadedState) {
+            if (state is RestaurantsLoadedState ||
+                state is FavoriteRestaurantState) {
               return ListView.builder(
-                itemCount: state.result.restaurants?.length,
+                itemCount: state.result!.restaurants?.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      ListTile(
-                        restaurant: state.result.restaurants!.elementAt(index),
+                      RestaurantListTile(
+                        restaurant: state.result!.restaurants!.elementAt(index),
                         constraints: constraints,
                       ),
                     ],
@@ -49,8 +50,8 @@ class RestaurantListPageView extends StatelessWidget {
   }
 }
 
-class ListTile extends StatelessWidget {
-  const ListTile({
+class RestaurantListTile extends StatelessWidget {
+  const RestaurantListTile({
     super.key,
     required this.restaurant,
     required this.constraints,

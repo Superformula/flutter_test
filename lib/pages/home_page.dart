@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_tour/pages/restaurant_list_page_view.dart';
+import 'package:restaurant_tour/pages/favorites_list_page_view.dart';
+import 'package:restaurant_tour/pages/restaurant_list_page.dart';
 
 // class HomePageBlocProvider extends StatelessWidget {
 //   const HomePageBlocProvider({super.key});
@@ -62,7 +63,7 @@ class HomePage extends StatelessWidget {
           child: TabBarView(
             children: [
               RestaurantListPageView(),
-              Text('Dias'),
+              FavoritesListPageView(),
             ],
           ),
         ),
