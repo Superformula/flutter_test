@@ -62,6 +62,11 @@ const Map<String, dynamic> sample = {
         },
         {
           "id": "faPVqws-x-5k2CQKDNtHxw",
+          "name": "Yardbird",
+          "price": "\$\$",
+          "photos": [
+            "https://s3-media1.fl.yelpcdn.com/bphoto/xYJaanpF3Dl1OovhmpqAYw/o.jpg"
+          ],
           "reviews": [
             {
               "id": "CN9oD1ncHKZtsGN7U1EMnA",
