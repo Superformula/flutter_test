@@ -19,12 +19,23 @@ class HeroImageWidget extends StatelessWidget {
       tag: restaurant.id.toString(),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(borderRadius),
-        child: Image.network(
-          restaurant.heroImage,
-          fit: BoxFit.cover,
-          width: width,
-          height: height,
-        ),
+        child: restaurant.heroImage.isNotEmpty &&
+                Uri.tryParse(restaurant.heroImage)?.isAbsolute == true
+            ? Image.network(
+                restaurant.heroImage,
+                fit: BoxFit.cover,
+                width: width,
+                height: height,
+              )
+            : Container(
+                width: width,
+                height: height,
+                color: const Color.fromARGB(255, 197, 233, 199),
+                child: Image.asset(
+                  'assets/placeholder.png',
+                  fit: BoxFit.fitHeight,
+                ),
+              ),
       ),
     );
   }
