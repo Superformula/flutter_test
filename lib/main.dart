@@ -1,7 +1,11 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:restaurant_tour/cubit/cubit.dart';
+import 'package:restaurant_tour/datasources/yielp_datasource.dart';
+import 'package:restaurant_tour/env.dart';
+import 'package:restaurant_tour/network/dio_http_client.dart';
 import 'package:restaurant_tour/repositories/repositories.dart';
 import 'package:restaurant_tour/theme/text.dart';
 import 'pages/home_page.dart';
@@ -16,8 +20,27 @@ Future<void> main() async {
 
 void setup() {
   final getIt = GetIt.instance;
+  final dio = Dio(
+    BaseOptions(
+      baseUrl: 'https://api.yelp.com',
+      headers: {
+        'Authorization': 'Bearer $API_KEY',
+        'Content-Type': 'application/graphql',
+      },
+    ),
+  );
+  getIt.registerSingleton<DioHttpClient>(DioHttpClient(dio: dio));
 
-  getIt.registerSingleton<YelpRepository>(YelpRepository());
+  getIt.registerSingleton<YielpDatasource>(
+    YielpDatasource(
+      networkClient: getIt<DioHttpClient>(),
+      baseUrl: 'https://api.yelp.com',
+    ),
+  );
+
+  getIt.registerSingleton<YelpRepository>(
+    YelpRepository(datasource: getIt<YielpDatasource>()),
+  );
 
   getIt.registerSingleton<FetchRestaurants>(
     FetchRestaurants(repository: getIt<YelpRepository>()),

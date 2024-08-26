@@ -1,9 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:restaurant_tour/datasources/yielp_datasource.dart';
 import 'package:restaurant_tour/models/restaurant.dart';
+import 'package:restaurant_tour/network/dio_http_client.dart';
 import 'package:restaurant_tour/repositories/repositories.dart';
-import 'package:restaurant_tour/repositories/sample_json.dart';
+import 'package:restaurant_tour/utils/sample_json.dart';
 
 class MockDio extends Mock implements Dio {}
 
@@ -48,7 +50,12 @@ void main() {
   late MockDio mockDio;
   setUp(() {
     mockDio = MockDio();
-    repository = YelpRepository(dio: mockDio);
+    repository = YelpRepository(
+      datasource: YielpDatasource(
+        networkClient: DioHttpClient(dio: mockDio),
+        baseUrl: 'https://example.com',
+      ),
+    );
   });
 
   // test('Get Restaurants should return a RestaurantQueryResult', () async {

@@ -1,11 +1,14 @@
 import 'dart:io';
 import 'package:bloc_test/bloc_test.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:restaurant_tour/cubit/cubit.dart';
+import 'package:restaurant_tour/datasources/yielp_datasource.dart';
+import 'package:restaurant_tour/network/dio_http_client.dart';
 import 'package:restaurant_tour/pages/pages.dart';
 import 'package:restaurant_tour/repositories/repositories.dart';
 import 'package:restaurant_tour/usecases/usecases.dart';
@@ -18,6 +21,8 @@ class MockRestaurantCubit extends MockCubit<RestaurantState>
 class MockRestaurantState extends Fake implements RestaurantState {}
 
 class MockFetchRestaurantsUseCase extends Mock implements FetchRestaurants {}
+
+class MockDio extends Mock implements Dio {}
 
 class MyHttpOverrides extends HttpOverrides {
   @override
@@ -70,7 +75,12 @@ void main() {
     testWidgets(
         'When restaurants are loaded, display a listview with a HeroImageWidget',
         (tester) async {
-      var fakeData = YelpRepository().getRestaurantsFromCache();
+      var fakeData = YelpRepository(
+        datasource: YielpDatasource(
+          baseUrl: 'http://example.com/get',
+          networkClient: DioHttpClient(dio: MockDio()),
+        ),
+      ).getRestaurantsFromCache();
       when(() => restaurantCubit.state).thenReturn(
         RestaurantsLoadedState(favoriteRestaurants: [], result: fakeData),
       );
