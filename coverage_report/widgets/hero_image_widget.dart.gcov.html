@@ -31,13 +31,13 @@
             <td class="headerValue">lcov.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntryHi">100.0&nbsp;%</td>
-            <td class="headerCovTableEntry">10</td>
-            <td class="headerCovTableEntry">10</td>
+            <td class="headerCovTableEntryMed">75.0&nbsp;%</td>
+            <td class="headerCovTableEntry">16</td>
+            <td class="headerCovTableEntry">12</td>
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2024-08-25 23:11:19</td>
+            <td class="headerValue">2024-08-26 14:48:33</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryHi">-</td>
@@ -81,16 +81,27 @@
 <span id="L19"><span class="lineNum">      19</span> <span class="tlaGNC">           3 :       tag: restaurant.id.toString(),</span></span>
 <span id="L20"><span class="lineNum">      20</span> <span class="tlaGNC">           1 :       child: ClipRRect(</span></span>
 <span id="L21"><span class="lineNum">      21</span> <span class="tlaGNC">           2 :         borderRadius: BorderRadius.circular(borderRadius),</span></span>
-<span id="L22"><span class="lineNum">      22</span> <span class="tlaGNC">           1 :         child: Image.network(</span></span>
-<span id="L23"><span class="lineNum">      23</span> <span class="tlaGNC">           2 :           restaurant.heroImage,</span></span>
-<span id="L24"><span class="lineNum">      24</span>              :           fit: BoxFit.cover,</span>
-<span id="L25"><span class="lineNum">      25</span> <span class="tlaGNC">           1 :           width: width,</span></span>
-<span id="L26"><span class="lineNum">      26</span> <span class="tlaGNC">           1 :           height: height,</span></span>
-<span id="L27"><span class="lineNum">      27</span>              :         ),</span>
-<span id="L28"><span class="lineNum">      28</span>              :       ),</span>
-<span id="L29"><span class="lineNum">      29</span>              :     );</span>
-<span id="L30"><span class="lineNum">      30</span>              :   }</span>
-<span id="L31"><span class="lineNum">      31</span>              : }</span>
+<span id="L22"><span class="lineNum">      22</span> <span class="tlaGNC">           3 :         child: restaurant.heroImage.isNotEmpty &amp;&amp;</span></span>
+<span id="L23"><span class="lineNum">      23</span> <span class="tlaGNC">           5 :                 Uri.tryParse(restaurant.heroImage)?.isAbsolute == true</span></span>
+<span id="L24"><span class="lineNum">      24</span> <span class="tlaGNC">           1 :             ? Image.network(</span></span>
+<span id="L25"><span class="lineNum">      25</span> <span class="tlaGNC">           2 :                 restaurant.heroImage,</span></span>
+<span id="L26"><span class="lineNum">      26</span>              :                 fit: BoxFit.cover,</span>
+<span id="L27"><span class="lineNum">      27</span> <span class="tlaGNC">           1 :                 width: width,</span></span>
+<span id="L28"><span class="lineNum">      28</span> <span class="tlaGNC">           1 :                 height: height,</span></span>
+<span id="L29"><span class="lineNum">      29</span>              :               )</span>
+<span id="L30"><span class="lineNum">      30</span> <span class="tlaUNC tlaBgUNC">           0 :             : Container(</span></span>
+<span id="L31"><span class="lineNum">      31</span> <span class="tlaUNC">           0 :                 width: width,</span></span>
+<span id="L32"><span class="lineNum">      32</span> <span class="tlaUNC">           0 :                 height: height,</span></span>
+<span id="L33"><span class="lineNum">      33</span>              :                 color: const Color.fromARGB(255, 197, 233, 199),</span>
+<span id="L34"><span class="lineNum">      34</span> <span class="tlaUNC">           0 :                 child: Image.asset(</span></span>
+<span id="L35"><span class="lineNum">      35</span>              :                   'assets/placeholder.png',</span>
+<span id="L36"><span class="lineNum">      36</span>              :                   fit: BoxFit.fitHeight,</span>
+<span id="L37"><span class="lineNum">      37</span>              :                 ),</span>
+<span id="L38"><span class="lineNum">      38</span>              :               ),</span>
+<span id="L39"><span class="lineNum">      39</span>              :       ),</span>
+<span id="L40"><span class="lineNum">      40</span>              :     );</span>
+<span id="L41"><span class="lineNum">      41</span>              :   }</span>
+<span id="L42"><span class="lineNum">      42</span>              : }</span>
         </pre>
               </td>
             </tr>
