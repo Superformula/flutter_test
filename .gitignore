@@ -50,3 +50,4 @@ app.*.map.json
 .env
 *.env
 env.dart
+coverage_report
