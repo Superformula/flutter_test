@@ -15,7 +15,7 @@ class RestaurantCubit extends Cubit<RestaurantState> {
   Future<void> fetchRestaurants() async {
     emit(const LoadingRestaurantsState(favoriteRestaurants: []));
     RestaurantQueryResult? result =
-        await fetchRestaurantsUseCase.getRestaurantsFromCache();
+        await fetchRestaurantsUseCase.getRestaurants();
     List<String> favoriteRestaurants =
         await fetchRestaurantsUseCase.getFavoriteRestaurants();
     if (result != null) {
