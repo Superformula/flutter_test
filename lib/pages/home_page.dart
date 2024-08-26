@@ -45,13 +45,13 @@ class HomePage extends StatelessWidget {
             tabs: [
               Tab(
                 child: Text(
-                  'All restaurants',
+                  'All Restaurants',
                   style: Theme.of(context).textTheme.displayLarge,
                 ),
               ),
               Tab(
                 child: Text(
-                  'My favorites',
+                  'My Favorites',
                   style: Theme.of(context).textTheme.displayLarge,
                 ),
               ),
