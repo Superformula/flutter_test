@@ -35,7 +35,7 @@ final class RestaurantDetailsScreen extends StatelessWidget {
                   crossFadeState: bloc.favorited(restaurant.id) ? CrossFadeState.showFirst : CrossFadeState.showSecond,
                   firstCurve: Curves.easeInOut,
                   secondCurve: Curves.easeInOut,
-                  duration: const Duration(milliseconds: 100),
+                  duration: const Duration(milliseconds: 150),
                 ), //
                 onPressed: onFavorite,
               );
