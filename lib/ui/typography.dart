@@ -1,5 +1,7 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
+import 'package:restaurant_tour/ui/colors.dart';
 
+/// A collection of text styles used in the app.
 abstract final class AppTextStyles {
   // Lora
   static const loraHeading6 = TextStyle(
@@ -31,13 +33,6 @@ abstract final class AppTextStyles {
     fontWeight: FontWeight.w600,
     fontSize: 14.0,
     height: 24.0 / 14.0,
-    color: Colors.black,
-  );
-
-  static const openRegularTitle = TextStyle(
-    fontFamily: 'OpenSans',
-    fontWeight: FontWeight.w400,
-    fontSize: 14.0,
     color: Colors.black,
   );
 

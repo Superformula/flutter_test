@@ -16,7 +16,7 @@ import 'package:restaurant_tour/ui/widgets/restaurant_rating.dart';
 import 'cubit.dart';
 import 'state.dart';
 
-class RestaurantsListScreen extends StatefulWidget {
+final class RestaurantsListScreen extends StatefulWidget {
   const RestaurantsListScreen({
     super.key,
   });
@@ -25,7 +25,7 @@ class RestaurantsListScreen extends StatefulWidget {
   State<RestaurantsListScreen> createState() => _RestaurantsListScreenState();
 }
 
-class _RestaurantsListScreenState extends State<RestaurantsListScreen> {
+final class _RestaurantsListScreenState extends State<RestaurantsListScreen> {
   late final RestaurantsListScreenCubit cubit;
 
   @override

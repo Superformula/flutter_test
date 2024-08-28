@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+/// A collection of colors used through the app.
 abstract final class Colors {
   static const starYellow = Color(0xFFFFB800);
   static const openGreen = Color(0xFF5CD313);
