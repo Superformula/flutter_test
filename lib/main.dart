@@ -9,6 +9,7 @@ import 'package:restaurant_tour/ui/screens/list_restaurants_screen/cubit.dart';
 
 import 'cubit.dart';
 import 'ui/colors.dart';
+import 'ui/screens/list_restaurants_screen/list_restaurants_screen.dart';
 import 'ui/typography.dart';
 
 void main() async {
@@ -60,7 +61,7 @@ final class RestaurantTourApp extends StatelessWidget {
           ),
         ),
         title: 'Restaurant Tour',
-        home: const ListRestaurantsScreenCubitWrapper(),
+        home: const ListRestaurantsScreen(),
         builder: (context, child) {
           return BlocProvider(
             create: (context) => RestaurantTourCubit(),

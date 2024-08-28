@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:prototype_constrained_box/prototype_constrained_box.dart';
 import 'package:restaurant_tour/cubit.dart';
 import 'package:restaurant_tour/models/restaurant.dart';
+import 'package:restaurant_tour/repositories/restaurants_repository.dart';
 import 'package:restaurant_tour/ui/colors.dart';
 import 'package:restaurant_tour/ui/screens/list_restaurants_screen/state.dart';
 import 'package:restaurant_tour/ui/screens/restaurant_details_screen/restaurant_details_screen.dart';
@@ -13,36 +14,62 @@ import 'package:restaurant_tour/ui/widgets/restaurant_image.dart';
 import 'package:restaurant_tour/ui/widgets/restaurant_price_and_category_info.dart';
 import 'package:restaurant_tour/ui/widgets/restaurant_rating.dart';
 
-class ListRestaurantsScreen extends StatelessWidget {
+import 'cubit.dart';
+
+class ListRestaurantsScreen extends StatefulWidget {
   const ListRestaurantsScreen({
     super.key,
-    required this.state,
   });
 
-  final ListRestaurantsScreenState state;
+  @override
+  State<ListRestaurantsScreen> createState() => _ListRestaurantsScreenState();
+}
+
+class _ListRestaurantsScreenState extends State<ListRestaurantsScreen> {
+  late final ListRestaurantsScreenCubit cubit;
+
+  @override
+  void initState() {
+    super.initState();
+    final repository = context.read<RestaurantsRepository>();
+
+    cubit = ListRestaurantsScreenCubit(repository: repository);
+    cubit.loadRestaurants();
+  }
+
+  @override
+  void dispose() {
+    cubit.close();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('RestauranTour'),
-          bottom: const TabBar(
-            tabAlignment: TabAlignment.center,
-            labelPadding: EdgeInsets.all(8.0),
-            tabs: [
-              Text('All Restaurants'),
-              Text('My Favorites'),
-            ],
+    return BlocBuilder<ListRestaurantsScreenCubit, ListRestaurantsScreenState>(
+      bloc: cubit,
+      builder: (context, state) {
+        return DefaultTabController(
+          length: 2,
+          child: Scaffold(
+            appBar: AppBar(
+              title: const Text('RestauranTour'),
+              bottom: const TabBar(
+                tabAlignment: TabAlignment.center,
+                labelPadding: EdgeInsets.all(8.0),
+                tabs: [
+                  Text('All Restaurants'),
+                  Text('My Favorites'),
+                ],
+              ),
+            ),
+            body: switch (state) {
+              LoadingRestaurants() => _LoadingRestaurants(),
+              RestaurantsData(:final restaurants) => _RestaurantsData(restaurants: restaurants),
+              RestaurantsError(:final exception) => Text('Error: $exception'),
+            },
           ),
-        ),
-        body: switch (state) {
-          LoadingRestaurants() => _LoadingRestaurants(),
-          RestaurantsData(:final restaurants) => _RestaurantsData(restaurants: restaurants),
-          RestaurantsError(:final exception) => Text('Error: $exception'),
-        },
-      ),
+        );
+      },
     );
   }
 }
