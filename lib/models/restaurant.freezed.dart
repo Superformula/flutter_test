@@ -173,7 +173,7 @@ Hours _$HoursFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Hours {
-  @JsonKey(name: 'is_open_noew')
+  @JsonKey(name: 'is_open_now')
   bool get open => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -186,7 +186,7 @@ abstract class $HoursCopyWith<$Res> {
   factory $HoursCopyWith(Hours value, $Res Function(Hours) then) =
       _$HoursCopyWithImpl<$Res, Hours>;
   @useResult
-  $Res call({@JsonKey(name: 'is_open_noew') bool open});
+  $Res call({@JsonKey(name: 'is_open_now') bool open});
 }
 
 /// @nodoc
@@ -220,7 +220,7 @@ abstract class _$$HoursImplCopyWith<$Res> implements $HoursCopyWith<$Res> {
       __$$HoursImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({@JsonKey(name: 'is_open_noew') bool open});
+  $Res call({@JsonKey(name: 'is_open_now') bool open});
 }
 
 /// @nodoc
@@ -248,13 +248,13 @@ class __$$HoursImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$HoursImpl implements _Hours {
-  const _$HoursImpl({@JsonKey(name: 'is_open_noew') required this.open});
+  const _$HoursImpl({@JsonKey(name: 'is_open_now') required this.open});
 
   factory _$HoursImpl.fromJson(Map<String, dynamic> json) =>
       _$$HoursImplFromJson(json);
 
   @override
-  @JsonKey(name: 'is_open_noew')
+  @JsonKey(name: 'is_open_now')
   final bool open;
 
   @override
@@ -290,12 +290,12 @@ class _$HoursImpl implements _Hours {
 
 abstract class _Hours implements Hours {
   const factory _Hours(
-      {@JsonKey(name: 'is_open_noew') required final bool open}) = _$HoursImpl;
+      {@JsonKey(name: 'is_open_now') required final bool open}) = _$HoursImpl;
 
   factory _Hours.fromJson(Map<String, dynamic> json) = _$HoursImpl.fromJson;
 
   @override
-  @JsonKey(name: 'is_open_noew')
+  @JsonKey(name: 'is_open_now')
   bool get open;
   @override
   @JsonKey(ignore: true)

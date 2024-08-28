@@ -19,12 +19,12 @@ Map<String, dynamic> _$$CategoryImplToJson(_$CategoryImpl instance) =>
     };
 
 _$HoursImpl _$$HoursImplFromJson(Map<String, dynamic> json) => _$HoursImpl(
-      open: json['is_open_noew'] as bool,
+      open: json['is_open_now'] as bool,
     );
 
 Map<String, dynamic> _$$HoursImplToJson(_$HoursImpl instance) =>
     <String, dynamic>{
-      'is_open_noew': instance.open,
+      'is_open_now': instance.open,
     };
 
 _$UserImpl _$$UserImplFromJson(Map<String, dynamic> json) => _$UserImpl(
