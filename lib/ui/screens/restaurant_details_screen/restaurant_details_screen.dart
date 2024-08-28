@@ -200,7 +200,7 @@ final class _Review extends StatelessWidget {
   Widget build(BuildContext context) {
     final ImageProvider image = switch (review.user.imageUrl) {
       final url? => NetworkImage(url),
-      null => const AssetImage('assets/images/unknown.jpg'),
+      null => const AssetImage('assets/images/no_user_image.jpg'),
     };
 
     return Column(

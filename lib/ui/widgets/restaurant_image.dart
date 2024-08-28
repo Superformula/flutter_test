@@ -15,14 +15,17 @@ final class RestaurantImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final image = restaurant.photos?.firstOrNull ?? 'https://t4.ftcdn.net/jpg/05/17/53/57/360_F_517535712_q7f9QC9X6TQxWi6xYZZbMmw5cnLMr279.jpg';
+    final ImageProvider image = switch (restaurant.photos?.firstOrNull) {
+      final url? => NetworkImage(url),
+      null => const AssetImage('assets/images/no_restaurant_image.jpg'),
+    };
 
     final box = DecoratedBox(
       decoration: BoxDecoration(
         borderRadius: borderRadius,
         image: DecorationImage(
           fit: BoxFit.cover,
-          image: NetworkImage(image),
+          image: image,
         ),
       ),
     );

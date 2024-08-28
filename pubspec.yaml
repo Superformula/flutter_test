@@ -36,8 +36,9 @@ flutter:
   generate: true
   uses-material-design: true
   assets:
+    - assets/images/no_restaurant_image.jpg
+    - assets/images/no_user_image.jpg
     - assets/images/star.svg
-    - assets/images/unknown.jpg
 
   fonts:
     - family: Lora
