@@ -48,9 +48,9 @@ class _RestaurantsListScreenState extends State<RestaurantsListScreen> {
               ),
             ),
             body: switch (state) {
-              RestaurantsListLoading() => _LoadingRestaurants(),
+              RestaurantsListLoading() => const _LoadingRestaurants(),
               RestaurantsListData(:final restaurants) => _RestaurantsData(restaurants: restaurants),
-              RestaurantsListError(:final exception) => Text('Error: $exception'),
+              RestaurantsListError() => const _RestaurantListError(),
             },
           ),
         );
@@ -60,6 +60,8 @@ class _RestaurantsListScreenState extends State<RestaurantsListScreen> {
 }
 
 final class _LoadingRestaurants extends StatelessWidget {
+  const _LoadingRestaurants();
+  
   @override
   Widget build(BuildContext context) {
     return const Center(
@@ -136,36 +138,81 @@ final class _RestaurantsList extends StatelessWidget {
   }
 }
 
+final class _RestaurantListError extends StatelessWidget {
+  const _RestaurantListError();
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Icon(
+              Icons.error,
+              color: Colors.emptyStateColor,
+              size: 128.0,
+            ),
+            const SizedBox(height: 8.0),
+            const Text(
+              'There was an error while trying to load the restaurants.',
+              style: AppTextStyles.loraHeading6,
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 8.0),
+            const Text(
+              'You may try to reload the screen. If the issue persists for a long time, please contact support.',
+              style: AppTextStyles.openCaption,
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 8.0),
+            ElevatedButton(
+              onPressed: () => context.read<RestaurantsListScreenCubit>().loadRestaurants(),
+              child: const Text('Reload'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 final class _RestaurantListEmptyState extends StatelessWidget {
   const _RestaurantListEmptyState();
 
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const Icon(
-            Icons.no_food,
-            color: Colors.emptyStateColor,
-            size: 128.0,
-          ),
-          const SizedBox(height: 8.0),
-          const Text(
-            'No restaurants were found.',
-            style: AppTextStyles.loraHeading6,
-          ),
-          const SizedBox(height: 8.0),
-          const Text(
-            'You may try to reload the screen.',
-            style: AppTextStyles.openCaption,
-          ),
-          const SizedBox(height: 8.0),
-          ElevatedButton(
-            onPressed: () => context.read<RestaurantsListScreenCubit>().loadRestaurants(),
-            child: const Text('Reload'),
-          ),
-        ],
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Icon(
+              Icons.no_food,
+              color: Colors.emptyStateColor,
+              size: 128.0,
+            ),
+            const SizedBox(height: 8.0),
+            const Text(
+              'No restaurants were found.',
+              style: AppTextStyles.loraHeading6,
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 8.0),
+            const Text(
+              'You may try to reload the screen.',
+              style: AppTextStyles.openCaption,
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 8.0),
+            ElevatedButton(
+              onPressed: () => context.read<RestaurantsListScreenCubit>().loadRestaurants(),
+              child: const Text('Reload'),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -177,30 +224,35 @@ final class _RestaurantFavoritesListEmptyState extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const Icon(
-            Icons.heart_broken_rounded,
-            color: Colors.emptyStateColor,
-            size: 128.0,
-          ),
-          const SizedBox(height: 8.0),
-          const Text(
-            'You have no favorite restaurants.',
-            style: AppTextStyles.loraHeading6,
-          ),
-          const SizedBox(height: 8.0),
-          const Text(
-            'Go back to the restaurants list and add one to your favorites!',
-            style: AppTextStyles.openCaption,
-          ),
-          const SizedBox(height: 8.0),
-          ElevatedButton(
-            onPressed: () => DefaultTabController.of(context).animateTo(0),
-            child: const Text('See all restaurants'),
-          ),
-        ],
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Icon(
+              Icons.heart_broken_rounded,
+              color: Colors.emptyStateColor,
+              size: 128.0,
+            ),
+            const SizedBox(height: 8.0),
+            const Text(
+              'You have no favorite restaurants.',
+              style: AppTextStyles.loraHeading6,
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 8.0),
+            const Text(
+              'Go back to the restaurants list and add one to your favorites!',
+              style: AppTextStyles.openCaption,
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 8.0),
+            ElevatedButton(
+              onPressed: () => DefaultTabController.of(context).animateTo(0),
+              child: const Text('See all restaurants'),
+            ),
+          ],
+        ),
       ),
     );
   }

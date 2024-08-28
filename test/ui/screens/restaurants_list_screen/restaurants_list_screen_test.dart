@@ -8,6 +8,7 @@ import 'package:restaurant_tour/repositories/restaurants_repository.dart';
 import 'package:restaurant_tour/ui/screens/restaurants_list_screen/cubit.dart';
 import 'package:restaurant_tour/ui/screens/restaurants_list_screen/restaurants_list_screen.dart';
 
+import '../../../always_error_restaurants_repository.dart';
 import '../../../empty_data_restaurants_repository.dart';
 import '../../../mock_image_http.dart';
 
@@ -176,6 +177,33 @@ void main() {
 
         expect(
           find.byType(RestaurantCard),
+          findsOne,
+        );
+      });
+    });
+
+    testWidgets("should show the error screen when the fetching process resulted in an error", (tester) async {
+      await testWithMockedImageHttpClient(() async {
+        await tester.pumpWidget(
+          _RestaurantsListScreenTest(
+            repository: const AlwaysErrorRestaurantsRepository(),
+          ),
+        );
+
+        await tester.pumpAndSettle();
+
+        expect(
+          find.byType(CircularProgressIndicator),
+          findsNothing,
+        );
+
+        expect(
+          find.byType(RestaurantCard),
+          findsNothing,
+        );
+
+        expect(
+          find.text('There was an error while trying to load the restaurants.'),
           findsOne,
         );
       });
