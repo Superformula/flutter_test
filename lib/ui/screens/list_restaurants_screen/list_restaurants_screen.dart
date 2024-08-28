@@ -2,6 +2,7 @@ import 'package:flutter/material.dart' hide Colors;
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:prototype_constrained_box/prototype_constrained_box.dart';
+import 'package:restaurant_tour/cubit.dart';
 import 'package:restaurant_tour/models/restaurant.dart';
 import 'package:restaurant_tour/ui/colors.dart';
 import 'package:restaurant_tour/ui/screens/list_restaurants_screen/state.dart';
@@ -64,7 +65,7 @@ final class _RestaurantsData extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<RestaurantTourCubit, List<String>>(
+    return BlocBuilder<RestaurantTourCubit, Set<String>>(
       builder: (context, state) {
         final filteredRestaurants = [
           for (final restaurant in restaurants)

@@ -5,7 +5,7 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurant_tour/repositories/restaurants_repository.dart';
-import 'package:restaurant_tour/ui/screens/list_restaurants_screen/bloc.dart';
+import 'package:restaurant_tour/ui/screens/list_restaurants_screen/cubit.dart';
 
 import 'cubit.dart';
 import 'ui/colors.dart';
