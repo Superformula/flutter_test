@@ -48,7 +48,10 @@ final class RestaurantDetailsScreen extends StatelessWidget {
           SliverToBoxAdapter(
             child: SizedBox(
               height: 361.0,
-              child: RestaurantImage(restaurant: restaurant),
+              child: RestaurantImage(
+                restaurant: restaurant,
+                heroTag: restaurant.id,
+              ),
             ),
           ),
           SliverSafeArea(

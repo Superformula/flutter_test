@@ -140,6 +140,7 @@ final class _RestaurantCard extends StatelessWidget {
               SizedBox.square(
                 dimension: 88.0,
                 child: RestaurantImage(
+                  heroTag: restaurant.id,
                   restaurant: restaurant,
                   borderRadius: BorderRadius.circular(8.0),
                 ),

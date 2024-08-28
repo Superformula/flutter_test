@@ -6,8 +6,10 @@ final class RestaurantImage extends StatelessWidget {
     super.key,
     required this.restaurant,
     this.borderRadius,
+    this.heroTag,
   });
 
+  final Object? heroTag;
   final Restaurant restaurant;
   final BorderRadius? borderRadius;
 
@@ -15,7 +17,7 @@ final class RestaurantImage extends StatelessWidget {
   Widget build(BuildContext context) {
     final image = restaurant.photos?.firstOrNull ?? 'https://t4.ftcdn.net/jpg/05/17/53/57/360_F_517535712_q7f9QC9X6TQxWi6xYZZbMmw5cnLMr279.jpg';
 
-    return DecoratedBox(
+    final box = DecoratedBox(
       decoration: BoxDecoration(
         borderRadius: borderRadius,
         image: DecorationImage(
@@ -24,5 +26,14 @@ final class RestaurantImage extends StatelessWidget {
         ),
       ),
     );
+
+    if (heroTag case final tag?) {
+      return Hero(
+        tag: tag,
+        child: box,
+      );
+    } else {
+      return box;
+    }
   }
 }
