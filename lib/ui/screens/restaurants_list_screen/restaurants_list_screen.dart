@@ -15,8 +15,19 @@ import 'package:restaurant_tour/ui/widgets/restaurant_rating.dart';
 import 'cubit.dart';
 import 'state.dart';
 
-final class RestaurantsListScreen extends StatelessWidget {
+final class RestaurantsListScreen extends StatefulWidget {
   const RestaurantsListScreen({super.key});
+
+  @override
+  State<RestaurantsListScreen> createState() => _RestaurantsListScreenState();
+}
+
+class _RestaurantsListScreenState extends State<RestaurantsListScreen> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<RestaurantsListScreenCubit>().loadRestaurants();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -117,7 +128,7 @@ final class _RestaurantsList extends StatelessWidget {
         ),
         itemCount: restaurants.length,
         itemBuilder: (context, index) {
-          return _RestaurantCard(restaurant: restaurants[index]);
+          return RestaurantCard(restaurant: restaurants[index]);
         },
         separatorBuilder: (context, index) => const SizedBox(height: verticalPadding),
       );
@@ -195,8 +206,10 @@ final class _RestaurantFavoritesListEmptyState extends StatelessWidget {
   }
 }
 
-final class _RestaurantCard extends StatelessWidget {
-  const _RestaurantCard({
+@visibleForTesting
+final class RestaurantCard extends StatelessWidget {
+  const RestaurantCard({
+    super.key,
     required this.restaurant,
   });
 
