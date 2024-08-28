@@ -8,6 +8,7 @@ import 'package:restaurant_tour/repositories/restaurants_repository.dart';
 
 import 'cubit.dart';
 import 'ui/colors.dart';
+import 'ui/screens/restaurants_list_screen/cubit.dart';
 import 'ui/screens/restaurants_list_screen/restaurants_list_screen.dart';
 import 'ui/typography.dart';
 
@@ -60,7 +61,12 @@ final class RestaurantTourApp extends StatelessWidget {
           ),
         ),
         title: 'Restaurant Tour',
-        home: const RestaurantsListScreen(),
+        home: BlocProvider<RestaurantsListScreenCubit>(
+          create: (context) => RestaurantsListScreenCubit(
+            repository: context.read(),
+          ),
+          child: const RestaurantsListScreen(),
+        ),
         builder: (context, child) {
           return BlocProvider(
             create: (context) => RestaurantTourCubit(),

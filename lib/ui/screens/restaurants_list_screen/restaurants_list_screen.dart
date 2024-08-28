@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:prototype_constrained_box/prototype_constrained_box.dart';
 import 'package:restaurant_tour/cubit.dart';
 import 'package:restaurant_tour/models/restaurant.dart';
-import 'package:restaurant_tour/repositories/restaurants_repository.dart';
 import 'package:restaurant_tour/ui/colors.dart';
 import 'package:restaurant_tour/ui/screens/restaurant_details_screen/restaurant_details_screen.dart';
 import 'package:restaurant_tour/ui/typography.dart';
@@ -16,37 +15,12 @@ import 'package:restaurant_tour/ui/widgets/restaurant_rating.dart';
 import 'cubit.dart';
 import 'state.dart';
 
-final class RestaurantsListScreen extends StatefulWidget {
-  const RestaurantsListScreen({
-    super.key,
-  });
-
-  @override
-  State<RestaurantsListScreen> createState() => _RestaurantsListScreenState();
-}
-
-final class _RestaurantsListScreenState extends State<RestaurantsListScreen> {
-  late final RestaurantsListScreenCubit cubit;
-
-  @override
-  void initState() {
-    super.initState();
-    final repository = context.read<RestaurantsRepository>();
-
-    cubit = RestaurantsListScreenCubit(repository: repository);
-    cubit.loadRestaurants();
-  }
-
-  @override
-  void dispose() {
-    cubit.close();
-    super.dispose();
-  }
+final class RestaurantsListScreen extends StatelessWidget {
+  const RestaurantsListScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<RestaurantsListScreenCubit, RestaurantsListScreenState>(
-      bloc: cubit,
       builder: (context, state) {
         return DefaultTabController(
           length: 2,
@@ -101,8 +75,14 @@ final class _RestaurantsData extends StatelessWidget {
 
         return TabBarView(
           children: [
-            _RestaurantsList(restaurants: restaurants),
-            _RestaurantsList(restaurants: filteredRestaurants),
+            _RestaurantsList(
+              restaurants: restaurants,
+              emptyState: const _RestaurantListEmptyState(),
+            ),
+            _RestaurantsList(
+              restaurants: filteredRestaurants,
+              emptyState: const _RestaurantFavoritesListEmptyState(),
+            ),
           ],
         );
       },
@@ -113,42 +93,16 @@ final class _RestaurantsData extends StatelessWidget {
 final class _RestaurantsList extends StatelessWidget {
   const _RestaurantsList({
     required this.restaurants,
+    required this.emptyState,
   });
 
   final List<Restaurant> restaurants;
+  final Widget emptyState;
 
   @override
   Widget build(BuildContext context) {
     if (restaurants.isEmpty) {
-      return Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Icon(
-              Icons.heart_broken_rounded,
-              color: Colors.emptyStateColor,
-              size: 128.0,
-            ),
-            const SizedBox(height: 8.0),
-            const Text(
-              'You have no favorite restaurants.',
-              style: AppTextStyles.loraHeading6,
-            ),
-            const SizedBox(height: 8.0),
-            const Text(
-              'Go back to the restaurants list and add one to your favorites!',
-              style: AppTextStyles.openCaption,
-            ),
-            const SizedBox(height: 8.0),
-            ElevatedButton(
-              onPressed: () {
-                DefaultTabController.of(context).animateTo(0);
-              },
-              child: const Text('See all restaurants'),
-            ),
-          ],
-        ),
-      );
+      return emptyState;
     } else {
       // The figma specifies 12.0, but there's already a perceived padding from
       // the card, so we compensate it.
@@ -168,6 +122,76 @@ final class _RestaurantsList extends StatelessWidget {
         separatorBuilder: (context, index) => const SizedBox(height: verticalPadding),
       );
     }
+  }
+}
+
+final class _RestaurantListEmptyState extends StatelessWidget {
+  const _RestaurantListEmptyState();
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const Icon(
+            Icons.no_food,
+            color: Colors.emptyStateColor,
+            size: 128.0,
+          ),
+          const SizedBox(height: 8.0),
+          const Text(
+            'No restaurants were found.',
+            style: AppTextStyles.loraHeading6,
+          ),
+          const SizedBox(height: 8.0),
+          const Text(
+            'You may try to reload the screen.',
+            style: AppTextStyles.openCaption,
+          ),
+          const SizedBox(height: 8.0),
+          ElevatedButton(
+            onPressed: () => context.read<RestaurantsListScreenCubit>().loadRestaurants(),
+            child: const Text('Reload'),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+final class _RestaurantFavoritesListEmptyState extends StatelessWidget {
+  const _RestaurantFavoritesListEmptyState();
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const Icon(
+            Icons.heart_broken_rounded,
+            color: Colors.emptyStateColor,
+            size: 128.0,
+          ),
+          const SizedBox(height: 8.0),
+          const Text(
+            'You have no favorite restaurants.',
+            style: AppTextStyles.loraHeading6,
+          ),
+          const SizedBox(height: 8.0),
+          const Text(
+            'Go back to the restaurants list and add one to your favorites!',
+            style: AppTextStyles.openCaption,
+          ),
+          const SizedBox(height: 8.0),
+          ElevatedButton(
+            onPressed: () => DefaultTabController.of(context).animateTo(0),
+            child: const Text('See all restaurants'),
+          ),
+        ],
+      ),
+    );
   }
 }
 

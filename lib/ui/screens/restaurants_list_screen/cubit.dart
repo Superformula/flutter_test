@@ -11,7 +11,9 @@ final class RestaurantsListScreenCubit extends Cubit<RestaurantsListScreenState>
   RestaurantsListScreenCubit({
     required RestaurantsRepository repository,
   })  : _repository = repository,
-        super(const RestaurantsListData());
+        super(const RestaurantsListData()) {
+    loadRestaurants();
+  }
 
   final RestaurantsRepository _repository;
 
