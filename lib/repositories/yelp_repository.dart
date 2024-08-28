@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart' hide Category;
 import 'package:restaurant_tour/models/restaurant.dart';
 
-const _apiKey = 'tgwrzo6zIAvu2EKAXEqilSbK2GmtJClMwBGKKB07JC8ueUVGvHOf-7Bx5sTd6NiupuJOjvRNxtXvBYo4UETdGS0sFc626Xh6_yEyy-klRvg3eoTeg_nDjKjYNcfMZnYx';
+const _apiKey = String.fromEnvironment('YELP_API_KEY');
 
 abstract interface class YelpRepository {
   Future<RestaurantQueryResult?> getRestaurants({int offset = 0});
