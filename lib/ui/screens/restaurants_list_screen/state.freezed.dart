@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$ListRestaurantsScreenState {
+mixin _$RestaurantsListScreenState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
@@ -64,18 +64,18 @@ mixin _$ListRestaurantsScreenState {
 }
 
 /// @nodoc
-abstract class $ListRestaurantsScreenStateCopyWith<$Res> {
-  factory $ListRestaurantsScreenStateCopyWith(ListRestaurantsScreenState value,
-          $Res Function(ListRestaurantsScreenState) then) =
-      _$ListRestaurantsScreenStateCopyWithImpl<$Res,
-          ListRestaurantsScreenState>;
+abstract class $RestaurantsListScreenStateCopyWith<$Res> {
+  factory $RestaurantsListScreenStateCopyWith(RestaurantsListScreenState value,
+          $Res Function(RestaurantsListScreenState) then) =
+      _$RestaurantsListScreenStateCopyWithImpl<$Res,
+          RestaurantsListScreenState>;
 }
 
 /// @nodoc
-class _$ListRestaurantsScreenStateCopyWithImpl<$Res,
-        $Val extends ListRestaurantsScreenState>
-    implements $ListRestaurantsScreenStateCopyWith<$Res> {
-  _$ListRestaurantsScreenStateCopyWithImpl(this._value, this._then);
+class _$RestaurantsListScreenStateCopyWithImpl<$Res,
+        $Val extends RestaurantsListScreenState>
+    implements $RestaurantsListScreenStateCopyWith<$Res> {
+  _$RestaurantsListScreenStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -92,7 +92,7 @@ abstract class _$$LoadingRestaurantsImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadingRestaurantsImplCopyWithImpl<$Res>
-    extends _$ListRestaurantsScreenStateCopyWithImpl<$Res,
+    extends _$RestaurantsListScreenStateCopyWithImpl<$Res,
         _$LoadingRestaurantsImpl>
     implements _$$LoadingRestaurantsImplCopyWith<$Res> {
   __$$LoadingRestaurantsImplCopyWithImpl(_$LoadingRestaurantsImpl _value,
@@ -107,7 +107,7 @@ class _$LoadingRestaurantsImpl implements LoadingRestaurants {
 
   @override
   String toString() {
-    return 'ListRestaurantsScreenState.loading()';
+    return 'RestaurantsListScreenState.loading()';
   }
 
   @override
@@ -189,7 +189,7 @@ class _$LoadingRestaurantsImpl implements LoadingRestaurants {
   }
 }
 
-abstract class LoadingRestaurants implements ListRestaurantsScreenState {
+abstract class LoadingRestaurants implements RestaurantsListScreenState {
   const factory LoadingRestaurants() = _$LoadingRestaurantsImpl;
 }
 
@@ -204,7 +204,7 @@ abstract class _$$RestaurantsDataImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$RestaurantsDataImplCopyWithImpl<$Res>
-    extends _$ListRestaurantsScreenStateCopyWithImpl<$Res,
+    extends _$RestaurantsListScreenStateCopyWithImpl<$Res,
         _$RestaurantsDataImpl> implements _$$RestaurantsDataImplCopyWith<$Res> {
   __$$RestaurantsDataImplCopyWithImpl(
       _$RestaurantsDataImpl _value, $Res Function(_$RestaurantsDataImpl) _then)
@@ -241,7 +241,7 @@ class _$RestaurantsDataImpl implements RestaurantsData {
 
   @override
   String toString() {
-    return 'ListRestaurantsScreenState.data(restaurants: $restaurants)';
+    return 'RestaurantsListScreenState.data(restaurants: $restaurants)';
   }
 
   @override
@@ -334,7 +334,7 @@ class _$RestaurantsDataImpl implements RestaurantsData {
   }
 }
 
-abstract class RestaurantsData implements ListRestaurantsScreenState {
+abstract class RestaurantsData implements RestaurantsListScreenState {
   const factory RestaurantsData({final List<Restaurant> restaurants}) =
       _$RestaurantsDataImpl;
 
@@ -355,7 +355,7 @@ abstract class _$$RestaurantsErrorImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$RestaurantsErrorImplCopyWithImpl<$Res>
-    extends _$ListRestaurantsScreenStateCopyWithImpl<$Res,
+    extends _$RestaurantsListScreenStateCopyWithImpl<$Res,
         _$RestaurantsErrorImpl>
     implements _$$RestaurantsErrorImplCopyWith<$Res> {
   __$$RestaurantsErrorImplCopyWithImpl(_$RestaurantsErrorImpl _value,
@@ -393,7 +393,7 @@ class _$RestaurantsErrorImpl implements RestaurantsError {
 
   @override
   String toString() {
-    return 'ListRestaurantsScreenState.error(exception: $exception, stackTrace: $stackTrace)';
+    return 'RestaurantsListScreenState.error(exception: $exception, stackTrace: $stackTrace)';
   }
 
   @override
@@ -487,7 +487,7 @@ class _$RestaurantsErrorImpl implements RestaurantsError {
   }
 }
 
-abstract class RestaurantsError implements ListRestaurantsScreenState {
+abstract class RestaurantsError implements RestaurantsListScreenState {
   const factory RestaurantsError(
       {required final Exception exception,
       final StackTrace? stackTrace}) = _$RestaurantsErrorImpl;

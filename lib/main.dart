@@ -5,11 +5,10 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurant_tour/repositories/restaurants_repository.dart';
-import 'package:restaurant_tour/ui/screens/list_restaurants_screen/cubit.dart';
 
 import 'cubit.dart';
 import 'ui/colors.dart';
-import 'ui/screens/list_restaurants_screen/list_restaurants_screen.dart';
+import 'ui/screens/restaurants_list_screen/restaurants_list_screen.dart';
 import 'ui/typography.dart';
 
 void main() async {
@@ -61,7 +60,7 @@ final class RestaurantTourApp extends StatelessWidget {
           ),
         ),
         title: 'Restaurant Tour',
-        home: const ListRestaurantsScreen(),
+        home: const RestaurantsListScreen(),
         builder: (context, child) {
           return BlocProvider(
             create: (context) => RestaurantTourCubit(),

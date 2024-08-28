@@ -1,8 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:restaurant_tour/repositories/restaurants_repository.dart';
-import 'package:restaurant_tour/ui/screens/list_restaurants_screen/state.dart';
 
-final class ListRestaurantsScreenCubit extends Cubit<ListRestaurantsScreenState> {
+import 'state.dart';
+
+final class ListRestaurantsScreenCubit extends Cubit<RestaurantsListScreenState> {
   ListRestaurantsScreenCubit({
     required this.repository,
   }) : super(const RestaurantsData());

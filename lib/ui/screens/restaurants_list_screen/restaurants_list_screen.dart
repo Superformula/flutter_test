@@ -6,7 +6,6 @@ import 'package:restaurant_tour/cubit.dart';
 import 'package:restaurant_tour/models/restaurant.dart';
 import 'package:restaurant_tour/repositories/restaurants_repository.dart';
 import 'package:restaurant_tour/ui/colors.dart';
-import 'package:restaurant_tour/ui/screens/list_restaurants_screen/state.dart';
 import 'package:restaurant_tour/ui/screens/restaurant_details_screen/restaurant_details_screen.dart';
 import 'package:restaurant_tour/ui/typography.dart';
 import 'package:restaurant_tour/ui/widgets/restaurant_hour_status.dart';
@@ -15,17 +14,18 @@ import 'package:restaurant_tour/ui/widgets/restaurant_price_and_category_info.da
 import 'package:restaurant_tour/ui/widgets/restaurant_rating.dart';
 
 import 'cubit.dart';
+import 'state.dart';
 
-class ListRestaurantsScreen extends StatefulWidget {
-  const ListRestaurantsScreen({
+class RestaurantsListScreen extends StatefulWidget {
+  const RestaurantsListScreen({
     super.key,
   });
 
   @override
-  State<ListRestaurantsScreen> createState() => _ListRestaurantsScreenState();
+  State<RestaurantsListScreen> createState() => _RestaurantsListScreenState();
 }
 
-class _ListRestaurantsScreenState extends State<ListRestaurantsScreen> {
+class _RestaurantsListScreenState extends State<RestaurantsListScreen> {
   late final ListRestaurantsScreenCubit cubit;
 
   @override
@@ -45,7 +45,7 @@ class _ListRestaurantsScreenState extends State<ListRestaurantsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ListRestaurantsScreenCubit, ListRestaurantsScreenState>(
+    return BlocBuilder<ListRestaurantsScreenCubit, RestaurantsListScreenState>(
       bloc: cubit,
       builder: (context, state) {
         return DefaultTabController(
