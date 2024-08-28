@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:prototype_constrained_box/prototype_constrained_box.dart';
 import 'package:restaurant_tour/main.dart';
 import 'package:restaurant_tour/models/restaurant.dart';
+import 'package:restaurant_tour/ui/colors.dart';
 import 'package:restaurant_tour/ui/screens/list_restaurants_screen/state.dart';
 import 'package:restaurant_tour/ui/screens/restaurant_details_screen/restaurant_details_screen.dart';
 import 'package:restaurant_tour/ui/typography.dart';
@@ -70,7 +71,7 @@ final class _RestaurantsData extends StatelessWidget {
           for (final restaurant in restaurants)
             if (state.contains(restaurant.id)) restaurant,
         ];
-        
+
         return TabBarView(
           children: [
             _RestaurantsList(restaurants: restaurants),
@@ -91,23 +92,55 @@ final class _RestaurantsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // The figma specifies 12.0, but there's already a perceived padding from
-    // the card, so we compensate it.
-    const verticalPadding = 4.0;
+    if (restaurants.isEmpty) {
+      return Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Icon(
+              Icons.heart_broken_rounded,
+              color: Colors.emptyStateColor,
+              size: 128.0,
+            ),
+            const SizedBox(height: 8.0),
+            const Text(
+              'You have no favorite restaurants.',
+              style: AppTextStyles.loraHeading6,
+            ),
+            const SizedBox(height: 8.0),
+            const Text(
+              'Go back to the restaurants list and add one to your favorites!',
+              style: AppTextStyles.openCaption,
+            ),
+            const SizedBox(height: 8.0),
+            ElevatedButton(
+              onPressed: () {
+                DefaultTabController.of(context).animateTo(0);
+              },
+              child: const Text('See all restaurants'),
+            ),
+          ],
+        ),
+      );
+    } else {
+      // The figma specifies 12.0, but there's already a perceived padding from
+      // the card, so we compensate it.
+      const verticalPadding = 4.0;
 
-    return ListView.separated(
-      padding: EdgeInsets.fromLTRB(
-        12.0,
-        verticalPadding * 2.0,
-        12.0,
-        verticalPadding * 2.0 + MediaQuery.of(context).padding.bottom,
-      ),
-      itemCount: restaurants.length,
-      itemBuilder: (context, index) {
-        return _RestaurantCard(restaurant: restaurants[index]);
-      },
-      separatorBuilder: (context, index) => const SizedBox(height: verticalPadding),
-    );
+      return ListView.separated(
+        padding: EdgeInsets.fromLTRB(
+          12.0,
+          verticalPadding * 2.0,
+          12.0,
+          verticalPadding * 2.0 + MediaQuery.of(context).padding.bottom,
+        ),
+        itemCount: restaurants.length,
+        itemBuilder: (context, index) {
+          return _RestaurantCard(restaurant: restaurants[index]);
+        },
+        separatorBuilder: (context, index) => const SizedBox(height: verticalPadding),
+      );
+    }
   }
 }
 

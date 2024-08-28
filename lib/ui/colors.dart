@@ -7,5 +7,6 @@ abstract final class Colors {
 
   static const black = Color(0xFF000000);
   static const dividerColor = Color(0xFFEEEEEE);
+  static const emptyStateColor = Color(0xFFCCCCCC);
   static const textSecondary = Color(0xFF606060);
 }
