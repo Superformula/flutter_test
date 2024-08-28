@@ -1,9 +1,10 @@
 {
-    "dart.flutterSdkPath": ".fvm/flutter_sdk",
+    "dart.flutterSdkPath": "/Users/mateusfccp/.puro/envs/3.22.3/flutter",
     "search.exclude": {
         "**/.fvm": true
     },
     "files.watcherExclude": {
         "**/.fvm": true
-    }
+    },
+    "dart.sdkPath": "/Users/mateusfccp/.puro/envs/3.22.3/flutter/bin/cache/dart-sdk"
 }

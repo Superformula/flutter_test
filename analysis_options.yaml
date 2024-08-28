@@ -3,6 +3,7 @@ analyzer:
   errors:
     todo: ignore
     include_file_not_found: ignore
+    invalid_annotation_target: ignore
   exclude:
     - '**/*.g.dart'
 linter:

@@ -1,53 +1,96 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart' hide Colors;
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:restaurant_tour/repositories/yelp_repository.dart';
+import 'package:restaurant_tour/ui/screens/list_restaurants_screen/bloc.dart';
 
-void main() {
-  runApp(const RestaurantTour());
+import 'ui/colors.dart';
+import 'ui/typography.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  HydratedBloc.storage = await HydratedStorage.build(
+    storageDirectory: kIsWeb //
+        ? HydratedStorage.webStorageDirectory
+        : await getApplicationDocumentsDirectory(),
+  );
+
+  runApp(const RestaurantTourApp());
 }
 
-class RestaurantTour extends StatelessWidget {
-  const RestaurantTour({Key? key}) : super(key: key);
+final class RestaurantTourApp extends StatelessWidget {
+  const RestaurantTourApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: 'Restaurant Tour',
-      home: HomePage(),
+    return MultiProvider(
+      providers: [
+        Provider<YelpRepository>(create: (context) => MockedYelpRepository()),
+      ],
+      child: MaterialApp(
+        theme: ThemeData.from(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
+        ).copyWith(
+          appBarTheme: const AppBarTheme(
+            titleTextStyle: AppTextStyles.loraHeading6,
+          ),
+          dividerTheme: const DividerThemeData(
+            color: Colors.dividerColor,
+          ),
+          tabBarTheme: TabBarTheme(
+            labelStyle: AppTextStyles.openSemiBold,
+            unselectedLabelStyle: AppTextStyles.openSemiBold.copyWith(
+              color: Colors.textSecondary,
+            ),
+          ),
+        ),
+        title: 'Restaurant Tour',
+        home: const ListRestaurantsScreenCubitWrapper(),
+        builder: (context, child) {
+          return BlocProvider(
+            create: (context) => RestaurantTourCubit(),
+            child: child,
+          );
+        },
+      ),
     );
   }
 }
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+class RestaurantTourCubit extends HydratedCubit<List<String>> {
+  RestaurantTourCubit() : super([]);
+
+  bool favorited(String id) => state.contains(id);
+
+  void favorite(String id) {
+    assert(!state.contains(id));
+    emit([...state, id]);
+  }
+
+  void unfavorite(String id) {
+    assert(state.contains(id));
+    emit([...state..remove(id)]);
+  }
+
+  void toggleFavorite(String id) {
+    if (favorited(id)) {
+      unfavorite(id);
+    } else {
+      favorite(id);
+    }
+  }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text('Restaurant Tour'),
-            ElevatedButton(
-              child: const Text('Fetch Restaurants'),
-              onPressed: () async {
-                final yelpRepo = YelpRepository();
+  List<String> fromJson(Map<String, Object?> json) => json['favorited'] as List<String>;
 
-                try {
-                  final result = await yelpRepo.getRestaurants();
-                  if (result != null) {
-                    print('Fetched ${result.restaurants!.length} restaurants');
-                  } else {
-                    print('No restaurants fetched');
-                  }
-                } catch (e) {
-                  print('Failed to fetch restaurants: $e');
-                }
-              },
-            ),
-          ],
-        ),
-      ),
-    );
+  @override
+  Map<String, Object?> toJson(List<String> state) {
+    return {
+      'favorited': state,
+    };
   }
 }

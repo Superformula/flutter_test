@@ -1,49 +1,60 @@
 import 'package:flutter/material.dart';
 
-class AppTextStyles {
-  ////----- Lora -----//
-  static const loraRegularHeadline = TextStyle(
+abstract final class AppTextStyles {
+  // Lora
+  static const loraHeading6 = TextStyle(
     fontFamily: 'Lora',
     fontWeight: FontWeight.w700,
     fontSize: 18.0,
+    height: 24.0 / 18.0,
+    color: Colors.black,
   );
-  static const loraRegularTitle = TextStyle(
+
+  static const loraSubtitle1 = TextStyle(
     fontFamily: 'Lora',
     fontWeight: FontWeight.w500,
     fontSize: 16.0,
+    height: 24.0 / 16.0,
   );
 
-  //----- Open Sans -----//
-  static const openRegularHeadline = TextStyle(
+  // Open sans
+  static const openBody1 = TextStyle(
     fontFamily: 'OpenSans',
     fontWeight: FontWeight.w400,
     fontSize: 16.0,
+    height: 24.0 / 16.0,
     color: Colors.black,
   );
-  static const openRegularTitleSemiBold = TextStyle(
+
+  static const openSemiBold = TextStyle(
     fontFamily: 'OpenSans',
     fontWeight: FontWeight.w600,
     fontSize: 14.0,
+    height: 24.0 / 14.0,
     color: Colors.black,
   );
+
   static const openRegularTitle = TextStyle(
     fontFamily: 'OpenSans',
     fontWeight: FontWeight.w400,
     fontSize: 14.0,
     color: Colors.black,
   );
-  static const openRegularText = TextStyle(
+
+  static const openCaption = TextStyle(
     fontFamily: 'OpenSans',
     fontWeight: FontWeight.w400,
     fontSize: 12.0,
+    height: 20.0 / 12.0,
     color: Colors.black,
   );
 
-  static const openRegularItalic = TextStyle(
+  static const openOverline = TextStyle(
     fontFamily: 'OpenSans',
     fontWeight: FontWeight.w400,
     fontStyle: FontStyle.italic,
     fontSize: 12.0,
+    height: 1.0,
     color: Colors.black,
   );
 }
