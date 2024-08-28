@@ -16,7 +16,7 @@ sealed class Category with _$Category {
 @freezed
 sealed class Hours with _$Hours {
   const factory Hours({
-    required bool isOpenNow,
+    @JsonKey(name: 'is_open_now') required bool open,
   }) = _Hours;
 
   factory Hours.fromJson(Map<String, Object?> json) => _$HoursFromJson(json);
@@ -63,7 +63,7 @@ sealed class Restaurant with _$Restaurant {
     double? rating,
     List<String>? photos,
     List<Category>? categories,
-    List<Hours>? hours,
+    required List<Hours> hours,
     required List<Review> reviews,
     required Location location,
   }) = _Restaurant;
@@ -72,18 +72,11 @@ sealed class Restaurant with _$Restaurant {
 
   factory Restaurant.fromJson(Map<String, Object?> json) => _$RestaurantFromJson(json);
 
-  /// Use the first category for the category shown to the user
-  Category? get displayCategory => categories?.firstOrNull;
+  /// The first category, if any.
+  Category? get mainCategory => categories?.firstOrNull;
 
-  /// This logic is probably not correct in all cases but it is ok
-  /// for this application
-  bool get open {
-    if (hours case [final hour, ...]) {
-      return hour.isOpenNow;
-    } else {
-      return false;
-    }
-  }
+  /// Whether the business is currently open.
+  bool get open => hours.any((hour) => hour.open);
 }
 
 @freezed

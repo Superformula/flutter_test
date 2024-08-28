@@ -15,7 +15,7 @@ final class RestaurantPriceAndCategoryInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     final priceAndCategoryLine = [
       restaurant.price,
-      restaurant.displayCategory?.title,
+      restaurant.mainCategory?.title,
     ].whereNotNull().join(' ');
 
     return Text(

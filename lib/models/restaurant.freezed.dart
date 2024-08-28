@@ -173,7 +173,8 @@ Hours _$HoursFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Hours {
-  bool get isOpenNow => throw _privateConstructorUsedError;
+  @JsonKey(name: 'is_open_noew')
+  bool get open => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -185,7 +186,7 @@ abstract class $HoursCopyWith<$Res> {
   factory $HoursCopyWith(Hours value, $Res Function(Hours) then) =
       _$HoursCopyWithImpl<$Res, Hours>;
   @useResult
-  $Res call({bool isOpenNow});
+  $Res call({@JsonKey(name: 'is_open_noew') bool open});
 }
 
 /// @nodoc
@@ -201,12 +202,12 @@ class _$HoursCopyWithImpl<$Res, $Val extends Hours>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isOpenNow = null,
+    Object? open = null,
   }) {
     return _then(_value.copyWith(
-      isOpenNow: null == isOpenNow
-          ? _value.isOpenNow
-          : isOpenNow // ignore: cast_nullable_to_non_nullable
+      open: null == open
+          ? _value.open
+          : open // ignore: cast_nullable_to_non_nullable
               as bool,
     ) as $Val);
   }
@@ -219,7 +220,7 @@ abstract class _$$HoursImplCopyWith<$Res> implements $HoursCopyWith<$Res> {
       __$$HoursImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isOpenNow});
+  $Res call({@JsonKey(name: 'is_open_noew') bool open});
 }
 
 /// @nodoc
@@ -233,12 +234,12 @@ class __$$HoursImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isOpenNow = null,
+    Object? open = null,
   }) {
     return _then(_$HoursImpl(
-      isOpenNow: null == isOpenNow
-          ? _value.isOpenNow
-          : isOpenNow // ignore: cast_nullable_to_non_nullable
+      open: null == open
+          ? _value.open
+          : open // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }
@@ -247,17 +248,18 @@ class __$$HoursImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$HoursImpl implements _Hours {
-  const _$HoursImpl({required this.isOpenNow});
+  const _$HoursImpl({@JsonKey(name: 'is_open_noew') required this.open});
 
   factory _$HoursImpl.fromJson(Map<String, dynamic> json) =>
       _$$HoursImplFromJson(json);
 
   @override
-  final bool isOpenNow;
+  @JsonKey(name: 'is_open_noew')
+  final bool open;
 
   @override
   String toString() {
-    return 'Hours(isOpenNow: $isOpenNow)';
+    return 'Hours(open: $open)';
   }
 
   @override
@@ -265,13 +267,12 @@ class _$HoursImpl implements _Hours {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$HoursImpl &&
-            (identical(other.isOpenNow, isOpenNow) ||
-                other.isOpenNow == isOpenNow));
+            (identical(other.open, open) || other.open == open));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, isOpenNow);
+  int get hashCode => Object.hash(runtimeType, open);
 
   @JsonKey(ignore: true)
   @override
@@ -288,12 +289,14 @@ class _$HoursImpl implements _Hours {
 }
 
 abstract class _Hours implements Hours {
-  const factory _Hours({required final bool isOpenNow}) = _$HoursImpl;
+  const factory _Hours(
+      {@JsonKey(name: 'is_open_noew') required final bool open}) = _$HoursImpl;
 
   factory _Hours.fromJson(Map<String, dynamic> json) = _$HoursImpl.fromJson;
 
   @override
-  bool get isOpenNow;
+  @JsonKey(name: 'is_open_noew')
+  bool get open;
   @override
   @JsonKey(ignore: true)
   _$$HoursImplCopyWith<_$HoursImpl> get copyWith =>
@@ -817,7 +820,7 @@ mixin _$Restaurant {
   double? get rating => throw _privateConstructorUsedError;
   List<String>? get photos => throw _privateConstructorUsedError;
   List<Category>? get categories => throw _privateConstructorUsedError;
-  List<Hours>? get hours => throw _privateConstructorUsedError;
+  List<Hours> get hours => throw _privateConstructorUsedError;
   List<Review> get reviews => throw _privateConstructorUsedError;
   Location get location => throw _privateConstructorUsedError;
 
@@ -840,7 +843,7 @@ abstract class $RestaurantCopyWith<$Res> {
       double? rating,
       List<String>? photos,
       List<Category>? categories,
-      List<Hours>? hours,
+      List<Hours> hours,
       List<Review> reviews,
       Location location});
 
@@ -866,7 +869,7 @@ class _$RestaurantCopyWithImpl<$Res, $Val extends Restaurant>
     Object? rating = freezed,
     Object? photos = freezed,
     Object? categories = freezed,
-    Object? hours = freezed,
+    Object? hours = null,
     Object? reviews = null,
     Object? location = null,
   }) {
@@ -895,10 +898,10 @@ class _$RestaurantCopyWithImpl<$Res, $Val extends Restaurant>
           ? _value.categories
           : categories // ignore: cast_nullable_to_non_nullable
               as List<Category>?,
-      hours: freezed == hours
+      hours: null == hours
           ? _value.hours
           : hours // ignore: cast_nullable_to_non_nullable
-              as List<Hours>?,
+              as List<Hours>,
       reviews: null == reviews
           ? _value.reviews
           : reviews // ignore: cast_nullable_to_non_nullable
@@ -934,7 +937,7 @@ abstract class _$$RestaurantImplCopyWith<$Res>
       double? rating,
       List<String>? photos,
       List<Category>? categories,
-      List<Hours>? hours,
+      List<Hours> hours,
       List<Review> reviews,
       Location location});
 
@@ -959,7 +962,7 @@ class __$$RestaurantImplCopyWithImpl<$Res>
     Object? rating = freezed,
     Object? photos = freezed,
     Object? categories = freezed,
-    Object? hours = freezed,
+    Object? hours = null,
     Object? reviews = null,
     Object? location = null,
   }) {
@@ -988,10 +991,10 @@ class __$$RestaurantImplCopyWithImpl<$Res>
           ? _value._categories
           : categories // ignore: cast_nullable_to_non_nullable
               as List<Category>?,
-      hours: freezed == hours
+      hours: null == hours
           ? _value._hours
           : hours // ignore: cast_nullable_to_non_nullable
-              as List<Hours>?,
+              as List<Hours>,
       reviews: null == reviews
           ? _value._reviews
           : reviews // ignore: cast_nullable_to_non_nullable
@@ -1014,7 +1017,7 @@ class _$RestaurantImpl extends _Restaurant {
       this.rating,
       final List<String>? photos,
       final List<Category>? categories,
-      final List<Hours>? hours,
+      required final List<Hours> hours,
       required final List<Review> reviews,
       required this.location})
       : _photos = photos,
@@ -1054,14 +1057,12 @@ class _$RestaurantImpl extends _Restaurant {
     return EqualUnmodifiableListView(value);
   }
 
-  final List<Hours>? _hours;
+  final List<Hours> _hours;
   @override
-  List<Hours>? get hours {
-    final value = _hours;
-    if (value == null) return null;
+  List<Hours> get hours {
     if (_hours is EqualUnmodifiableListView) return _hours;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableListView(_hours);
   }
 
   final List<Review> _reviews;
@@ -1134,7 +1135,7 @@ abstract class _Restaurant extends Restaurant {
       final double? rating,
       final List<String>? photos,
       final List<Category>? categories,
-      final List<Hours>? hours,
+      required final List<Hours> hours,
       required final List<Review> reviews,
       required final Location location}) = _$RestaurantImpl;
   const _Restaurant._() : super._();
@@ -1155,7 +1156,7 @@ abstract class _Restaurant extends Restaurant {
   @override
   List<Category>? get categories;
   @override
-  List<Hours>? get hours;
+  List<Hours> get hours;
   @override
   List<Review> get reviews;
   @override

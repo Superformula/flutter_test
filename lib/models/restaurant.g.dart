@@ -19,12 +19,12 @@ Map<String, dynamic> _$$CategoryImplToJson(_$CategoryImpl instance) =>
     };
 
 _$HoursImpl _$$HoursImplFromJson(Map<String, dynamic> json) => _$HoursImpl(
-      isOpenNow: json['is_open_now'] as bool,
+      open: json['is_open_noew'] as bool,
     );
 
 Map<String, dynamic> _$$HoursImplToJson(_$HoursImpl instance) =>
     <String, dynamic>{
-      'is_open_now': instance.isOpenNow,
+      'is_open_noew': instance.open,
     };
 
 _$UserImpl _$$UserImplFromJson(Map<String, dynamic> json) => _$UserImpl(
@@ -76,8 +76,8 @@ _$RestaurantImpl _$$RestaurantImplFromJson(Map<String, dynamic> json) =>
       categories: (json['categories'] as List<dynamic>?)
           ?.map((e) => Category.fromJson(e as Map<String, dynamic>))
           .toList(),
-      hours: (json['hours'] as List<dynamic>?)
-          ?.map((e) => Hours.fromJson(e as Map<String, dynamic>))
+      hours: (json['hours'] as List<dynamic>)
+          .map((e) => Hours.fromJson(e as Map<String, dynamic>))
           .toList(),
       reviews: (json['reviews'] as List<dynamic>)
           .map((e) => Review.fromJson(e as Map<String, dynamic>))
