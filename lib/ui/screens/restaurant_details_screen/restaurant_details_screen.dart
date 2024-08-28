@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:restaurant_tour/main.dart';
+import 'package:restaurant_tour/cubit.dart';
 import 'package:restaurant_tour/models/restaurant.dart';
 import 'package:restaurant_tour/ui/typography.dart';
 import 'package:restaurant_tour/ui/widgets/restaurant_hour_status.dart';

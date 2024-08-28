@@ -25,11 +25,13 @@ dependencies:
   provider: ^6.1.2
 
 dev_dependencies:
+  bloc_test: ^9.1.7
   build_runner: ^2.4.11
   flutter_lints: ^4.0.0
   flutter_test:
     sdk: flutter
   freezed: ^2.5.2
+  mocktail: ^1.0.4
   json_serializable: ^6.8.0
 
 flutter:

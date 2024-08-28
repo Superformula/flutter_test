@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:restaurant_tour/repositories/yelp_repository.dart';
 import 'package:restaurant_tour/ui/screens/list_restaurants_screen/bloc.dart';
 
+import 'cubit.dart';
 import 'ui/colors.dart';
 import 'ui/typography.dart';
 
@@ -68,39 +69,5 @@ final class RestaurantTourApp extends StatelessWidget {
         },
       ),
     );
-  }
-}
-
-class RestaurantTourCubit extends HydratedCubit<List<String>> {
-  RestaurantTourCubit() : super([]);
-
-  bool favorited(String id) => state.contains(id);
-
-  void favorite(String id) {
-    assert(!state.contains(id));
-    emit([...state, id]);
-  }
-
-  void unfavorite(String id) {
-    assert(state.contains(id));
-    emit([...state..remove(id)]);
-  }
-
-  void toggleFavorite(String id) {
-    if (favorited(id)) {
-      unfavorite(id);
-    } else {
-      favorite(id);
-    }
-  }
-
-  @override
-  List<String> fromJson(Map<String, Object?> json) => json['favorited'] as List<String>;
-
-  @override
-  Map<String, Object?> toJson(List<String> state) {
-    return {
-      'favorited': state,
-    };
   }
 }
