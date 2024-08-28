@@ -3,17 +3,20 @@ import 'package:restaurant_tour/models/restaurant.dart';
 
 part 'state.freezed.dart';
 
-/// The state of the 
+/// The state of [RestaurantsListScreen].
 @freezed
 sealed class RestaurantsListScreenState with _$RestaurantsListScreenState {
-  const factory RestaurantsListScreenState.loading() = LoadingRestaurants;
+  /// A state representing the screen is being loaded.
+  const factory RestaurantsListScreenState.loading() = RestaurantsListLoading;
 
+  /// A state representing the screen has data.
   const factory RestaurantsListScreenState.data({
     @Default([]) List<Restaurant> restaurants,
-  }) = RestaurantsData;
+  }) = RestaurantsListData;
 
+  /// A state representing the screen couldn't load and has an error.
   const factory RestaurantsListScreenState.error({
     required Exception exception,
     StackTrace? stackTrace,
-  }) = RestaurantsError;
+  }) = RestaurantsListError;
 }

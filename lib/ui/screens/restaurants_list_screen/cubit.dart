@@ -3,26 +3,32 @@ import 'package:restaurant_tour/repositories/restaurants_repository.dart';
 
 import 'state.dart';
 
-final class ListRestaurantsScreenCubit extends Cubit<RestaurantsListScreenState> {
-  ListRestaurantsScreenCubit({
-    required this.repository,
-  }) : super(const RestaurantsData());
+/// The [Cubit] that manages the general state of the [RestaurantsListscreen].
+final class RestaurantsListScreenCubit extends Cubit<RestaurantsListScreenState> {
+  /// Creates a new [RestaurantsListsScreenCubit].
+  ///
+  /// A [repository] is mandatory, from which the cubit will fetch the data.
+  RestaurantsListScreenCubit({
+    required RestaurantsRepository repository,
+  })  : _repository = repository,
+        super(const RestaurantsListData());
 
-  final RestaurantsRepository repository;
+  final RestaurantsRepository _repository;
 
+  /// Loads data from the repository and updates the state accordingly.
   Future<void> loadRestaurants() async {
-    emit(const LoadingRestaurants());
+    emit(const RestaurantsListLoading());
 
     try {
-      final data = await repository.getRestaurants();
+      final data = await _repository.getRestaurants();
       final restaurants = data?.restaurants ?? [];
-      
+
       emit(
-        RestaurantsData(restaurants: restaurants),
+        RestaurantsListData(restaurants: restaurants),
       );
     } on Exception catch (error, stackTrace) {
       emit(
-        RestaurantsError(
+        RestaurantsListError(
           exception: error,
           stackTrace: stackTrace,
         ),

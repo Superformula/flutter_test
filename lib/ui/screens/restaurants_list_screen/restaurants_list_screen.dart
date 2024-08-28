@@ -26,14 +26,14 @@ class RestaurantsListScreen extends StatefulWidget {
 }
 
 class _RestaurantsListScreenState extends State<RestaurantsListScreen> {
-  late final ListRestaurantsScreenCubit cubit;
+  late final RestaurantsListScreenCubit cubit;
 
   @override
   void initState() {
     super.initState();
     final repository = context.read<RestaurantsRepository>();
 
-    cubit = ListRestaurantsScreenCubit(repository: repository);
+    cubit = RestaurantsListScreenCubit(repository: repository);
     cubit.loadRestaurants();
   }
 
@@ -45,7 +45,7 @@ class _RestaurantsListScreenState extends State<RestaurantsListScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ListRestaurantsScreenCubit, RestaurantsListScreenState>(
+    return BlocBuilder<RestaurantsListScreenCubit, RestaurantsListScreenState>(
       bloc: cubit,
       builder: (context, state) {
         return DefaultTabController(
@@ -63,9 +63,9 @@ class _RestaurantsListScreenState extends State<RestaurantsListScreen> {
               ),
             ),
             body: switch (state) {
-              LoadingRestaurants() => _LoadingRestaurants(),
-              RestaurantsData(:final restaurants) => _RestaurantsData(restaurants: restaurants),
-              RestaurantsError(:final exception) => Text('Error: $exception'),
+              RestaurantsListLoading() => _LoadingRestaurants(),
+              RestaurantsListData(:final restaurants) => _RestaurantsData(restaurants: restaurants),
+              RestaurantsListError(:final exception) => Text('Error: $exception'),
             },
           ),
         );

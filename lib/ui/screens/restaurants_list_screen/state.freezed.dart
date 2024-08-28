@@ -41,23 +41,23 @@ mixin _$RestaurantsListScreenState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(LoadingRestaurants value) loading,
-    required TResult Function(RestaurantsData value) data,
-    required TResult Function(RestaurantsError value) error,
+    required TResult Function(RestaurantsListLoading value) loading,
+    required TResult Function(RestaurantsListData value) data,
+    required TResult Function(RestaurantsListError value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(LoadingRestaurants value)? loading,
-    TResult? Function(RestaurantsData value)? data,
-    TResult? Function(RestaurantsError value)? error,
+    TResult? Function(RestaurantsListLoading value)? loading,
+    TResult? Function(RestaurantsListData value)? data,
+    TResult? Function(RestaurantsListError value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(LoadingRestaurants value)? loading,
-    TResult Function(RestaurantsData value)? data,
-    TResult Function(RestaurantsError value)? error,
+    TResult Function(RestaurantsListLoading value)? loading,
+    TResult Function(RestaurantsListData value)? data,
+    TResult Function(RestaurantsListError value)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -102,7 +102,7 @@ class __$$LoadingRestaurantsImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadingRestaurantsImpl implements LoadingRestaurants {
+class _$LoadingRestaurantsImpl implements RestaurantsListLoading {
   const _$LoadingRestaurantsImpl();
 
   @override
@@ -157,9 +157,9 @@ class _$LoadingRestaurantsImpl implements LoadingRestaurants {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(LoadingRestaurants value) loading,
-    required TResult Function(RestaurantsData value) data,
-    required TResult Function(RestaurantsError value) error,
+    required TResult Function(RestaurantsListLoading value) loading,
+    required TResult Function(RestaurantsListData value) data,
+    required TResult Function(RestaurantsListError value) error,
   }) {
     return loading(this);
   }
@@ -167,9 +167,9 @@ class _$LoadingRestaurantsImpl implements LoadingRestaurants {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(LoadingRestaurants value)? loading,
-    TResult? Function(RestaurantsData value)? data,
-    TResult? Function(RestaurantsError value)? error,
+    TResult? Function(RestaurantsListLoading value)? loading,
+    TResult? Function(RestaurantsListData value)? data,
+    TResult? Function(RestaurantsListError value)? error,
   }) {
     return loading?.call(this);
   }
@@ -177,9 +177,9 @@ class _$LoadingRestaurantsImpl implements LoadingRestaurants {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(LoadingRestaurants value)? loading,
-    TResult Function(RestaurantsData value)? data,
-    TResult Function(RestaurantsError value)? error,
+    TResult Function(RestaurantsListLoading value)? loading,
+    TResult Function(RestaurantsListData value)? data,
+    TResult Function(RestaurantsListError value)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -189,8 +189,8 @@ class _$LoadingRestaurantsImpl implements LoadingRestaurants {
   }
 }
 
-abstract class LoadingRestaurants implements RestaurantsListScreenState {
-  const factory LoadingRestaurants() = _$LoadingRestaurantsImpl;
+abstract class RestaurantsListLoading implements RestaurantsListScreenState {
+  const factory RestaurantsListLoading() = _$LoadingRestaurantsImpl;
 }
 
 /// @nodoc
@@ -226,7 +226,7 @@ class __$$RestaurantsDataImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$RestaurantsDataImpl implements RestaurantsData {
+class _$RestaurantsDataImpl implements RestaurantsListData {
   const _$RestaurantsDataImpl({final List<Restaurant> restaurants = const []})
       : _restaurants = restaurants;
 
@@ -302,9 +302,9 @@ class _$RestaurantsDataImpl implements RestaurantsData {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(LoadingRestaurants value) loading,
-    required TResult Function(RestaurantsData value) data,
-    required TResult Function(RestaurantsError value) error,
+    required TResult Function(RestaurantsListLoading value) loading,
+    required TResult Function(RestaurantsListData value) data,
+    required TResult Function(RestaurantsListError value) error,
   }) {
     return data(this);
   }
@@ -312,9 +312,9 @@ class _$RestaurantsDataImpl implements RestaurantsData {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(LoadingRestaurants value)? loading,
-    TResult? Function(RestaurantsData value)? data,
-    TResult? Function(RestaurantsError value)? error,
+    TResult? Function(RestaurantsListLoading value)? loading,
+    TResult? Function(RestaurantsListData value)? data,
+    TResult? Function(RestaurantsListError value)? error,
   }) {
     return data?.call(this);
   }
@@ -322,9 +322,9 @@ class _$RestaurantsDataImpl implements RestaurantsData {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(LoadingRestaurants value)? loading,
-    TResult Function(RestaurantsData value)? data,
-    TResult Function(RestaurantsError value)? error,
+    TResult Function(RestaurantsListLoading value)? loading,
+    TResult Function(RestaurantsListData value)? data,
+    TResult Function(RestaurantsListError value)? error,
     required TResult orElse(),
   }) {
     if (data != null) {
@@ -334,8 +334,8 @@ class _$RestaurantsDataImpl implements RestaurantsData {
   }
 }
 
-abstract class RestaurantsData implements RestaurantsListScreenState {
-  const factory RestaurantsData({final List<Restaurant> restaurants}) =
+abstract class RestaurantsListData implements RestaurantsListScreenState {
+  const factory RestaurantsListData({final List<Restaurant> restaurants}) =
       _$RestaurantsDataImpl;
 
   List<Restaurant> get restaurants;
@@ -383,7 +383,7 @@ class __$$RestaurantsErrorImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$RestaurantsErrorImpl implements RestaurantsError {
+class _$RestaurantsErrorImpl implements RestaurantsListError {
   const _$RestaurantsErrorImpl({required this.exception, this.stackTrace});
 
   @override
@@ -455,9 +455,9 @@ class _$RestaurantsErrorImpl implements RestaurantsError {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(LoadingRestaurants value) loading,
-    required TResult Function(RestaurantsData value) data,
-    required TResult Function(RestaurantsError value) error,
+    required TResult Function(RestaurantsListLoading value) loading,
+    required TResult Function(RestaurantsListData value) data,
+    required TResult Function(RestaurantsListError value) error,
   }) {
     return error(this);
   }
@@ -465,9 +465,9 @@ class _$RestaurantsErrorImpl implements RestaurantsError {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(LoadingRestaurants value)? loading,
-    TResult? Function(RestaurantsData value)? data,
-    TResult? Function(RestaurantsError value)? error,
+    TResult? Function(RestaurantsListLoading value)? loading,
+    TResult? Function(RestaurantsListData value)? data,
+    TResult? Function(RestaurantsListError value)? error,
   }) {
     return error?.call(this);
   }
@@ -475,9 +475,9 @@ class _$RestaurantsErrorImpl implements RestaurantsError {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(LoadingRestaurants value)? loading,
-    TResult Function(RestaurantsData value)? data,
-    TResult Function(RestaurantsError value)? error,
+    TResult Function(RestaurantsListLoading value)? loading,
+    TResult Function(RestaurantsListData value)? data,
+    TResult Function(RestaurantsListError value)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -487,8 +487,8 @@ class _$RestaurantsErrorImpl implements RestaurantsError {
   }
 }
 
-abstract class RestaurantsError implements RestaurantsListScreenState {
-  const factory RestaurantsError(
+abstract class RestaurantsListError implements RestaurantsListScreenState {
+  const factory RestaurantsListError(
       {required final Exception exception,
       final StackTrace? stackTrace}) = _$RestaurantsErrorImpl;
 
