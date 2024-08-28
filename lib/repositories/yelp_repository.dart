@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart' hide Category;
 import 'package:restaurant_tour/models/restaurant.dart';
@@ -118,8 +120,26 @@ query getRestaurants {
 }
 
 final class MockedYelpRepository implements YelpRepository {
+  MockedYelpRepository({
+    this.minimumThreshold = 0,
+    this.maximumThreshold = 0,
+  }) : assert(minimumThreshold <= maximumThreshold);
+
+  final int minimumThreshold;
+  final int maximumThreshold;
+
+  final random = Random();
+
   @override
-  Future<RestaurantQueryResult?> getRestaurants({int offset = 0}) async => _mockObject;
+  Future<RestaurantQueryResult?> getRestaurants({int offset = 0}) async {
+    final difference = minimumThreshold + maximumThreshold;
+    final milliseconds = minimumThreshold + random.nextInt(difference);
+    final duration = Duration(milliseconds: milliseconds);
+
+    await Future.delayed(duration);
+
+    return _mockObject;
+  }
 }
 
 final _mockObject = RestaurantQueryResult.fromJson(_mockData);

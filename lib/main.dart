@@ -29,7 +29,14 @@ final class RestaurantTourApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        Provider<YelpRepository>(create: (context) => MockedYelpRepository()),
+        Provider<YelpRepository>(
+          create: (context) {
+            return MockedYelpRepository(
+              minimumThreshold: 500,
+              maximumThreshold: 2000,
+            );
+          },
+        ),
       ],
       child: MaterialApp(
         theme: ThemeData.from(
