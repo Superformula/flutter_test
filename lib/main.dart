@@ -33,7 +33,10 @@ final class RestaurantTourApp extends StatelessWidget {
       ],
       child: MaterialApp(
         theme: ThemeData.from(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
+          colorScheme: ColorScheme.fromSeed(
+            dynamicSchemeVariant: DynamicSchemeVariant.monochrome,
+            seedColor: Colors.black,
+          ),
         ).copyWith(
           appBarTheme: const AppBarTheme(
             titleTextStyle: AppTextStyles.loraHeading6,
