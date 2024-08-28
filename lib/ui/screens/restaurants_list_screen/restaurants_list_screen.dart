@@ -5,7 +5,7 @@ import 'package:prototype_constrained_box/prototype_constrained_box.dart';
 import 'package:restaurant_tour/cubit.dart';
 import 'package:restaurant_tour/models/restaurant.dart';
 import 'package:restaurant_tour/ui/colors.dart';
-import 'package:restaurant_tour/ui/screens/restaurant_details_screen/restaurant_details_screen.dart';
+import 'package:restaurant_tour/ui/screens/restaurant_details_screen.dart';
 import 'package:restaurant_tour/ui/typography.dart';
 import 'package:restaurant_tour/ui/widgets/restaurant_hour_status.dart';
 import 'package:restaurant_tour/ui/widgets/restaurant_image.dart';
