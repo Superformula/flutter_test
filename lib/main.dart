@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:restaurant_tour/repositories/yelp_repository.dart';
+import 'package:restaurant_tour/repositories/restaurants_repository.dart';
 import 'package:restaurant_tour/ui/screens/list_restaurants_screen/bloc.dart';
 
 import 'cubit.dart';
@@ -30,11 +30,11 @@ final class RestaurantTourApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        Provider<YelpRepository>(
+        Provider<RestaurantsRepository>(
           create: (context) {
-            return MockedYelpRepository(
-              minimumThreshold: 500,
-              maximumThreshold: 2000,
+            return MockedRestaurantsRepository(
+              minimumThrottle: 500,
+              maximumThrottle: 2000,
             );
           },
         ),

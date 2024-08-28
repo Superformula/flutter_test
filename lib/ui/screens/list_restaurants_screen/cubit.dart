@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:restaurant_tour/repositories/yelp_repository.dart';
+import 'package:restaurant_tour/repositories/restaurants_repository.dart';
 import 'package:restaurant_tour/ui/screens/list_restaurants_screen/state.dart';
 
 import 'list_restaurants_screen.dart';
@@ -10,7 +10,7 @@ final class ListRestaurantsScreenCubit extends Cubit<ListRestaurantsScreenState>
     required this.repository,
   }) : super(const RestaurantsData());
 
-  final YelpRepository repository;
+  final RestaurantsRepository repository;
 
   Future<void> loadRestaurants() async {
     emit(const LoadingRestaurants());
@@ -46,7 +46,7 @@ class _ListRestaurantsScreenCubitWrapperState extends State<ListRestaurantsScree
   @override
   void initState() {
     super.initState();
-    final repository = context.read<YelpRepository>();
+    final repository = context.read<RestaurantsRepository>();
 
     cubit = ListRestaurantsScreenCubit(repository: repository);
     cubit.loadRestaurants();

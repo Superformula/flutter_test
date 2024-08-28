@@ -6,16 +6,31 @@ import 'package:restaurant_tour/models/restaurant.dart';
 
 const _apiKey = String.fromEnvironment('YELP_API_KEY');
 
-abstract interface class YelpRepository {
+/// The repository for getting information about the restaurants.
+abstract interface class RestaurantsRepository {
+  /// Get all the restaurants.
+  ///
+  /// If the results are paginated, you can use the [offset] parameter
+  /// to move between pages.
   Future<RestaurantQueryResult?> getRestaurants({int offset = 0});
 }
 
-final class HttpYelpRepository implements YelpRepository {
-  final Dio dio;
-
-  HttpYelpRepository({
+/// A HTTTP implementation of the [RestaurantsRepository].
+///
+/// This implementation uses Yelp GraphQL API to get the restaurants.
+///
+/// To use it, it's necessary to pass the Yelp API Key as a Dart Define with
+/// the key `YELP_API_KEY`.
+///
+/// For example:
+/// ```
+/// flutter run --dart-define=YELP_API_KEY=<YOUR_API_KEY>
+/// ```
+final class HttpRestaurantsRepository implements RestaurantsRepository {
+  /// Creates a new HTTP resturants repository.
+  HttpRestaurantsRepository({
     @visibleForTesting Dio? dio,
-  }) : dio = dio ??
+  }) : _dio = dio ??
             Dio(
               BaseOptions(
                 baseUrl: 'https://api.yelp.com',
@@ -26,50 +41,11 @@ final class HttpYelpRepository implements YelpRepository {
               ),
             );
 
-  /// Returns a response in this shape
-  /// ```json
-  /// {
-  /// "data": {
-  ///   "search": {
-  ///     "total": 5056,
-  ///     "business": [
-  ///       {
-  ///         "id": "faPVqws-x-5k2CQKDNtHxw",
-  ///         "name": "Yardbird Southern Table & Bar",
-  ///         "price": "$$",
-  ///         "rating": 4.5,
-  ///         "photos": [
-  ///           "https:///s3-media4.fl.yelpcdn.com/bphoto/_zXRdYX4r1OBfF86xKMbDw/o.jpg"
-  ///         ],
-  ///         "reviews": [
-  ///           {
-  ///             "id": "sjZoO8wcK1NeGJFDk5i82Q",
-  ///             "rating": 5,
-  ///             "user": {
-  ///               "id": "BuBCkWFNT_O2dbSnBZvpoQ",
-  ///               "image_url": "https:///s3-media2.fl.yelpcdn.com/photo/v8tbTjYaFvkzh1d7iE-pcQ/o.jpg",
-  ///               "name": "Gina T.",
-  ///               "text": "I love this place! The food is amazing and the service is great."
-  ///             }
-  ///           },
-  ///           {
-  ///             "id": "okpO9hfpxQXssbTZTKq9hA",
-  ///             "rating": 5,
-  ///             "user": {
-  ///               "id": "0x9xu_b0Ct_6hG6jaxpztw",
-  ///               "image_url": "https:///s3-media3.fl.yelpcdn.com/photo/gjz8X6tqE3e4praK4HfCiA/o.jpg",
-  ///               "name": "Crystal L.",
-  ///               "text": "Greate place to eat"
-  ///             }
-  ///           },
-  ///        ...
-  ///     ]
-  ///   }
-  /// }
-  /// ```
+  final Dio _dio;
+
   @override
   Future<RestaurantQueryResult?> getRestaurants({int offset = 0}) async {
-    final response = await dio.post<Map<String, Object?>>(
+    final response = await _dio.post<Map<String, Object?>>(
       '/v3/graphql',
       data: _getQuery(offset),
     );
@@ -119,21 +95,32 @@ query getRestaurants {
   }
 }
 
-final class MockedYelpRepository implements YelpRepository {
-  MockedYelpRepository({
-    this.minimumThreshold = 0,
-    this.maximumThreshold = 0,
-  }) : assert(minimumThreshold <= maximumThreshold);
+/// A mocked implementation of the restaurants repository.
+///
+/// The data is not paginated, and thus the [offset] parameter in
+/// [getRestaurants] won't do anything.
+///
+/// You can emulate random throttle with [minimumThrottle] and
+/// [maximumThrottle].
+final class MockedRestaurantsRepository implements RestaurantsRepository {
+  /// Creates a new mocked restaurants repository.
+  ///
+  /// If [minimumThrottle] and [maximumThrottle] are provided, [maximumThrottle]
+  /// has to be greater or equal than [minimumThrottle].
+  MockedRestaurantsRepository({
+    this.minimumThrottle = 0,
+    this.maximumThrottle = 0,
+  }) : assert(minimumThrottle <= maximumThrottle);
 
-  final int minimumThreshold;
-  final int maximumThreshold;
+  final int minimumThrottle;
+  final int maximumThrottle;
 
   final random = Random();
 
   @override
   Future<RestaurantQueryResult?> getRestaurants({int offset = 0}) async {
-    final difference = minimumThreshold + maximumThreshold;
-    final milliseconds = minimumThreshold + random.nextInt(difference);
+    final difference = minimumThrottle + maximumThrottle;
+    final milliseconds = minimumThrottle + random.nextInt(difference);
     final duration = Duration(milliseconds: milliseconds);
 
     await Future.delayed(duration);
