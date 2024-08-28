@@ -51,45 +51,47 @@ final class RestaurantDetailsScreen extends StatelessWidget {
               child: RestaurantImage(restaurant: restaurant),
             ),
           ),
-          SliverPadding(
-            padding: const EdgeInsets.all(24.0),
-            sliver: SliverMainAxisGroup(
-              slivers: [
-                SliverToBoxAdapter(
-                  child: _BasicInfo(restaurant: restaurant),
-                ),
-                const SliverToBoxAdapter(
-                  child: Divider(height: 49.0),
-                ),
-                SliverToBoxAdapter(
-                  child: _AddressSection(address: restaurant.location.formattedAddress),
-                ),
-                const SliverToBoxAdapter(
-                  child: Divider(height: 49.0),
-                ),
-                if (restaurant.rating case final rating?) ...[
+          SliverSafeArea(
+            sliver: SliverPadding(
+              padding: const EdgeInsets.all(24.0),
+              sliver: SliverMainAxisGroup(
+                slivers: [
                   SliverToBoxAdapter(
-                    child: _OverallRating(rating: rating),
+                    child: _BasicInfo(restaurant: restaurant),
                   ),
                   const SliverToBoxAdapter(
                     child: Divider(height: 49.0),
                   ),
-                ],
-                SliverToBoxAdapter(
-                  child: Text(
-                    '${restaurant.reviews.length} Reviews',
-                    style: AppTextStyles.openCaption,
+                  SliverToBoxAdapter(
+                    child: _AddressSection(address: restaurant.location.formattedAddress),
                   ),
-                ),
-                const SliverToBoxAdapter(
-                  child: SizedBox(height: 16.0),
-                ),
-                SliverList.separated(
-                  itemCount: restaurant.reviews.length,
-                  itemBuilder: (context, index) => _Review(review: restaurant.reviews[index]),
-                  separatorBuilder: (context, index) => const Divider(height: 33.0),
-                ),
-              ],
+                  const SliverToBoxAdapter(
+                    child: Divider(height: 49.0),
+                  ),
+                  if (restaurant.rating case final rating?) ...[
+                    SliverToBoxAdapter(
+                      child: _OverallRating(rating: rating),
+                    ),
+                    const SliverToBoxAdapter(
+                      child: Divider(height: 49.0),
+                    ),
+                  ],
+                  SliverToBoxAdapter(
+                    child: Text(
+                      '${restaurant.reviews.length} Reviews',
+                      style: AppTextStyles.openCaption,
+                    ),
+                  ),
+                  const SliverToBoxAdapter(
+                    child: SizedBox(height: 16.0),
+                  ),
+                  SliverList.separated(
+                    itemCount: restaurant.reviews.length,
+                    itemBuilder: (context, index) => _Review(review: restaurant.reviews[index]),
+                    separatorBuilder: (context, index) => const Divider(height: 33.0),
+                  ),
+                ],
+              ),
             ),
           ),
         ],
