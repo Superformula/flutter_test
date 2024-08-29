@@ -32,12 +32,7 @@ final class RestaurantTourApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         Provider<RestaurantsRepository>(
-          create: (context) {
-            return MockedRestaurantsRepository(
-              minimumThrottle: 500,
-              maximumThrottle: 2000,
-            );
-          },
+          create: (context) => HttpRestaurantsRepository(),
         ),
       ],
       child: MaterialApp(
