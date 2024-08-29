@@ -239,4 +239,4 @@ final class _RestaurantsListScreenTest extends StatelessWidget {
   }
 }
 
-class MockStorage extends Mock implements Storage {}
+final class MockStorage extends Mock implements Storage {}

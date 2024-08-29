@@ -44,7 +44,7 @@ final class HttpRestaurantsRepository implements RestaurantsRepository {
   final Dio _dio;
 
   @override
-  Future<RestaurantQueryResult?> getRestaurants({int offset = 0}) async {
+  Future<RestaurantQueryResult> getRestaurants({int offset = 0}) async {
     final response = await _dio.post<Map<String, Object?>>(
       '/v3/graphql',
       data: _getQuery(offset),

@@ -118,4 +118,4 @@ void main() {
   );
 }
 
-class MockStorage extends Mock implements Storage {}
+final class MockStorage extends Mock implements Storage {}
