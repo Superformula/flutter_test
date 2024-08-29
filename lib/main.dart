@@ -32,7 +32,16 @@ final class RestaurantTourApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         Provider<RestaurantsRepository>(
-          create: (context) => HttpRestaurantsRepository(),
+          create: (context) {
+            if (const bool.hasEnvironment('YELP_API_KEY')) {
+              return HttpRestaurantsRepository();
+            } else {
+              return MockedRestaurantsRepository(
+                minimumThrottle: 500,
+                maximumThrottle: 2000,
+              );
+            }
+          },
         ),
       ],
       child: MaterialApp(
