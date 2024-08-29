@@ -1,157 +1,90 @@
-import 'package:json_annotation/json_annotation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
+part 'restaurant.freezed.dart';
 part 'restaurant.g.dart';
 
-@JsonSerializable()
-class Category {
-  final String? alias;
-  final String? title;
+@freezed
+sealed class Category with _$Category {
+  const factory Category({
+    required String alias,
+    required String title,
+  }) = _Category;
 
-  Category({
-    this.alias,
-    this.title,
-  });
-
-  factory Category.fromJson(Map<String, dynamic> json) =>
-      _$CategoryFromJson(json);
-
-  Map<String, dynamic> toJson() => _$CategoryToJson(this);
+  factory Category.fromJson(Map<String, Object?> json) => _$CategoryFromJson(json);
 }
 
-@JsonSerializable()
-class Hours {
-  @JsonKey(name: 'is_open_now')
-  final bool? isOpenNow;
+@freezed
+sealed class Hours with _$Hours {
+  const factory Hours({
+    @JsonKey(name: 'is_open_now') required bool open,
+  }) = _Hours;
 
-  const Hours({
-    this.isOpenNow,
-  });
-
-  factory Hours.fromJson(Map<String, dynamic> json) => _$HoursFromJson(json);
-
-  Map<String, dynamic> toJson() => _$HoursToJson(this);
+  factory Hours.fromJson(Map<String, Object?> json) => _$HoursFromJson(json);
 }
 
-@JsonSerializable()
-class User {
-  final String? id;
-  @JsonKey(name: 'image_url')
-  final String? imageUrl;
-  final String? name;
+@freezed
+sealed class User with _$User {
+  const factory User({
+    required String id,
+    required String name,
+    String? imageUrl,
+  }) = _User;
 
-  const User({
-    this.id,
-    this.imageUrl,
-    this.name,
-  });
-
-  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
-
-  Map<String, dynamic> toJson() => _$UserToJson(this);
+  factory User.fromJson(Map<String, Object?> json) => _$UserFromJson(json);
 }
 
-@JsonSerializable()
-class Review {
-  final String? id;
-  final int? rating;
-  final String? text;
-  final User? user;
+@freezed
+sealed class Review with _$Review {
+  const factory Review({
+    required String id,
+    required int rating,
+    required String text,
+    required User user,
+  }) = _Review;
 
-  const Review({
-    this.id,
-    this.rating,
-    this.user,
-    this.text,
-  });
-
-  factory Review.fromJson(Map<String, dynamic> json) => _$ReviewFromJson(json);
-
-  Map<String, dynamic> toJson() => _$ReviewToJson(this);
+  factory Review.fromJson(Map<String, Object?> json) => _$ReviewFromJson(json);
 }
 
-@JsonSerializable()
-class Location {
-  @JsonKey(name: 'formatted_address')
-  final String? formattedAddress;
+@freezed
+sealed class Location with _$Location {
+  const factory Location({
+    required String formattedAddress,
+  }) = _Location;
 
-  Location({
-    this.formattedAddress,
-  });
-
-  factory Location.fromJson(Map<String, dynamic> json) =>
-      _$LocationFromJson(json);
-
-  Map<String, dynamic> toJson() => _$LocationToJson(this);
+  factory Location.fromJson(Map<String, Object?> json) => _$LocationFromJson(json);
 }
 
-@JsonSerializable()
-class Restaurant {
-  final String? id;
-  final String? name;
-  final String? price;
-  final double? rating;
-  final List<String>? photos;
-  final List<Category>? categories;
-  final List<Hours>? hours;
-  final List<Review>? reviews;
-  final Location? location;
+@freezed
+sealed class Restaurant with _$Restaurant {
+  const factory Restaurant({
+    required String id,
+    required String name,
+    String? price,
+    double? rating,
+    List<String>? photos,
+    List<Category>? categories,
+    required List<Hours> hours,
+    required List<Review> reviews,
+    required Location location,
+  }) = _Restaurant;
 
-  const Restaurant({
-    this.id,
-    this.name,
-    this.price,
-    this.rating,
-    this.photos,
-    this.categories,
-    this.hours,
-    this.reviews,
-    this.location,
-  });
+  const Restaurant._();
 
-  factory Restaurant.fromJson(Map<String, dynamic> json) =>
-      _$RestaurantFromJson(json);
+  factory Restaurant.fromJson(Map<String, Object?> json) => _$RestaurantFromJson(json);
 
-  Map<String, dynamic> toJson() => _$RestaurantToJson(this);
+  /// The first category, if any.
+  Category? get mainCategory => categories?.firstOrNull;
 
-  /// Use the first category for the category shown to the user
-  String get displayCategory {
-    if (categories != null && categories!.isNotEmpty) {
-      return categories!.first.title ?? '';
-    }
-    return '';
-  }
-
-  /// Use the first image as the image shown to the user
-  String get heroImage {
-    if (photos != null && photos!.isNotEmpty) {
-      return photos!.first;
-    }
-    return '';
-  }
-
-  /// This logic is probably not correct in all cases but it is ok
-  /// for this application
-  bool get isOpen {
-    if (hours != null && hours!.isNotEmpty) {
-      return hours!.first.isOpenNow ?? false;
-    }
-    return false;
-  }
+  /// Whether the business is currently open.
+  bool get open => hours.any((hour) => hour.open);
 }
 
-@JsonSerializable()
-class RestaurantQueryResult {
-  final int? total;
-  @JsonKey(name: 'business')
-  final List<Restaurant>? restaurants;
+@freezed
+sealed class RestaurantQueryResult with _$RestaurantQueryResult {
+  const factory RestaurantQueryResult({
+    required int total,
+    @JsonKey(name: 'business') required List<Restaurant> restaurants,
+  }) = _RestaurantQueryResult;
 
-  const RestaurantQueryResult({
-    this.total,
-    this.restaurants,
-  });
-
-  factory RestaurantQueryResult.fromJson(Map<String, dynamic> json) =>
-      _$RestaurantQueryResultFromJson(json);
-
-  Map<String, dynamic> toJson() => _$RestaurantQueryResultToJson(this);
+  factory RestaurantQueryResult.fromJson(Map<String, Object?> json) => _$RestaurantQueryResultFromJson(json);
 }

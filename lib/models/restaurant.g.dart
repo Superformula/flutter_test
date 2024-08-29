@@ -6,61 +6,69 @@ part of 'restaurant.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Category _$CategoryFromJson(Map<String, dynamic> json) => Category(
-      alias: json['alias'] as String?,
-      title: json['title'] as String?,
+_$CategoryImpl _$$CategoryImplFromJson(Map<String, dynamic> json) =>
+    _$CategoryImpl(
+      alias: json['alias'] as String,
+      title: json['title'] as String,
     );
 
-Map<String, dynamic> _$CategoryToJson(Category instance) => <String, dynamic>{
+Map<String, dynamic> _$$CategoryImplToJson(_$CategoryImpl instance) =>
+    <String, dynamic>{
       'alias': instance.alias,
       'title': instance.title,
     };
 
-Hours _$HoursFromJson(Map<String, dynamic> json) => Hours(
-      isOpenNow: json['is_open_now'] as bool?,
+_$HoursImpl _$$HoursImplFromJson(Map<String, dynamic> json) => _$HoursImpl(
+      open: json['is_open_now'] as bool,
     );
 
-Map<String, dynamic> _$HoursToJson(Hours instance) => <String, dynamic>{
-      'is_open_now': instance.isOpenNow,
+Map<String, dynamic> _$$HoursImplToJson(_$HoursImpl instance) =>
+    <String, dynamic>{
+      'is_open_now': instance.open,
     };
 
-User _$UserFromJson(Map<String, dynamic> json) => User(
-      id: json['id'] as String?,
+_$UserImpl _$$UserImplFromJson(Map<String, dynamic> json) => _$UserImpl(
+      id: json['id'] as String,
+      name: json['name'] as String,
       imageUrl: json['image_url'] as String?,
-      name: json['name'] as String?,
     );
 
-Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
+Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>
+    <String, dynamic>{
       'id': instance.id,
-      'image_url': instance.imageUrl,
       'name': instance.name,
+      'image_url': instance.imageUrl,
     };
 
-Review _$ReviewFromJson(Map<String, dynamic> json) => Review(
-      id: json['id'] as String?,
-      rating: json['rating'] as int?,
-      user: json['user'] == null
-          ? null
-          : User.fromJson(json['user'] as Map<String, dynamic>),
+_$ReviewImpl _$$ReviewImplFromJson(Map<String, dynamic> json) => _$ReviewImpl(
+      id: json['id'] as String,
+      rating: (json['rating'] as num).toInt(),
+      text: json['text'] as String,
+      user: User.fromJson(json['user'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$ReviewToJson(Review instance) => <String, dynamic>{
+Map<String, dynamic> _$$ReviewImplToJson(_$ReviewImpl instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'rating': instance.rating,
+      'text': instance.text,
       'user': instance.user,
     };
 
-Location _$LocationFromJson(Map<String, dynamic> json) => Location(
-      formattedAddress: json['formatted_address'] as String?,
+_$LocationImpl _$$LocationImplFromJson(Map<String, dynamic> json) =>
+    _$LocationImpl(
+      formattedAddress: json['formatted_address'] as String,
     );
 
-Map<String, dynamic> _$LocationToJson(Location instance) => <String, dynamic>{
+Map<String, dynamic> _$$LocationImplToJson(_$LocationImpl instance) =>
+    <String, dynamic>{
       'formatted_address': instance.formattedAddress,
     };
 
-Restaurant _$RestaurantFromJson(Map<String, dynamic> json) => Restaurant(
-      id: json['id'] as String?,
-      name: json['name'] as String?,
+_$RestaurantImpl _$$RestaurantImplFromJson(Map<String, dynamic> json) =>
+    _$RestaurantImpl(
+      id: json['id'] as String,
+      name: json['name'] as String,
       price: json['price'] as String?,
       rating: (json['rating'] as num?)?.toDouble(),
       photos:
@@ -68,18 +76,16 @@ Restaurant _$RestaurantFromJson(Map<String, dynamic> json) => Restaurant(
       categories: (json['categories'] as List<dynamic>?)
           ?.map((e) => Category.fromJson(e as Map<String, dynamic>))
           .toList(),
-      hours: (json['hours'] as List<dynamic>?)
-          ?.map((e) => Hours.fromJson(e as Map<String, dynamic>))
+      hours: (json['hours'] as List<dynamic>)
+          .map((e) => Hours.fromJson(e as Map<String, dynamic>))
           .toList(),
-      reviews: (json['reviews'] as List<dynamic>?)
-          ?.map((e) => Review.fromJson(e as Map<String, dynamic>))
+      reviews: (json['reviews'] as List<dynamic>)
+          .map((e) => Review.fromJson(e as Map<String, dynamic>))
           .toList(),
-      location: json['location'] == null
-          ? null
-          : Location.fromJson(json['location'] as Map<String, dynamic>),
+      location: Location.fromJson(json['location'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$RestaurantToJson(Restaurant instance) =>
+Map<String, dynamic> _$$RestaurantImplToJson(_$RestaurantImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
@@ -92,17 +98,17 @@ Map<String, dynamic> _$RestaurantToJson(Restaurant instance) =>
       'location': instance.location,
     };
 
-RestaurantQueryResult _$RestaurantQueryResultFromJson(
+_$RestaurantQueryResultImpl _$$RestaurantQueryResultImplFromJson(
         Map<String, dynamic> json) =>
-    RestaurantQueryResult(
-      total: json['total'] as int?,
-      restaurants: (json['business'] as List<dynamic>?)
-          ?.map((e) => Restaurant.fromJson(e as Map<String, dynamic>))
+    _$RestaurantQueryResultImpl(
+      total: (json['total'] as num).toInt(),
+      restaurants: (json['business'] as List<dynamic>)
+          .map((e) => Restaurant.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$RestaurantQueryResultToJson(
-        RestaurantQueryResult instance) =>
+Map<String, dynamic> _$$RestaurantQueryResultImplToJson(
+        _$RestaurantQueryResultImpl instance) =>
     <String, dynamic>{
       'total': instance.total,
       'business': instance.restaurants,
