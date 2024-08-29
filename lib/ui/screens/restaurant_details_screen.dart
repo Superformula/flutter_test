@@ -32,7 +32,9 @@ final class RestaurantDetailsScreen extends StatelessWidget {
                 icon: AnimatedCrossFade(
                   firstChild: const Icon(Icons.favorite),
                   secondChild: const Icon(Icons.favorite_outline),
-                  crossFadeState: bloc.favorited(restaurant.id) ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+                  crossFadeState: bloc.favorited(restaurant.id) //
+                      ? CrossFadeState.showFirst
+                      : CrossFadeState.showSecond,
                   firstCurve: Curves.easeInOut,
                   secondCurve: Curves.easeInOut,
                   duration: const Duration(milliseconds: 150),
