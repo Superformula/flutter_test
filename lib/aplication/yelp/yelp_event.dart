@@ -9,4 +9,6 @@ class YelpEvent with _$YelpEvent {
 
   const factory YelpEvent.removeFavoriteRestaurant(String id) =
       RemoveFavoriteRestaurant;
+
+  const factory YelpEvent.loadFavoriteRestaurants() = LoadFavoriteRestaurants;
 }

@@ -13,8 +13,9 @@ class HomePage extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<YelpBloc>(
-          create: (BuildContext context) =>
-              getIt<YelpBloc>()..add(const YelpEvent.getRestaurantsData()),
+          create: (BuildContext context) => getIt<YelpBloc>()
+            ..add(const YelpEvent.getRestaurantsData())
+            ..add(const YelpEvent.loadFavoriteRestaurants()),
         ),
       ],
       child: DefaultTabController(

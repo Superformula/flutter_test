@@ -219,6 +219,7 @@ mixin _$YelpEvent {
     required TResult Function() getRestaurantsData,
     required TResult Function(Restaurant restaurant) addFavoriteRestaurant,
     required TResult Function(String id) removeFavoriteRestaurant,
+    required TResult Function() loadFavoriteRestaurants,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -226,6 +227,7 @@ mixin _$YelpEvent {
     TResult? Function()? getRestaurantsData,
     TResult? Function(Restaurant restaurant)? addFavoriteRestaurant,
     TResult? Function(String id)? removeFavoriteRestaurant,
+    TResult? Function()? loadFavoriteRestaurants,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -233,6 +235,7 @@ mixin _$YelpEvent {
     TResult Function()? getRestaurantsData,
     TResult Function(Restaurant restaurant)? addFavoriteRestaurant,
     TResult Function(String id)? removeFavoriteRestaurant,
+    TResult Function()? loadFavoriteRestaurants,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -243,6 +246,8 @@ mixin _$YelpEvent {
         addFavoriteRestaurant,
     required TResult Function(RemoveFavoriteRestaurant value)
         removeFavoriteRestaurant,
+    required TResult Function(LoadFavoriteRestaurants value)
+        loadFavoriteRestaurants,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -250,6 +255,7 @@ mixin _$YelpEvent {
     TResult? Function(GetRestaurantsData value)? getRestaurantsData,
     TResult? Function(AddFavoriteRestaurant value)? addFavoriteRestaurant,
     TResult? Function(RemoveFavoriteRestaurant value)? removeFavoriteRestaurant,
+    TResult? Function(LoadFavoriteRestaurants value)? loadFavoriteRestaurants,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -257,6 +263,7 @@ mixin _$YelpEvent {
     TResult Function(GetRestaurantsData value)? getRestaurantsData,
     TResult Function(AddFavoriteRestaurant value)? addFavoriteRestaurant,
     TResult Function(RemoveFavoriteRestaurant value)? removeFavoriteRestaurant,
+    TResult Function(LoadFavoriteRestaurants value)? loadFavoriteRestaurants,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -320,6 +327,7 @@ class _$GetRestaurantsData implements GetRestaurantsData {
     required TResult Function() getRestaurantsData,
     required TResult Function(Restaurant restaurant) addFavoriteRestaurant,
     required TResult Function(String id) removeFavoriteRestaurant,
+    required TResult Function() loadFavoriteRestaurants,
   }) {
     return getRestaurantsData();
   }
@@ -330,6 +338,7 @@ class _$GetRestaurantsData implements GetRestaurantsData {
     TResult? Function()? getRestaurantsData,
     TResult? Function(Restaurant restaurant)? addFavoriteRestaurant,
     TResult? Function(String id)? removeFavoriteRestaurant,
+    TResult? Function()? loadFavoriteRestaurants,
   }) {
     return getRestaurantsData?.call();
   }
@@ -340,6 +349,7 @@ class _$GetRestaurantsData implements GetRestaurantsData {
     TResult Function()? getRestaurantsData,
     TResult Function(Restaurant restaurant)? addFavoriteRestaurant,
     TResult Function(String id)? removeFavoriteRestaurant,
+    TResult Function()? loadFavoriteRestaurants,
     required TResult orElse(),
   }) {
     if (getRestaurantsData != null) {
@@ -356,6 +366,8 @@ class _$GetRestaurantsData implements GetRestaurantsData {
         addFavoriteRestaurant,
     required TResult Function(RemoveFavoriteRestaurant value)
         removeFavoriteRestaurant,
+    required TResult Function(LoadFavoriteRestaurants value)
+        loadFavoriteRestaurants,
   }) {
     return getRestaurantsData(this);
   }
@@ -366,6 +378,7 @@ class _$GetRestaurantsData implements GetRestaurantsData {
     TResult? Function(GetRestaurantsData value)? getRestaurantsData,
     TResult? Function(AddFavoriteRestaurant value)? addFavoriteRestaurant,
     TResult? Function(RemoveFavoriteRestaurant value)? removeFavoriteRestaurant,
+    TResult? Function(LoadFavoriteRestaurants value)? loadFavoriteRestaurants,
   }) {
     return getRestaurantsData?.call(this);
   }
@@ -376,6 +389,7 @@ class _$GetRestaurantsData implements GetRestaurantsData {
     TResult Function(GetRestaurantsData value)? getRestaurantsData,
     TResult Function(AddFavoriteRestaurant value)? addFavoriteRestaurant,
     TResult Function(RemoveFavoriteRestaurant value)? removeFavoriteRestaurant,
+    TResult Function(LoadFavoriteRestaurants value)? loadFavoriteRestaurants,
     required TResult orElse(),
   }) {
     if (getRestaurantsData != null) {
@@ -458,6 +472,7 @@ class _$AddFavoriteRestaurant implements AddFavoriteRestaurant {
     required TResult Function() getRestaurantsData,
     required TResult Function(Restaurant restaurant) addFavoriteRestaurant,
     required TResult Function(String id) removeFavoriteRestaurant,
+    required TResult Function() loadFavoriteRestaurants,
   }) {
     return addFavoriteRestaurant(restaurant);
   }
@@ -468,6 +483,7 @@ class _$AddFavoriteRestaurant implements AddFavoriteRestaurant {
     TResult? Function()? getRestaurantsData,
     TResult? Function(Restaurant restaurant)? addFavoriteRestaurant,
     TResult? Function(String id)? removeFavoriteRestaurant,
+    TResult? Function()? loadFavoriteRestaurants,
   }) {
     return addFavoriteRestaurant?.call(restaurant);
   }
@@ -478,6 +494,7 @@ class _$AddFavoriteRestaurant implements AddFavoriteRestaurant {
     TResult Function()? getRestaurantsData,
     TResult Function(Restaurant restaurant)? addFavoriteRestaurant,
     TResult Function(String id)? removeFavoriteRestaurant,
+    TResult Function()? loadFavoriteRestaurants,
     required TResult orElse(),
   }) {
     if (addFavoriteRestaurant != null) {
@@ -494,6 +511,8 @@ class _$AddFavoriteRestaurant implements AddFavoriteRestaurant {
         addFavoriteRestaurant,
     required TResult Function(RemoveFavoriteRestaurant value)
         removeFavoriteRestaurant,
+    required TResult Function(LoadFavoriteRestaurants value)
+        loadFavoriteRestaurants,
   }) {
     return addFavoriteRestaurant(this);
   }
@@ -504,6 +523,7 @@ class _$AddFavoriteRestaurant implements AddFavoriteRestaurant {
     TResult? Function(GetRestaurantsData value)? getRestaurantsData,
     TResult? Function(AddFavoriteRestaurant value)? addFavoriteRestaurant,
     TResult? Function(RemoveFavoriteRestaurant value)? removeFavoriteRestaurant,
+    TResult? Function(LoadFavoriteRestaurants value)? loadFavoriteRestaurants,
   }) {
     return addFavoriteRestaurant?.call(this);
   }
@@ -514,6 +534,7 @@ class _$AddFavoriteRestaurant implements AddFavoriteRestaurant {
     TResult Function(GetRestaurantsData value)? getRestaurantsData,
     TResult Function(AddFavoriteRestaurant value)? addFavoriteRestaurant,
     TResult Function(RemoveFavoriteRestaurant value)? removeFavoriteRestaurant,
+    TResult Function(LoadFavoriteRestaurants value)? loadFavoriteRestaurants,
     required TResult orElse(),
   }) {
     if (addFavoriteRestaurant != null) {
@@ -602,6 +623,7 @@ class _$RemoveFavoriteRestaurant implements RemoveFavoriteRestaurant {
     required TResult Function() getRestaurantsData,
     required TResult Function(Restaurant restaurant) addFavoriteRestaurant,
     required TResult Function(String id) removeFavoriteRestaurant,
+    required TResult Function() loadFavoriteRestaurants,
   }) {
     return removeFavoriteRestaurant(id);
   }
@@ -612,6 +634,7 @@ class _$RemoveFavoriteRestaurant implements RemoveFavoriteRestaurant {
     TResult? Function()? getRestaurantsData,
     TResult? Function(Restaurant restaurant)? addFavoriteRestaurant,
     TResult? Function(String id)? removeFavoriteRestaurant,
+    TResult? Function()? loadFavoriteRestaurants,
   }) {
     return removeFavoriteRestaurant?.call(id);
   }
@@ -622,6 +645,7 @@ class _$RemoveFavoriteRestaurant implements RemoveFavoriteRestaurant {
     TResult Function()? getRestaurantsData,
     TResult Function(Restaurant restaurant)? addFavoriteRestaurant,
     TResult Function(String id)? removeFavoriteRestaurant,
+    TResult Function()? loadFavoriteRestaurants,
     required TResult orElse(),
   }) {
     if (removeFavoriteRestaurant != null) {
@@ -638,6 +662,8 @@ class _$RemoveFavoriteRestaurant implements RemoveFavoriteRestaurant {
         addFavoriteRestaurant,
     required TResult Function(RemoveFavoriteRestaurant value)
         removeFavoriteRestaurant,
+    required TResult Function(LoadFavoriteRestaurants value)
+        loadFavoriteRestaurants,
   }) {
     return removeFavoriteRestaurant(this);
   }
@@ -648,6 +674,7 @@ class _$RemoveFavoriteRestaurant implements RemoveFavoriteRestaurant {
     TResult? Function(GetRestaurantsData value)? getRestaurantsData,
     TResult? Function(AddFavoriteRestaurant value)? addFavoriteRestaurant,
     TResult? Function(RemoveFavoriteRestaurant value)? removeFavoriteRestaurant,
+    TResult? Function(LoadFavoriteRestaurants value)? loadFavoriteRestaurants,
   }) {
     return removeFavoriteRestaurant?.call(this);
   }
@@ -658,6 +685,7 @@ class _$RemoveFavoriteRestaurant implements RemoveFavoriteRestaurant {
     TResult Function(GetRestaurantsData value)? getRestaurantsData,
     TResult Function(AddFavoriteRestaurant value)? addFavoriteRestaurant,
     TResult Function(RemoveFavoriteRestaurant value)? removeFavoriteRestaurant,
+    TResult Function(LoadFavoriteRestaurants value)? loadFavoriteRestaurants,
     required TResult orElse(),
   }) {
     if (removeFavoriteRestaurant != null) {
@@ -675,4 +703,122 @@ abstract class RemoveFavoriteRestaurant implements YelpEvent {
   @JsonKey(ignore: true)
   _$$RemoveFavoriteRestaurantCopyWith<_$RemoveFavoriteRestaurant>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$LoadFavoriteRestaurantsCopyWith<$Res> {
+  factory _$$LoadFavoriteRestaurantsCopyWith(_$LoadFavoriteRestaurants value,
+          $Res Function(_$LoadFavoriteRestaurants) then) =
+      __$$LoadFavoriteRestaurantsCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$LoadFavoriteRestaurantsCopyWithImpl<$Res>
+    extends _$YelpEventCopyWithImpl<$Res, _$LoadFavoriteRestaurants>
+    implements _$$LoadFavoriteRestaurantsCopyWith<$Res> {
+  __$$LoadFavoriteRestaurantsCopyWithImpl(_$LoadFavoriteRestaurants _value,
+      $Res Function(_$LoadFavoriteRestaurants) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$LoadFavoriteRestaurants implements LoadFavoriteRestaurants {
+  const _$LoadFavoriteRestaurants();
+
+  @override
+  String toString() {
+    return 'YelpEvent.loadFavoriteRestaurants()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LoadFavoriteRestaurants);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getRestaurantsData,
+    required TResult Function(Restaurant restaurant) addFavoriteRestaurant,
+    required TResult Function(String id) removeFavoriteRestaurant,
+    required TResult Function() loadFavoriteRestaurants,
+  }) {
+    return loadFavoriteRestaurants();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getRestaurantsData,
+    TResult? Function(Restaurant restaurant)? addFavoriteRestaurant,
+    TResult? Function(String id)? removeFavoriteRestaurant,
+    TResult? Function()? loadFavoriteRestaurants,
+  }) {
+    return loadFavoriteRestaurants?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getRestaurantsData,
+    TResult Function(Restaurant restaurant)? addFavoriteRestaurant,
+    TResult Function(String id)? removeFavoriteRestaurant,
+    TResult Function()? loadFavoriteRestaurants,
+    required TResult orElse(),
+  }) {
+    if (loadFavoriteRestaurants != null) {
+      return loadFavoriteRestaurants();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetRestaurantsData value) getRestaurantsData,
+    required TResult Function(AddFavoriteRestaurant value)
+        addFavoriteRestaurant,
+    required TResult Function(RemoveFavoriteRestaurant value)
+        removeFavoriteRestaurant,
+    required TResult Function(LoadFavoriteRestaurants value)
+        loadFavoriteRestaurants,
+  }) {
+    return loadFavoriteRestaurants(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetRestaurantsData value)? getRestaurantsData,
+    TResult? Function(AddFavoriteRestaurant value)? addFavoriteRestaurant,
+    TResult? Function(RemoveFavoriteRestaurant value)? removeFavoriteRestaurant,
+    TResult? Function(LoadFavoriteRestaurants value)? loadFavoriteRestaurants,
+  }) {
+    return loadFavoriteRestaurants?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetRestaurantsData value)? getRestaurantsData,
+    TResult Function(AddFavoriteRestaurant value)? addFavoriteRestaurant,
+    TResult Function(RemoveFavoriteRestaurant value)? removeFavoriteRestaurant,
+    TResult Function(LoadFavoriteRestaurants value)? loadFavoriteRestaurants,
+    required TResult orElse(),
+  }) {
+    if (loadFavoriteRestaurants != null) {
+      return loadFavoriteRestaurants(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LoadFavoriteRestaurants implements YelpEvent {
+  const factory LoadFavoriteRestaurants() = _$LoadFavoriteRestaurants;
 }

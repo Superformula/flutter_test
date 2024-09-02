@@ -4,6 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:restaurant_tour/domain/models/restaurant.dart';
 import 'package:restaurant_tour/domain/repositories/yelp_repository.dart';
+import 'package:restaurant_tour/presentation/core/utils/favorite_restaurant_utils.dart';
 
 part 'yelp_bloc.freezed.dart';
 
@@ -32,6 +33,7 @@ class YelpBloc extends Bloc<YelpEvent, YelpState> {
         ...state.favoriteRestaurants,
         event.restaurant,
       ];
+      await FavoriteRestaurantUtils.updateFavoriteRestaurants(updatedFavorites);
       emit(state.copyWith(favoriteRestaurants: updatedFavorites));
     });
 
@@ -41,7 +43,16 @@ class YelpBloc extends Bloc<YelpEvent, YelpState> {
             (restaurant) => restaurant.id != event.id,
           )
           .toList();
+      await FavoriteRestaurantUtils.updateFavoriteRestaurants(updatedFavorites);
       emit(state.copyWith(favoriteRestaurants: updatedFavorites));
+    });
+
+    on<LoadFavoriteRestaurants>((event, emit) async {
+      final favoriteRestaurants =
+          await FavoriteRestaurantUtils.getFavoriteRestaurants();
+      if (favoriteRestaurants.isNotEmpty) {
+        emit(state.copyWith(favoriteRestaurants: favoriteRestaurants));
+      }
     });
   }
 
