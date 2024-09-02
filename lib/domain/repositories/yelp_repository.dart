@@ -2,10 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:restaurant_tour/domain/models/restaurant.dart';
 
-//const _apiKey =
-//  'v13cQJUXGrvAeEdtA03XQZb_yy73cSSSCzJ1TOr1hlOv4HSYcB1DMjXqZOdgPt0EyAqGhCH3Y3c-SV0zARaoi58RqeLznypjWrlFml-IAB9frUfMydz5yimleBnRZnYx';
-const _apiKey =
-    'lky4O5vqungH4LEQ52FoepS9rci3P0Jp_JHCTyYPwqBjvgq921vavoTKp1TQAXB8_CqVWiMBK4WcUx9BL0OgC2GwK1owBx6t0DGFMaP_SGND814JGavglDuKxgjUZnYx';
+const _apiKey = '<ADD_KEY>';
 
 @lazySingleton
 class YelpRepository {
