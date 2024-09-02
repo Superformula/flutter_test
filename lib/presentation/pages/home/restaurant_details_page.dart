@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:restaurant_tour/aplication/yelp/yelp_bloc.dart';
 import 'package:restaurant_tour/domain/models/restaurant.dart';
+import 'package:restaurant_tour/presentation/core/widgets/open_status_indicator.dart';
+import 'package:restaurant_tour/presentation/core/widgets/star_rating_indicator.dart';
 import 'package:restaurant_tour/presentation/pages/home/widgets/review_card_widget.dart';
 
 @RoutePage()
@@ -69,28 +71,7 @@ class RestaurantDetailsPage extends StatelessWidget {
                             Text(
                                 "${restaurant.price ?? ''} ${restaurant.displayCategory}"),
                             const Spacer(),
-                            Row(
-                              children: [
-                                Text(
-                                  restaurant.isOpen ? 'Open now' : 'Closed',
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold,
-                                    color: restaurant.isOpen
-                                        ? Colors.green
-                                        : Colors.red,
-                                  ),
-                                ),
-                                const SizedBox(width: 4),
-                                Icon(
-                                  Icons.circle,
-                                  color: restaurant.isOpen
-                                      ? Colors.green
-                                      : Colors.red,
-                                  size: 12,
-                                ),
-                              ],
-                            ),
+                            OpenStatusIndicator(isOpen: restaurant.isOpen),
                           ],
                         ),
                         const Divider(height: 48),
@@ -100,20 +81,7 @@ class RestaurantDetailsPage extends StatelessWidget {
                         const Divider(height: 48),
                         const Text("Overall Rating"),
                         const SizedBox(height: 24),
-                        Row(
-                          children: [
-                            Text(
-                              "${restaurant.rating}",
-                              style: const TextStyle(
-                                  fontSize: 28, fontWeight: FontWeight.w700),
-                            ),
-                            const Icon(
-                              Icons.star,
-                              color: Colors.yellow,
-                              size: 12,
-                            ),
-                          ],
-                        ),
+                        StarRatingIndicator(rating: restaurant.rating ?? 0),
                       ],
                     ),
                   ),

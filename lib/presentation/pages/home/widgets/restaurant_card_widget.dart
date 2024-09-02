@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_tour/presentation/core/widgets/open_status_indicator.dart';
+import 'package:restaurant_tour/presentation/core/widgets/star_rating_indicator.dart';
 
 class RestaurantCardWidget extends StatelessWidget {
   final String imageUrl;
@@ -77,36 +79,9 @@ class RestaurantCardWidget extends StatelessWidget {
                     const SizedBox(height: 8),
                     Row(
                       children: [
-                        Row(
-                          children: List.generate(
-                            5,
-                            (index) => Icon(
-                              Icons.star,
-                              color:
-                                  index < rating ? Colors.yellow : Colors.grey,
-                              size: 12,
-                            ),
-                          ),
-                        ),
+                        StarRatingIndicator(rating: rating),
                         const Spacer(),
-                        Row(
-                          children: [
-                            Text(
-                              isOpen ? 'Open now' : 'Closed',
-                              style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
-                                color: isOpen ? Colors.green : Colors.red,
-                              ),
-                            ),
-                            const SizedBox(width: 4),
-                            Icon(
-                              Icons.circle,
-                              color: isOpen ? Colors.green : Colors.red,
-                              size: 12,
-                            ),
-                          ],
-                        ),
+                        OpenStatusIndicator(isOpen: isOpen),
                       ],
                     ),
                   ],
