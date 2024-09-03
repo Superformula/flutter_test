@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_tour/presentation/core/styles/text_styles.dart';
 import 'package:restaurant_tour/presentation/core/widgets/open_status_indicator.dart';
 import 'package:restaurant_tour/presentation/core/widgets/star_rating_indicator.dart';
 
@@ -61,25 +62,14 @@ class RestaurantCardWidget extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      title,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+                    Text(title, style: TextStyles.restaurantCardTitleTextStyle),
                     const SizedBox(height: 4),
-                    Text(
-                      subtitle,
-                      style: const TextStyle(
-                        fontSize: 14,
-                        color: Colors.grey,
-                      ),
-                    ),
+                    Text(subtitle,
+                        style: TextStyles.restaurantCardSubTitleTextStyle),
                     const SizedBox(height: 8),
                     Row(
                       children: [
-                        StarRatingIndicator(rating: rating),
+                        StarRatingIndicator(rating: rating.round()),
                         const Spacer(),
                         OpenStatusIndicator(isOpen: isOpen),
                       ],

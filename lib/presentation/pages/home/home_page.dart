@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:restaurant_tour/aplication/yelp/yelp_bloc.dart';
 import 'package:restaurant_tour/injection.dart';
+import 'package:restaurant_tour/presentation/core/styles/text_styles.dart';
 import 'package:restaurant_tour/presentation/pages/home/widgets/all_restaunrants_widget.dart';
 import 'package:restaurant_tour/presentation/pages/home/widgets/favorite_restaurants_widget.dart';
 
@@ -22,7 +23,10 @@ class HomePage extends StatelessWidget {
         length: 2, // Number of tabs
         child: Scaffold(
           appBar: AppBar(
-            title: const Text('RestauranTour'),
+            title: const Text(
+              'RestauranTour',
+              style: TextStyles.scaffoldTitleTextStyle,
+            ),
             bottom: const TabBar(
               tabs: [
                 Tab(text: 'All Restaurants'),

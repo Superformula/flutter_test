@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_tour/presentation/core/colors/app_colors.dart';
 
 class StarRatingIndicator extends StatelessWidget {
-  final double rating;
+  final int rating;
 
   const StarRatingIndicator({
     Key? key,
@@ -15,7 +16,7 @@ class StarRatingIndicator extends StatelessWidget {
         5,
         (index) => Icon(
           Icons.star,
-          color: index < rating ? Colors.yellow : Colors.grey,
+          color: index < rating ? AppColors.ratingStarColor : Colors.grey,
           size: 12,
         ),
       ),

@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_tour/presentation/core/styles/text_styles.dart';
+import 'package:restaurant_tour/presentation/core/widgets/star_rating_indicator.dart';
 
 class ReviewCardWidget extends StatelessWidget {
   final String reviewText;
   final int rating;
   final String imageUrl;
   final String userName;
+  final bool removeBottomDivider;
 
   const ReviewCardWidget({
     Key? key,
@@ -12,6 +15,7 @@ class ReviewCardWidget extends StatelessWidget {
     required this.rating,
     required this.imageUrl,
     required this.userName,
+    required this.removeBottomDivider,
   }) : super(key: key);
 
   @override
@@ -19,30 +23,11 @@ class ReviewCardWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Divider(color: Colors.grey[300], thickness: 1), // Full-width divider
-        const SizedBox(height: 12),
-        const Text(
-          "Review", // Section title
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        const SizedBox(height: 8),
-        Row(
-          children: List.generate(
-            5,
-            (index) => Icon(
-              Icons.star,
-              color: index < rating ? Colors.yellow : Colors.grey,
-              size: 16,
-            ),
-          ),
-        ),
+        StarRatingIndicator(rating: rating.round()),
         const SizedBox(height: 12),
         Text(
           reviewText,
-          style: const TextStyle(fontSize: 14),
+          style: TextStyles.reviewCardBodyTextStyle,
         ),
         const SizedBox(height: 24),
         Row(
@@ -57,21 +42,19 @@ class ReviewCardWidget extends StatelessWidget {
                 return Container(
                   width: 40,
                   height: 40,
-                  color: Colors.grey, // Fallback grey color
+                  color: Colors.grey,
                 );
               },
             )),
             const SizedBox(width: 12),
-            Text(
-              userName,
-              style: const TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+            Text(userName, style: TextStyles.reviewCardUserTextStyle),
           ],
         ),
         const SizedBox(height: 16),
+        if (!removeBottomDivider) ...[
+          Divider(color: Colors.grey[300], thickness: 1),
+          const SizedBox(height: 16),
+        ]
       ],
     );
   }

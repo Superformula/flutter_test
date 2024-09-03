@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_tour/presentation/core/styles/text_styles.dart';
 
 class OpenStatusIndicator extends StatelessWidget {
   final bool isOpen;
@@ -12,14 +13,8 @@ class OpenStatusIndicator extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text(
-          isOpen ? 'Open now' : 'Closed',
-          style: TextStyle(
-            fontSize: 12,
-            fontWeight: FontWeight.bold,
-            color: isOpen ? Colors.green : Colors.red,
-          ),
-        ),
+        Text(isOpen ? 'Open now' : 'Closed',
+            style: TextStyles.restaurantCardStatusTextStyle),
         const SizedBox(width: 4),
         Icon(
           Icons.circle,

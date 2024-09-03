@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:restaurant_tour/aplication/yelp/yelp_bloc.dart';
 import 'package:restaurant_tour/domain/models/restaurant.dart';
+import 'package:restaurant_tour/presentation/core/colors/app_colors.dart';
+import 'package:restaurant_tour/presentation/core/styles/text_styles.dart';
 import 'package:restaurant_tour/presentation/core/widgets/open_status_indicator.dart';
-import 'package:restaurant_tour/presentation/core/widgets/star_rating_indicator.dart';
 import 'package:restaurant_tour/presentation/pages/home/widgets/review_card_widget.dart';
 
 @RoutePage()
@@ -35,7 +36,10 @@ class RestaurantDetailsPage extends StatelessWidget {
 
           return Scaffold(
             appBar: AppBar(
-              title: Text(restaurant.name ?? ""),
+              title: Text(
+                restaurant.name ?? "",
+                style: TextStyles.scaffoldTitleTextStyle,
+              ),
               actions: [
                 IconButton(
                   icon: Icon(
@@ -75,35 +79,68 @@ class RestaurantDetailsPage extends StatelessWidget {
                           ],
                         ),
                         const Divider(height: 48),
-                        const Text("Address"),
+                        const Text(
+                          "Address",
+                          style: TextStyles.restaurantDetailsDataTitleTextStyle,
+                        ),
                         const SizedBox(height: 24),
-                        Text(restaurant.location?.formattedAddress ?? ""),
+                        Text(
+                          restaurant.location?.formattedAddress ?? "",
+                          style: TextStyles.restaurantDetailsAddressTextStyle,
+                        ),
                         const Divider(height: 48),
-                        const Text("Overall Rating"),
+                        const Text(
+                          "Overall Rating",
+                          style: TextStyles.restaurantDetailsDataTitleTextStyle,
+                        ),
                         const SizedBox(height: 24),
-                        StarRatingIndicator(rating: restaurant.rating ?? 0),
+                        Row(
+                          children: [
+                            Text(
+                              "${restaurant.rating ?? 0}",
+                              style:
+                                  TextStyles.restaurantDetailsRatingTextStyle,
+                            ),
+                            const Icon(
+                              Icons.star,
+                              color: AppColors.ratingStarColor,
+                              size: 12,
+                            ),
+                          ],
+                        ),
+                        const Divider(height: 48),
+                        Text(
+                          "${restaurant.reviews?.length} ${restaurant.reviews?.length == 1 ? "Review" : "Reviews"}",
+                          style: TextStyles.restaurantDetailsDataTitleTextStyle,
+                        ),
                       ],
                     ),
                   ),
                 ),
-                SliverPadding(
-                  padding: const EdgeInsets.only(
-                      left: 24.0, right: 24.0, bottom: 50.0),
-                  sliver: SliverList(
-                    delegate: SliverChildBuilderDelegate(
-                      (BuildContext context, int index) {
-                        final review = restaurant.reviews?[index];
-                        return ReviewCardWidget(
-                          userName: review!.user?.name ?? "",
-                          imageUrl: review.user?.imageUrl ?? "",
-                          rating: review.rating ?? 0,
-                          reviewText: review.text ?? "",
-                        );
-                      },
-                      childCount: restaurant.reviews?.length,
+                if (restaurant.reviews != null &&
+                    restaurant.reviews!.isNotEmpty)
+                  SliverPadding(
+                    padding: const EdgeInsets.only(
+                        left: 24.0, right: 24.0, bottom: 50.0),
+                    sliver: SliverList(
+                      delegate: SliverChildBuilderDelegate(
+                        (BuildContext context, int index) {
+                          final review = restaurant.reviews?[index];
+                          return ReviewCardWidget(
+                            userName: review!.user?.name ?? "",
+                            imageUrl: review.user?.imageUrl ?? "",
+                            rating: review.rating ?? 0,
+                            reviewText: review.text ?? "",
+                            removeBottomDivider:
+                                index == restaurant.reviews!.length - 1
+                                    ? true
+                                    : false,
+                          );
+                        },
+                        childCount: restaurant.reviews?.length,
+                      ),
                     ),
                   ),
-                ),
               ],
             ),
           );
