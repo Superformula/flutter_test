@@ -1,18 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_tour/repositories/yelp_repository.dart';
+import 'package:restaurant_tour/injection.dart';
+import 'package:restaurant_tour/domain/repositories/yelp_repository.dart';
+import 'package:restaurant_tour/presentation/routes/router.dart';
 
 void main() {
-  runApp(const RestaurantTour());
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final appRouter = AppRouter();
+  configureDependencies();
+  runApp(RestaurantTour(appRouter: appRouter));
 }
 
 class RestaurantTour extends StatelessWidget {
-  const RestaurantTour({Key? key}) : super(key: key);
+  final AppRouter appRouter;
+
+  const RestaurantTour({Key? key, required this.appRouter}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: 'Restaurant Tour',
-      home: HomePage(),
+    return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
+      routerDelegate: appRouter.delegate(),
+      routeInformationParser: appRouter.defaultRouteParser(),
     );
   }
 }

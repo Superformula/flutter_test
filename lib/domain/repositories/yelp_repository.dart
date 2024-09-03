@@ -1,24 +1,22 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
-import 'package:restaurant_tour/models/restaurant.dart';
+import 'package:injectable/injectable.dart';
+import 'package:restaurant_tour/domain/models/restaurant.dart';
 
-const _apiKey = '<PUT YOUR API KEY HERE>';
+const _apiKey = '<ADD_KEY>';
 
+@lazySingleton
 class YelpRepository {
-  late Dio dio;
+  final Dio dio = Dio(
+    BaseOptions(
+      baseUrl: 'https://api.yelp.com',
+      headers: {
+        'Authorization': 'Bearer $_apiKey',
+        'Content-Type': 'application/graphql',
+      },
+    ),
+  );
 
-  YelpRepository({
-    @visibleForTesting Dio? dio,
-  }) : dio = dio ??
-            Dio(
-              BaseOptions(
-                baseUrl: 'https://api.yelp.com',
-                headers: {
-                  'Authorization': 'Bearer $_apiKey',
-                  'Content-Type': 'application/graphql',
-                },
-              ),
-            );
+  YelpRepository();
 
   /// Returns a response in this shape
   /// {
