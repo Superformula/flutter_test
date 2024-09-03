@@ -1,25 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:restaurant_tour/models/restaurant.dart';
-
-const _apiKey =
-    'GHkayrA5gTd3I5r3ovx1GlFloEmZH-kv2seU7X9FGZFFOq-ASxGe4v1R6rIFShyuui9gvSROQH2Eaqrdu6lLXykzh6OfTSmCE3h773bSnqdV2MJV_w_WlqbkOtvVZnYx';
+import 'package:restaurant_tour/features/restaurant/data/models/restaurant.dart';
 
 class YelpRepository {
-  late Dio dio;
+  final Dio dio;
 
   YelpRepository({
-    @visibleForTesting Dio? dio,
-  }) : dio = dio ??
-            Dio(
-              BaseOptions(
-                baseUrl: 'https://api.yelp.com',
-                headers: {
-                  'Authorization': 'Bearer $_apiKey',
-                  'Content-Type': 'application/graphql',
-                },
-              ),
-            );
+    @visibleForTesting required this.dio,
+  });
 
   /// Returns a response in this shape
   /// {
