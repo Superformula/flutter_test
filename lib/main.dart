@@ -1,53 +1,38 @@
+import 'package:dependency_injection/dependency_injection.dart';
 import 'package:flutter/material.dart';
-import 'package:restaurant_tour/repositories/yelp_repository.dart';
+import 'package:restaurant/presentation/view/pages/restaurants_home_page.dart';
+import 'package:restaurant/restaurant_module.dart';
+import 'package:ui_kit/presentation/theme/theme.dart';
+
+List<SFModule> modules = [RestaurantModule()];
 
 void main() {
-  runApp(const RestaurantTour());
-}
-
-class RestaurantTour extends StatelessWidget {
-  const RestaurantTour({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: 'Restaurant Tour',
-      home: HomePage(),
-    );
+  for (var module in modules) {
+    module.registerProviders();
   }
+  runApp(const App());
 }
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+class App extends StatelessWidget {
+  const App({super.key});
+
+  Map<String, Widget Function(BuildContext)> getRoutes() {
+    Map<String, Widget Function(dynamic)> routes = {};
+
+    for (var module in modules) {
+      routes.addAll(module.routes);
+    }
+    return routes;
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text('Restaurant Tour'),
-            ElevatedButton(
-              child: const Text('Fetch Restaurants'),
-              onPressed: () async {
-                final yelpRepo = YelpRepository();
-
-                try {
-                  final result = await yelpRepo.getRestaurants();
-                  if (result != null) {
-                    print('Fetched ${result.restaurants!.length} restaurants');
-                  } else {
-                    print('No restaurants fetched');
-                  }
-                } catch (e) {
-                  print('Failed to fetch restaurants: $e');
-                }
-              },
-            ),
-          ],
-        ),
-      ),
+    return MaterialApp(
+      title: 'Restaurant Tour',
+      debugShowCheckedModeBanner: false,
+      theme: UiKitTheme.theme,
+      routes: getRoutes(),
+      home: const RestaurantsHomePage(),
     );
   }
 }

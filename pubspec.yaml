@@ -16,6 +16,15 @@ dependencies:
   dio: ^5.6.0
   json_annotation: ^4.9.0
   flutter_svg: ^2.0.10
+  #Features
+  restaurant:
+    path: ./features/restaurant/
+
+  #Platform 
+  dependency_injection:
+    path: ./platform/dependency_injection/
+  ui_kit:
+    path: ./platform/ui_kit/
 
 dev_dependencies:
   flutter_test:
@@ -23,6 +32,8 @@ dev_dependencies:
   flutter_lints: ^4.0.0
   build_runner: ^2.4.10
   json_serializable: ^6.8.0
+  melos: 6.1.0
+
 
 flutter:
   generate: true
@@ -30,20 +41,20 @@ flutter:
   fonts:
     - family: Lora
       fonts:
-        - asset: assets/fonts/Lora/Lora-Regular.ttf
+        - asset: platform/ui_kit/assets/fonts/Lora/Lora-Regular.ttf
           weight: 400
-        - asset: assets/fonts/Lora/Lora-Medium.ttf
+        - asset: platform/ui_kit/assets/fonts/Lora/Lora-Medium.ttf
           weight: 500
-        - asset: assets/fonts/Lora/Lora-SemiBold.ttf
+        - asset: platform/ui_kit/assets/fonts/Lora/Lora-SemiBold.ttf
           weight: 600
-        - asset: assets/fonts/Lora/Lora-Bold.ttf
+        - asset: platform/ui_kit/assets/fonts/Lora/Lora-Bold.ttf
           weight: 700
     - family: OpenSans
       fonts:
-        - asset: assets/fonts/OpenSans/OpenSans-Regular.ttf
+        - asset: platform/ui_kit/assets/fonts/OpenSans/OpenSans-Regular.ttf
           weight: 400
-        - asset: assets/fonts/OpenSans/OpenSans-Italic.ttf
+        - asset: platform/ui_kit/assets/fonts/OpenSans/OpenSans-Italic.ttf
           style: italic
-        - asset: assets/fonts/OpenSans/OpenSans-SemiBold.ttf
+        - asset: platform/ui_kit/assets/fonts/OpenSans/OpenSans-SemiBold.ttf
           weight: 600
         

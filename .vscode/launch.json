@@ -1,13 +1,65 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    // Use o IntelliSense para saber mais sobre os atributos possíveis.
+    // Focalizar para exibir as descrições dos atributos existentes.
+    // Para obter mais informações, acesse: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "app",
+            "name": "flutter_test",
             "request": "launch",
             "type": "dart"
+        },
+        {
+            "name": "flutter_test (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "flutter_test (release mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "restaurant",
+            "cwd": "lib/modules/restaurant",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "restaurant (profile mode)",
+            "cwd": "lib/modules/restaurant",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "restaurant (release mode)",
+            "cwd": "lib/modules/restaurant",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "restaurants",
+            "cwd": "lib/modules/restaurants",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "restaurants (profile mode)",
+            "cwd": "lib/modules/restaurants",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "restaurants (release mode)",
+            "cwd": "lib/modules/restaurants",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
         }
     ]
 }

@@ -1,0 +1,45 @@
+name: restaurant
+description: Package to Restaurants features
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+
+environment:
+  sdk: ">=3.1.0 <4.0.0"
+  flutter: ">=3.19.6"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  dio: ^5.6.0
+  json_annotation: ^4.9.0
+  flutter_svg: ^2.0.10
+  either_dart: ^1.0.0
+  flutter_bloc: ^8.1.6
+  transparent_image: ^2.0.1
+  cached_network_image: 3.4.1
+
+
+
+  #SF Modules
+  dependency_injection:
+    path: ../../platform/dependency_injection
+  state_management:
+    path: ../../platform/state_management
+  ui_kit:
+    path: ../../platform/ui_kit
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+  build_runner: ^2.4.10
+  json_serializable: ^6.8.0
+  melos: 6.1.0
+
+
+flutter:
+  generate: true
+  uses-material-design: true
