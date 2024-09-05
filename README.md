@@ -33,21 +33,23 @@ The project follows **Clean Architecture** principles, dividing the codebase int
 **Platform example:**
 ![Module Contrat](https://github.com/user-attachments/assets/ba4f076a-3709-4f0e-8451-a5080c37d995)
 
-
+**Module implementation:**
 ![Module Implementation](https://github.com/user-attachments/assets/899e1df2-b041-44a0-b0a4-017e97835a9a)
 
 
-**Presentation Layer:**
+**Widget (Presentation Layer):**
 ![Widget](https://github.com/user-attachments/assets/0f8b0ae4-8898-4571-82ca-00f5c3c9f309)
 
-**Domain Layer (UseCases):**
+**UseCases (Domain Layer):**
 ![UseCase](https://github.com/user-attachments/assets/43c3e5b2-0be7-467c-9414-a5c6603e0b79)
 
+**Repository Contract (Domain Layer):**
 ![Repositories contracts](https://github.com/user-attachments/assets/1c593112-697d-4462-8980-deffabb89857)
 
+**Value Object (Domain Layer):**
 ![Name Value Object](https://github.com/user-attachments/assets/6bc4c8f7-4f5d-42ab-b50b-b42d2d703436)
 
-**Repository Layer:**
+**Repository implemantation (Repository Layer):**
 ![Cache Repository Implementation](https://github.com/user-attachments/assets/f9dd7678-943d-4d04-86f0-e27c332b48e3)
 
 **Test E2E:**
@@ -65,7 +67,12 @@ The app uses **Cubit** (from `flutter_bloc`) for state management, as recommende
 - **Other layers**: Covered with unit tests.
 - **End-to-End Testing**: Using **Maestro** to cover core app functionalities.
 
+## Observations
+
+The request to API are mocked due to a daily limit of requests.
 
 ------
+
+
 
 

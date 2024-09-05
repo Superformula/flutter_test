@@ -5,8 +5,7 @@ import '../domain/models/restaurant.dart';
 import '../domain/repository/get_restaurant/errors/get_restaurant_errors.dart';
 import '../domain/repository/get_restaurant/get_restaurants_repository.dart';
 
-const _apiKey =
-    'II5sTdR6l3n9ALgsBGhvIDXf8WN1ncb5hTpm_Ssi3GronE785_s6dwsNbIUcTkJdOlsuq56Vo_NPQPxUdb6GE1j6uugsLH7pWtIIyYfkSxnKVntsDzGPwh2Od4LXZnYx';
+const _apiKey = '';
 
 class YelpRepository implements GetRestaurantsRepository {
   late Dio dio;
@@ -71,7 +70,7 @@ class YelpRepository implements GetRestaurantsRepository {
       {int offset = 0}) async {
     try {
       // await Future.delayed(const Duration(seconds: 1));
-
+      // It is mocked cause i was receiving daily limit Exception after 3/5 requests :(
       final Map<String, dynamic> response = {
         "data": {
           "search": {
