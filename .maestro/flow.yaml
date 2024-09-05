@@ -1,0 +1,6 @@
+appId: com.example.restaurant_tour
+---
+- runFlow: ./flows/restaurant/favorite_flow.yaml
+- runFlow: ./flows/restaurant/unfavorite_flow.yaml
+
+

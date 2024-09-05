@@ -1,0 +1,20 @@
+appId: com.example.restaurant_tour
+---
+# Empty state flow
+# - launchApp: "com.example.restaurant_tour"
+- tapOn: "My Favorite\nTab 2 of 2"
+- assertVisible: ".*FavoriteRestaurantEmptyState.*"
+
+
+#Favorite restaurant changes details UI
+- tapOn: "All Restaurants\nTab 1 of 2"
+- tapOn: ".*RestaurantCard.*"
+- assertVisible: "UnfavoritedRestaurant"
+- tapOn: ".*UnfavoritedRestaurant.*"
+- assertVisible: "FavoritedRestaurant"
+
+
+#Favorite restaurant is displayed on list
+- tapOn: ".*RestaurantDetailsBackButton.*"
+- tapOn: "My Favorite\nTab 2 of 2"
+- assertVisible: ".*RestaurantCard.*"

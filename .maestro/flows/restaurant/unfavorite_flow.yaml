@@ -1,0 +1,9 @@
+appId: com.example.restaurant_tour
+---
+- tapOn: ".*RestaurantCard.*"
+- assertVisible: "FavoritedRestaurant"
+- tapOn: ".*FavoritedRestaurant.*"
+- assertVisible: "UnfavoritedRestaurant"
+- tapOn: ".*RestaurantDetailsBackButton.*"
+- assertVisible: ".*FavoriteRestaurantEmptyState.*"
+
