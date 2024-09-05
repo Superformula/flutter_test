@@ -68,6 +68,7 @@ class RestaurantCard extends StatelessWidget {
                   children: [
                     Text(
                       restaurant.name,
+                      overflow: TextOverflow.ellipsis,
                       style: Theme.of(context).textTheme.titleMedium,
                     ),
                     const SizedBox(
