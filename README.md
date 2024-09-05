@@ -12,7 +12,7 @@ With multiple packages in the repo, **Melos** simplifies package management, all
 
 ### Features & Platform
 
-- **Features**: Contains the core functionalities (currently only `restaurants`).
+- **Features**: Contains the functionalities (currently only `restaurants`).
 - **Platform**: Contains utility packages like `dependency_injection`, facilitating developer workflows.
 
 ### Modular Architecture
@@ -25,37 +25,39 @@ To maintain modularity, each module manages its own dependencies and routes via 
 The project follows **Clean Architecture** principles, dividing the codebase into three main layers:
 
 1. **Presentation**: Handles UI, routes, and controllers (presenters). Contains Flutter-specific code.
-2. **Domain**: Contains core business logic, including **UseCases**, **Entities**, and **Value Objects** like `Name`.
-3. **Repository**: Responsible for data retrieval, adhering to contracts defined in the domain layer.
+2. **Domain**: Contains core business logic, including **UseCases**, **Entities**, **Value Objects** like `Name`, and **Repository Contracts**.
+3. **Repository**: Responsible for data retrieval, and implementing contracts defined in the domain layer.
 
 ### Example Snippets
 
 **Platform example:**
-![Module Contrat]()
+![Module Contrat](https://github.com/user-attachments/assets/ba4f076a-3709-4f0e-8451-a5080c37d995)
 
-![Module Implementation]()
+
+![Module Implementation](https://github.com/user-attachments/assets/899e1df2-b041-44a0-b0a4-017e97835a9a)
 
 
 **Presentation Layer:**
-![Widget]()
+![Widget](https://github.com/user-attachments/assets/0f8b0ae4-8898-4571-82ca-00f5c3c9f309)
 
 **Domain Layer (UseCases):**
-![UseCase]()
+![UseCase](https://github.com/user-attachments/assets/43c3e5b2-0be7-467c-9414-a5c6603e0b79)
 
-![Repositories contracts]()
+![Repositories contracts](https://github.com/user-attachments/assets/1c593112-697d-4462-8980-deffabb89857)
 
-![Name Value Object]()
-
+![Name Value Object](https://github.com/user-attachments/assets/6bc4c8f7-4f5d-42ab-b50b-b42d2d703436)
 
 **Repository Layer:**
-![Cache Repository Implementation]()
+![Cache Repository Implementation](https://github.com/user-attachments/assets/f9dd7678-943d-4d04-86f0-e27c332b48e3)
 
 **Test E2E:**
-![Test End To End]()
+![Test End To End](https://github.com/user-attachments/assets/0565fd1f-b8e1-4ed1-a5cb-9a0b2730493e)
+
+
 
 ## 📦 State Management
 
-The app uses **Cubit** (from `flutter_bloc`) for state management, recommended by Google. It offers a low learning curve for new developers and integrates well with `bloc_test` for unit testing.
+The app uses **Cubit** (from `flutter_bloc`) for state management, as recommended by Google. It offers a low learning curve for new developers and integrates well with `bloc_test` for unit testing.
 
 ## 🧪 Testing
 
@@ -63,6 +65,7 @@ The app uses **Cubit** (from `flutter_bloc`) for state management, recommended b
 - **Other layers**: Covered with unit tests.
 - **End-to-End Testing**: Using **Maestro** to cover core app functionalities.
 
----
 
-Thanks for checking out our Flutter project! ✨
+------
+
+
