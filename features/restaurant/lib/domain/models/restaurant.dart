@@ -50,11 +50,15 @@ class User {
 
   factory User.fromJson(Map<String, dynamic> json) {
     var convertedClass = _$UserFromJson(json);
-    convertedClass.name = Name(json["name"]);
+    convertedClass.name = Name.fromFullName(json["name"]);
     return convertedClass;
   }
 
-  Map<String, dynamic> toJson() => _$UserToJson(this);
+  Map<String, dynamic> toJson() {
+    var userToJson = _$UserToJson(this);
+    userToJson["name"] = name.fullName;
+    return userToJson;
+  }
 }
 
 @JsonSerializable()
@@ -106,6 +110,8 @@ class Restaurant {
   late String status = "";
   @JsonKey(includeFromJson: false, includeToJson: false)
   late Color statusColor;
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  bool isFavorite = false;
 
   Restaurant({
     required this.id,
@@ -122,7 +128,7 @@ class Restaurant {
   factory Restaurant.fromJson(Map<String, dynamic> json) {
     var converted = _$RestaurantFromJson(json);
     converted.status = converted.isOpen ? "Open" : "Closed";
-    converted.statusColor = converted.isOpen ? AppColors.star : AppColors.red;
+    converted.statusColor = converted.isOpen ? AppColors.open : AppColors.red;
     return converted;
   }
 

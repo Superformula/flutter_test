@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:restaurant/presentation/view/pages/restaurants_home_page.dart';
 import 'package:restaurant/restaurant_module.dart';
 import 'package:ui_kit/presentation/theme/theme.dart';
+import 'package:cache/cache.dart';
 
-List<SFModule> modules = [RestaurantModule()];
+List<SFModule> modules = [RestaurantModule(), CacheModule()];
 
 void main() {
   for (var module in modules) {

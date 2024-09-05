@@ -11,19 +11,16 @@ class AllRestaurantsTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<AllRestaurantsTabPresenter>(
-      create: (context) {
-        var presenter = AllRestaurantsTabPresenter();
+    return Builder(builder: (context) {
+      var presenter = context.read<AllRestaurantsTabPresenter>();
 
-        // presenter.loadRestaurants();
-        return presenter;
-      },
-      child: Builder(builder: (context) {
-        context.read<AllRestaurantsTabPresenter>().loadRestaurants();
-        return BlocBuilder<AllRestaurantsTabPresenter, SFState>(
-          builder: (context, state) {
-            if (state is SFSuccessState<RestaurantQueryResult>) {
-              return ListView.builder(
+      presenter.loadRestaurants();
+      return BlocBuilder<AllRestaurantsTabPresenter, SFState>(
+        builder: (context, state) {
+          if (state is SFSuccessState<RestaurantQueryResult>) {
+            return Padding(
+              padding: const EdgeInsets.only(top: 16),
+              child: ListView.builder(
                 itemCount: state.object.restaurants.length,
                 itemBuilder: (context, index) {
                   var restaurant = state.object.restaurants[index];
@@ -32,12 +29,12 @@ class AllRestaurantsTab extends StatelessWidget {
                     child: RestaurantCard(restaurant: restaurant),
                   );
                 },
-              );
-            }
-            return const LoadingBody();
-          },
-        );
-      }),
-    );
+              ),
+            );
+          }
+          return const LoadingBody();
+        },
+      );
+    });
   }
 }

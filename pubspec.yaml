@@ -25,6 +25,8 @@ dependencies:
     path: ./platform/dependency_injection/
   ui_kit:
     path: ./platform/ui_kit/
+  cache:
+    path: ./platform/cache/
 
 dev_dependencies:
   flutter_test:
