@@ -4,6 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:restaurant/domain/models/restaurant.dart';
 import 'package:restaurant/presentation/presenters/favorites_restaurants_tab_presenter.dart';
+import 'package:restaurant/presentation/view/widgets/bodies/error_body.dart';
 import 'package:restaurant/presentation/view/widgets/loading_body.dart';
 import 'package:restaurant/presentation/view/widgets/cards/restaurant_card.dart';
 import 'package:restaurant/presentation/view/widgets/tabs/favorite_restaurants_tab.dart';
@@ -59,14 +60,14 @@ void main() {
     });
 
     testWidgets(
-        'Given the Error state, when the cubit emits, then it should still display a LoadingBody',
+        'Given the Error state, when the cubit emits, then it should display a ErrorBody',
         (tester) async {
       when(() => mockPresenter.state)
           .thenReturn(SFErrorState(error: 'Error loading data'));
 
       await tester.pumpWidget(createWidgetUnderTest());
 
-      expect(find.byType(LoadingBody), findsOneWidget);
+      expect(find.byType(ErrorBody), findsOneWidget);
     });
   });
 }
