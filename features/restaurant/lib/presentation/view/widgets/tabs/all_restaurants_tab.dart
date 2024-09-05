@@ -24,10 +24,7 @@ class AllRestaurantsTab extends StatelessWidget {
                 itemCount: state.object.restaurants.length,
                 itemBuilder: (context, index) {
                   var restaurant = state.object.restaurants[index];
-                  return SizedBox(
-                    height: MediaQuery.sizeOf(context).height * 0.13,
-                    child: RestaurantCard(restaurant: restaurant),
-                  );
+                  return RestaurantCard(restaurant: restaurant);
                 },
               ),
             );

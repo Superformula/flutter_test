@@ -31,6 +31,8 @@ void main() {
     test(
         'Given a restaurant, when addNewFavoriteRestaurant is called, then it should store the restaurant in cache',
         () {
+      when(() => mockCacheManager.setString('favorites_restaurants', any()))
+          .thenAnswer((invocation) => Future.value());
       final expectedJson = jsonEncode({
         'restaurants': [restaurant.toJson()],
       });
@@ -71,6 +73,8 @@ void main() {
     test(
         'Given a restaurant, when removeRestaurantFromFavorites is called, then it should remove the restaurant from cache',
         () async {
+      when(() => mockCacheManager.setString('favorites_restaurants', any()))
+          .thenAnswer((invocation) => Future.value());
       final restaurantJson = jsonEncode({
         'restaurants': [restaurant.toJson()],
       });

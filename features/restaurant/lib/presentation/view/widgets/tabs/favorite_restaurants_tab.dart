@@ -12,39 +12,33 @@ class FavoriteRestaurantsTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<FavoriteRestaurantsTabPresenter>(
-      create: (context) {
-        var presenter = FavoriteRestaurantsTabPresenter();
-
-        // presenter.loadRestaurants();
-        return presenter;
-      },
-      child: Builder(builder: (context) {
-        context.read<FavoriteRestaurantsTabPresenter>().loadRestaurants();
-        return BlocBuilder<FavoriteRestaurantsTabPresenter, SFState>(
-          builder: (context, state) {
-            if (state is SFSuccessState<List<Restaurant>>) {
-              if (state.object.isEmpty) {
-                return const FavoritesEmpyWidget();
-              }
-              return Padding(
-                padding: const EdgeInsets.only(top: 16),
-                child: ListView.builder(
-                  itemCount: state.object.length,
-                  itemBuilder: (context, index) {
-                    var restaurant = state.object[index];
-                    return SizedBox(
-                      height: MediaQuery.sizeOf(context).height * 0.13,
-                      child: RestaurantCard(restaurant: restaurant),
-                    );
-                  },
-                ),
-              );
+    return Builder(builder: (context) {
+      context.read<FavoriteRestaurantsTabPresenter>().loadRestaurants();
+      return BlocBuilder<FavoriteRestaurantsTabPresenter, SFState>(
+        builder: (context, state) {
+          if (state is SFSuccessState<List<Restaurant>>) {
+            if (state.object.isEmpty) {
+              return const FavoritesEmpyWidget();
             }
-            return const LoadingBody();
-          },
-        );
-      }),
-    );
+            return Padding(
+              padding: const EdgeInsets.only(top: 16),
+              child: ListView.builder(
+                itemCount: state.object.length,
+                itemBuilder: (context, index) {
+                  var restaurant = state.object[index];
+                  return RestaurantCard(
+                    restaurant: restaurant,
+                    refreshCallback: () => context
+                        .read<FavoriteRestaurantsTabPresenter>()
+                        .loadRestaurants(),
+                  );
+                },
+              ),
+            );
+          }
+          return const LoadingBody();
+        },
+      );
+    });
   }
 }

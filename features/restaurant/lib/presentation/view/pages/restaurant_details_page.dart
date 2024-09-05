@@ -1,18 +1,19 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:restaurant/domain/models/restaurant.dart';
 import 'package:restaurant/presentation/presenters/restaurant_details_presenter.dart';
+import 'package:restaurant/presentation/routes/params/route_details_params.dart';
 import 'package:restaurant/presentation/view/widgets/cards/review_card.dart';
 import 'package:restaurant/presentation/view/widgets/details_areas.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:state_management/presentation/sf_state.dart';
-import 'package:transparent_image/transparent_image.dart';
 import 'package:ui_kit/presentation/font_style/typography.dart';
 import 'package:ui_kit/ui_kit.dart';
 
 class RestaurantDetailsPage extends StatelessWidget {
-  const RestaurantDetailsPage({super.key});
+  const RestaurantDetailsPage({
+    super.key,
+  });
 
   Widget getIcon(SFState state) {
     switch (state) {
@@ -32,20 +33,28 @@ class RestaurantDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Restaurant restaurant =
-        ModalRoute.of(context)!.settings.arguments as Restaurant;
+    RouteDetailsParams routeDetailsParams =
+        ModalRoute.of(context)!.settings.arguments as RouteDetailsParams;
 
     return BlocProvider<RestaurantDetailsPresenter>(
       create: (context) =>
-          RestaurantDetailsPresenter()..isRestaurantFavorite(restaurant),
+          RestaurantDetailsPresenter(routeDetailsParams.restaurant.isFavorite)
+            ..isRestaurantFavorite(routeDetailsParams.restaurant),
       child: Builder(builder: (context) {
+        var presenter = context.read<RestaurantDetailsPresenter>();
         return Scaffold(
           appBar: AppBar(
             title: Text(
-              restaurant.name,
+              routeDetailsParams.restaurant.name,
               style: Theme.of(context).textTheme.headlineMedium,
               overflow: TextOverflow.ellipsis,
             ),
+            leading: IconButton(
+                onPressed: () => Navigator.of(context).pop(
+                    routeDetailsParams.mustRefreshWhenPop
+                        ? presenter.mustRefresh()
+                        : false),
+                icon: const Icon(Icons.arrow_back)),
             actions: [
               Padding(
                   padding: const EdgeInsets.only(right: 16.0),
@@ -55,7 +64,7 @@ class RestaurantDetailsPage extends StatelessWidget {
                           onPressed: () {
                             context
                                 .read<RestaurantDetailsPresenter>()
-                                .heartPressed(restaurant);
+                                .heartPressed(routeDetailsParams.restaurant);
                           },
                           icon: getIcon(state));
                     },
@@ -91,14 +100,14 @@ class RestaurantDetailsPage extends StatelessWidget {
                       children: [
                         ///TODO Add title to model
                         Text(
-                          "${restaurant.price} ${restaurant.categories?.first.title ?? ''}",
+                          "${routeDetailsParams.restaurant.price} ${routeDetailsParams.restaurant.categories?.first.title ?? ''}",
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              restaurant.status,
+                              routeDetailsParams.restaurant.status,
                               style: AppTextStyles.openRegularItalic,
                             ),
                             const SizedBox(
@@ -106,7 +115,7 @@ class RestaurantDetailsPage extends StatelessWidget {
                             ),
                             Icon(
                               Icons.circle,
-                              color: restaurant.statusColor,
+                              color: routeDetailsParams.restaurant.statusColor,
                             )
                           ],
                         ),
@@ -117,14 +126,16 @@ class RestaurantDetailsPage extends StatelessWidget {
                     ),
                     DetailsArea(
                       title: "Address",
-                      content: Text(restaurant.location.formattedAddress,
+                      content: Text(
+                          routeDetailsParams
+                              .restaurant.location.formattedAddress,
                           style: AppTextStyles.openRegularTitleSemiBold),
                     ),
                     DetailsArea(
                       title: "Overall Rating",
                       content: Row(
                         children: [
-                          Text(restaurant.rating.toString(),
+                          Text(routeDetailsParams.restaurant.rating.toString(),
                               style: AppTextStyles.loraLargeTitleSemiBold),
                           const SizedBox(
                             width: 8,
@@ -137,7 +148,7 @@ class RestaurantDetailsPage extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "${restaurant.reviews.length} Reviews",
+                      "${routeDetailsParams.restaurant.reviews.length} Reviews",
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
                     const SizedBox(
@@ -146,9 +157,10 @@ class RestaurantDetailsPage extends StatelessWidget {
                     ListView.builder(
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
-                        itemCount: restaurant.reviews.length,
+                        itemCount: routeDetailsParams.restaurant.reviews.length,
                         itemBuilder: (context, index) {
-                          var review = restaurant.reviews[index];
+                          var review =
+                              routeDetailsParams.restaurant.reviews[index];
                           return ReviewCard(review: review);
                         })
                   ],

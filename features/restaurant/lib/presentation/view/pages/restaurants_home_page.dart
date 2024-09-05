@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:restaurant/presentation/presenters/all_restaurants_tab_presenter.dart';
+import 'package:restaurant/presentation/presenters/favorites_restaurants_tab_presenter.dart';
 import 'package:restaurant/presentation/view/widgets/tabs/all_restaurants_tab.dart';
 import 'package:restaurant/presentation/view/widgets/tabs/favorite_restaurants_tab.dart';
 
@@ -59,7 +60,10 @@ class _RestaurantsHomePageState extends State<RestaurantsHomePage>
               create: (context) => AllRestaurantsTabPresenter(),
               child: const AllRestaurantsTab(),
             ),
-            const FavoriteRestaurantsTab()
+            BlocProvider<FavoriteRestaurantsTabPresenter>(
+              create: (context) => FavoriteRestaurantsTabPresenter(),
+              child: const FavoriteRestaurantsTab(),
+            )
           ],
         ),
       );

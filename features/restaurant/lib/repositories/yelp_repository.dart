@@ -70,7 +70,7 @@ class YelpRepository implements GetRestaurantsRepository {
   Future<Either<GetRestaurantError, RestaurantQueryResult>> getRestaurants(
       {int offset = 0}) async {
     try {
-      await Future.delayed(Duration(seconds: 1));
+      await Future.delayed(const Duration(seconds: 1));
 
       final Map<String, dynamic> response = {
         "data": {

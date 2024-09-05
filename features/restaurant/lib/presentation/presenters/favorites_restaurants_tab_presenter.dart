@@ -11,16 +11,15 @@ class FavoriteRestaurantsTabPresenter extends Cubit<SFState> {
       SFInjector.instance.get<GetFavoriteRestaurantsUsecase>();
 
   Future<void> loadRestaurants() async {
-    ///TODO either
-    try {
-      emit(SFLoadingState());
-      var response = await _getRestaurantsUsecase.execute();
+    emit(SFLoadingState());
+    var response = await _getRestaurantsUsecase.execute();
+    if (response.isRight) {
       emit(
         SFSuccessState<List<Restaurant>>(
-          object: response,
+          object: response.right,
         ),
       );
-    } catch (e) {
+    } else {
       emit(SFErrorState());
     }
   }

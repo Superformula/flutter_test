@@ -1,5 +1,7 @@
-# melos_managed_dependency_overrides: dependency_injection,state_management,ui_kit
+# melos_managed_dependency_overrides: dependency_injection,state_management,ui_kit,cache
 dependency_overrides:
+  cache:
+    path: ../../platform/cache
   dependency_injection:
     path: ../../platform/dependency_injection
   state_management:

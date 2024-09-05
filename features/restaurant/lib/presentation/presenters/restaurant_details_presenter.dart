@@ -7,7 +7,10 @@ import 'package:restaurant/domain/usecases/favorite/remove_from_favorite_usecase
 import 'package:state_management/presentation/sf_state.dart';
 
 class RestaurantDetailsPresenter extends Cubit<SFState> {
-  RestaurantDetailsPresenter() : super(SFInitialState());
+  RestaurantDetailsPresenter(this.initialFavoriteValue)
+      : currentFavoriteValue = initialFavoriteValue,
+        super(SFInitialState());
+  final bool initialFavoriteValue;
 
   final AddToFavoriteUseCase _addToFavoriteUseCase =
       SFInjector.instance.get<AddToFavoriteUseCase>();
@@ -18,9 +21,14 @@ class RestaurantDetailsPresenter extends Cubit<SFState> {
   final CheckRestaurantFavoritedUseCase _checkRestaurantFavoritedUseCase =
       SFInjector.instance.get<CheckRestaurantFavoritedUseCase>();
 
+  bool currentFavoriteValue;
+
   Future<void> heartPressed(Restaurant restaurant) async {
     if (state is SFSuccessState) {
-      restaurant.isFavorite ? _unfavorite(restaurant) : _favorite(restaurant);
+      restaurant.isFavorite
+          ? await _unfavorite(restaurant)
+          : await _favorite(restaurant);
+      currentFavoriteValue = restaurant.isFavorite;
     }
   }
 
@@ -28,6 +36,7 @@ class RestaurantDetailsPresenter extends Cubit<SFState> {
     if (state is SFSuccessState) {
       emit(SFLoadingState());
       _addToFavoriteUseCase.favorite(restaurant);
+      restaurant.isFavorite = true;
       emit(SFSuccessState<bool>(object: true));
     }
   }
@@ -46,4 +55,6 @@ class RestaurantDetailsPresenter extends Cubit<SFState> {
     restaurant.isFavorite = isFavorited;
     emit(SFSuccessState<bool>(object: isFavorited));
   }
+
+  bool mustRefresh() => initialFavoriteValue != currentFavoriteValue;
 }

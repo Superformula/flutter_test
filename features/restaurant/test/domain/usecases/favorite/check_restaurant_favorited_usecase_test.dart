@@ -30,8 +30,10 @@ void main() {
 
   test('Given a restaurant when it is not in list then return false', () async {
     var sut = CheckRestaurantFavoritedUseCase();
-    var notFavoriteRestaurant =
-        RestaurantQueryResult.fromJson(mockedRestaurant()['data']['search']);
+    var notFavoriteRestaurant = RestaurantQueryResult.fromJson({
+      "total": 5056,
+      "business": [mockedRestaurant()]
+    });
     var isFavorite =
         await sut.isFavorited(notFavoriteRestaurant.restaurants.first);
     expect(isFavorite, false);

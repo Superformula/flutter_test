@@ -10,3 +10,5 @@ scripts:
     exec: dart analyze .
   get:
     exec: flutter pub get
+  test:
+    exec: flutter test

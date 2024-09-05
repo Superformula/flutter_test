@@ -2,26 +2,27 @@ import 'package:cache/repository/cache_repository.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPrefsCacheReppository implements SFCacheManager {
-  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+  final SharedPreferences pref;
 
+  SharedPrefsCacheReppository({required this.pref});
   @override
-  Future<String?> getString(String cacheKey) {
-    return _prefs.then((cache) => cache.getString(cacheKey));
+  Future<String?> getString(String cacheKey) async {
+    return pref.getString(cacheKey);
   }
 
   @override
-  void reset() {
+  Future<void> reset() async {
     try {
-      _prefs.then((cache) => cache.clear());
+      pref.clear();
     } catch (e) {
       throw Exception("Could not clear cache");
     }
   }
 
   @override
-  void setString(String cacheKey, String value) {
+  Future<void> setString(String cacheKey, String value) async {
     try {
-      _prefs.then((cache) => cache.setString(cacheKey, value));
+      pref.setString(cacheKey, value);
     } catch (e) {
       throw Exception("Could not set value on key $cacheKey");
     }
