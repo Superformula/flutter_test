@@ -10,11 +10,12 @@ class CacheFavoriteRepository implements FavoriteRestaurantRepository {
 
   @override
   void addNewFavoriteRestaurant(Restaurant restaurant) {
+    var json = restaurant.toJson();
     cacheManager.setString(
       'favorites_restaurants',
       jsonEncode(
         {
-          'restaurants': [restaurant.toJson()]
+          'restaurants': [json]
         },
       ),
     );

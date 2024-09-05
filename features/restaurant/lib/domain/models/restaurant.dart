@@ -110,25 +110,29 @@ class Restaurant {
   late String status = "";
   @JsonKey(includeFromJson: false, includeToJson: false)
   late Color statusColor;
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(includeFromJson: true, includeToJson: true)
   bool isFavorite = false;
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  String priceWithCategory = "";
 
-  Restaurant({
-    required this.id,
-    required this.name,
-    required this.price,
-    required this.rating,
-    required this.location,
-    required this.reviews,
-    this.photos,
-    this.categories,
-    this.hours,
-  });
+  Restaurant(
+      {required this.id,
+      required this.name,
+      required this.price,
+      required this.rating,
+      required this.location,
+      required this.reviews,
+      this.photos,
+      this.categories,
+      this.hours,
+      this.isFavorite = false});
 
   factory Restaurant.fromJson(Map<String, dynamic> json) {
     var converted = _$RestaurantFromJson(json);
     converted.status = converted.isOpen ? "Open" : "Closed";
     converted.statusColor = converted.isOpen ? AppColors.open : AppColors.red;
+    converted.priceWithCategory =
+        "${converted.price} ${converted.categories?.first.title ?? ''}";
     return converted;
   }
 

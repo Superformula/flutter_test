@@ -18,9 +18,12 @@ class RestaurantDetailsPage extends StatelessWidget {
   Widget getIcon(SFState state) {
     switch (state) {
       case SFSuccessState<bool>():
-        return Icon(
-          state.object ? Icons.favorite : Icons.favorite_border_outlined,
-          color: state.object ? Colors.black : null,
+        return Semantics(
+          label: state.object ? "FavoritedRestaurant" : "UnfavoritedRestaurant",
+          child: Icon(
+            state.object ? Icons.favorite : Icons.favorite_border_outlined,
+            color: state.object ? Colors.black : null,
+          ),
         );
       default:
         return Shimmer.fromColors(
@@ -44,17 +47,23 @@ class RestaurantDetailsPage extends StatelessWidget {
         var presenter = context.read<RestaurantDetailsPresenter>();
         return Scaffold(
           appBar: AppBar(
-            title: Text(
-              routeDetailsParams.restaurant.name,
-              style: Theme.of(context).textTheme.headlineMedium,
-              overflow: TextOverflow.ellipsis,
+            title: Semantics(
+              label: 'RestaurantName',
+              child: Text(
+                routeDetailsParams.restaurant.name,
+                style: Theme.of(context).textTheme.headlineMedium,
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
-            leading: IconButton(
-                onPressed: () => Navigator.of(context).pop(
-                    routeDetailsParams.mustRefreshWhenPop
-                        ? presenter.mustRefresh()
-                        : false),
-                icon: const Icon(Icons.arrow_back)),
+            leading: Semantics(
+              label: 'RestaurantDetailsBackButton',
+              child: IconButton(
+                  onPressed: () => Navigator.of(context).pop(
+                      routeDetailsParams.mustRefreshWhenPop
+                          ? presenter.mustRefresh()
+                          : false),
+                  icon: const Icon(Icons.arrow_back)),
+            ),
             actions: [
               Padding(
                   padding: const EdgeInsets.only(right: 16.0),
@@ -98,9 +107,8 @@ class RestaurantDetailsPage extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        ///TODO Add title to model
                         Text(
-                          "${routeDetailsParams.restaurant.price} ${routeDetailsParams.restaurant.categories?.first.title ?? ''}",
+                          routeDetailsParams.restaurant.priceWithCategory,
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                         Row(

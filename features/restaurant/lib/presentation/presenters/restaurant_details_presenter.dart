@@ -35,8 +35,8 @@ class RestaurantDetailsPresenter extends Cubit<SFState> {
   Future<void> _favorite(Restaurant restaurant) async {
     if (state is SFSuccessState) {
       emit(SFLoadingState());
-      _addToFavoriteUseCase.favorite(restaurant);
       restaurant.isFavorite = true;
+      _addToFavoriteUseCase.favorite(restaurant);
       emit(SFSuccessState<bool>(object: true));
     }
   }

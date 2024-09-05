@@ -9,25 +9,28 @@ class FavoritesEmpyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        const SizedBox(
-          height: 32,
-        ),
-        const Text(
-          "You have no one favorited restaurants",
-          style: AppTextStyles.loraRegularTitle,
-        ),
-        const SizedBox(
-          height: 16,
-        ),
-        Lottie.asset(
-          'assets/animations/favorites_empty_state.json',
-          package: 'restaurant',
-          height: 150,
-        )
-      ],
+    return Semantics(
+      label: "FavoriteRestaurantEmptyState",
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          const SizedBox(
+            height: 32,
+          ),
+          const Text(
+            "You have no one favorited restaurants",
+            style: AppTextStyles.loraRegularTitle,
+          ),
+          const SizedBox(
+            height: 16,
+          ),
+          Lottie.asset(
+            'assets/animations/favorites_empty_state.json',
+            package: 'restaurant',
+            height: 150,
+          )
+        ],
+      ),
     );
   }
 }
