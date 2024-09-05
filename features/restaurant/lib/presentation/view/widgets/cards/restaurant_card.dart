@@ -9,14 +9,18 @@ typedef RefreshCallback = Function;
 
 class RestaurantCard extends StatelessWidget {
   const RestaurantCard(
-      {super.key, required this.restaurant, this.refreshCallback});
+      {super.key,
+      required this.restaurant,
+      required this.index,
+      this.refreshCallback});
   final Restaurant restaurant;
   final RefreshCallback? refreshCallback;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
     return Semantics(
-      label: "RestaurantCard",
+      label: "RestaurantCard:$index",
       child: GestureDetector(
         onTap: () async {
           final mustRefresh = await Navigator.of(context).pushNamed(
@@ -34,9 +38,8 @@ class RestaurantCard extends StatelessWidget {
             child: Row(
               mainAxisSize: MainAxisSize.max,
               children: [
-                // ///TODO add real image when request beck to work
                 Hero(
-                  tag: 'network:image',
+                  tag: restaurant.id,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(8),
                     child: SizedBox(
@@ -44,7 +47,7 @@ class RestaurantCard extends StatelessWidget {
                       width: 80,
                       child: restaurant.heroImage.isNotEmpty
                           ? CachedNetworkImage(
-                              imageUrl: "https://picsum.photos/250?image=9",
+                              imageUrl: restaurant.heroImage,
                               placeholder: (context, url) => const SizedBox(
                                   width: 80,
                                   height: 80,
@@ -58,11 +61,9 @@ class RestaurantCard extends StatelessWidget {
                     ),
                   ),
                 ),
-
                 const SizedBox(
                   width: 12,
                 ),
-
                 IntrinsicWidth(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

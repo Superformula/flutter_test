@@ -83,7 +83,7 @@ class RestaurantDetailsPage extends StatelessWidget {
           body: ListView(
             children: [
               Hero(
-                tag: 'network:image',
+                tag: routeDetailsParams.restaurant.id,
                 child: CachedNetworkImage(
                   imageUrl: "https://picsum.photos/250?image=9",
                   fit: BoxFit.cover,

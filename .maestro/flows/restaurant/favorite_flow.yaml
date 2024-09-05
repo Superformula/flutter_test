@@ -8,7 +8,7 @@ appId: com.example.restaurant_tour
 
 #Favorite restaurant changes details UI
 - tapOn: "All Restaurants\nTab 1 of 2"
-- tapOn: ".*RestaurantCard.*"
+- tapOn: ".*RestaurantCard:0.*"
 - assertVisible: "UnfavoritedRestaurant"
 - tapOn: ".*UnfavoritedRestaurant.*"
 - assertVisible: "FavoritedRestaurant"
@@ -17,4 +17,18 @@ appId: com.example.restaurant_tour
 #Favorite restaurant is displayed on list
 - tapOn: ".*RestaurantDetailsBackButton.*"
 - tapOn: "My Favorite\nTab 2 of 2"
-- assertVisible: ".*RestaurantCard.*"
+- assertVisible: ".*RestaurantCard:0.*"
+
+
+#Favorite one more restaurant changes details UI
+- tapOn: "All Restaurants\nTab 1 of 2"
+- tapOn: ".*RestaurantCard:1.*"
+- assertVisible: "UnfavoritedRestaurant"
+- tapOn: ".*UnfavoritedRestaurant.*"
+- assertVisible: "FavoritedRestaurant"
+
+
+#Favorite restaurant is displayed on list
+- tapOn: ".*RestaurantDetailsBackButton.*"
+- tapOn: "My Favorite\nTab 2 of 2"
+- assertVisible: ".*RestaurantCard:1.*"

@@ -21,7 +21,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: RestaurantCard(restaurant: restaurant),
+            body: RestaurantCard(restaurant: restaurant, index: 1),
           ),
         ),
       );
@@ -48,7 +48,7 @@ void main() {
             return null;
           },
           home: Scaffold(
-            body: RestaurantCard(restaurant: restaurant),
+            body: RestaurantCard(restaurant: restaurant, index: 1),
           ),
         ),
       );

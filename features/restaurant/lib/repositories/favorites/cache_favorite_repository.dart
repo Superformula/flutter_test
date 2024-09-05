@@ -9,13 +9,18 @@ class CacheFavoriteRepository implements FavoriteRestaurantRepository {
   final SFCacheManager cacheManager = SFInjector.instance.get<SFCacheManager>();
 
   @override
-  void addNewFavoriteRestaurant(Restaurant restaurant) {
-    var json = restaurant.toJson();
+  Future<void> addNewFavoriteRestaurant(Restaurant restaurant) async {
+    List<Restaurant> savedRestaurants = await getFavoriteRestaurants();
+    savedRestaurants.add(restaurant);
     cacheManager.setString(
       'favorites_restaurants',
       jsonEncode(
         {
-          'restaurants': [json]
+          'restaurants': savedRestaurants
+              .map(
+                (e) => e.toJson(),
+              )
+              .toList()
         },
       ),
     );

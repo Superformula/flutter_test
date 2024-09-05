@@ -33,6 +33,7 @@ class FavoriteRestaurantsTab extends StatelessWidget {
                   var restaurant = state.object[index];
                   return RestaurantCard(
                     restaurant: restaurant,
+                    index: index,
                     refreshCallback: () => context
                         .read<FavoriteRestaurantsTabPresenter>()
                         .loadRestaurants(),
