@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:restaurant_tour/di.dart';
-import 'package:restaurant_tour/routes.dart';
+
+import 'features/restaurant/presentation/manager/home_cubit.dart';
+import 'features/restaurant/presentation/pages/home_page.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,8 +18,10 @@ class RestaurantTour extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Restaurant Tour',
-      routes: Routes.routes,
-      initialRoute: Routes.listRestaurants,
+      home: BlocProvider.value(
+        value: getIt.get<HomeCubit>(),
+        child: const HomePage(),
+      ),
     );
   }
 }
