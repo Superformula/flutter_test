@@ -24,6 +24,17 @@ class ListRestaurants extends StatelessWidget {
             ),
           );
         } else if (state is HomeLoaded) {
+          if (state.restaurants.isEmpty) {
+            return const Text(
+              "Your request return zero results!\nPlease, try again!",
+              style: TextStyle(
+                fontFamily: "Open Sans",
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+              ),
+              key: Key(AppKeys.restaurantListIsEmpty),
+            );
+          }
           return ListView.builder(
             key: const Key(AppKeys.listRestaurantsFetched),
             padding: const EdgeInsets.all(12),

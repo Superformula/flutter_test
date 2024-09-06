@@ -84,4 +84,29 @@ void main() {
       findsOneWidget,
     );
   });
+
+  testWidgets("Should show a Text widget when the list is empty",
+      (tester) async {
+    // Arrange
+    when(() => usecase()).thenAnswer((_) async => const Right([]));
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: BlocProvider.value(
+          value: cubit,
+          child: const ListRestaurants(),
+        ),
+      ),
+    );
+
+    // Act
+    cubit.getRestaurants();
+    await tester.pump();
+
+    // Assert
+    expect(
+      find.byKey(const Key(AppKeys.restaurantListIsEmpty)),
+      findsOneWidget,
+    );
+  });
 }
