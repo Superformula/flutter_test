@@ -12,14 +12,11 @@ class ListRestaurants extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<HomeCubit>().getRestaurants();
-    });
     final cubit = context.watch<HomeCubit>();
+    cubit.getRestaurants();
     return BlocBuilder<HomeCubit, HomeState>(
       builder: (c, state) {
         if (state is HomeLoading) {
-          cubit.getRestaurants();
           return const Center(
             child: CircularProgressIndicator(
               key: Key(AppKeys.loadingRestaurantsIndicator),
