@@ -10,7 +10,7 @@ import 'package:restaurant_tour/core/utils/app_keys.dart';
 import 'package:restaurant_tour/features/restaurant/data/models/restaurant.dart';
 import 'package:restaurant_tour/features/restaurant/domain/use_cases/get_restaurants.dart';
 import 'package:restaurant_tour/features/restaurant/presentation/manager/home_cubit.dart';
-import 'package:restaurant_tour/features/restaurant/presentation/widgets/list_restaurants_widget.dart';
+import 'package:restaurant_tour/features/restaurant/presentation/tabs/list_restaurants_widget.dart';
 
 import '../../../fixtures/fixture.dart';
 

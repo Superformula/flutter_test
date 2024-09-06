@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_tour/features/restaurant/presentation/widgets/list_restaurants_widget.dart';
+
+import '../tabs/list_restaurants_widget.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
