@@ -1,0 +1,14 @@
+name: sf_test
+packages:
+  - platform/*
+  # Include all packages inside the `packages` directory and all descendants.
+  - features/**
+
+
+scripts:
+  analyze:
+    exec: dart analyze .
+  get:
+    exec: flutter pub get
+  test:
+    exec: flutter test

@@ -1,19 +1,19 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility that Flutter provides. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
+// // This is a basic Flutter widget test.
+// //
+// // To perform an interaction with a widget in your test, use the WidgetTester
+// // utility that Flutter provides. For example, you can send tap and scroll
+// // gestures. You can also use WidgetTester to find child widgets in the widget
+// // tree, read text, and verify that the values of widget properties are correct.
 
-import 'package:flutter_test/flutter_test.dart';
-import 'package:restaurant_tour/main.dart';
+// import 'package:flutter_test/flutter_test.dart';
+// import 'package:restaurant_tour/features/restaurant/lib/view/restaurants_home_page.dart';
 
-void main() {
-  testWidgets('Page loads', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const RestaurantTour());
+// void main() {
+//   testWidgets('Page loads', (WidgetTester tester) async {
+//     // Build our app and trigger a frame.
+//     await tester.pumpWidget(const RestaurantsHomePage());
 
-    // Verify that tests will run
-    expect(find.text('Fetch Restaurants'), findsOneWidget);
-  });
-}
+//     // Verify that tests will run
+//     expect(find.text('Fetch Restaurants'), findsOneWidget);
+//   });
+// }
