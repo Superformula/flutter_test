@@ -67,9 +67,17 @@ The app uses **Cubit** (from `flutter_bloc`) for state management, as recommende
 - **Other layers**: Covered with unit tests.
 - **End-to-End Testing**: Using **Maestro** to cover core app functionalities.
 
+## Running
+
+    - dart pub global activate melos
+    - flutter pub get
+    - export PATH="$PATH":"$HOME/.pub-cache/bin" 
+    - melos run get
+    - flutter run --dart-define=YELP_API_KEY=APIKEY 
+
 ## Observations
 
-The request to API are mocked due to a daily limit of requests.
+The request to API are mocked due to a daily limit of requests, but the real repo is also implemented.
 
 ------
 
