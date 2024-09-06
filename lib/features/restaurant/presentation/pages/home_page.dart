@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_tour/features/restaurant/presentation/widgets/list_restaurants.dart';
+import 'package:restaurant_tour/features/restaurant/presentation/widgets/list_restaurants_widget.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -39,7 +39,7 @@ class HomePage extends StatelessWidget {
             ],
           ),
         ),
-        body: TabBarView(
+        body: const TabBarView(
           children: [
             Center(
               child: ListRestaurants(),
