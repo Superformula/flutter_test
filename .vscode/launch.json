@@ -8,59 +8,7 @@
             "name": "flutter_test",
             "request": "launch",
             "type": "dart",
-            "program": "./lib/main.dart"
-        },
-        {
-            "name": "flutter_test (profile mode)",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "profile"
-        },
-        {
-            "name": "flutter_test (release mode)",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "release"
-        },
-        {
-            "name": "restaurant",
-            "cwd": "lib/modules/restaurant",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "restaurant (profile mode)",
-            "cwd": "lib/modules/restaurant",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "profile"
-        },
-        {
-            "name": "restaurant (release mode)",
-            "cwd": "lib/modules/restaurant",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "release"
-        },
-        {
-            "name": "restaurants",
-            "cwd": "lib/modules/restaurants",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "restaurants (profile mode)",
-            "cwd": "lib/modules/restaurants",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "profile"
-        },
-        {
-            "name": "restaurants (release mode)",
-            "cwd": "lib/modules/restaurants",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "release"
+            "program": "./lib/main.dart",
         }
     ]
 }
