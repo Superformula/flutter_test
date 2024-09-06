@@ -7,8 +7,8 @@ import 'package:restaurant/domain/usecases/favorite/get_favorite_restaurants_use
 import 'package:restaurant/domain/usecases/favorite/remove_from_favorite_usecase.dart';
 import 'package:restaurant/presentation/routes/restaurant_routes.dart';
 import 'package:restaurant/repositories/favorites/cache_favorite_repository.dart';
+import 'package:restaurant/repositories/mocked_restaurant_repository.dart';
 import './domain/repository/get_restaurant/get_restaurants_repository.dart';
-import './repositories/yelp_repository.dart';
 import './domain/usecases/get_restaurants_usecase.dart';
 
 class RestaurantModule extends SFModule {
@@ -17,8 +17,8 @@ class RestaurantModule extends SFModule {
     //Repositories
     SFInjector.instance.registerFactory<FavoriteRestaurantRepository>(
         () => CacheFavoriteRepository());
-    SFInjector.instance
-        .registerFactory<GetRestaurantsRepository>(() => YelpRepository());
+    SFInjector.instance.registerFactory<GetRestaurantsRepository>(
+        () => MockedRestaurantRepository());
 
     //Usecases
     SFInjector.instance
