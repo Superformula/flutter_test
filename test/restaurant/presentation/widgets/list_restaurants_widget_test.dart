@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:restaurant_tour/core/utils/app_failures.dart';
 import 'package:restaurant_tour/core/utils/app_keys.dart';
 import 'package:restaurant_tour/features/restaurant/data/models/restaurant.dart';
 import 'package:restaurant_tour/features/restaurant/domain/use_cases/get_restaurants.dart';
@@ -85,7 +86,7 @@ void main() {
     );
   });
 
-  testWidgets("Should show a Text widget when the list is empty",
+  testWidgets("should show a text message stating that the list is empty",
       (tester) async {
     // Arrange
     when(() => usecase()).thenAnswer((_) async => const Right([]));
@@ -106,6 +107,33 @@ void main() {
     // Assert
     expect(
       find.byKey(const Key(AppKeys.restaurantListIsEmpty)),
+      findsOneWidget,
+    );
+  });
+
+  testWidgets(
+      "should show a text message stating that the request returns "
+      "with error", (tester) async {
+    // Arrange
+    when(() => usecase())
+        .thenAnswer((_) async => Left(AppFailure(message: "Error")));
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: BlocProvider.value(
+          value: cubit,
+          child: const ListRestaurants(),
+        ),
+      ),
+    );
+
+    // Act
+    cubit.getRestaurants();
+    await tester.pump();
+
+    // Assert
+    expect(
+      find.byKey(const Key(AppKeys.listRestaurantsError)),
       findsOneWidget,
     );
   });
