@@ -1,13 +1,33 @@
-import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
+import 'package:dartz/dartz.dart';
+import 'package:restaurant_tour/core/utils/app_exceptions.dart';
+import 'package:restaurant_tour/core/utils/app_failures.dart';
+import 'package:restaurant_tour/features/restaurant/data/data_sources/remote_datasource.dart';
 import 'package:restaurant_tour/features/restaurant/data/models/restaurant.dart';
+import 'package:restaurant_tour/features/restaurant/domain/repositories/yelp_repository.dart';
 
-class YelpRepository {
-  final Dio dio;
+class YelpRepositoryImpl implements YelpRepository {
+  final RemoteDatasource datasource;
 
-  YelpRepository({
-    @visibleForTesting required this.dio,
+  YelpRepositoryImpl({
+    required this.datasource,
   });
+
+  @override
+  Future<Either<Failure, List<Restaurant>>> getRestaurantsFromRepo(
+      {int offset = 0}) async {
+    try {
+      List<Restaurant> restaurants = [];
+      final result = await datasource.getRestaurants(offset: offset);
+      for (final r in result["data"]["search"]["business"]) {
+        restaurants.add(Restaurant.fromJson(r));
+      }
+      return Right(restaurants);
+    } on ServerException catch (e) {
+      return Left(ServerFailure(message: e.message));
+    } catch (e) {
+      return Left(AppFailure());
+    }
+  }
 
   /// Returns a response in this shape
   /// {
@@ -49,52 +69,4 @@ class YelpRepository {
   ///   }
   /// }
   ///
-  Future<RestaurantQueryResult?> getRestaurants({int offset = 0}) async {
-    try {
-      final response = await dio.post<Map<String, dynamic>>(
-        '/v3/graphql',
-        data: _getQuery(offset),
-      );
-      return RestaurantQueryResult.fromJson(response.data!['data']['search']);
-    } catch (e) {
-      return null;
-    }
-  }
-
-  String _getQuery(int offset) {
-    return '''
-query getRestaurants {
-  search(location: "Las Vegas", limit: 20, offset: $offset) {
-    total    
-    business {
-      id
-      name
-      price
-      rating
-      photos
-      reviews {
-        id
-        rating
-        text
-        user {
-          id
-          image_url
-          name
-        }
-      }
-      categories {
-        title
-        alias
-      }
-      hours {
-        is_open_now
-      }
-      location {
-        formatted_address
-      }
-    }
-  }
-}
-''';
-  }
 }
