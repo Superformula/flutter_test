@@ -85,7 +85,7 @@ class RestaurantDetailsPage extends StatelessWidget {
               Hero(
                 tag: routeDetailsParams.restaurant.id,
                 child: CachedNetworkImage(
-                  imageUrl: "https://picsum.photos/250?image=9",
+                  imageUrl: routeDetailsParams.restaurant.heroImage,
                   fit: BoxFit.cover,
                   placeholder: (context, url) => const SizedBox(
                       width: 80,
