@@ -1,9 +1,11 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
 import 'package:restaurant_tour/models/restaurant.dart';
 import 'package:restaurant_tour/repositories/yelp_repository.dart';
+import 'package:restaurant_tour/typography.dart';
 import 'package:restaurant_tour/ui/screens/restaurants_list_screen.dart';
 
 void main() {
@@ -29,6 +31,7 @@ final class RestaurantTourApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
+      debugShowCheckedModeBanner: kDebugMode,
       title: 'Restaurant Tour',
       home: HomePage(),
     );
@@ -64,18 +67,27 @@ class _HomePageState extends State<HomePage> {
           backgroundColor: Colors.white,
           automaticallyImplyLeading: false,
           centerTitle: true,
-          title: const Text('RestauranTour'),
+          elevation: 4,
+          shadowColor: const Color(0xff000033),
+          title: const Text(
+            'RestauranTour',
+            style: AppTextStyles.loraRegularHeadline,
+          ),
           bottom: const PreferredSize(
             preferredSize: Size.fromHeight(56),
-            // add bottom shadow
-            child: TabBar(
-              labelPadding: EdgeInsets.all(8),
-              tabAlignment: TabAlignment.center,
-              dividerColor: Colors.transparent,
-              tabs: [
-                Text('All Restaurants'),
-                Text('My Favorites'),
-              ],
+            child: DefaultTextStyle(
+              style: AppTextStyles.openRegularTitleSemiBold,
+              child: TabBar(
+                labelPadding: EdgeInsets.all(8),
+                tabAlignment: TabAlignment.center,
+                dividerColor: Colors.transparent,
+                labelColor: Colors.black,
+                indicatorColor: Colors.black,
+                tabs: [
+                  Text('All Restaurants'),
+                  Text('My Favorites'),
+                ],
+              ),
             ),
           ),
         ),
