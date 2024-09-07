@@ -152,7 +152,6 @@ class _RestaurantDetailsScreenState extends State<RestaurantDetailsScreen> {
                   "${widget.restaurant.reviews!.length} Reviews",
                   style: AppTextStyles.openRegularText,
                 ),
-                // TODO: add real data
                 const SizedBox(height: 16),
                 ListView.separated(
                   shrinkWrap: true,
