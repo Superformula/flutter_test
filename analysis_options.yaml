@@ -11,3 +11,4 @@ linter:
     ## There's room to discuss them individually and raise PRs adjusting our codebase.
     avoid_print: false
     require_trailing_commas: true
+    always_use_package_imports: true
