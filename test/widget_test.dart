@@ -11,7 +11,7 @@ import 'package:restaurant_tour/main.dart';
 void main() {
   testWidgets('Page loads', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const RestaurantTour());
+    await tester.pumpWidget(RestaurantTour());
 
     // Verify that tests will run
     expect(find.text('Fetch Restaurants'), findsOneWidget);
