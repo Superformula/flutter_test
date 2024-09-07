@@ -40,7 +40,7 @@ class RestaurantsRepository extends BaseRestaurantsRepository {
       if (data.restaurants != null) {
         return data.restaurants!.map((e) => e.toDomain()).toList();
       }
-
+      // TODO: This could be improved by returning a custom response with success or error, something like either_dart
       return null;
     } catch (e) {
       return null;
