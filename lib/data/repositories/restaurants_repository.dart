@@ -28,7 +28,7 @@ class RestaurantsRepository extends BaseRestaurantsRepository {
   }
 
   @override
-  Future<List<Restaurant>> getRestaurants({int offset = 0}) async {
+  Future<List<Restaurant>?> getRestaurants({int offset = 0}) async {
     try {
       final response = await _httpClient.post<Map<String, dynamic>>(
         '/v3/graphql',
@@ -41,9 +41,9 @@ class RestaurantsRepository extends BaseRestaurantsRepository {
         return data.restaurants!.map((e) => e.toDomain()).toList();
       }
 
-      return [];
+      return null;
     } catch (e) {
-      return [];
+      return null;
     }
   }
 
