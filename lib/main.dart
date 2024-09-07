@@ -17,6 +17,10 @@ void main() {
         debugPrint('${record.level.name}: ${record.time}: ${record.message}');
       });
 
+      FlutterError.onError = (errorDetails) {
+        Logger.root.severe(errorDetails.summary, errorDetails.exception, errorDetails.stack);
+      };
+
       runApp(const RestaurantTourApp());
     },
     (error, stackTrace) {
