@@ -9,18 +9,19 @@ import 'package:restaurant_tour/presentation/screens/home/all_restaurants_tab.da
 import 'package:restaurant_tour/presentation/screens/home/favorite_restaurants_tab.dart';
 import 'package:restaurant_tour/core/theme/typography.dart';
 
-import 'package:restaurant_tour/presentation/screens/restaurant_details/restaurant_details_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   final GetRestaurantsUseCase getAllRestaurantsUseCase;
   final GetFavoriteRestaurantsUseCase getFavoriteRestaurantsUseCase;
   final ToggleFavoriteUseCase toggleFavoriteUseCase;
+  final void Function(Restaurant restaurant, bool isFavorite) onTapRestaurant;
 
   const HomeScreen({
     super.key,
     required this.getAllRestaurantsUseCase,
     required this.getFavoriteRestaurantsUseCase,
     required this.toggleFavoriteUseCase,
+    required this.onTapRestaurant,
   });
 
   @override
@@ -91,35 +92,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 getAllRestaurantsUseCase: widget.getAllRestaurantsUseCase,
                 toggleFavoriteUseCase: widget.toggleFavoriteUseCase,
                 favoriteRestaurants: favoriteRestaurants,
-                onTapRestaurant: (restaurant, isFavorite) {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => RestaurantDetailsScreen(
-                        restaurant: restaurant,
-                        isFavorite: isFavorite,
-                        onToggleFavorite: () {
-                          widget.toggleFavoriteUseCase(restaurant);
-                        },
-                      ),
-                    ),
-                  );
-                },
+                onTapRestaurant: (restaurant, isFavorite) =>
+                    widget.onTapRestaurant(restaurant, isFavorite),
               ),
               FavoriteRestaurantsTab(
                 restaurants: favoriteRestaurants,
-                onTapRestaurant: (restaurant, isFavorite) {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => RestaurantDetailsScreen(
-                        restaurant: restaurant,
-                        isFavorite: true,
-                        onToggleFavorite: () {
-                          widget.toggleFavoriteUseCase(restaurant);
-                        },
-                      ),
-                    ),
-                  );
-                },
+                onTapRestaurant: (restaurant, isFavorite) =>
+                    widget.onTapRestaurant(restaurant, isFavorite),
               ),
             ],
           ),

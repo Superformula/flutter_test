@@ -35,6 +35,7 @@ void main() {
             toggleFavoriteUseCase: toggleFavoriteUseCase,
             getAllRestaurantsUseCase: getRestaurantsUseCase,
             getFavoriteRestaurantsUseCase: getFavoriteRestaurantsUseCase,
+            onTapRestaurant: (restaurant, isFavorite) {},
           ),
         ),
       ),
@@ -59,14 +60,13 @@ void main() {
             toggleFavoriteUseCase: toggleFavoriteUseCase,
             getAllRestaurantsUseCase: getRestaurantsUseCase,
             getFavoriteRestaurantsUseCase: getFavoriteRestaurantsUseCase,
+            onTapRestaurant: (restaurant, isFavorite) {},
           ),
         ),
       ),
     );
 
-    await mockNetworkImagesFor(
-      () => tester.pumpAndSettle(const Duration(seconds: 1)),
-    );
+    await mockNetworkImagesFor(() => tester.pumpAndSettle());
 
     expect(find.byType(RestaurantCard), findsWidgets);
 
@@ -75,5 +75,62 @@ void main() {
 
     // there is only one favorite restaurant
     expect(find.byType(RestaurantCard), findsNWidgets(1));
+  });
+
+  testWidgets(
+      'onTapRestaurant callback should be called in the "All Restaurants" tab',
+      (tester) async {
+    bool onTapRestaurantWasCalled = false;
+
+    await mockNetworkImagesFor(
+      () => tester.pumpWidget(
+        makeTestableWidget(
+          child: HomeScreen(
+            toggleFavoriteUseCase: toggleFavoriteUseCase,
+            getAllRestaurantsUseCase: getRestaurantsUseCase,
+            getFavoriteRestaurantsUseCase: getFavoriteRestaurantsUseCase,
+            onTapRestaurant: (restaurant, isFavorite) {
+              onTapRestaurantWasCalled = true;
+            },
+          ),
+        ),
+      ),
+    );
+
+    await mockNetworkImagesFor(() => tester.pumpAndSettle());
+
+    await tester.tap(find.byType(RestaurantCard).first);
+
+    expect(onTapRestaurantWasCalled, isTrue);
+  });
+
+  testWidgets(
+      'onTapRestaurant callback should be called in the "My Favorites" tab',
+      (tester) async {
+    bool onTapRestaurantWasCalled = false;
+
+    await mockNetworkImagesFor(
+      () => tester.pumpWidget(
+        makeTestableWidget(
+          child: HomeScreen(
+            toggleFavoriteUseCase: toggleFavoriteUseCase,
+            getAllRestaurantsUseCase: getRestaurantsUseCase,
+            getFavoriteRestaurantsUseCase: getFavoriteRestaurantsUseCase,
+            onTapRestaurant: (restaurant, isFavorite) {
+              onTapRestaurantWasCalled = true;
+            },
+          ),
+        ),
+      ),
+    );
+
+    await mockNetworkImagesFor(() => tester.pumpAndSettle());
+
+    await tester.tap(find.text("My Favorites"));
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.byType(RestaurantCard).first);
+
+    expect(onTapRestaurantWasCalled, isTrue);
   });
 }
