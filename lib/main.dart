@@ -79,24 +79,29 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         body: SafeArea(
-          child: FutureBuilder(
-            future: initializationFuture,
-            builder: (context, snapshot) {
-              final Widget content;
+          child: TabBarView(
+            children: [
+              FutureBuilder(
+                future: initializationFuture,
+                builder: (context, snapshot) {
+                  final Widget content;
 
-              if (snapshot.data case RestaurantQueryResult(restaurants: final restaurants?) when snapshot.hasData) {
-                content = RestaurantsList(restaurants: restaurants);
-              } else {
-                content = const Center(
-                  child: CircularProgressIndicator(),
-                );
-              }
+                  if (snapshot.data case RestaurantQueryResult(restaurants: final restaurants?) when snapshot.hasData) {
+                    content = RestaurantsList(restaurants: restaurants);
+                  } else {
+                    content = const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
 
-              return AnimatedSwitcher(
-                duration: const Duration(milliseconds: 350),
-                child: content,
-              );
-            },
+                  return AnimatedSwitcher(
+                    duration: const Duration(milliseconds: 350),
+                    child: content,
+                  );
+                },
+              ),
+              const ColoredBox(color: Colors.red),
+            ],
           ),
         ),
       ),
