@@ -7,10 +7,13 @@ import 'package:restaurant_tour/data/repositories/restaurants_repository.dart';
 import 'package:restaurant_tour/domain/repositories/restaurants_repository.dart';
 import 'package:restaurant_tour/domain/use_cases/get_favorites_restaurants_use_case.dart';
 
+import 'package:restaurant_tour/data/repositories/mock/mocked_restaurants_repository.dart';
+
 final getIt = GetIt.instance;
 
 void setupDI() {
   const apiKey = String.fromEnvironment('API_KEY');
+  const mockApi = bool.fromEnvironment('MOCK_API', defaultValue: true);
 
   getIt.registerLazySingleton<Dio>(
     () => Dio(
@@ -25,7 +28,9 @@ void setupDI() {
   );
 
   getIt.registerLazySingleton<BaseRestaurantsRepository>(
-    () => RestaurantsRepository(httpClient: getIt.get()),
+    () => mockApi
+        ? MockedRestaurantsRepository()
+        : RestaurantsRepository(httpClient: getIt.get()),
     dispose: (repo) => repo.dispose(),
   );
 
