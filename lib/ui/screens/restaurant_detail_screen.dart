@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:restaurant_tour/models/restaurant.dart';
 import 'package:restaurant_tour/typography.dart';
+import 'package:restaurant_tour/ui/widgets/rating.dart';
 
 final class RestaurantDetailScreen extends StatefulWidget {
   const RestaurantDetailScreen({
@@ -142,10 +142,8 @@ final class _RestaurantDetailScreenState extends State<RestaurantDetailScreen> {
                             ),
                           ),
                           const Gap(4),
-                          SvgPicture.asset(
-                            'assets/svg/star.svg',
-                            height: 12,
-                            width: 12,
+                          const Ratings(
+                            size: Size.square(12),
                           ),
                         ],
                       ),
@@ -185,17 +183,12 @@ final class UserReviewCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final star = SvgPicture.asset('assets/svg/star.svg');
     final rating = 5;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          children: [
-            for (int counter = 0; counter < rating.toInt(); counter = counter + 1) star,
-          ],
-        ),
+        Ratings(count: rating),
         const Gap(8),
         //TODO: fix
         const Text('user review data long text'),

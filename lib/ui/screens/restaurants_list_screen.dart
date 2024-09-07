@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:restaurant_tour/models/restaurant.dart';
 import 'package:restaurant_tour/typography.dart';
+import 'package:restaurant_tour/ui/widgets/rating.dart';
 import 'package:shimmer/shimmer.dart';
 
 import 'restaurant_detail_screen.dart';
@@ -105,12 +106,10 @@ final class RestaurantCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         if (restaurant.rating case final rating?)
-                          Row(
-                            children: [
-                              for (int counter = 0; counter < rating.toInt(); counter = counter + 1) star,
-                            ],
+                          Ratings(
+                            count: rating.toInt(),
                           ),
-                          // extract
+                        // extract
                         Row(
                           children: [
                             Text(
