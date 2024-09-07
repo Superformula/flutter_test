@@ -12,11 +12,12 @@ class YelpListView extends StatefulWidget {
 
 class _YelpListViewState extends State<YelpListView> {
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    // Trigger fetching data
-    final viewModel = Provider.of<YelpListViewModel>(context, listen: false);
-    viewModel.debounceFetch();
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Provider.of<YelpListViewModel>(context, listen: false).fetchYelpItems();
+    });
   }
 
   @override

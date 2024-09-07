@@ -2,18 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:restaurant_tour/models/restaurant.dart';
 import '../repositories/yelp_repository.dart';
 
+import 'package:flutter/foundation.dart';
+import 'package:restaurant_tour/repositories/yelp_repository.dart';
+import 'dart:async';
+
 class YelpListViewModel extends ChangeNotifier {
-  final YelpRepository _repository = YelpRepository();
+  final YelpRepository _repository;
   List<Restaurant> _restaurants = [];
   bool _isLoading = false;
   bool _hasFetched = false;
 
+  YelpListViewModel({YelpRepository? repository})
+      : _repository = repository ?? YelpRepository(); // Allow passing mock repository
+
   List<Restaurant> get restaurants => _restaurants;
   bool get isLoading => _isLoading;
+  bool get hasFetched => _hasFetched;
 
   Future<void> fetchYelpItems({bool forceRefresh = false}) async {
     if (_isLoading || (_hasFetched && !forceRefresh)) {
-      // Skip if a request is already in progress or data is already fetched
       return;
     }
 
@@ -38,7 +45,9 @@ class YelpListViewModel extends ChangeNotifier {
     await fetchYelpItems(forceRefresh: true);
   }
 
-  void debounceFetch() {
-    fetchYelpItems();
+  void setRestaurants(List<Restaurant> restaurants) {
+    _restaurants = restaurants;
+    _isLoading = false;
+    notifyListeners();
   }
 }
