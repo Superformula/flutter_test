@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_tour/models/restaurant.dart';
 import 'package:provider/provider.dart';
-import '../viewmodels/yelp_detail_viewmodel.dart';
+import 'package:restaurant_tour/viewmodels/favorites_viewmodel.dart';
+import 'package:restaurant_tour/viewmodels/yelp_detail_viewmodel.dart';
 
 class YelpDetailView extends StatelessWidget {
   @override
@@ -12,15 +13,34 @@ class YelpDetailView extends StatelessWidget {
     if (restaurant == null) {
       return const Center(child: Text("No restaurant selected"));
     }
+    final favoritesViewModel = context.watch<FavoritesViewModel>();
 
     return Scaffold(
       appBar: AppBar(
         title: Text(restaurant.name!),
         actions: [
-          IconButton(
-            icon: const Icon(Icons.star_border),
-            onPressed: () {
-              // Handle favorite logic here
+          FutureBuilder<bool>(
+            future: favoritesViewModel.isFavorite(restaurant.id!),
+            builder: (context, snapshot) {
+              if (!snapshot.hasData) {
+                return IconButton(
+                  icon: const Icon(Icons.star_border),
+                  onPressed: () {},
+                );
+              }
+
+              final isFavorite = snapshot.data ?? false;
+
+              return IconButton(
+                icon: Icon(isFavorite ? Icons.star : Icons.star_border),
+                onPressed: () {
+                  if (isFavorite) {
+                    favoritesViewModel.removeFavorite(restaurant.id!);
+                  } else {
+                    favoritesViewModel.addFavorite(restaurant.id!);
+                  }
+                },
+              );
             },
           ),
         ],

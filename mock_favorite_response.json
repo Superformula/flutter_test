@@ -1,0 +1,67 @@
+{
+  "data": {
+    "business": {
+      "id": "faPVqws-x-5k2CQKDNtHxw",
+      "name": "Yardbird",
+      "price": "$$",
+      "rating": 4.5,
+      "photos": [
+        "https://s3-media1.fl.yelpcdn.com/bphoto/xYJaanpF3Dl1OovhmpqAYw/o.jpg"
+      ],
+      "reviews": [
+        {
+          "id": "CN9oD1ncHKZtsGN7U1EMnA",
+          "rating": 5,
+          "text": "The food was delicious and the host and waitress were very nice, my husband and I really loved all the food, their cocktails are also amazing.",
+          "user": {
+            "id": "HArOfrshTW9s1HhN8oz8rg",
+            "image_url": "https://s3-media3.fl.yelpcdn.com/photo/4sDrkYRIZxsXKCYdo9d1bQ/o.jpg",
+            "name": "Snow7 C."
+          }
+        },
+        {
+          "id": "Qd-GV_v5gFHYO4VHw_6Dzw",
+          "rating": 5,
+          "text": "Their Chicken and waffles are the best! I thought it was too big for one person, you had better to share it with some people",
+          "user": {
+            "id": "ww0-zb-Nv5ccWd1Vbdmo-A",
+            "image_url": "https://s3-media4.fl.yelpcdn.com/photo/g-9Uqpy-lNszg0EXTuqwzQ/o.jpg",
+            "name": "Eri O."
+          }
+        },
+        {
+          "id": "cqMrOWT9kRQOt3VUqOUbHg",
+          "rating": 5,
+          "text": "Our last meal in Vegas was amazing at Yardbird. We have been to the Yardbird in Chicago so we thought we knew what to expect; however, we were blown away by...",
+          "user": {
+            "id": "10oig4nwHnOAnAApdYvNrg",
+            "image_url": null,
+            "name": "Ellie K."
+          }
+        }
+      ],
+      "categories": [
+        {
+          "title": "Southern",
+          "alias": "southern"
+        },
+        {
+          "title": "New American",
+          "alias": "newamerican"
+        },
+        {
+          "title": "Cocktail Bars",
+          "alias": "cocktailbars"
+        }
+      ],
+      "hours": [
+        {
+          "is_open_now": true
+        }
+      ],
+      "location": {
+        "formatted_address": "3355 Las Vegas Blvd S\nLas Vegas, NV 89109"
+      }
+    }
+  }
+}

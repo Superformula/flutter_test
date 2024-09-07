@@ -69,4 +69,24 @@ class MockYelpRepository extends _i1.Mock implements _i3.YelpRepository {
         ),
         returnValue: _i4.Future<_i5.RestaurantQueryResult?>.value(),
       ) as _i4.Future<_i5.RestaurantQueryResult?>);
+
+  @override
+  _i4.Future<_i5.Restaurant?> getRestaurantById(String? id) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getRestaurantById,
+          [id],
+        ),
+        returnValue: _i4.Future<_i5.Restaurant?>.value(),
+      ) as _i4.Future<_i5.Restaurant?>);
+
+  @override
+  _i4.Future<List<_i5.Restaurant>?> getRestaurantsByIds(List<String>? ids) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getRestaurantsByIds,
+          [ids],
+        ),
+        returnValue: _i4.Future<List<_i5.Restaurant>?>.value(),
+      ) as _i4.Future<List<_i5.Restaurant>?>);
 }

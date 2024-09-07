@@ -1,9 +1,12 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:restaurant_tour/repositories/yelp_repository.dart';
 import 'package:restaurant_tour/viewmodels/yelp_list_viewmodel.dart';
 import 'package:restaurant_tour/models/restaurant.dart';
 import 'yelp_list_viewmodel_tests.mocks.dart';
 
+@GenerateMocks([YelpRepository])
 void main() {
   late YelpListViewModel viewModel;
   late MockYelpRepository mockYelpRepository;
