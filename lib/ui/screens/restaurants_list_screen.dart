@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:restaurant_tour/models/restaurant.dart';
+import 'package:restaurant_tour/typography.dart';
 import 'package:shimmer/shimmer.dart';
 
+@visibleForTesting
 final class RestaurantCard extends StatelessWidget {
   const RestaurantCard({super.key, required this.restaurant});
 
@@ -67,17 +69,26 @@ final class RestaurantCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  if (restaurant.name case final name?) Text(name),
+                  if (restaurant.name case final name?)
+                    Text(
+                      name,
+                      style: AppTextStyles.loraRegularTitle,
+                      softWrap: true,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   const Gap(4),
-                  Row(
-                    children: [
-                      if (restaurant.price case final price?) Text(price),
-                      //Text(restaurant.displayCategory),
-                      const Gap(4),
-                      const Text('Italian'),
-                    ],
+                  DefaultTextStyle(
+                    style: AppTextStyles.openRegularText,
+                    child: Row(
+                      children: [
+                        if (restaurant.price case final price?) Text(price),
+                        //Text(restaurant.displayCategory),
+                        const Gap(4),
+                        const Text('Italian'),
+                      ],
+                    ),
                   ),
-                  const Gap(4),
+                  const Gap(24),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -89,8 +100,11 @@ final class RestaurantCard extends StatelessWidget {
                         ),
                       Row(
                         children: [
-                          Text(restaurant.isOpen ? 'Open Now' : 'Closed'),
-                          const Gap(8),
+                          Text(
+                            restaurant.isOpen ? 'Open Now' : 'Closed',
+                            style: AppTextStyles.openRegularItalic,
+                          ),
+                          const Gap(4),
                           SizedBox.square(
                             dimension: 8,
                             child: DecoratedBox(
@@ -129,9 +143,7 @@ final class RestaurantsList extends StatelessWidget {
     return ListView.separated(
       padding: const EdgeInsets.all(12),
       itemCount: restaurants.length,
-      itemBuilder: (context, index) {
-        return RestaurantCard(restaurant: restaurants[index]);
-      },
+      itemBuilder: (context, index) => RestaurantCard(restaurant: restaurants[index]),
       separatorBuilder: (BuildContext context, int index) => const Gap(12),
     );
   }
