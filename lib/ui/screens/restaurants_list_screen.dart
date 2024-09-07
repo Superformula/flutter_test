@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:restaurant_tour/models/restaurant.dart';
 import 'package:restaurant_tour/typography.dart';
@@ -18,8 +17,6 @@ final class RestaurantCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final star = SvgPicture.asset('assets/svg/star.svg');
-
     // TODO: fix - maybe list tile?
     return GestureDetector(
       onTap: () async {
