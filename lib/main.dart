@@ -23,6 +23,38 @@ class RestaurantTour extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Restaurant Tour',
+      theme: ThemeData(
+        fontFamily: 'Lora', // Set Lora as the default font for the entire app
+        textTheme: const TextTheme(
+          titleMedium: TextStyle(
+            fontFamily: 'Lora',
+            fontSize: 16.0,
+          ),
+          bodyLarge: TextStyle(
+            fontFamily: 'OpenSans',
+            fontWeight: FontWeight.w400,
+            fontSize: 16,
+            color: Colors.black,
+          ),
+          bodyMedium: TextStyle(
+            fontFamily: 'OpenSans',
+            fontWeight: FontWeight.w600,
+            fontSize: 14,
+            color: Colors.black,
+          ),
+          bodySmall: TextStyle(
+            fontFamily: 'OpenSans',
+            fontWeight: FontWeight.w400,
+            fontSize: 12,
+            color: Colors.black,
+          ),
+        ),
+        dividerTheme: DividerThemeData(
+          thickness: 1,
+          color: Color(0xFFEEEEEE),
+          space: 1, // Height of the divider (same as space around it)
+        ),
+      ),
       home: HomePage(),
     );
   }

@@ -24,7 +24,7 @@ class YelpDetailView extends StatelessWidget {
             builder: (context, snapshot) {
               if (!snapshot.hasData) {
                 return IconButton(
-                  icon: const Icon(Icons.star_border),
+                  icon: const Icon(Icons.favorite_border), // Outline heart icon
                   onPressed: () {},
                 );
               }
@@ -32,7 +32,7 @@ class YelpDetailView extends StatelessWidget {
               final isFavorite = snapshot.data ?? false;
 
               return IconButton(
-                icon: Icon(isFavorite ? Icons.star : Icons.star_border),
+                icon: Icon(isFavorite ? Icons.favorite : Icons.favorite_border), // Filled heart for favorite, outline for non-favorite
                 onPressed: () {
                   if (isFavorite) {
                     favoritesViewModel.removeFavorite(restaurant.id!);
@@ -46,28 +46,39 @@ class YelpDetailView extends StatelessWidget {
         ],
       ),
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _buildImage(restaurant.photos?.first),
-              const SizedBox(height: 16),
-              _buildRestaurantInfoRow(restaurant),
-              const SizedBox(height: 16),
-              const _SectionTitle(title: 'Address'),
-              const SizedBox(height: 8),
-              Text(restaurant.location?.formattedAddress ?? 'No address available'),
-              const SizedBox(height: 16),
-              const _SectionTitle(title: 'Overall Ratings'),
-              const SizedBox(height: 8),
-              _buildRatingsRow(restaurant),
-              const SizedBox(height: 16),
-              _buildReviewsSection(restaurant),
-            ],
-          ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _buildImage(restaurant.photos?.first),
+            const SizedBox(height: 16),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _buildRestaurantInfoRow(restaurant, context),
+                  const SizedBox(height: 16),
+                  const Divider(),
+                  const SizedBox(height: 16),
+                  const _SectionTitle(title: 'Address'),
+                  const SizedBox(height: 16),
+                  Text(restaurant.location?.formattedAddress ?? 'No address available', style: Theme.of(context).textTheme.bodyMedium,),
+                  const SizedBox(height: 16),
+                  const Divider(),
+                  const SizedBox(height: 16),
+                  const _SectionTitle(title: 'Overall Ratings'),
+                  const SizedBox(height: 16),
+                  _buildRatingsRow(restaurant),
+                  const SizedBox(height: 16),
+                  const Divider(),
+                  const SizedBox(height: 16),
+                  _buildReviewsSection(restaurant, context),
+                ],
+              ),
+            ),
+          ],
         ),
-      ),
+      )
     );
   }
 
@@ -98,27 +109,27 @@ class YelpDetailView extends StatelessWidget {
     );
   }
 
-  Widget _buildRestaurantInfoRow(Restaurant restaurant) {
+  Widget _buildRestaurantInfoRow(Restaurant restaurant, BuildContext context) {
     return Row(
       children: [
         Text(
           '${restaurant.price ?? ''} ${restaurant.categories?.first.title ?? ''}',
-          style: const TextStyle(fontSize: 16),
+          style: Theme.of(context).textTheme.bodySmall,
         ),
         const Spacer(),
         Row(
           children: [
+            Text(
+              restaurant.isOpen ? 'Open now' : 'Closed',
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  color: restaurant.isOpen ? Colors.green : Colors.red,
+              )
+            ),
+            const SizedBox(width: 4),
             Icon(
               Icons.circle,
               size: 12,
               color: restaurant.isOpen ? Colors.green : Colors.red,
-            ),
-            const SizedBox(width: 4),
-            Text(
-              restaurant.isOpen ? 'Open now' : 'Closed',
-              style: TextStyle(
-                color: restaurant.isOpen ? Colors.green : Colors.red,
-              ),
             ),
           ],
         ),
@@ -156,25 +167,28 @@ class YelpDetailView extends StatelessWidget {
     );
   }
 
-  Widget _buildReviewsSection(Restaurant restaurant) {
+  Widget _buildReviewsSection(Restaurant restaurant, BuildContext context) {
     if (restaurant.reviews == null || restaurant.reviews!.isEmpty) {
-      return const Text('No reviews available');
+      return Text(
+          'No reviews available',
+          style: Theme.of(context).textTheme.bodyLarge
+      );
     }
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _SectionTitle(title: 'Reviews (${restaurant.reviews!.length})'),
+        _SectionTitle(title: '${restaurant.reviews!.length} reviews'),
         const SizedBox(height: 8),
         Column(
           children: restaurant.reviews!
-              .map<Widget>((review) => _buildReviewItem(review))
+              .map<Widget>((review) => _buildReviewItem(review, context))
               .toList(),
         ),
       ],
     );
   }
 
-  Widget _buildReviewItem(Review review) {
+  Widget _buildReviewItem(Review review, BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Column(
@@ -182,13 +196,14 @@ class YelpDetailView extends StatelessWidget {
         children: [
           _buildStars(review.rating),
           const SizedBox(height: 8),
-          Text(review.text ?? '', style: const TextStyle(fontSize: 16)),
+          Text(review.text ?? '', style: Theme.of(context).textTheme.bodyLarge),
           const SizedBox(height: 8),
           Row(
             children: [
               _buildReviewerImage(review.user?.imageUrl),
               const SizedBox(width: 8),
-              Text(review.user?.name ?? 'Anonymous'),
+              Text(review.user?.name ?? 'Anonymous', style: Theme.of(context).textTheme.bodySmall
+    ),
             ],
           ),
         ],
@@ -215,10 +230,7 @@ class _SectionTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       title,
-      style: const TextStyle(
-        fontSize: 18,
-        fontWeight: FontWeight.bold,
-      ),
+      style: Theme.of(context).textTheme.bodySmall
     );
   }
 }
