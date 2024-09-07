@@ -1,12 +1,28 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:logging/logging.dart';
 import 'package:restaurant_tour/repositories/yelp_repository.dart';
 
 void main() {
-  runApp(const RestaurantTour());
+  runZonedGuarded(
+    () async {
+      WidgetsFlutterBinding.ensureInitialized();
+
+      Logger.root.onRecord.listen((record) {
+        debugPrint('${record.level.name}: ${record.time}: ${record.message}');
+      });
+
+      runApp(const RestaurantTourApp());
+    },
+    (error, stackTrace) {
+      Logger.root.severe('The app has experienced a crash.', error, stackTrace);
+    },
+  );
 }
 
-class RestaurantTour extends StatelessWidget {
-  const RestaurantTour({Key? key}) : super(key: key);
+final class RestaurantTourApp extends StatelessWidget {
+  const RestaurantTourApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +33,8 @@ class RestaurantTour extends StatelessWidget {
   }
 }
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+final class HomePage extends StatelessWidget {
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -36,12 +52,18 @@ class HomePage extends StatelessWidget {
                 try {
                   final result = await yelpRepo.getRestaurants();
                   if (result != null) {
-                    print('Fetched ${result.restaurants!.length} restaurants');
+                    Logger.root.info('Fetched ${result.restaurants!.length} restaurants');
+
+                    if (result.restaurants case final restaurants?) {
+                      for (final restaurant in restaurants) {
+                        //print(restaurant.toJson());
+                      }
+                    }
                   } else {
-                    print('No restaurants fetched');
+                    Logger.root.info('No restaurants fetched');
                   }
                 } catch (e) {
-                  print('Failed to fetch restaurants: $e');
+                  Logger.root.info('Failed to fetch restaurants: $e');
                 }
               },
             ),
