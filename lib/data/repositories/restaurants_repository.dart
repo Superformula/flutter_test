@@ -5,10 +5,8 @@ import 'package:restaurant_tour/data/dtos/restaurant_dto.dart';
 import 'package:restaurant_tour/domain/models/restaurant.dart';
 import 'package:restaurant_tour/domain/repositories/restaurants_repository.dart';
 
-import 'package:restaurant_tour/data/repositories/cached_response.dart';
-
 class RestaurantsRepository extends BaseRestaurantsRepository {
-  // I could have created a remote data provider here
+  // I could have created a remote data provider for this
   final Dio _httpClient;
 
   RestaurantsRepository({
@@ -31,17 +29,6 @@ class RestaurantsRepository extends BaseRestaurantsRepository {
 
   @override
   Future<List<Restaurant>> getRestaurants({int offset = 0}) async {
-    //TODO: Remove this... just to not reach the rate limit
-    final response = cachedResponse;
-
-    final data = RestaurantDto.fromJson(response['data']['search']);
-
-    if (data.restaurants != null) {
-      return data.restaurants!.map((e) => e.toDomain()).toList();
-    }
-
-    return [];
-
     try {
       final response = await _httpClient.post<Map<String, dynamic>>(
         '/v3/graphql',

@@ -1,3 +1,4 @@
+// I'm using this to not reach the rate limit of the API
 final cachedResponse = <String, dynamic>{
   "data": {
     "search": {
@@ -1080,7 +1081,8 @@ final cachedResponse = <String, dynamic>{
             {"is_open_now": true},
           ],
           "location": {
-            "formatted_address": "3900 Paradise Rd\nSte D1\nLas Vegas, NV 89169",
+            "formatted_address":
+                "3900 Paradise Rd\nSte D1\nLas Vegas, NV 89169",
           },
         },
         {
