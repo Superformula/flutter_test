@@ -93,6 +93,7 @@ final class RestaurantsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
+      padding: const EdgeInsets.all(12),
       itemCount: restaurants.length,
       itemBuilder: (context, index) {
         return RestaurantCard(restaurant: restaurants[index]);
