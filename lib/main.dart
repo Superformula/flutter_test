@@ -22,6 +22,7 @@ void main() {
     (error, stackTrace) {
       Logger.root.severe('The app has experienced a crash.', error, stackTrace);
     },
+    zoneValues: {#flutter.io.allow_http: false},
   );
 }
 
@@ -103,6 +104,7 @@ class _HomePageState extends State<HomePage> {
                     content = RestaurantsList(restaurants: restaurants);
                   } else {
                     content = const Center(
+                      // TODO: fix color
                       child: CircularProgressIndicator(),
                     );
                   }
