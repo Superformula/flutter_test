@@ -5,6 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:restaurant_tour/models/restaurant.dart';
 import 'package:restaurant_tour/typography.dart';
 import 'package:restaurant_tour/ui/widgets/rating.dart';
+import 'package:restaurant_tour/ui/widgets/restaurant_availability.dart';
 import 'package:shimmer/shimmer.dart';
 
 import 'restaurant_detail_screen.dart';
@@ -110,26 +111,7 @@ final class RestaurantCard extends StatelessWidget {
                             count: rating.toInt(),
                           ),
                         // extract
-                        Row(
-                          children: [
-                            Text(
-                              restaurant.isOpen ? 'Open Now' : 'Closed',
-                              style: AppTextStyles.openRegularItalic,
-                            ),
-                            const Gap(4),
-                            SizedBox.square(
-                              dimension: 8,
-                              child: DecoratedBox(
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: restaurant.isOpen //
-                                      ? const Color(0xff5CD313)
-                                      : const Color(0xffEA5E5E),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
+                        RestaurantAvailability(isRestaurantOpen: restaurant.isOpen),
                       ],
                     ),
                   ],

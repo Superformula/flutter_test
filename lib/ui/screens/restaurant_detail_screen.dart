@@ -3,6 +3,7 @@ import 'package:gap/gap.dart';
 import 'package:restaurant_tour/models/restaurant.dart';
 import 'package:restaurant_tour/typography.dart';
 import 'package:restaurant_tour/ui/widgets/rating.dart';
+import 'package:restaurant_tour/ui/widgets/restaurant_availability.dart';
 
 final class RestaurantDetailScreen extends StatefulWidget {
   const RestaurantDetailScreen({
@@ -78,78 +79,17 @@ final class _RestaurantDetailScreenState extends State<RestaurantDetailScreen> {
                       ),
                     ),
                     const Spacer(),
-                    Text(
-                      restaurant.isOpen ? 'Open Now' : 'Closed',
-                      style: AppTextStyles.openRegularItalic,
-                    ),
-                    const Gap(4),
-                    SizedBox.square(
-                      dimension: 8,
-                      child: DecoratedBox(
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: restaurant.isOpen //
-                              ? const Color(0xff5CD313)
-                              : const Color(0xffEA5E5E),
-                        ),
-                      ),
-                    ),
+                    RestaurantAvailability(isRestaurantOpen: restaurant.isOpen),
                   ],
                 ),
               ),
               const Gap(24),
               divider,
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: Column(
-                  children: [
-                    const Gap(24),
-                    const Text(
-                      'Address',
-                      style: AppTextStyles.openRegularText,
-                    ),
-                    const Gap(24),
-                    // TODO: fix
-                    if (restaurant.location?.formattedAddress case final address?) //
-                      Text(
-                        address,
-                        style: AppTextStyles.openRegularTitleSemiBold,
-                      ),
-                  ],
-                ),
-              ),
+              //if (restaurant.location?.formattedAddress case final address?) //
+              RestaurantAddress(address: restaurant.location?.formattedAddress ?? ''),
               const Gap(24),
               divider,
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Gap(24),
-                    const Text(
-                      'Overall Rating',
-                      style: AppTextStyles.openRegularText,
-                    ),
-                    const Gap(16),
-                    // TODO: fix
-                    if (restaurant.rating case final rating?) //
-                      Row(
-                        children: [
-                          Text(
-                            rating.toString(),
-                            style: AppTextStyles.loraRegularHeadline.copyWith(
-                              fontSize: 28,
-                            ),
-                          ),
-                          const Gap(4),
-                          const Ratings(
-                            size: Size.square(12),
-                          ),
-                        ],
-                      ),
-                  ],
-                ),
-              ),
+              RestaurantOverallRating(rating: restaurant.rating ?? 0),
               const Gap(24),
               divider,
               const Gap(24),
@@ -172,6 +112,81 @@ final class _RestaurantDetailScreenState extends State<RestaurantDetailScreen> {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+@visibleForTesting
+final class RestaurantOverallRating extends StatelessWidget {
+  const RestaurantOverallRating({
+    super.key,
+    required this.rating,
+  });
+
+  final double rating;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Gap(24),
+          const Text(
+            'Overall Rating',
+            style: AppTextStyles.openRegularText,
+          ),
+          const Gap(16),
+          // TODO: fix
+          Row(
+            children: [
+              Text(
+                rating.toString(),
+                style: AppTextStyles.loraRegularHeadline.copyWith(
+                  fontSize: 28,
+                ),
+              ),
+              const Gap(4),
+              const Ratings(
+                size: Size.square(12),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+@visibleForTesting
+final class RestaurantAddress extends StatelessWidget {
+  const RestaurantAddress({
+    super.key,
+    required this.address,
+  });
+
+  final String address;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24),
+      child: Column(
+        children: [
+          const Gap(24),
+          const Text(
+            'Address',
+            style: AppTextStyles.openRegularText,
+          ),
+          const Gap(24),
+          // TODO: fix
+          Text(
+            address,
+            style: AppTextStyles.openRegularTitleSemiBold,
+          ),
+        ],
       ),
     );
   }
