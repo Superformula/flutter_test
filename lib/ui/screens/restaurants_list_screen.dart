@@ -1,7 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:restaurant_tour/models/restaurant.dart';
+import 'package:shimmer/shimmer.dart';
 
 final class RestaurantCard extends StatelessWidget {
   const RestaurantCard({super.key, required this.restaurant});
@@ -24,10 +26,42 @@ final class RestaurantCard extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            const SizedBox.square(
-              dimension: 88,
-              child: ColoredBox(color: Colors.red),
-            ),
+            if (restaurant.photos case final photos? when photos.isNotEmpty) //
+              CachedNetworkImage(
+                imageUrl: photos.first,
+                imageBuilder: (context, imageProvider) {
+                  return Container(
+                    height: 88,
+                    width: 88,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      image: DecorationImage(
+                        image: imageProvider,
+                      ),
+                    ),
+                  );
+                },
+                progressIndicatorBuilder: (context, url, progress) {
+                  return Shimmer.fromColors(
+                    enabled: true,
+                    baseColor: Colors.grey.shade300,
+                    highlightColor: Colors.grey.shade100,
+                    child: const SizedBox.square(dimension: 88),
+                  );
+                },
+                errorWidget: (context, url, error) {
+                  return Container(
+                    width: 88,
+                    height: 88,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: Colors.grey.shade100,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Image.asset('assets/png/no_wifi.png'),
+                  );
+                },
+              ),
             const Gap(12),
             Flexible(
               child: Column(

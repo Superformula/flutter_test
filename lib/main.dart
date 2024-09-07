@@ -71,6 +71,7 @@ class _HomePageState extends State<HomePage> {
             child: TabBar(
               labelPadding: EdgeInsets.all(8),
               tabAlignment: TabAlignment.center,
+              dividerColor: Colors.transparent,
               tabs: [
                 Text('All Restaurants'),
                 Text('My Favorites'),
