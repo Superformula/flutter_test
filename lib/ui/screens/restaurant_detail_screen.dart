@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
-import 'package:intersperse/intersperse.dart';
 import 'package:restaurant_tour/models/restaurant.dart';
 import 'package:restaurant_tour/typography.dart';
 
@@ -18,10 +17,16 @@ final class RestaurantDetailScreen extends StatefulWidget {
 }
 
 final class _RestaurantDetailScreenState extends State<RestaurantDetailScreen> {
+  static const divider = Divider(
+    color: Color(0xffeeeeee),
+    height: 1,
+    thickness: 1,
+    indent: 24,
+    endIndent: 24,
+  );
+
   @override
   Widget build(BuildContext context) {
-    //const divider = Divider(color: Color(0xffeeeeee), height: 1, thickness: 1);
-    const divider = Divider(color: Colors.black, height: 1, thickness: 1);
     final restaurant = widget.restaurant;
 
     return Scaffold(
@@ -43,82 +48,129 @@ final class _RestaurantDetailScreenState extends State<RestaurantDetailScreen> {
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.all(24),
+          padding: EdgeInsets.zero,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // image here
-              Row(
-                children: [
-                  DefaultTextStyle(
-                    style: AppTextStyles.openRegularText,
-                    child: Row(
-                      children: [
-                        if (restaurant.price case final price?) Text(price),
-                        //Text(restaurant.displayCategory),
-                        const Gap(4),
-                        const Text('Italian'),
-                      ],
-                    ),
-                  ),
-                  const Spacer(),
-                  Text(
-                    restaurant.isOpen ? 'Open Now' : 'Closed',
-                    style: AppTextStyles.openRegularItalic,
-                  ),
-                  const Gap(4),
-                  SizedBox.square(
-                    dimension: 8,
-                    child: DecoratedBox(
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: restaurant.isOpen //
-                            ? const Color(0xff5CD313)
-                            : const Color(0xffEA5E5E),
+              // extract this
+              Center(
+                child: Image.asset(
+                  'assets/png/hero.png',
+                  fit: BoxFit.fitWidth,
+                  scale: 0.5,
+                ),
+              ),
+              const Gap(24),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                child: Row(
+                  children: [
+                    DefaultTextStyle(
+                      style: AppTextStyles.openRegularText,
+                      child: Row(
+                        children: [
+                          if (restaurant.price case final price?) Text(price),
+                          //Text(restaurant.displayCategory),
+                          const Gap(4),
+                          const Text('Italian'),
+                        ],
                       ),
                     ),
-                  ),
-                ],
-              ),
-              const Gap(24),
-              divider,
-              Column(
-                children: [
-                  const Gap(24),
-                  const Text('Address'),
-                  const Gap(24),
-                  // TODO: fix
-                  if (restaurant.location?.formattedAddress case final address?) //
-                    Text(address),
-                ],
-              ),
-              const Gap(24),
-              divider,
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Gap(24),
-                  const Text('Overall Rating'),
-                  const Gap(16),
-                  // TODO: fix
-                  if (restaurant.rating case final rating?) //
-                    Row(
-                      children: [
-                        Text(rating.toString()),
-                        const Gap(4),
-                        SvgPicture.asset('assets/svg/star.svg'),
-                      ],
+                    const Spacer(),
+                    Text(
+                      restaurant.isOpen ? 'Open Now' : 'Closed',
+                      style: AppTextStyles.openRegularItalic,
                     ),
-                ],
+                    const Gap(4),
+                    SizedBox.square(
+                      dimension: 8,
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: restaurant.isOpen //
+                              ? const Color(0xff5CD313)
+                              : const Color(0xffEA5E5E),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const Gap(24),
+              divider,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                child: Column(
+                  children: [
+                    const Gap(24),
+                    const Text(
+                      'Address',
+                      style: AppTextStyles.openRegularText,
+                    ),
+                    const Gap(24),
+                    // TODO: fix
+                    if (restaurant.location?.formattedAddress case final address?) //
+                      Text(
+                        address,
+                        style: AppTextStyles.openRegularTitleSemiBold,
+                      ),
+                  ],
+                ),
+              ),
+              const Gap(24),
+              divider,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Gap(24),
+                    const Text(
+                      'Overall Rating',
+                      style: AppTextStyles.openRegularText,
+                    ),
+                    const Gap(16),
+                    // TODO: fix
+                    if (restaurant.rating case final rating?) //
+                      Row(
+                        children: [
+                          Text(
+                            rating.toString(),
+                            style: AppTextStyles.loraRegularHeadline.copyWith(
+                              fontSize: 28,
+                            ),
+                          ),
+                          const Gap(4),
+                          SvgPicture.asset(
+                            'assets/svg/star.svg',
+                            height: 12,
+                            width: 12,
+                          ),
+                        ],
+                      ),
+                  ],
+                ),
               ),
               const Gap(24),
               divider,
               const Gap(24),
 
               // TODO: fix
-              const Text('42 reviews'),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 24),
+                child: Text(
+                  '42 reviews',
+                  style: AppTextStyles.openRegularText,
+                ),
+              ),
               const Gap(24),
-              const UserReviewCard(),
+              // list view-like
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 24),
+                child: UserReviewCard(),
+              ),
+              const Gap(24),
             ],
           ),
         ),
