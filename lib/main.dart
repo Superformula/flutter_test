@@ -27,6 +27,9 @@ class RestaurantTour extends StatelessWidget {
                 getIt.get<GetFavoriteRestaurantsUseCase>(),
             toggleFavoriteUseCase: getIt.get<ToggleFavoriteUseCase>(),
             onTapRestaurant: (restaurant, isFavorite) {
+              // As we have a simple route here, I'm just pushing it directly
+              // I'm also passing the restaurant to the next screen as we don't have an api to fetch it
+              // In a real world scenario, we would fetch the restaurant again
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => RestaurantDetailsScreen(
