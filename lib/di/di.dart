@@ -9,17 +9,15 @@ import 'package:restaurant_tour/domain/use_cases/get_favorites_restaurants_use_c
 
 final getIt = GetIt.instance;
 
-// TODO: Expose it in a more secure way
-const _apiKey =
-    'FQVwPGF1gSkxwYDrdntEfehFGJRXb5HYBcLfesykIgAEeopf6_YrfvRmY_iGkQOnQ97oRwAqOcrGwHK0In71SGPnOJRKEBYUOo8IhiIS53HUVMdE2BiY1JeKIDLbZnYx';
-
 void setupDI() {
+  const apiKey = String.fromEnvironment('API_KEY');
+
   getIt.registerLazySingleton<Dio>(
     () => Dio(
       BaseOptions(
         baseUrl: 'https://api.yelp.com',
         headers: {
-          'Authorization': 'Bearer $_apiKey',
+          'Authorization': 'Bearer $apiKey',
           'Content-Type': 'application/graphql',
         },
       ),
