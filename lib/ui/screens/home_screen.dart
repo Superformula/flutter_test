@@ -1,30 +1,36 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:restaurant_tour/controllers/favorite_restaurant_view_controller.dart';
 import 'package:restaurant_tour/controllers/restaurant_view_controller.dart';
+import 'package:restaurant_tour/models/restaurant_data.dart';
 import 'package:restaurant_tour/typography.dart';
 
+import 'restaurants_favorites_screen.dart';
 import 'restaurants_list_screen.dart';
 
 final class HomeScreen extends StatefulWidget {
   const HomeScreen({
     super.key,
-    required this.viewController,
+    required this.restaurantViewController,
+    required this.favoriteRestaurantViewController,
   });
 
-  final RestaurantViewController viewController;
+  final RestaurantViewController restaurantViewController;
+  final FavoriteRestaurantViewController favoriteRestaurantViewController;
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  late final viewController = widget.viewController;
+  late final restaurantViewController = widget.restaurantViewController;
+  late final favoriteRestaurantViewController = widget.favoriteRestaurantViewController;
 
-  @override
-  void initState() {
-    super.initState();
-
-    viewController.getRestaurants();
+  Future<void> seletcRestaurantAsFavorite(RestaurantData restaurant, bool isFavorite) async {
+    await favoriteRestaurantViewController.favoritateRestaurant(
+      offset: restaurantViewController.offset,
+      restaurantId: restaurant.id,
+      isFavorite: isFavorite,
+    );
   }
 
   @override
@@ -63,21 +69,14 @@ class _HomeScreenState extends State<HomeScreen> {
         body: SafeArea(
           child: TabBarView(
             children: [
-              BlocBuilder<RestaurantViewController, RestaurantViewModel>(
-                bloc: viewController,
-                builder: (context, state) {
-                  
-                  return AnimatedSwitcher(
-                    duration: const Duration(milliseconds: 350),
-                    child: switch (state) {
-                      RestaurantViewModelLoading() => const Center(child: CircularProgressIndicator()),
-                      RestaurantViewModelData(restaurants: final restaurants) => RestaurantsList(restaurants: restaurants),
-                      _ => const Center(child: Text('TODO')), // TODO: fix
-                    },
-                  );
-                },
+              RestaurantsListScreen(
+                viewController: restaurantViewController,
+                onSelectFavoriteCallback: seletcRestaurantAsFavorite,
               ),
-              const ColoredBox(color: Colors.red),
+              FavoriteRestaurantsScreen(
+                viewController: favoriteRestaurantViewController,
+                onSelectFavorite: seletcRestaurantAsFavorite,
+              ),
             ],
           ),
         ),

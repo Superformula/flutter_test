@@ -5,6 +5,7 @@ import 'package:restaurant_tour/models/restaurant_data.dart';
 import 'package:restaurant_tour/typography.dart';
 import 'package:restaurant_tour/ui/widgets/rating.dart';
 import 'package:restaurant_tour/ui/widgets/restaurant_availability.dart';
+import 'package:restaurant_tour/ui/widgets/restaurant_list.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:intersperse/intersperse.dart';
 
@@ -12,9 +13,11 @@ final class RestaurantDetailScreen extends StatefulWidget {
   const RestaurantDetailScreen({
     super.key,
     required this.restaurant,
+    required this.onSelectFavorite,
   });
 
   final RestaurantData restaurant;
+  final OnSelectFavoriteCallback onSelectFavorite;
 
   @override
   State<RestaurantDetailScreen> createState() => _RestaurantDetailScreenState();
@@ -45,8 +48,23 @@ final class _RestaurantDetailScreenState extends State<RestaurantDetailScreen> {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.favorite_outline),
+            onPressed: () {
+              setState(() {
+                widget.onSelectFavorite(restaurant, !restaurant.isFavorite);
+              });
+            },
+            icon: AnimatedSwitcher(
+              duration: const Duration(milliseconds: 350),
+              child: restaurant.isFavorite //
+                  ? const Icon(
+                      key: Key('favorite'),
+                      Icons.favorite,
+                    )
+                  : const Icon(
+                      key: Key('not_favorite'),
+                      Icons.favorite_outline,
+                    ),
+            ),
           ),
         ],
       ),

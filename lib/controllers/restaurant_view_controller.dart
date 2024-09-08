@@ -1,7 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:logging/logging.dart';
-import 'package:restaurant_tour/domain/favorite_restaurant_use_case.dart';
 import 'package:restaurant_tour/domain/get_restaurant_reviews.dart';
 import 'package:restaurant_tour/domain/list_restaurants_use_case.dart';
 import 'package:restaurant_tour/models/restaurant_data.dart';
@@ -35,13 +34,11 @@ final class RestaurantViewController extends Cubit<RestaurantViewModel> {
   RestaurantViewController({
     required this.getRestaurantReviewsUseCase,
     required this.listRestaurantsUseCase,
-    required this.favoritesRestaurantsUseCase,
   })  : offset = 0,
         super(const RestaurantViewModel.empty());
 
   final GetRestaurantReviewsUseCase getRestaurantReviewsUseCase;
   final ListRestaurantsUseCase listRestaurantsUseCase;
-  final FavoritesRestaurantsUseCase favoritesRestaurantsUseCase;
 
   int offset;
 
@@ -66,20 +63,6 @@ final class RestaurantViewController extends Cubit<RestaurantViewModel> {
       emit(RestaurantViewModel.reviews(reviews: reviews));
     } catch (error, stackTrace) {
       _logger.severe('Fail to get restaurant reviews for id $restaurantId', error, stackTrace);
-      emit(RestaurantViewModel.error(error: error, stackTrace: stackTrace));
-    }
-  }
-
-  Future<void> getFavoriteRestaurants() async {
-    emit(RestaurantViewModel.favorites(favorites: favoritesRestaurantsUseCase.favorites));
-  }
-
-  Future<void> favoritateRestaurant({required int offset, required String restaurantId, bool isFavorite = false}) async {
-    try {
-      await favoritesRestaurantsUseCase.call(restaurantId: restaurantId, offset: offset, isFavorite: isFavorite);
-      emit(RestaurantViewModel.favorites(favorites: favoritesRestaurantsUseCase.favorites));
-    } catch (error, stackTrace) {
-      _logger.severe('Fail to select restaurant $restaurantId as favorite', error, stackTrace);
       emit(RestaurantViewModel.error(error: error, stackTrace: stackTrace));
     }
   }

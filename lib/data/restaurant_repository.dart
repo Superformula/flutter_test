@@ -92,9 +92,12 @@ final class RestaurantRepository extends RestaurantDataSource {
             if (restaurant.id == restaurantId) restaurant.copyWith(isFavorite: isFavorite) else restaurant,
         ];
 
+        _pagesCache[offset] = RestaurantPage(offset: offset, restaurants: restaurants);
+
+        /*
         await localDataSource.addRestaurants(
           page: RestaurantPage(offset: offset, restaurants: restaurants),
-        );
+        );*/
       }
     }
   }

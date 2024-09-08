@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
+import 'package:restaurant_tour/controllers/favorite_restaurant_view_controller.dart';
 
 import 'controllers/restaurant_view_controller.dart';
 import 'data/restaurant_data_source.dart';
@@ -44,6 +45,7 @@ final class RestaurantTourApp extends StatefulWidget {
 class _RestaurantTourAppState extends State<RestaurantTourApp> {
   late final RestaurantRepository restaurantRepository;
   late final RestaurantViewController restaurantViewController;
+  late final FavoriteRestaurantViewController favoriteRestaurantViewController;
 
   @override
   void initState() {
@@ -55,9 +57,12 @@ class _RestaurantTourAppState extends State<RestaurantTourApp> {
     );
 
     restaurantViewController = RestaurantViewController(
-      favoritesRestaurantsUseCase: FavoritesRestaurantsUseCase(repository: restaurantRepository),
       getRestaurantReviewsUseCase: GetRestaurantReviewsUseCase(repository: restaurantRepository),
       listRestaurantsUseCase: ListRestaurantsUseCase(repository: restaurantRepository),
+    );
+
+    favoriteRestaurantViewController = FavoriteRestaurantViewController(
+      favoritesRestaurantsUseCase: FavoritesRestaurantsUseCase(repository: restaurantRepository),
     );
   }
 
@@ -72,7 +77,10 @@ class _RestaurantTourAppState extends State<RestaurantTourApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: kDebugMode,
       title: 'Restaurant Tour',
-      home: HomeScreen(viewController: restaurantViewController),
+      home: HomeScreen(
+        restaurantViewController: restaurantViewController,
+        favoriteRestaurantViewController: favoriteRestaurantViewController,
+      ),
     );
   }
 }
