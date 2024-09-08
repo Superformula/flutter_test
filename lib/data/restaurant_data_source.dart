@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:restaurant_tour/configuration/environment.dart';
+import 'package:restaurant_tour/models/restaurant_data.dart';
 
-import 'models/restaurant_data.dart';
 
 final class RestaurantPage {
   RestaurantPage({required this.offset, required this.restaurants});

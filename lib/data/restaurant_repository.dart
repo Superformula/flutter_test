@@ -1,4 +1,5 @@
-import 'package:restaurant_tour/data/models/restaurant_data.dart';
+
+import 'package:restaurant_tour/models/restaurant_data.dart';
 
 import 'restaurant_data_source.dart';
 

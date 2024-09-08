@@ -1,10 +1,10 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:logging/logging.dart';
-import 'package:restaurant_tour/data/models/restaurant_data.dart';
 import 'package:restaurant_tour/domain/favorite_restaurant_use_case.dart';
 import 'package:restaurant_tour/domain/get_restaurant_reviews.dart';
 import 'package:restaurant_tour/domain/list_restaurants_use_case.dart';
+import 'package:restaurant_tour/models/restaurant_data.dart';
 
 part 'restaurant_view_controller.freezed.dart';
 

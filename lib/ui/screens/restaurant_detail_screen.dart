@@ -1,9 +1,12 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:restaurant_tour/data/models/restaurant_data.dart';
+import 'package:restaurant_tour/models/restaurant_data.dart';
 import 'package:restaurant_tour/typography.dart';
 import 'package:restaurant_tour/ui/widgets/rating.dart';
 import 'package:restaurant_tour/ui/widgets/restaurant_availability.dart';
+import 'package:shimmer/shimmer.dart';
+import 'package:intersperse/intersperse.dart';
 
 final class RestaurantDetailScreen extends StatefulWidget {
   const RestaurantDetailScreen({
@@ -53,15 +56,33 @@ final class _RestaurantDetailScreenState extends State<RestaurantDetailScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // image here
-              // extract this
-              Center(
-                child: Image.asset(
-                  'assets/png/hero.png',
-                  fit: BoxFit.fitWidth,
-                  scale: 0.5,
+              if (restaurant.photoUrl case final photoUrl?) //
+                CachedNetworkImage(
+                  imageUrl: photoUrl,
+                  imageBuilder: (context, imageProvider) {
+                    return Image(image: imageProvider);
+                  },
+                  progressIndicatorBuilder: (context, url, progress) {
+                    return Shimmer.fromColors(
+                      enabled: true,
+                      baseColor: Colors.grey.shade300,
+                      highlightColor: Colors.grey.shade100,
+                      child: const SizedBox(height: 360),
+                    );
+                  },
+                  errorWidget: (context, url, error) {
+                    return Container(
+                      width: 360,
+                      height: 360,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: Colors.grey.shade100,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Image.asset('assets/png/no_wifi.png'),
+                    );
+                  },
                 ),
-              ),
               const Gap(24),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -71,7 +92,7 @@ final class _RestaurantDetailScreenState extends State<RestaurantDetailScreen> {
                       style: AppTextStyles.openRegularText,
                       child: Row(
                         children: [
-                          Text(restaurant.price ),
+                          Text(restaurant.price),
                           const Gap(4),
                           if (restaurant.category case final category?) Text(category),
                         ],
@@ -92,20 +113,25 @@ final class _RestaurantDetailScreenState extends State<RestaurantDetailScreen> {
               const Gap(24),
               divider,
               const Gap(24),
-
-              // TODO: fix
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 24),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: Text(
-                  '42 reviews',
+                  '${restaurant.reviews.length} reviews',
                   style: AppTextStyles.openRegularText,
                 ),
               ),
               const Gap(24),
               // list view-like
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 24),
-                child: UserReviewCard(),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                child: Column(
+                  children: intersperse(
+                    const Gap(24),
+                    [
+                      for (final review in restaurant.reviews) UserReviewCard(review: review),
+                    ],
+                  ).toList(growable: false),
+                ),
               ),
               const Gap(24),
             ],
@@ -173,6 +199,7 @@ final class RestaurantAddress extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Gap(24),
           const Text(
@@ -193,29 +220,53 @@ final class RestaurantAddress extends StatelessWidget {
 
 @visibleForTesting
 final class UserReviewCard extends StatelessWidget {
-  const UserReviewCard({super.key});
+  const UserReviewCard({
+    super.key,
+    required this.review,
+  });
+
+  final RestaurantReviewData review;
+
+  String userNameInitials(String name) {
+    final parts = name.split(' ');
+    return parts.map((part) => part[0].toUpperCase()).join();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final rating = 5;
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Ratings(count: rating),
+        Ratings(count: review.rating.toInt()),
         const Gap(8),
-        //TODO: fix
-        const Text('user review data long text'),
+        Text(
+          review.text,
+          style: AppTextStyles.openRegularText.copyWith(fontSize: 16),
+        ),
         const Gap(8),
-
-        //TODO: fix
-        const Row(
+        Row(
           children: [
-            CircleAvatar(
-              child: ColoredBox(color: Colors.red),
-            ),
-            Gap(8),
-            Text('User name'),
+            if (review.user.imageUrl case final userImageUrl?) ...[
+              CachedNetworkImage(
+                imageUrl: userImageUrl,
+                imageBuilder: (context, imageProvider) {
+                  return CircleAvatar(
+                    foregroundImage: imageProvider,
+                  );
+                },
+              ),
+            ] else
+              CircleAvatar(
+                backgroundColor: Colors.grey.shade500,
+                child: Center(
+                  child: Text(
+                    userNameInitials(review.user.name),
+                    style: AppTextStyles.openRegularTitleSemiBold,
+                  ),
+                ),
+              ),
+            const Gap(8),
+            Text(review.user.name),
           ],
         ),
       ],

@@ -1,5 +1,5 @@
-import 'package:restaurant_tour/data/models/restaurant_data.dart';
 import 'package:restaurant_tour/data/restaurant_repository.dart';
+import 'package:restaurant_tour/models/restaurant_data.dart';
 
 final class GetRestaurantReviewsUseCase {
   GetRestaurantReviewsUseCase({required this.repository});

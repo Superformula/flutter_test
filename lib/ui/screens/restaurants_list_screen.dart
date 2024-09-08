@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:restaurant_tour/data/models/restaurant_data.dart';
+import 'package:restaurant_tour/models/restaurant_data.dart';
 import 'package:restaurant_tour/typography.dart';
 import 'package:restaurant_tour/ui/widgets/rating.dart';
 import 'package:restaurant_tour/ui/widgets/restaurant_availability.dart';
@@ -46,14 +46,13 @@ final class RestaurantCard extends StatelessWidget {
                 CachedNetworkImage(
                   imageUrl: photoUrl,
                   imageBuilder: (context, imageProvider) {
-                    return Container(
-                      height: 88,
-                      width: 88,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        image: DecorationImage(
-                          image: imageProvider,
-                        ),
+                    return ClipRRect(
+                      borderRadius: BorderRadius.circular(8),
+                      child: Image(
+                        image: imageProvider,
+                        width: 88,
+                        height: 88,
+                        fit: BoxFit.cover,
                       ),
                     );
                   },
@@ -132,8 +131,6 @@ final class RestaurantsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    
     return ListView.separated(
       padding: const EdgeInsets.all(12),
       itemCount: restaurants.length,
