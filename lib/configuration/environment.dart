@@ -23,6 +23,7 @@ final class Environment {
         sendTimeout: timeout,
         connectTimeout: timeout,
         receiveTimeout: timeout,
+        validateStatus: (status) => true,
       ),
     );
   }

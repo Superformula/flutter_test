@@ -6,7 +6,7 @@ final class ListRestaurantsUseCase {
 
   final RestaurantRepository repository;
 
-  Future<List<RestaurantData>> call({required int offset, int limit = 1}) async {
+  Future<List<RestaurantData>> call({required int offset, int limit = 20}) async {
     return repository.getRestaurants(offset: offset, limit: limit);
   }
 }

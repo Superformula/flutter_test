@@ -16,7 +16,7 @@ final class RestaurantRepository extends RestaurantDataSource {
   final _restaurantsCache = <String, RestaurantData>{};
 
   @override
-  Future<List<RestaurantData>> getRestaurants({required int offset, int limit = 1}) async {
+  Future<List<RestaurantData>> getRestaurants({required int offset, int limit = 20}) async {
     if (_pagesCache[offset] != null) {
       return _restaurantsCache.values.toList(growable: false);
     } else {
@@ -100,6 +100,7 @@ final class RestaurantRepository extends RestaurantDataSource {
   }
 
   List<RestaurantData> get favorites {
+
     return _restaurantsCache.values.where((restaurant) => restaurant.isFavorite).toList(growable: false);
   }
 
