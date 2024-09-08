@@ -33,6 +33,8 @@ final class RestaurantRepository extends RestaurantDataSource {
             ),
           ),
         );
+
+        return _restaurantsCache.values.toList(growable: false);
       } else {
         final remoteRestaurants = await remoteDataSoruce.getRestaurants(offset: offset, limit: limit);
 
@@ -52,8 +54,6 @@ final class RestaurantRepository extends RestaurantDataSource {
 
         return _restaurantsCache.values.toList(growable: false);
       }
-
-      return [];
     }
   }
 

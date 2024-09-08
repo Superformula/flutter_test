@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:logging/logging.dart';
 import 'package:restaurant_tour/controllers/favorite_restaurant_view_controller.dart';
 
@@ -25,6 +27,8 @@ void main() {
       FlutterError.onError = (errorDetails) {
         Logger.root.severe(errorDetails.summary, errorDetails.exception, errorDetails.stack);
       };
+
+      await Hive.initFlutter();
 
       runApp(const RestaurantTourApp());
     },

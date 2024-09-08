@@ -1,9 +1,12 @@
+import 'dart:async';
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:hive/hive.dart';
 import 'package:restaurant_tour/configuration/environment.dart';
 import 'package:restaurant_tour/models/restaurant_data.dart';
 import 'package:uuid/v4.dart';
-
 
 final class RestaurantPage {
   RestaurantPage({required this.offset, required this.restaurants});
@@ -930,15 +933,61 @@ query getRestaurants {
 // TODO: fill in implementation
 /// A data source that permanently stores all possible data about restaurants already loaded
 final class InStorageRestaurantDataSource implements RestaurantDataSource {
-  @override
-  Future<void> addRestaurants({required RestaurantPage page}) async {}
+  InStorageRestaurantDataSource() {
+    boxInitializer = Completer();
+    boxInitializer.complete(Hive.openLazyBox<String>(kRestaurantsBox));
+  }
+
+  static const kRestaurantsBox = 'restaurants';
+
+  late final Completer<LazyBox<String>> boxInitializer;
 
   @override
-  Future<void> dispose() async {}
+  Future<void> addRestaurants({required RestaurantPage page}) async {
+    await boxInitializer.future;
+    final storage = Hive.lazyBox<String>(kRestaurantsBox);
+
+    if (storage.isOpen) {
+      await storage.put(
+        page.offset,
+        jsonEncode(
+          [for (final restaurant in page.restaurants) restaurant.toJson()],
+        ),
+      );
+    }
+  }
+
+  @override
+  Future<void> dispose() async {
+    await boxInitializer.future;
+    final storage = Hive.lazyBox<String>(kRestaurantsBox);
+
+    if (storage.isOpen) {
+      await storage.compact();
+      await storage.close();
+    }
+  }
 
   @override
   Future<List<RestaurantData>> getRestaurants({required int offset, int limit = 1}) async {
-    return [];
+    await boxInitializer.future;
+    final storage = Hive.lazyBox<String>(kRestaurantsBox);
+
+    if (storage.isOpen) {
+      final data = await storage.get(offset);
+
+      if (data case final String pageData?) {
+        final data = jsonDecode(pageData) as List<Object?>;
+        return data
+            .cast<Map<String, Object?>>() //
+            .map((restaurant) => RestaurantData.fromJson(restaurant))
+            .toList(growable: false);
+      } else {
+        return [];
+      }
+    } else {
+      return [];
+    }
   }
 
   @override
