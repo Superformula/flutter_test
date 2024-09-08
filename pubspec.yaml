@@ -25,7 +25,6 @@ dependencies:
   logging: ^1.2.0
   shimmer: ^3.0.0
   collection: ^1.18.0
-  uuid: ^4.5.0
   hive_flutter: ^1.1.0
 
 dev_dependencies:

@@ -6,7 +6,6 @@ import 'package:flutter/foundation.dart';
 import 'package:hive/hive.dart';
 import 'package:restaurant_tour/configuration/environment.dart';
 import 'package:restaurant_tour/models/restaurant_data.dart';
-import 'package:uuid/v4.dart';
 
 final class RestaurantPage {
   RestaurantPage({required this.offset, required this.restaurants});
