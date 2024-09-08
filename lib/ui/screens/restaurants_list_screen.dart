@@ -21,12 +21,32 @@ final class RestaurantsListScreen extends StatefulWidget {
 
 class _RestaurantsListScreenState extends State<RestaurantsListScreen> with AutomaticKeepAliveClientMixin {
   late final viewController = widget.viewController;
+  late final scrollController = ScrollController();
 
   @override
   void initState() {
     super.initState();
-
     viewController.getRestaurants();
+    scrollController.addListener(onScrollToEnd);
+  }
+
+  @override
+  void dispose() {
+    scrollController.removeListener(onScrollToEnd);
+    scrollController.dispose();
+    super.dispose();
+  }
+
+  void onScrollToEnd() {
+    if (mounted && scrollController.hasClients) {
+      final position = scrollController.position;
+      final pixels = position.pixels;
+      final extent = position.maxScrollExtent * 0.85;
+
+      if (pixels >= extent && viewController.currentState is! RestaurantViewModelLoadingMore) {
+        viewController.getMoreRestaurants();
+      }
+    }
   }
 
   @override
@@ -36,7 +56,6 @@ class _RestaurantsListScreenState extends State<RestaurantsListScreen> with Auto
     return BlocBuilder<RestaurantViewController, RestaurantViewModel>(
       bloc: viewController,
       builder: (context, state) {
-        print('__ build');
         // TODO fix
         Widget content = const SizedBox.shrink();
 
@@ -45,17 +64,34 @@ class _RestaurantsListScreenState extends State<RestaurantsListScreen> with Auto
         } else {
           if (state is RestaurantViewModelData) {
             content = RestaurantsList(
+              controller: scrollController,
               restaurants: state.restaurants,
               onSelectFavorite: widget.onSelectFavorite,
               onLoadSingleFavorite: widget.onLoadSingleFavorite,
             );
+          } else if (state is RestaurantViewModelLoadingMore) {
+            content = Column(
+              children: [
+                Expanded(
+                  child: RestaurantsList(
+                    controller: scrollController,
+                    restaurants: state.previousRestaurants,
+                    onSelectFavorite: widget.onSelectFavorite,
+                    onLoadSingleFavorite: widget.onLoadSingleFavorite,
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.all(24),
+                  child: Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                ),
+              ],
+            );
           }
         }
 
-        return AnimatedSwitcher(
-          duration: const Duration(milliseconds: 350),
-          child: content,
-        );
+        return content;
       },
     );
   }

@@ -16,6 +16,10 @@ class RestaurantViewModel with _$RestaurantViewModel {
     required List<RestaurantData> restaurants,
   }) = RestaurantViewModelData;
 
+  const factory RestaurantViewModel.loadingMore({
+    required List<RestaurantData> previousRestaurants,
+  }) = RestaurantViewModelLoadingMore;
+
   const factory RestaurantViewModel.reviews({
     required List<RestaurantReviewData> reviews,
   }) = RestaurantViewModelReviews;
@@ -44,12 +48,36 @@ final class RestaurantViewController extends Cubit<RestaurantViewModel> {
 
   static final _logger = Logger('RestaurantViewController');
 
-  Future<void> getRestaurants() async {
+  RestaurantViewModel currentState = const RestaurantViewModel.empty();
+
+  Future<void> getMoreRestaurants() async {
     try {
-      emit(const RestaurantViewModel.loading());
+      if (state case RestaurantViewModelData(restaurants: final restaurants)) {
+        currentState = RestaurantViewModel.loadingMore(previousRestaurants: restaurants);
+        emit(currentState);
+      }
+
       final restaurants = await listRestaurantsUseCase.call(offset: offset);
       offset = offset + 1;
-      emit(RestaurantViewModel.data(restaurants: restaurants));
+
+      currentState = RestaurantViewModel.data(restaurants: restaurants);
+      emit(currentState);
+    } catch (error, stackTrace) {
+      _logger.severe('Fail to load restaurants data when using offset $offset', error, stackTrace);
+      emit(RestaurantViewModel.error(error: error, stackTrace: stackTrace));
+    }
+  }
+
+  Future<void> getRestaurants() async {
+    try {
+      currentState = const RestaurantViewModel.loading();
+      emit(currentState);
+
+      final restaurants = await listRestaurantsUseCase.call(offset: offset);
+      offset = offset + 1;
+
+      currentState = RestaurantViewModel.data(restaurants: restaurants);
+      emit(currentState);
     } catch (error, stackTrace) {
       _logger.severe('Fail to load restaurants data when using offset $offset', error, stackTrace);
       emit(RestaurantViewModel.error(error: error, stackTrace: stackTrace));

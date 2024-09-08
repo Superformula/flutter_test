@@ -17,9 +17,8 @@ final class RestaurantRepository extends RestaurantDataSource {
 
   @override
   Future<List<RestaurantData>> getRestaurants({required int offset, int limit = 1}) async {
-    // We try always our memory cache first
-    if (_pagesCache[offset] case final page?) {
-      return page.restaurants;
+    if (_pagesCache[offset] != null) {
+      return _restaurantsCache.values.toList(growable: false);
     } else {
       final localRestaurants = await localDataSource.getRestaurants(offset: offset, limit: limit);
 
@@ -51,7 +50,7 @@ final class RestaurantRepository extends RestaurantDataSource {
           ),
         );
 
-        return _pagesCache[offset]!.restaurants;
+        return _restaurantsCache.values.toList(growable: false);
       }
 
       return [];

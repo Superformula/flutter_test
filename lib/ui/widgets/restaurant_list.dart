@@ -18,8 +18,10 @@ final class RestaurantsList extends StatefulWidget {
     required this.restaurants,
     required this.onSelectFavorite,
     required this.onLoadSingleFavorite,
+    this.controller,
   });
 
+  final ScrollController? controller;
   final List<RestaurantData> restaurants;
   final OnSelectFavoriteCallback onSelectFavorite;
   final OnLoadSingleFavorite onLoadSingleFavorite;
@@ -32,6 +34,7 @@ class _RestaurantsListState extends State<RestaurantsList> {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
+      controller: widget.controller,
       padding: const EdgeInsets.all(12),
       itemCount: widget.restaurants.length,
       itemBuilder: (context, index) {

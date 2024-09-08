@@ -21,6 +21,8 @@ mixin _$RestaurantViewModel {
     required TResult Function() loading,
     required TResult Function() empty,
     required TResult Function(List<RestaurantData> restaurants) data,
+    required TResult Function(List<RestaurantData> previousRestaurants)
+        loadingMore,
     required TResult Function(List<RestaurantReviewData> reviews) reviews,
     required TResult Function(List<RestaurantData> favorites) favorites,
     required TResult Function(Object? error, StackTrace stackTrace) error,
@@ -31,6 +33,7 @@ mixin _$RestaurantViewModel {
     TResult? Function()? loading,
     TResult? Function()? empty,
     TResult? Function(List<RestaurantData> restaurants)? data,
+    TResult? Function(List<RestaurantData> previousRestaurants)? loadingMore,
     TResult? Function(List<RestaurantReviewData> reviews)? reviews,
     TResult? Function(List<RestaurantData> favorites)? favorites,
     TResult? Function(Object? error, StackTrace stackTrace)? error,
@@ -41,6 +44,7 @@ mixin _$RestaurantViewModel {
     TResult Function()? loading,
     TResult Function()? empty,
     TResult Function(List<RestaurantData> restaurants)? data,
+    TResult Function(List<RestaurantData> previousRestaurants)? loadingMore,
     TResult Function(List<RestaurantReviewData> reviews)? reviews,
     TResult Function(List<RestaurantData> favorites)? favorites,
     TResult Function(Object? error, StackTrace stackTrace)? error,
@@ -52,6 +56,7 @@ mixin _$RestaurantViewModel {
     required TResult Function(RestaurantViewModelLoading value) loading,
     required TResult Function(RestaurantViewModelEmpty value) empty,
     required TResult Function(RestaurantViewModelData value) data,
+    required TResult Function(RestaurantViewModelLoadingMore value) loadingMore,
     required TResult Function(RestaurantViewModelReviews value) reviews,
     required TResult Function(RestaurantViewModelFavorites value) favorites,
     required TResult Function(RestaurantViewModelError value) error,
@@ -62,6 +67,7 @@ mixin _$RestaurantViewModel {
     TResult? Function(RestaurantViewModelLoading value)? loading,
     TResult? Function(RestaurantViewModelEmpty value)? empty,
     TResult? Function(RestaurantViewModelData value)? data,
+    TResult? Function(RestaurantViewModelLoadingMore value)? loadingMore,
     TResult? Function(RestaurantViewModelReviews value)? reviews,
     TResult? Function(RestaurantViewModelFavorites value)? favorites,
     TResult? Function(RestaurantViewModelError value)? error,
@@ -72,6 +78,7 @@ mixin _$RestaurantViewModel {
     TResult Function(RestaurantViewModelLoading value)? loading,
     TResult Function(RestaurantViewModelEmpty value)? empty,
     TResult Function(RestaurantViewModelData value)? data,
+    TResult Function(RestaurantViewModelLoadingMore value)? loadingMore,
     TResult Function(RestaurantViewModelReviews value)? reviews,
     TResult Function(RestaurantViewModelFavorites value)? favorites,
     TResult Function(RestaurantViewModelError value)? error,
@@ -149,6 +156,8 @@ class _$RestaurantViewModelLoadingImpl implements RestaurantViewModelLoading {
     required TResult Function() loading,
     required TResult Function() empty,
     required TResult Function(List<RestaurantData> restaurants) data,
+    required TResult Function(List<RestaurantData> previousRestaurants)
+        loadingMore,
     required TResult Function(List<RestaurantReviewData> reviews) reviews,
     required TResult Function(List<RestaurantData> favorites) favorites,
     required TResult Function(Object? error, StackTrace stackTrace) error,
@@ -162,6 +171,7 @@ class _$RestaurantViewModelLoadingImpl implements RestaurantViewModelLoading {
     TResult? Function()? loading,
     TResult? Function()? empty,
     TResult? Function(List<RestaurantData> restaurants)? data,
+    TResult? Function(List<RestaurantData> previousRestaurants)? loadingMore,
     TResult? Function(List<RestaurantReviewData> reviews)? reviews,
     TResult? Function(List<RestaurantData> favorites)? favorites,
     TResult? Function(Object? error, StackTrace stackTrace)? error,
@@ -175,6 +185,7 @@ class _$RestaurantViewModelLoadingImpl implements RestaurantViewModelLoading {
     TResult Function()? loading,
     TResult Function()? empty,
     TResult Function(List<RestaurantData> restaurants)? data,
+    TResult Function(List<RestaurantData> previousRestaurants)? loadingMore,
     TResult Function(List<RestaurantReviewData> reviews)? reviews,
     TResult Function(List<RestaurantData> favorites)? favorites,
     TResult Function(Object? error, StackTrace stackTrace)? error,
@@ -192,6 +203,7 @@ class _$RestaurantViewModelLoadingImpl implements RestaurantViewModelLoading {
     required TResult Function(RestaurantViewModelLoading value) loading,
     required TResult Function(RestaurantViewModelEmpty value) empty,
     required TResult Function(RestaurantViewModelData value) data,
+    required TResult Function(RestaurantViewModelLoadingMore value) loadingMore,
     required TResult Function(RestaurantViewModelReviews value) reviews,
     required TResult Function(RestaurantViewModelFavorites value) favorites,
     required TResult Function(RestaurantViewModelError value) error,
@@ -205,6 +217,7 @@ class _$RestaurantViewModelLoadingImpl implements RestaurantViewModelLoading {
     TResult? Function(RestaurantViewModelLoading value)? loading,
     TResult? Function(RestaurantViewModelEmpty value)? empty,
     TResult? Function(RestaurantViewModelData value)? data,
+    TResult? Function(RestaurantViewModelLoadingMore value)? loadingMore,
     TResult? Function(RestaurantViewModelReviews value)? reviews,
     TResult? Function(RestaurantViewModelFavorites value)? favorites,
     TResult? Function(RestaurantViewModelError value)? error,
@@ -218,6 +231,7 @@ class _$RestaurantViewModelLoadingImpl implements RestaurantViewModelLoading {
     TResult Function(RestaurantViewModelLoading value)? loading,
     TResult Function(RestaurantViewModelEmpty value)? empty,
     TResult Function(RestaurantViewModelData value)? data,
+    TResult Function(RestaurantViewModelLoadingMore value)? loadingMore,
     TResult Function(RestaurantViewModelReviews value)? reviews,
     TResult Function(RestaurantViewModelFavorites value)? favorites,
     TResult Function(RestaurantViewModelError value)? error,
@@ -282,6 +296,8 @@ class _$RestaurantViewModelEmptyImpl implements RestaurantViewModelEmpty {
     required TResult Function() loading,
     required TResult Function() empty,
     required TResult Function(List<RestaurantData> restaurants) data,
+    required TResult Function(List<RestaurantData> previousRestaurants)
+        loadingMore,
     required TResult Function(List<RestaurantReviewData> reviews) reviews,
     required TResult Function(List<RestaurantData> favorites) favorites,
     required TResult Function(Object? error, StackTrace stackTrace) error,
@@ -295,6 +311,7 @@ class _$RestaurantViewModelEmptyImpl implements RestaurantViewModelEmpty {
     TResult? Function()? loading,
     TResult? Function()? empty,
     TResult? Function(List<RestaurantData> restaurants)? data,
+    TResult? Function(List<RestaurantData> previousRestaurants)? loadingMore,
     TResult? Function(List<RestaurantReviewData> reviews)? reviews,
     TResult? Function(List<RestaurantData> favorites)? favorites,
     TResult? Function(Object? error, StackTrace stackTrace)? error,
@@ -308,6 +325,7 @@ class _$RestaurantViewModelEmptyImpl implements RestaurantViewModelEmpty {
     TResult Function()? loading,
     TResult Function()? empty,
     TResult Function(List<RestaurantData> restaurants)? data,
+    TResult Function(List<RestaurantData> previousRestaurants)? loadingMore,
     TResult Function(List<RestaurantReviewData> reviews)? reviews,
     TResult Function(List<RestaurantData> favorites)? favorites,
     TResult Function(Object? error, StackTrace stackTrace)? error,
@@ -325,6 +343,7 @@ class _$RestaurantViewModelEmptyImpl implements RestaurantViewModelEmpty {
     required TResult Function(RestaurantViewModelLoading value) loading,
     required TResult Function(RestaurantViewModelEmpty value) empty,
     required TResult Function(RestaurantViewModelData value) data,
+    required TResult Function(RestaurantViewModelLoadingMore value) loadingMore,
     required TResult Function(RestaurantViewModelReviews value) reviews,
     required TResult Function(RestaurantViewModelFavorites value) favorites,
     required TResult Function(RestaurantViewModelError value) error,
@@ -338,6 +357,7 @@ class _$RestaurantViewModelEmptyImpl implements RestaurantViewModelEmpty {
     TResult? Function(RestaurantViewModelLoading value)? loading,
     TResult? Function(RestaurantViewModelEmpty value)? empty,
     TResult? Function(RestaurantViewModelData value)? data,
+    TResult? Function(RestaurantViewModelLoadingMore value)? loadingMore,
     TResult? Function(RestaurantViewModelReviews value)? reviews,
     TResult? Function(RestaurantViewModelFavorites value)? favorites,
     TResult? Function(RestaurantViewModelError value)? error,
@@ -351,6 +371,7 @@ class _$RestaurantViewModelEmptyImpl implements RestaurantViewModelEmpty {
     TResult Function(RestaurantViewModelLoading value)? loading,
     TResult Function(RestaurantViewModelEmpty value)? empty,
     TResult Function(RestaurantViewModelData value)? data,
+    TResult Function(RestaurantViewModelLoadingMore value)? loadingMore,
     TResult Function(RestaurantViewModelReviews value)? reviews,
     TResult Function(RestaurantViewModelFavorites value)? favorites,
     TResult Function(RestaurantViewModelError value)? error,
@@ -451,6 +472,8 @@ class _$RestaurantViewModelDataImpl implements RestaurantViewModelData {
     required TResult Function() loading,
     required TResult Function() empty,
     required TResult Function(List<RestaurantData> restaurants) data,
+    required TResult Function(List<RestaurantData> previousRestaurants)
+        loadingMore,
     required TResult Function(List<RestaurantReviewData> reviews) reviews,
     required TResult Function(List<RestaurantData> favorites) favorites,
     required TResult Function(Object? error, StackTrace stackTrace) error,
@@ -464,6 +487,7 @@ class _$RestaurantViewModelDataImpl implements RestaurantViewModelData {
     TResult? Function()? loading,
     TResult? Function()? empty,
     TResult? Function(List<RestaurantData> restaurants)? data,
+    TResult? Function(List<RestaurantData> previousRestaurants)? loadingMore,
     TResult? Function(List<RestaurantReviewData> reviews)? reviews,
     TResult? Function(List<RestaurantData> favorites)? favorites,
     TResult? Function(Object? error, StackTrace stackTrace)? error,
@@ -477,6 +501,7 @@ class _$RestaurantViewModelDataImpl implements RestaurantViewModelData {
     TResult Function()? loading,
     TResult Function()? empty,
     TResult Function(List<RestaurantData> restaurants)? data,
+    TResult Function(List<RestaurantData> previousRestaurants)? loadingMore,
     TResult Function(List<RestaurantReviewData> reviews)? reviews,
     TResult Function(List<RestaurantData> favorites)? favorites,
     TResult Function(Object? error, StackTrace stackTrace)? error,
@@ -494,6 +519,7 @@ class _$RestaurantViewModelDataImpl implements RestaurantViewModelData {
     required TResult Function(RestaurantViewModelLoading value) loading,
     required TResult Function(RestaurantViewModelEmpty value) empty,
     required TResult Function(RestaurantViewModelData value) data,
+    required TResult Function(RestaurantViewModelLoadingMore value) loadingMore,
     required TResult Function(RestaurantViewModelReviews value) reviews,
     required TResult Function(RestaurantViewModelFavorites value) favorites,
     required TResult Function(RestaurantViewModelError value) error,
@@ -507,6 +533,7 @@ class _$RestaurantViewModelDataImpl implements RestaurantViewModelData {
     TResult? Function(RestaurantViewModelLoading value)? loading,
     TResult? Function(RestaurantViewModelEmpty value)? empty,
     TResult? Function(RestaurantViewModelData value)? data,
+    TResult? Function(RestaurantViewModelLoadingMore value)? loadingMore,
     TResult? Function(RestaurantViewModelReviews value)? reviews,
     TResult? Function(RestaurantViewModelFavorites value)? favorites,
     TResult? Function(RestaurantViewModelError value)? error,
@@ -520,6 +547,7 @@ class _$RestaurantViewModelDataImpl implements RestaurantViewModelData {
     TResult Function(RestaurantViewModelLoading value)? loading,
     TResult Function(RestaurantViewModelEmpty value)? empty,
     TResult Function(RestaurantViewModelData value)? data,
+    TResult Function(RestaurantViewModelLoadingMore value)? loadingMore,
     TResult Function(RestaurantViewModelReviews value)? reviews,
     TResult Function(RestaurantViewModelFavorites value)? favorites,
     TResult Function(RestaurantViewModelError value)? error,
@@ -543,6 +571,196 @@ abstract class RestaurantViewModelData implements RestaurantViewModel {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RestaurantViewModelDataImplCopyWith<_$RestaurantViewModelDataImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$RestaurantViewModelLoadingMoreImplCopyWith<$Res> {
+  factory _$$RestaurantViewModelLoadingMoreImplCopyWith(
+          _$RestaurantViewModelLoadingMoreImpl value,
+          $Res Function(_$RestaurantViewModelLoadingMoreImpl) then) =
+      __$$RestaurantViewModelLoadingMoreImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<RestaurantData> previousRestaurants});
+}
+
+/// @nodoc
+class __$$RestaurantViewModelLoadingMoreImplCopyWithImpl<$Res>
+    extends _$RestaurantViewModelCopyWithImpl<$Res,
+        _$RestaurantViewModelLoadingMoreImpl>
+    implements _$$RestaurantViewModelLoadingMoreImplCopyWith<$Res> {
+  __$$RestaurantViewModelLoadingMoreImplCopyWithImpl(
+      _$RestaurantViewModelLoadingMoreImpl _value,
+      $Res Function(_$RestaurantViewModelLoadingMoreImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of RestaurantViewModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? previousRestaurants = null,
+  }) {
+    return _then(_$RestaurantViewModelLoadingMoreImpl(
+      previousRestaurants: null == previousRestaurants
+          ? _value._previousRestaurants
+          : previousRestaurants // ignore: cast_nullable_to_non_nullable
+              as List<RestaurantData>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$RestaurantViewModelLoadingMoreImpl
+    implements RestaurantViewModelLoadingMore {
+  const _$RestaurantViewModelLoadingMoreImpl(
+      {required final List<RestaurantData> previousRestaurants})
+      : _previousRestaurants = previousRestaurants;
+
+  final List<RestaurantData> _previousRestaurants;
+  @override
+  List<RestaurantData> get previousRestaurants {
+    if (_previousRestaurants is EqualUnmodifiableListView)
+      return _previousRestaurants;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_previousRestaurants);
+  }
+
+  @override
+  String toString() {
+    return 'RestaurantViewModel.loadingMore(previousRestaurants: $previousRestaurants)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RestaurantViewModelLoadingMoreImpl &&
+            const DeepCollectionEquality()
+                .equals(other._previousRestaurants, _previousRestaurants));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_previousRestaurants));
+
+  /// Create a copy of RestaurantViewModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RestaurantViewModelLoadingMoreImplCopyWith<
+          _$RestaurantViewModelLoadingMoreImpl>
+      get copyWith => __$$RestaurantViewModelLoadingMoreImplCopyWithImpl<
+          _$RestaurantViewModelLoadingMoreImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loading,
+    required TResult Function() empty,
+    required TResult Function(List<RestaurantData> restaurants) data,
+    required TResult Function(List<RestaurantData> previousRestaurants)
+        loadingMore,
+    required TResult Function(List<RestaurantReviewData> reviews) reviews,
+    required TResult Function(List<RestaurantData> favorites) favorites,
+    required TResult Function(Object? error, StackTrace stackTrace) error,
+  }) {
+    return loadingMore(previousRestaurants);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loading,
+    TResult? Function()? empty,
+    TResult? Function(List<RestaurantData> restaurants)? data,
+    TResult? Function(List<RestaurantData> previousRestaurants)? loadingMore,
+    TResult? Function(List<RestaurantReviewData> reviews)? reviews,
+    TResult? Function(List<RestaurantData> favorites)? favorites,
+    TResult? Function(Object? error, StackTrace stackTrace)? error,
+  }) {
+    return loadingMore?.call(previousRestaurants);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function()? empty,
+    TResult Function(List<RestaurantData> restaurants)? data,
+    TResult Function(List<RestaurantData> previousRestaurants)? loadingMore,
+    TResult Function(List<RestaurantReviewData> reviews)? reviews,
+    TResult Function(List<RestaurantData> favorites)? favorites,
+    TResult Function(Object? error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (loadingMore != null) {
+      return loadingMore(previousRestaurants);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(RestaurantViewModelLoading value) loading,
+    required TResult Function(RestaurantViewModelEmpty value) empty,
+    required TResult Function(RestaurantViewModelData value) data,
+    required TResult Function(RestaurantViewModelLoadingMore value) loadingMore,
+    required TResult Function(RestaurantViewModelReviews value) reviews,
+    required TResult Function(RestaurantViewModelFavorites value) favorites,
+    required TResult Function(RestaurantViewModelError value) error,
+  }) {
+    return loadingMore(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(RestaurantViewModelLoading value)? loading,
+    TResult? Function(RestaurantViewModelEmpty value)? empty,
+    TResult? Function(RestaurantViewModelData value)? data,
+    TResult? Function(RestaurantViewModelLoadingMore value)? loadingMore,
+    TResult? Function(RestaurantViewModelReviews value)? reviews,
+    TResult? Function(RestaurantViewModelFavorites value)? favorites,
+    TResult? Function(RestaurantViewModelError value)? error,
+  }) {
+    return loadingMore?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(RestaurantViewModelLoading value)? loading,
+    TResult Function(RestaurantViewModelEmpty value)? empty,
+    TResult Function(RestaurantViewModelData value)? data,
+    TResult Function(RestaurantViewModelLoadingMore value)? loadingMore,
+    TResult Function(RestaurantViewModelReviews value)? reviews,
+    TResult Function(RestaurantViewModelFavorites value)? favorites,
+    TResult Function(RestaurantViewModelError value)? error,
+    required TResult orElse(),
+  }) {
+    if (loadingMore != null) {
+      return loadingMore(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class RestaurantViewModelLoadingMore implements RestaurantViewModel {
+  const factory RestaurantViewModelLoadingMore(
+          {required final List<RestaurantData> previousRestaurants}) =
+      _$RestaurantViewModelLoadingMoreImpl;
+
+  List<RestaurantData> get previousRestaurants;
+
+  /// Create a copy of RestaurantViewModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$RestaurantViewModelLoadingMoreImplCopyWith<
+          _$RestaurantViewModelLoadingMoreImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -629,6 +847,8 @@ class _$RestaurantViewModelReviewsImpl implements RestaurantViewModelReviews {
     required TResult Function() loading,
     required TResult Function() empty,
     required TResult Function(List<RestaurantData> restaurants) data,
+    required TResult Function(List<RestaurantData> previousRestaurants)
+        loadingMore,
     required TResult Function(List<RestaurantReviewData> reviews) reviews,
     required TResult Function(List<RestaurantData> favorites) favorites,
     required TResult Function(Object? error, StackTrace stackTrace) error,
@@ -642,6 +862,7 @@ class _$RestaurantViewModelReviewsImpl implements RestaurantViewModelReviews {
     TResult? Function()? loading,
     TResult? Function()? empty,
     TResult? Function(List<RestaurantData> restaurants)? data,
+    TResult? Function(List<RestaurantData> previousRestaurants)? loadingMore,
     TResult? Function(List<RestaurantReviewData> reviews)? reviews,
     TResult? Function(List<RestaurantData> favorites)? favorites,
     TResult? Function(Object? error, StackTrace stackTrace)? error,
@@ -655,6 +876,7 @@ class _$RestaurantViewModelReviewsImpl implements RestaurantViewModelReviews {
     TResult Function()? loading,
     TResult Function()? empty,
     TResult Function(List<RestaurantData> restaurants)? data,
+    TResult Function(List<RestaurantData> previousRestaurants)? loadingMore,
     TResult Function(List<RestaurantReviewData> reviews)? reviews,
     TResult Function(List<RestaurantData> favorites)? favorites,
     TResult Function(Object? error, StackTrace stackTrace)? error,
@@ -672,6 +894,7 @@ class _$RestaurantViewModelReviewsImpl implements RestaurantViewModelReviews {
     required TResult Function(RestaurantViewModelLoading value) loading,
     required TResult Function(RestaurantViewModelEmpty value) empty,
     required TResult Function(RestaurantViewModelData value) data,
+    required TResult Function(RestaurantViewModelLoadingMore value) loadingMore,
     required TResult Function(RestaurantViewModelReviews value) reviews,
     required TResult Function(RestaurantViewModelFavorites value) favorites,
     required TResult Function(RestaurantViewModelError value) error,
@@ -685,6 +908,7 @@ class _$RestaurantViewModelReviewsImpl implements RestaurantViewModelReviews {
     TResult? Function(RestaurantViewModelLoading value)? loading,
     TResult? Function(RestaurantViewModelEmpty value)? empty,
     TResult? Function(RestaurantViewModelData value)? data,
+    TResult? Function(RestaurantViewModelLoadingMore value)? loadingMore,
     TResult? Function(RestaurantViewModelReviews value)? reviews,
     TResult? Function(RestaurantViewModelFavorites value)? favorites,
     TResult? Function(RestaurantViewModelError value)? error,
@@ -698,6 +922,7 @@ class _$RestaurantViewModelReviewsImpl implements RestaurantViewModelReviews {
     TResult Function(RestaurantViewModelLoading value)? loading,
     TResult Function(RestaurantViewModelEmpty value)? empty,
     TResult Function(RestaurantViewModelData value)? data,
+    TResult Function(RestaurantViewModelLoadingMore value)? loadingMore,
     TResult Function(RestaurantViewModelReviews value)? reviews,
     TResult Function(RestaurantViewModelFavorites value)? favorites,
     TResult Function(RestaurantViewModelError value)? error,
@@ -810,6 +1035,8 @@ class _$RestaurantViewModelFavoritesImpl
     required TResult Function() loading,
     required TResult Function() empty,
     required TResult Function(List<RestaurantData> restaurants) data,
+    required TResult Function(List<RestaurantData> previousRestaurants)
+        loadingMore,
     required TResult Function(List<RestaurantReviewData> reviews) reviews,
     required TResult Function(List<RestaurantData> favorites) favorites,
     required TResult Function(Object? error, StackTrace stackTrace) error,
@@ -823,6 +1050,7 @@ class _$RestaurantViewModelFavoritesImpl
     TResult? Function()? loading,
     TResult? Function()? empty,
     TResult? Function(List<RestaurantData> restaurants)? data,
+    TResult? Function(List<RestaurantData> previousRestaurants)? loadingMore,
     TResult? Function(List<RestaurantReviewData> reviews)? reviews,
     TResult? Function(List<RestaurantData> favorites)? favorites,
     TResult? Function(Object? error, StackTrace stackTrace)? error,
@@ -836,6 +1064,7 @@ class _$RestaurantViewModelFavoritesImpl
     TResult Function()? loading,
     TResult Function()? empty,
     TResult Function(List<RestaurantData> restaurants)? data,
+    TResult Function(List<RestaurantData> previousRestaurants)? loadingMore,
     TResult Function(List<RestaurantReviewData> reviews)? reviews,
     TResult Function(List<RestaurantData> favorites)? favorites,
     TResult Function(Object? error, StackTrace stackTrace)? error,
@@ -853,6 +1082,7 @@ class _$RestaurantViewModelFavoritesImpl
     required TResult Function(RestaurantViewModelLoading value) loading,
     required TResult Function(RestaurantViewModelEmpty value) empty,
     required TResult Function(RestaurantViewModelData value) data,
+    required TResult Function(RestaurantViewModelLoadingMore value) loadingMore,
     required TResult Function(RestaurantViewModelReviews value) reviews,
     required TResult Function(RestaurantViewModelFavorites value) favorites,
     required TResult Function(RestaurantViewModelError value) error,
@@ -866,6 +1096,7 @@ class _$RestaurantViewModelFavoritesImpl
     TResult? Function(RestaurantViewModelLoading value)? loading,
     TResult? Function(RestaurantViewModelEmpty value)? empty,
     TResult? Function(RestaurantViewModelData value)? data,
+    TResult? Function(RestaurantViewModelLoadingMore value)? loadingMore,
     TResult? Function(RestaurantViewModelReviews value)? reviews,
     TResult? Function(RestaurantViewModelFavorites value)? favorites,
     TResult? Function(RestaurantViewModelError value)? error,
@@ -879,6 +1110,7 @@ class _$RestaurantViewModelFavoritesImpl
     TResult Function(RestaurantViewModelLoading value)? loading,
     TResult Function(RestaurantViewModelEmpty value)? empty,
     TResult Function(RestaurantViewModelData value)? data,
+    TResult Function(RestaurantViewModelLoadingMore value)? loadingMore,
     TResult Function(RestaurantViewModelReviews value)? reviews,
     TResult Function(RestaurantViewModelFavorites value)? favorites,
     TResult Function(RestaurantViewModelError value)? error,
@@ -989,6 +1221,8 @@ class _$RestaurantViewModelErrorImpl implements RestaurantViewModelError {
     required TResult Function() loading,
     required TResult Function() empty,
     required TResult Function(List<RestaurantData> restaurants) data,
+    required TResult Function(List<RestaurantData> previousRestaurants)
+        loadingMore,
     required TResult Function(List<RestaurantReviewData> reviews) reviews,
     required TResult Function(List<RestaurantData> favorites) favorites,
     required TResult Function(Object? error, StackTrace stackTrace) error,
@@ -1002,6 +1236,7 @@ class _$RestaurantViewModelErrorImpl implements RestaurantViewModelError {
     TResult? Function()? loading,
     TResult? Function()? empty,
     TResult? Function(List<RestaurantData> restaurants)? data,
+    TResult? Function(List<RestaurantData> previousRestaurants)? loadingMore,
     TResult? Function(List<RestaurantReviewData> reviews)? reviews,
     TResult? Function(List<RestaurantData> favorites)? favorites,
     TResult? Function(Object? error, StackTrace stackTrace)? error,
@@ -1015,6 +1250,7 @@ class _$RestaurantViewModelErrorImpl implements RestaurantViewModelError {
     TResult Function()? loading,
     TResult Function()? empty,
     TResult Function(List<RestaurantData> restaurants)? data,
+    TResult Function(List<RestaurantData> previousRestaurants)? loadingMore,
     TResult Function(List<RestaurantReviewData> reviews)? reviews,
     TResult Function(List<RestaurantData> favorites)? favorites,
     TResult Function(Object? error, StackTrace stackTrace)? error,
@@ -1032,6 +1268,7 @@ class _$RestaurantViewModelErrorImpl implements RestaurantViewModelError {
     required TResult Function(RestaurantViewModelLoading value) loading,
     required TResult Function(RestaurantViewModelEmpty value) empty,
     required TResult Function(RestaurantViewModelData value) data,
+    required TResult Function(RestaurantViewModelLoadingMore value) loadingMore,
     required TResult Function(RestaurantViewModelReviews value) reviews,
     required TResult Function(RestaurantViewModelFavorites value) favorites,
     required TResult Function(RestaurantViewModelError value) error,
@@ -1045,6 +1282,7 @@ class _$RestaurantViewModelErrorImpl implements RestaurantViewModelError {
     TResult? Function(RestaurantViewModelLoading value)? loading,
     TResult? Function(RestaurantViewModelEmpty value)? empty,
     TResult? Function(RestaurantViewModelData value)? data,
+    TResult? Function(RestaurantViewModelLoadingMore value)? loadingMore,
     TResult? Function(RestaurantViewModelReviews value)? reviews,
     TResult? Function(RestaurantViewModelFavorites value)? favorites,
     TResult? Function(RestaurantViewModelError value)? error,
@@ -1058,6 +1296,7 @@ class _$RestaurantViewModelErrorImpl implements RestaurantViewModelError {
     TResult Function(RestaurantViewModelLoading value)? loading,
     TResult Function(RestaurantViewModelEmpty value)? empty,
     TResult Function(RestaurantViewModelData value)? data,
+    TResult Function(RestaurantViewModelLoadingMore value)? loadingMore,
     TResult Function(RestaurantViewModelReviews value)? reviews,
     TResult Function(RestaurantViewModelFavorites value)? favorites,
     TResult Function(RestaurantViewModelError value)? error,
