@@ -214,8 +214,7 @@ mixin _$RestaurantData {
   List<RestaurantReviewData> get reviews => throw _privateConstructorUsedError;
   List<RestaurantCategoryData> get categories =>
       throw _privateConstructorUsedError;
-  List<RestaurantLocationData> get location =>
-      throw _privateConstructorUsedError;
+  RestaurantLocationData get location => throw _privateConstructorUsedError;
   List<RestaurantAvailabilityData> get hours =>
       throw _privateConstructorUsedError;
   dynamic get isFavorite => throw _privateConstructorUsedError;
@@ -244,9 +243,11 @@ abstract class $RestaurantDataCopyWith<$Res> {
       List<String> photos,
       List<RestaurantReviewData> reviews,
       List<RestaurantCategoryData> categories,
-      List<RestaurantLocationData> location,
+      RestaurantLocationData location,
       List<RestaurantAvailabilityData> hours,
       dynamic isFavorite});
+
+  $RestaurantLocationDataCopyWith<$Res> get location;
 }
 
 /// @nodoc
@@ -307,7 +308,7 @@ class _$RestaurantDataCopyWithImpl<$Res, $Val extends RestaurantData>
       location: null == location
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
-              as List<RestaurantLocationData>,
+              as RestaurantLocationData,
       hours: null == hours
           ? _value.hours
           : hours // ignore: cast_nullable_to_non_nullable
@@ -317,6 +318,16 @@ class _$RestaurantDataCopyWithImpl<$Res, $Val extends RestaurantData>
           : isFavorite // ignore: cast_nullable_to_non_nullable
               as dynamic,
     ) as $Val);
+  }
+
+  /// Create a copy of RestaurantData
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $RestaurantLocationDataCopyWith<$Res> get location {
+    return $RestaurantLocationDataCopyWith<$Res>(_value.location, (value) {
+      return _then(_value.copyWith(location: value) as $Val);
+    });
   }
 }
 
@@ -336,9 +347,12 @@ abstract class _$$RestaurantDataImplCopyWith<$Res>
       List<String> photos,
       List<RestaurantReviewData> reviews,
       List<RestaurantCategoryData> categories,
-      List<RestaurantLocationData> location,
+      RestaurantLocationData location,
       List<RestaurantAvailabilityData> hours,
       dynamic isFavorite});
+
+  @override
+  $RestaurantLocationDataCopyWith<$Res> get location;
 }
 
 /// @nodoc
@@ -395,9 +409,9 @@ class __$$RestaurantDataImplCopyWithImpl<$Res>
           : categories // ignore: cast_nullable_to_non_nullable
               as List<RestaurantCategoryData>,
       location: null == location
-          ? _value._location
+          ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
-              as List<RestaurantLocationData>,
+              as RestaurantLocationData,
       hours: null == hours
           ? _value._hours
           : hours // ignore: cast_nullable_to_non_nullable
@@ -409,7 +423,7 @@ class __$$RestaurantDataImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$RestaurantDataImpl implements _RestaurantData {
+class _$RestaurantDataImpl extends _RestaurantData {
   const _$RestaurantDataImpl(
       {required this.id,
       required this.name,
@@ -418,14 +432,14 @@ class _$RestaurantDataImpl implements _RestaurantData {
       required final List<String> photos,
       required final List<RestaurantReviewData> reviews,
       required final List<RestaurantCategoryData> categories,
-      required final List<RestaurantLocationData> location,
+      required this.location,
       required final List<RestaurantAvailabilityData> hours,
       this.isFavorite = false})
       : _photos = photos,
         _reviews = reviews,
         _categories = categories,
-        _location = location,
-        _hours = hours;
+        _hours = hours,
+        super._();
 
   factory _$RestaurantDataImpl.fromJson(Map<String, dynamic> json) =>
       _$$RestaurantDataImplFromJson(json);
@@ -462,14 +476,8 @@ class _$RestaurantDataImpl implements _RestaurantData {
     return EqualUnmodifiableListView(_categories);
   }
 
-  final List<RestaurantLocationData> _location;
   @override
-  List<RestaurantLocationData> get location {
-    if (_location is EqualUnmodifiableListView) return _location;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_location);
-  }
-
+  final RestaurantLocationData location;
   final List<RestaurantAvailabilityData> _hours;
   @override
   List<RestaurantAvailabilityData> get hours {
@@ -500,7 +508,8 @@ class _$RestaurantDataImpl implements _RestaurantData {
             const DeepCollectionEquality().equals(other._reviews, _reviews) &&
             const DeepCollectionEquality()
                 .equals(other._categories, _categories) &&
-            const DeepCollectionEquality().equals(other._location, _location) &&
+            (identical(other.location, location) ||
+                other.location == location) &&
             const DeepCollectionEquality().equals(other._hours, _hours) &&
             const DeepCollectionEquality()
                 .equals(other.isFavorite, isFavorite));
@@ -517,7 +526,7 @@ class _$RestaurantDataImpl implements _RestaurantData {
       const DeepCollectionEquality().hash(_photos),
       const DeepCollectionEquality().hash(_reviews),
       const DeepCollectionEquality().hash(_categories),
-      const DeepCollectionEquality().hash(_location),
+      location,
       const DeepCollectionEquality().hash(_hours),
       const DeepCollectionEquality().hash(isFavorite));
 
@@ -538,7 +547,7 @@ class _$RestaurantDataImpl implements _RestaurantData {
   }
 }
 
-abstract class _RestaurantData implements RestaurantData {
+abstract class _RestaurantData extends RestaurantData {
   const factory _RestaurantData(
       {required final String id,
       required final String name,
@@ -547,9 +556,10 @@ abstract class _RestaurantData implements RestaurantData {
       required final List<String> photos,
       required final List<RestaurantReviewData> reviews,
       required final List<RestaurantCategoryData> categories,
-      required final List<RestaurantLocationData> location,
+      required final RestaurantLocationData location,
       required final List<RestaurantAvailabilityData> hours,
       final dynamic isFavorite}) = _$RestaurantDataImpl;
+  const _RestaurantData._() : super._();
 
   factory _RestaurantData.fromJson(Map<String, dynamic> json) =
       _$RestaurantDataImpl.fromJson;
@@ -569,7 +579,7 @@ abstract class _RestaurantData implements RestaurantData {
   @override
   List<RestaurantCategoryData> get categories;
   @override
-  List<RestaurantLocationData> get location;
+  RestaurantLocationData get location;
   @override
   List<RestaurantAvailabilityData> get hours;
   @override
@@ -592,7 +602,7 @@ mixin _$UserData {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   @JsonKey(name: 'image_url')
-  String get imageUrl => throw _privateConstructorUsedError;
+  String? get imageUrl => throw _privateConstructorUsedError;
 
   /// Serializes this UserData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -610,7 +620,7 @@ abstract class $UserDataCopyWith<$Res> {
       _$UserDataCopyWithImpl<$Res, UserData>;
   @useResult
   $Res call(
-      {String id, String name, @JsonKey(name: 'image_url') String imageUrl});
+      {String id, String name, @JsonKey(name: 'image_url') String? imageUrl});
 }
 
 /// @nodoc
@@ -630,7 +640,7 @@ class _$UserDataCopyWithImpl<$Res, $Val extends UserData>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? imageUrl = null,
+    Object? imageUrl = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -641,10 +651,10 @@ class _$UserDataCopyWithImpl<$Res, $Val extends UserData>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      imageUrl: null == imageUrl
+      imageUrl: freezed == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -658,7 +668,7 @@ abstract class _$$UserDataImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id, String name, @JsonKey(name: 'image_url') String imageUrl});
+      {String id, String name, @JsonKey(name: 'image_url') String? imageUrl});
 }
 
 /// @nodoc
@@ -676,7 +686,7 @@ class __$$UserDataImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? imageUrl = null,
+    Object? imageUrl = freezed,
   }) {
     return _then(_$UserDataImpl(
       id: null == id
@@ -687,10 +697,10 @@ class __$$UserDataImplCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      imageUrl: null == imageUrl
+      imageUrl: freezed == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -701,7 +711,7 @@ class _$UserDataImpl implements _UserData {
   const _$UserDataImpl(
       {required this.id,
       required this.name,
-      @JsonKey(name: 'image_url') required this.imageUrl});
+      @JsonKey(name: 'image_url') this.imageUrl});
 
   factory _$UserDataImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserDataImplFromJson(json);
@@ -712,7 +722,7 @@ class _$UserDataImpl implements _UserData {
   final String name;
   @override
   @JsonKey(name: 'image_url')
-  final String imageUrl;
+  final String? imageUrl;
 
   @override
   String toString() {
@@ -752,10 +762,9 @@ class _$UserDataImpl implements _UserData {
 
 abstract class _UserData implements UserData {
   const factory _UserData(
-          {required final String id,
-          required final String name,
-          @JsonKey(name: 'image_url') required final String imageUrl}) =
-      _$UserDataImpl;
+      {required final String id,
+      required final String name,
+      @JsonKey(name: 'image_url') final String? imageUrl}) = _$UserDataImpl;
 
   factory _UserData.fromJson(Map<String, dynamic> json) =
       _$UserDataImpl.fromJson;
@@ -766,7 +775,7 @@ abstract class _UserData implements UserData {
   String get name;
   @override
   @JsonKey(name: 'image_url')
-  String get imageUrl;
+  String? get imageUrl;
 
   /// Create a copy of UserData
   /// with the given fields replaced by the non-null parameter values.

@@ -50,6 +50,8 @@ final class RestaurantRepository extends RestaurantDataSource {
             ),
           ),
         );
+
+        return _pagesCache[offset]!.restaurants;
       }
 
       return [];

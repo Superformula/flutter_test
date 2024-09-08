@@ -23,10 +23,17 @@ class RestaurantData with _$RestaurantData {
     required List<String> photos,
     required List<RestaurantReviewData> reviews,
     required List<RestaurantCategoryData> categories,
-    required List<RestaurantLocationData> location,
+    required RestaurantLocationData location,
     required List<RestaurantAvailabilityData> hours,
     @Default(false) isFavorite,
   }) = _RestaurantData;
+
+  const RestaurantData._();
+
+  bool get isOpen => hours.firstOrNull?.isNowOpen ?? false;
+  String? get photoUrl => photos.firstOrNull;
+  String? get address => location.address;
+  String? get category => categories.firstOrNull?.title;
 
   factory RestaurantData.fromJson(Map<String, Object?> json) => _$RestaurantDataFromJson(json);
 }
@@ -36,7 +43,7 @@ class UserData with _$UserData {
   const factory UserData({
     required String id,
     required String name,
-    @JsonKey(name: 'image_url') required String imageUrl,
+    @JsonKey(name: 'image_url') String? imageUrl,
   }) = _UserData;
 
   factory UserData.fromJson(Map<String, Object?> json) => _$UserDataFromJson(json);

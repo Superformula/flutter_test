@@ -37,10 +37,8 @@ _$RestaurantDataImpl _$$RestaurantDataImplFromJson(Map<String, dynamic> json) =>
           .map(
               (e) => RestaurantCategoryData.fromJson(e as Map<String, dynamic>))
           .toList(),
-      location: (json['location'] as List<dynamic>)
-          .map(
-              (e) => RestaurantLocationData.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      location: RestaurantLocationData.fromJson(
+          json['location'] as Map<String, dynamic>),
       hours: (json['hours'] as List<dynamic>)
           .map((e) =>
               RestaurantAvailabilityData.fromJson(e as Map<String, dynamic>))
@@ -67,7 +65,7 @@ _$UserDataImpl _$$UserDataImplFromJson(Map<String, dynamic> json) =>
     _$UserDataImpl(
       id: json['id'] as String,
       name: json['name'] as String,
-      imageUrl: json['image_url'] as String,
+      imageUrl: json['image_url'] as String?,
     );
 
 Map<String, dynamic> _$$UserDataImplToJson(_$UserDataImpl instance) =>

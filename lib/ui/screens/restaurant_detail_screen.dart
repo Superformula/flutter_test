@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:restaurant_tour/models/restaurant.dart';
+import 'package:restaurant_tour/data/models/restaurant_data.dart';
 import 'package:restaurant_tour/typography.dart';
 import 'package:restaurant_tour/ui/widgets/rating.dart';
 import 'package:restaurant_tour/ui/widgets/restaurant_availability.dart';
@@ -11,7 +11,7 @@ final class RestaurantDetailScreen extends StatefulWidget {
     required this.restaurant,
   });
 
-  final Restaurant restaurant;
+  final RestaurantData restaurant;
 
   @override
   State<RestaurantDetailScreen> createState() => _RestaurantDetailScreenState();
@@ -35,7 +35,7 @@ final class _RestaurantDetailScreenState extends State<RestaurantDetailScreen> {
         centerTitle: true,
         elevation: 0,
         title: Text(
-          restaurant.name ?? '',
+          restaurant.name,
           style: AppTextStyles.loraRegularHeadline,
           softWrap: true,
           overflow: TextOverflow.ellipsis,
@@ -71,10 +71,9 @@ final class _RestaurantDetailScreenState extends State<RestaurantDetailScreen> {
                       style: AppTextStyles.openRegularText,
                       child: Row(
                         children: [
-                          if (restaurant.price case final price?) Text(price),
-                          //Text(restaurant.displayCategory),
+                          Text(restaurant.price ),
                           const Gap(4),
-                          const Text('Italian'),
+                          if (restaurant.category case final category?) Text(category),
                         ],
                       ),
                     ),
@@ -85,11 +84,11 @@ final class _RestaurantDetailScreenState extends State<RestaurantDetailScreen> {
               ),
               const Gap(24),
               divider,
-              //if (restaurant.location?.formattedAddress case final address?) //
-              RestaurantAddress(address: restaurant.location?.formattedAddress ?? ''),
+              if (restaurant.address case final address?) //
+                RestaurantAddress(address: address),
               const Gap(24),
               divider,
-              RestaurantOverallRating(rating: restaurant.rating ?? 0),
+              RestaurantOverallRating(rating: restaurant.rating),
               const Gap(24),
               divider,
               const Gap(24),

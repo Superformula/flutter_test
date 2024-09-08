@@ -1,28 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_tour/models/restaurant.dart';
-import 'package:restaurant_tour/repositories/yelp_repository.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:restaurant_tour/controllers/restaurant_view_controller.dart';
 import 'package:restaurant_tour/typography.dart';
 
 import 'restaurants_list_screen.dart';
 
 final class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({
+    super.key,
+    required this.viewController,
+  });
+
+  final RestaurantViewController viewController;
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  late final Future<RestaurantQueryResult?> initializationFuture;
-  late final YelpRepository repository;
+  late final viewController = widget.viewController;
 
   @override
   void initState() {
     super.initState();
 
-    repository = YelpRepository();
-    // Just for testing purpose
-    initializationFuture = repository.getRestaurants();
+    viewController.getRestaurants();
   }
 
   @override
@@ -61,23 +63,17 @@ class _HomeScreenState extends State<HomeScreen> {
         body: SafeArea(
           child: TabBarView(
             children: [
-              FutureBuilder(
-                future: initializationFuture,
-                builder: (context, snapshot) {
-                  final Widget content;
-
-                  if (snapshot.data case RestaurantQueryResult(restaurants: final restaurants?) when snapshot.hasData) {
-                    content = RestaurantsList(restaurants: restaurants);
-                  } else {
-                    content = const Center(
-                      // TODO: fix color
-                      child: CircularProgressIndicator(),
-                    );
-                  }
-
+              BlocBuilder<RestaurantViewController, RestaurantViewModel>(
+                bloc: viewController,
+                builder: (context, state) {
+                  
                   return AnimatedSwitcher(
                     duration: const Duration(milliseconds: 350),
-                    child: content,
+                    child: switch (state) {
+                      RestaurantViewModelLoading() => const Center(child: CircularProgressIndicator()),
+                      RestaurantViewModelData(restaurants: final restaurants) => RestaurantsList(restaurants: restaurants),
+                      _ => const Center(child: Text('TODO')), // TODO: fix
+                    },
                   );
                 },
               ),

@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:restaurant_tour/models/restaurant.dart';
+import 'package:restaurant_tour/data/models/restaurant_data.dart';
 import 'package:restaurant_tour/typography.dart';
 import 'package:restaurant_tour/ui/widgets/rating.dart';
 import 'package:restaurant_tour/ui/widgets/restaurant_availability.dart';
@@ -11,9 +11,12 @@ import 'restaurant_detail_screen.dart';
 
 @visibleForTesting
 final class RestaurantCard extends StatelessWidget {
-  const RestaurantCard({super.key, required this.restaurant});
+  const RestaurantCard({
+    super.key,
+    required this.restaurant,
+  });
 
-  final Restaurant restaurant;
+  final RestaurantData restaurant;
 
   @override
   Widget build(BuildContext context) {
@@ -39,9 +42,9 @@ final class RestaurantCard extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              if (restaurant.photos case final photos? when photos.isNotEmpty) //
+              if (restaurant.photoUrl case final photoUrl?) //
                 CachedNetworkImage(
-                  imageUrl: photos.first,
+                  imageUrl: photoUrl,
                   imageBuilder: (context, imageProvider) {
                     return Container(
                       height: 88,
@@ -80,22 +83,20 @@ final class RestaurantCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    if (restaurant.name case final name?)
-                      Text(
-                        name,
-                        style: AppTextStyles.loraRegularTitle,
-                        softWrap: true,
-                        overflow: TextOverflow.ellipsis,
-                      ),
+                    Text(
+                      restaurant.name,
+                      style: AppTextStyles.loraRegularTitle,
+                      softWrap: true,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                     const Gap(4),
                     DefaultTextStyle(
                       style: AppTextStyles.openRegularText,
                       child: Row(
                         children: [
-                          if (restaurant.price case final price?) Text(price),
-                          //Text(restaurant.displayCategory),
+                          Text(restaurant.price),
                           const Gap(4),
-                          const Text('Italian'),
+                          if (restaurant.category case final category?) Text(category),
                         ],
                       ),
                     ),
@@ -103,10 +104,9 @@ final class RestaurantCard extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        if (restaurant.rating case final rating?)
-                          Ratings(
-                            count: rating.toInt(),
-                          ),
+                        Ratings(
+                          count: restaurant.rating.toInt(),
+                        ),
                         // extract
                         RestaurantAvailability(isRestaurantOpen: restaurant.isOpen),
                       ],
@@ -128,10 +128,12 @@ final class RestaurantsList extends StatelessWidget {
     required this.restaurants,
   });
 
-  final List<Restaurant> restaurants;
+  final List<RestaurantData> restaurants;
 
   @override
   Widget build(BuildContext context) {
+
+    
     return ListView.separated(
       padding: const EdgeInsets.all(12),
       itemCount: restaurants.length,
