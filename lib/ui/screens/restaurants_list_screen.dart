@@ -7,11 +7,13 @@ final class RestaurantsListScreen extends StatefulWidget {
   const RestaurantsListScreen({
     super.key,
     required this.viewController,
-    required this.onSelectFavoriteCallback,
+    required this.onSelectFavorite,
+    required this.onLoadSingleFavorite,
   });
 
   final RestaurantViewController viewController;
-  final OnSelectFavoriteCallback onSelectFavoriteCallback;
+  final OnSelectFavoriteCallback onSelectFavorite;
+  final OnLoadSingleFavorite onLoadSingleFavorite;
 
   @override
   State<RestaurantsListScreen> createState() => _RestaurantsListScreenState();
@@ -34,6 +36,7 @@ class _RestaurantsListScreenState extends State<RestaurantsListScreen> with Auto
     return BlocBuilder<RestaurantViewController, RestaurantViewModel>(
       bloc: viewController,
       builder: (context, state) {
+        print('__ build');
         // TODO fix
         Widget content = const SizedBox.shrink();
 
@@ -43,7 +46,8 @@ class _RestaurantsListScreenState extends State<RestaurantsListScreen> with Auto
           if (state is RestaurantViewModelData) {
             content = RestaurantsList(
               restaurants: state.restaurants,
-              onSelectFavorite: widget.onSelectFavoriteCallback,
+              onSelectFavorite: widget.onSelectFavorite,
+              onLoadSingleFavorite: widget.onLoadSingleFavorite,
             );
           }
         }
@@ -55,8 +59,7 @@ class _RestaurantsListScreenState extends State<RestaurantsListScreen> with Auto
       },
     );
   }
-  
+
   @override
-  // TODO: implement wantKeepAlive
   bool get wantKeepAlive => true;
 }

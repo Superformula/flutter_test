@@ -71,11 +71,13 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               RestaurantsListScreen(
                 viewController: restaurantViewController,
-                onSelectFavoriteCallback: seletcRestaurantAsFavorite,
+                onSelectFavorite: seletcRestaurantAsFavorite,
+                onLoadSingleFavorite: favoriteRestaurantViewController.getSingleFavoriteRestaurant,
               ),
               FavoriteRestaurantsScreen(
                 viewController: favoriteRestaurantViewController,
                 onSelectFavorite: seletcRestaurantAsFavorite,
+                onLoadSingleFavorite: favoriteRestaurantViewController.getSingleFavoriteRestaurant,
               ),
             ],
           ),

@@ -8,10 +8,12 @@ final class FavoriteRestaurantsScreen extends StatefulWidget {
     super.key,
     required this.viewController,
     required this.onSelectFavorite,
+    required this.onLoadSingleFavorite,
   });
 
   final FavoriteRestaurantViewController viewController;
   final OnSelectFavoriteCallback onSelectFavorite;
+  final OnLoadSingleFavorite onLoadSingleFavorite;
 
   @override
   State<FavoriteRestaurantsScreen> createState() => _FavoriteRestaurantsScreenState();
@@ -33,8 +35,6 @@ class _FavoriteRestaurantsScreenState extends State<FavoriteRestaurantsScreen> w
     return BlocBuilder<FavoriteRestaurantViewController, FavoriteRestaurantViewModel>(
       bloc: viewController,
       builder: (context, state) {
-        print('__ state is ${state.runtimeType}');
-
         return AnimatedSwitcher(
           duration: const Duration(milliseconds: 350),
           child: switch (state) {
@@ -42,6 +42,7 @@ class _FavoriteRestaurantsScreenState extends State<FavoriteRestaurantsScreen> w
             FavoriteRestaurantViewModelData(favorites: final restaurants) => RestaurantsList(
                 restaurants: restaurants,
                 onSelectFavorite: widget.onSelectFavorite,
+                onLoadSingleFavorite: widget.onLoadSingleFavorite,
               ),
             _ => const Center(child: Text('TODO')), // TODO: fix
           },
@@ -51,6 +52,5 @@ class _FavoriteRestaurantsScreenState extends State<FavoriteRestaurantsScreen> w
   }
 
   @override
-  // TODO: implement wantKeepAlive
   bool get wantKeepAlive => true;
 }

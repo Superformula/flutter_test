@@ -9,6 +9,7 @@ import 'package:restaurant_tour/ui/widgets/rating.dart';
 import 'package:restaurant_tour/ui/widgets/restaurant_availability.dart';
 import 'package:shimmer/shimmer.dart';
 
+typedef OnLoadSingleFavorite = RestaurantData? Function({required String restaurantId});
 typedef OnSelectFavoriteCallback = Future<void> Function(RestaurantData, bool);
 
 final class RestaurantsList extends StatefulWidget {
@@ -16,10 +17,12 @@ final class RestaurantsList extends StatefulWidget {
     super.key,
     required this.restaurants,
     required this.onSelectFavorite,
+    required this.onLoadSingleFavorite,
   });
 
   final List<RestaurantData> restaurants;
   final OnSelectFavoriteCallback onSelectFavorite;
+  final OnLoadSingleFavorite onLoadSingleFavorite;
 
   @override
   State<RestaurantsList> createState() => _RestaurantsListState();
@@ -35,6 +38,7 @@ class _RestaurantsListState extends State<RestaurantsList> {
         return RestaurantCard(
           restaurant: widget.restaurants[index],
           onSelectFavorite: widget.onSelectFavorite,
+          onLoadSingleFavorite: widget.onLoadSingleFavorite,
         );
       },
       separatorBuilder: (BuildContext context, int index) => const Gap(12),
@@ -47,10 +51,12 @@ final class RestaurantCard extends StatelessWidget {
     super.key,
     required this.restaurant,
     required this.onSelectFavorite,
+    required this.onLoadSingleFavorite,
   });
 
   final RestaurantData restaurant;
   final OnSelectFavoriteCallback onSelectFavorite;
+  final OnLoadSingleFavorite onLoadSingleFavorite;
 
   @override
   Widget build(BuildContext context) {
@@ -62,8 +68,9 @@ final class RestaurantCard extends StatelessWidget {
             settings: const RouteSettings(name: 'restaurant-details'),
             builder: (context) {
               return RestaurantDetailScreen(
-                restaurant: restaurant,
+                restaurantId: restaurant.id,
                 onSelectFavorite: onSelectFavorite,
+                onLoadSingleFavorite: onLoadSingleFavorite,
               );
             },
           ),

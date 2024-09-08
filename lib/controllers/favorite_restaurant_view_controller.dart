@@ -2,8 +2,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:logging/logging.dart';
 import 'package:restaurant_tour/domain/favorite_restaurant_use_case.dart';
-import 'package:restaurant_tour/domain/get_restaurant_reviews.dart';
-import 'package:restaurant_tour/domain/list_restaurants_use_case.dart';
 import 'package:restaurant_tour/models/restaurant_data.dart';
 
 part 'favorite_restaurant_view_controller.freezed.dart';
@@ -34,6 +32,10 @@ final class FavoriteRestaurantViewController extends Cubit<FavoriteRestaurantVie
 
   Future<void> getFavoriteRestaurants() async {
     emit(FavoriteRestaurantViewModel.data(favorites: favoritesRestaurantsUseCase.favorites));
+  }
+
+  RestaurantData? getSingleFavoriteRestaurant({required  String restaurantId}) {
+    return favoritesRestaurantsUseCase.getSingleFavoriteRestaurant(restaurantId: restaurantId);
   }
 
   Future<void> favoritateRestaurant({required String restaurantId, required int offset, bool isFavorite = false}) async {

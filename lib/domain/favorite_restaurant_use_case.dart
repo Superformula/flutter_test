@@ -6,6 +6,10 @@ final class FavoritesRestaurantsUseCase {
 
   final RestaurantRepository repository;
 
+  RestaurantData? getSingleFavoriteRestaurant({required String restaurantId}) {
+    return repository.getSingleFavoriteRestaurantOr(restaurantId: restaurantId);
+  }
+
   List<RestaurantData> get favorites => repository.favorites;
 
   Future<void> call({required int offset, required String restaurantId, bool isFavorite = false}) async {

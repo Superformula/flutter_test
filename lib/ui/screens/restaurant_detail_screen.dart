@@ -12,12 +12,14 @@ import 'package:intersperse/intersperse.dart';
 final class RestaurantDetailScreen extends StatefulWidget {
   const RestaurantDetailScreen({
     super.key,
-    required this.restaurant,
+    required this.restaurantId,
     required this.onSelectFavorite,
+    required this.onLoadSingleFavorite,
   });
 
-  final RestaurantData restaurant;
+  final String restaurantId;
   final OnSelectFavoriteCallback onSelectFavorite;
+  final OnLoadSingleFavorite onLoadSingleFavorite;
 
   @override
   State<RestaurantDetailScreen> createState() => _RestaurantDetailScreenState();
@@ -32,10 +34,21 @@ final class _RestaurantDetailScreenState extends State<RestaurantDetailScreen> {
     endIndent: 24,
   );
 
+  late bool isFavoriteRestaurant;
+  late final RestaurantData restaurant;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    if (widget.onLoadSingleFavorite(restaurantId: widget.restaurantId) case final restaurantData?) {
+      restaurant = restaurantData;
+      isFavoriteRestaurant = restaurantData.isFavorite;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final restaurant = widget.restaurant;
-
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -50,12 +63,13 @@ final class _RestaurantDetailScreenState extends State<RestaurantDetailScreen> {
           IconButton(
             onPressed: () {
               setState(() {
-                widget.onSelectFavorite(restaurant, !restaurant.isFavorite);
+                isFavoriteRestaurant = !isFavoriteRestaurant;
+                widget.onSelectFavorite(restaurant, isFavoriteRestaurant);
               });
             },
             icon: AnimatedSwitcher(
               duration: const Duration(milliseconds: 350),
-              child: restaurant.isFavorite //
+              child: isFavoriteRestaurant //
                   ? const Icon(
                       key: Key('favorite'),
                       Icons.favorite,

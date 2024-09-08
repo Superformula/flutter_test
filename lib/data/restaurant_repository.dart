@@ -1,4 +1,3 @@
-
 import 'package:restaurant_tour/models/restaurant_data.dart';
 
 import 'restaurant_data_source.dart';
@@ -92,17 +91,20 @@ final class RestaurantRepository extends RestaurantDataSource {
             if (restaurant.id == restaurantId) restaurant.copyWith(isFavorite: isFavorite) else restaurant,
         ];
 
-        _pagesCache[offset] = RestaurantPage(offset: offset, restaurants: restaurants);
+        final page = RestaurantPage(offset: offset, restaurants: restaurants);
 
-        /*
-        await localDataSource.addRestaurants(
-          page: RestaurantPage(offset: offset, restaurants: restaurants),
-        );*/
+        _pagesCache[offset] = page;
+
+        await localDataSource.addRestaurants(page: page);
       }
     }
   }
 
   List<RestaurantData> get favorites {
     return _restaurantsCache.values.where((restaurant) => restaurant.isFavorite).toList(growable: false);
+  }
+
+  RestaurantData? getSingleFavoriteRestaurantOr({required String restaurantId}) {
+    return _restaurantsCache[restaurantId];
   }
 }
