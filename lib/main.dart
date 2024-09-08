@@ -1,53 +1,61 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_tour/repositories/yelp_repository.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:provider/provider.dart';
+import 'package:restaurant_tour/viewmodels/favorites_viewmodel.dart';
+import 'package:restaurant_tour/viewmodels/yelp_list_viewmodel.dart';
+import 'package:restaurant_tour/views/homepage.dart';
 
-void main() {
-  runApp(const RestaurantTour());
+void main() async {
+  await dotenv.load(fileName: ".env");
+  runApp(
+      MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (_) => YelpListViewModel()),
+          ChangeNotifierProvider(create: (_) => FavoritesViewModel()),
+        ],
+        child: RestaurantTour(),
+      ),
+  );
 }
 
 class RestaurantTour extends StatelessWidget {
-  const RestaurantTour({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'Restaurant Tour',
-      home: HomePage(),
-    );
-  }
-}
-
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text('Restaurant Tour'),
-            ElevatedButton(
-              child: const Text('Fetch Restaurants'),
-              onPressed: () async {
-                final yelpRepo = YelpRepository();
-
-                try {
-                  final result = await yelpRepo.getRestaurants();
-                  if (result != null) {
-                    print('Fetched ${result.restaurants!.length} restaurants');
-                  } else {
-                    print('No restaurants fetched');
-                  }
-                } catch (e) {
-                  print('Failed to fetch restaurants: $e');
-                }
-              },
-            ),
-          ],
+      theme: ThemeData(
+        fontFamily: 'Lora', // Set Lora as the default font for the entire app
+        textTheme: const TextTheme(
+          titleMedium: TextStyle(
+            fontFamily: 'Lora',
+            fontSize: 16.0,
+          ),
+          bodyLarge: TextStyle(
+            fontFamily: 'OpenSans',
+            fontWeight: FontWeight.w400,
+            fontSize: 16,
+            color: Colors.black,
+          ),
+          bodyMedium: TextStyle(
+            fontFamily: 'OpenSans',
+            fontWeight: FontWeight.w600,
+            fontSize: 14,
+            color: Colors.black,
+          ),
+          bodySmall: TextStyle(
+            fontFamily: 'OpenSans',
+            fontWeight: FontWeight.w400,
+            fontSize: 12,
+            color: Colors.black,
+          ),
+        ),
+        dividerTheme: DividerThemeData(
+          thickness: 1,
+          color: Color(0xFFEEEEEE),
+          space: 1, // Height of the divider (same as space around it)
         ),
       ),
+      home: HomePage(),
     );
   }
 }

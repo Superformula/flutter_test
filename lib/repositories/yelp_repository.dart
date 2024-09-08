@@ -1,8 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:restaurant_tour/models/restaurant.dart';
+import 'package:restaurant_tour/utils/curl_interceptor.dart';
+import 'package:restaurant_tour/utils/mock_interceptor.dart';
 
-const _apiKey = '<PUT YOUR API KEY HERE>';
+final String _apiKey = dotenv.env['API_KEY'] ?? '';
 
 class YelpRepository {
   late Dio dio;
@@ -10,15 +13,23 @@ class YelpRepository {
   YelpRepository({
     @visibleForTesting Dio? dio,
   }) : dio = dio ??
-            Dio(
-              BaseOptions(
-                baseUrl: 'https://api.yelp.com',
-                headers: {
-                  'Authorization': 'Bearer $_apiKey',
-                  'Content-Type': 'application/graphql',
-                },
-              ),
-            );
+      Dio(
+        BaseOptions(
+          baseUrl: 'https://api.yelp.com',
+          headers: {
+            'Authorization': 'Bearer $_apiKey',
+            'Content-Type': 'application/graphql',
+            'Accept': 'application/json',
+          },
+        ),
+      ) {
+    // Add the CurlInterceptor to log requests in cURL format
+    //this.dio.interceptors.add(CurlInterceptor());
+    // Check if we are in staging mode by checking an environment variable
+    if (dotenv.env['STAGING'] == 'true') {
+      this.dio.interceptors.add(MockInterceptor()); // Add the mock interceptor in staging
+    }
+  }
 
   /// Returns a response in this shape
   /// {
@@ -75,7 +86,7 @@ class YelpRepository {
   String _getQuery(int offset) {
     return '''
 query getRestaurants {
-  search(location: "Las Vegas", limit: 20, offset: $offset) {
+  search(location: "Las Vegas", limit: 20, offset: $offset, locale: "en_US") {
     total    
     business {
       id
@@ -107,5 +118,64 @@ query getRestaurants {
   }
 }
 ''';
+  }
+  /// Fetches a single restaurant by its ID
+  Future<Restaurant?> getRestaurantById(String id) async {
+    try {
+      final response = await dio.post<Map<String, dynamic>>(
+        '/v3/graphql',
+        data: _getFavoriteQuery(id),
+      );
+      return Restaurant.fromJson(response.data!['data']['business']);
+    } catch (e) {
+      return null;
+    }
+  }
+
+  /// Helper method to create a GraphQL query for fetching a restaurant by its ID
+  String _getFavoriteQuery(String id) {
+    return '''
+query getRestaurant {
+  business(id: "$id") {
+    id
+    name
+    price
+    rating
+    photos
+    reviews {
+      id
+      rating
+      text
+      user {
+        id
+        image_url
+        name
+      }
+    }
+    categories {
+      title
+      alias
+    }
+    hours {
+      is_open_now
+    }
+    location {
+      formatted_address
+    }
+  }
+}
+''';
+  }
+
+  /// Fetches multiple restaurants by their IDs by calling the API for each restaurant
+  Future<List<Restaurant>?> getRestaurantsByIds(List<String> ids) async {
+    List<Restaurant> restaurants = [];
+    for (String id in ids) {
+      final restaurant = await getRestaurantById(id);
+      if (restaurant != null) {
+        restaurants.add(restaurant);
+      }
+    }
+    return restaurants.isNotEmpty ? restaurants : null;
   }
 }
