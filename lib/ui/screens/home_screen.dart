@@ -1,4 +1,9 @@
+import 'dart:async';
+
+import 'package:flash/flash.dart';
+import 'package:flash/flash_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:restaurant_tour/controllers/favorite_restaurant_view_controller.dart';
 import 'package:restaurant_tour/controllers/restaurant_view_controller.dart';
 import 'package:restaurant_tour/models/restaurant_data.dart';
@@ -24,6 +29,32 @@ final class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   late final restaurantViewController = widget.restaurantViewController;
   late final favoriteRestaurantViewController = widget.favoriteRestaurantViewController;
+  late final connectionChecker = InternetConnectionChecker();
+  late StreamSubscription<InternetConnectionStatus>? connectionCheckerSubscription;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    connectionCheckerSubscription = connectionChecker.onStatusChange.listen(
+      (status) {
+        if (status == InternetConnectionStatus.disconnected) {
+          if (mounted) {
+            context.showErrorBar(
+              position: FlashPosition.top,
+              content: const Text('No internet connection available.\nTry again later.'),
+              duration: const Duration(seconds: 6),
+            );
+          }
+        }
+      },
+    );
+  }
+
+  @override
+  void dispose() {
+    connectionCheckerSubscription?.cancel();
+    super.dispose();
+  }
 
   Future<void> seletcRestaurantAsFavorite(RestaurantData restaurant, bool isFavorite) async {
     await favoriteRestaurantViewController.favoritateRestaurant(
