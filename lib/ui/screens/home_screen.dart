@@ -35,51 +35,56 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          automaticallyImplyLeading: false,
-          centerTitle: true,
-          elevation: 4,
-          shadowColor: const Color(0xff000033),
-          title: const Text(
-            'RestauranTour',
-            style: AppTextStyles.loraRegularHeadline,
-          ),
-          bottom: const PreferredSize(
-            preferredSize: Size.fromHeight(56),
-            child: DefaultTextStyle(
-              style: AppTextStyles.openRegularTitleSemiBold,
-              child: TabBar(
-                labelPadding: EdgeInsets.all(8),
-                tabAlignment: TabAlignment.center,
-                dividerColor: Colors.transparent,
-                labelColor: Colors.black,
-                indicatorColor: Colors.black,
-                tabs: [
-                  Text('All Restaurants'),
-                  Text('My Favorites'),
-                ],
+    return Theme(
+      data: Theme.of(context).copyWith(
+        progressIndicatorTheme: const ProgressIndicatorThemeData(color: Colors.black),
+      ),
+      child: DefaultTabController(
+        length: 2,
+        child: Scaffold(
+          appBar: AppBar(
+            backgroundColor: Colors.white,
+            automaticallyImplyLeading: false,
+            centerTitle: true,
+            elevation: 4,
+            shadowColor: const Color(0xff000033),
+            title: const Text(
+              'RestauranTour',
+              style: AppTextStyles.loraRegularHeadline,
+            ),
+            bottom: const PreferredSize(
+              preferredSize: Size.fromHeight(56),
+              child: DefaultTextStyle(
+                style: AppTextStyles.openRegularTitleSemiBold,
+                child: TabBar(
+                  labelPadding: EdgeInsets.all(8),
+                  tabAlignment: TabAlignment.center,
+                  dividerColor: Colors.transparent,
+                  labelColor: Colors.black,
+                  indicatorColor: Colors.black,
+                  tabs: [
+                    Text('All Restaurants'),
+                    Text('My Favorites'),
+                  ],
+                ),
               ),
             ),
           ),
-        ),
-        body: SafeArea(
-          child: TabBarView(
-            children: [
-              RestaurantsListScreen(
-                viewController: restaurantViewController,
-                onSelectFavorite: seletcRestaurantAsFavorite,
-                onLoadSingleFavorite: favoriteRestaurantViewController.getSingleFavoriteRestaurant,
-              ),
-              FavoriteRestaurantsScreen(
-                viewController: favoriteRestaurantViewController,
-                onSelectFavorite: seletcRestaurantAsFavorite,
-                onLoadSingleFavorite: favoriteRestaurantViewController.getSingleFavoriteRestaurant,
-              ),
-            ],
+          body: SafeArea(
+            child: TabBarView(
+              children: [
+                RestaurantsListScreen(
+                  viewController: restaurantViewController,
+                  onSelectFavorite: seletcRestaurantAsFavorite,
+                  onLoadSingleFavorite: favoriteRestaurantViewController.getSingleFavoriteRestaurant,
+                ),
+                FavoriteRestaurantsScreen(
+                  viewController: favoriteRestaurantViewController,
+                  onSelectFavorite: seletcRestaurantAsFavorite,
+                  onLoadSingleFavorite: favoriteRestaurantViewController.getSingleFavoriteRestaurant,
+                ),
+              ],
+            ),
           ),
         ),
       ),
