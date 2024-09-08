@@ -2,84 +2,103 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:restaurant_tour/configuration/environment.dart';
 
+import 'models/restaurant_data.dart';
+
+final class RestaurantPage {
+  RestaurantPage({required this.offset, required this.restaurants});
+
+  final int offset;
+  final List<RestaurantData> restaurants;
+}
+
 /// Provides a common interface to access information about restaurants
-abstract interface class RestaurantDataSource {
+abstract class RestaurantDataSource {
   // TODO: doc and maybe create policy
-  void addRestaurants({required Map<int, List<void>> restaurants});
-  Future<void> getRestaurants({required int offset});
-  Future<void> getReviewsForRestaurant({required String id});
+  Future<void> addRestaurants({required RestaurantPage page}) async {}
+  Future<List<RestaurantReviewData>> getReviewsForRestaurant({required String restaurantId}) async => [];
+
+  Future<List<RestaurantData>> getRestaurants({required int offset, int limit = 1});
   Future<void> dispose();
 }
 
 /// A data source capable of loading restaurant information from the backend
-final class RemoteRestaurantDataSource implements RestaurantDataSource {
+/// 
+/// It works as if it were in read-only mode, since we do not mutate data.
+final class RemoteRestaurantDataSource extends RestaurantDataSource {
   RemoteRestaurantDataSource({@visibleForOverriding Dio? client}) : source = client ?? Environment.createDioClient();
 
   final Dio source;
 
   @override
-  Future<void> getRestaurants({required int offset}) {
-    // TODO: implement getRestaurants
-    throw UnimplementedError();
+  Future<List<RestaurantData>> getRestaurants({required int offset, int limit = 1}) async {
+    final query = '''
+query getRestaurants {
+  search(location: "Las Vegas", limit: $limit, offset: $offset) {
+    total    
+    business {
+      id
+      name
+      price
+      rating
+      photos
+      reviews {
+        id
+        rating
+        text
+        user {
+          id
+          image_url
+          name
+        }
+      }
+      categories {
+        title
+        alias
+      }
+      hours {
+        is_open_now
+      }
+      location {
+        formatted_address
+      }
+    }
   }
+}
+''';
 
-  @override
-  Future<void> getReviewsForRestaurant({required String id}) {
-    // TODO: implement getReviewsForRestaurant
-    throw UnimplementedError();
+    final response = await source.post<Map<String, Object?>>('/v3/graphql', data: query);
+
+    if (response.data?['data'] case final Map<String, Object?> data?) {
+      if (data['search'] case final Map<String, Object?> search) {
+        final queryData = RestaurantDataQuery.fromJson(search);
+        return queryData.restaurants;
+      }
+    }
+
+    return [];
   }
 
   @override
   Future<void> dispose() async => source.close();
-
-  @override
-  void addRestaurants({required Map<int, List<void>> restaurants}) {
-    // TODO: implement addRestaurants
-  }
 }
 
-/// A data source that stores restaurant information for fast access
-final class InMemoryRestaurantDataSource implements RestaurantDataSource {
-  final cache = {};
-
-  @override
-  Future<void> getRestaurants({required int offset}) {
-    // TODO: implement getRestaurants
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<void> getReviewsForRestaurant({required String id}) {
-    // TODO: implement getReviewsForRestaurant
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<void> dispose() async => cache.clear();
-
-  @override
-  void addRestaurants({required Map<int, List<void>> restaurants}) {
-    // TODO: implement addRestaurants
-  }
-}
-
+// TODO: fill in implementation
 /// A data source that permanently stores all possible data about restaurants already loaded
 final class InStorageRestaurantDataSource implements RestaurantDataSource {
   @override
-  void addRestaurants({required Map<int, List<void>> restaurants}) {}
+  Future<void> addRestaurants({required RestaurantPage page}) async {}
 
   @override
-  Future<void> dispose() {
-    throw UnimplementedError();
+  Future<void> dispose() async {
   }
 
   @override
-  Future<void> getRestaurants({required int offset}) {
-    throw UnimplementedError();
+  Future<List<RestaurantData>> getRestaurants({required int offset, int limit = 1}) async {
+    return [];
   }
 
   @override
-  Future<void> getReviewsForRestaurant({required String id}) {
-    throw UnimplementedError();
+  Future<List<RestaurantReviewData>> getReviewsForRestaurant({required String restaurantId}) async {
+    return [];
   }
 }

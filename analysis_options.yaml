@@ -3,8 +3,10 @@ analyzer:
   errors:
     todo: ignore
     include_file_not_found: ignore
+    invalid_annotation_target: ignore
   exclude:
-    - '**/*.g.dart'
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
 linter:
   rules:
     ## The following rules are excluded only to keep compatibility with our previous lint set (pedantic).
