@@ -18,6 +18,3 @@ was not the case.
 For this project, I choose to follow the Android Architecture guidelines and use a MVVM approach, but adapted to work in a reactive environment such as Flutter. The state management was done using bloc.
 
 The details of the followed architecture can be see here: https://developer.android.com/topic/architecture/ui-layer
-
-# How to become a tester
-
