@@ -1,5 +1,7 @@
 # RestaurantTour App
 
+[![Development Env](https://github.com/BrunoGiacoboPinto/flutter_test/actions/workflows/dev.yaml/badge.svg)](https://github.com/BrunoGiacoboPinto/flutter_test/actions/workflows/dev.yaml)
+
 In order to run the app, one must provide the Yelp API key as well as the API endpoint as follows:
 
 ```bash
