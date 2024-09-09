@@ -6,8 +6,10 @@ import 'package:flutter/foundation.dart';
 import 'package:hive/hive.dart';
 import 'package:restaurant_tour/configuration/environment.dart';
 import 'package:restaurant_tour/models/restaurant_data.dart';
-import 'package:uuid/v4.dart';
 
+/// An associationg between restaurants and an [offset]
+///
+/// A [RestaurantPage] is considered the smallest unit of pagination.
 final class RestaurantPage {
   RestaurantPage({required this.offset, required this.restaurants});
 
@@ -17,11 +19,16 @@ final class RestaurantPage {
 
 /// Provides a common interface to access information about restaurants
 abstract class RestaurantDataSource {
-  // TODO: doc and maybe create policy
+  /// Saves restaurants associated with an offset
   Future<void> addRestaurants({required RestaurantPage page}) async {}
+
+  /// Gets all available reviews for a restaurant with the given [restaurantId]
   Future<List<RestaurantReviewData>> getReviewsForRestaurant({required String restaurantId}) async => [];
 
+  /// Load restaurants for a given [offset] observing a [limit]
   Future<List<RestaurantData>> getRestaurants({required int offset, int limit = 20});
+
+  /// Disposes of any unecessary resource
   Future<void> dispose();
 }
 
@@ -32,8 +39,6 @@ class RemoteRestaurantDataSource extends RestaurantDataSource {
   RemoteRestaurantDataSource({@visibleForOverriding Dio? client}) : source = client ?? Environment.createDioClient();
 
   final Dio source;
-
-  static const uuid = UuidV4();
 
   @override
   Future<List<RestaurantData>> getRestaurants({required int offset, int limit = 20}) async {
@@ -88,9 +93,8 @@ query getRestaurants {
   Future<void> dispose() async => source.close();
 }
 
-// TODO: fill in implementation
 /// A data source that permanently stores all possible data about restaurants already loaded
-class InStorageRestaurantDataSource implements RestaurantDataSource {
+class InStorageRestaurantDataSource extends RestaurantDataSource {
   InStorageRestaurantDataSource() {
     boxInitializer = Completer();
     boxInitializer.complete(Hive.openLazyBox<String>(kRestaurantsBox));
@@ -146,10 +150,5 @@ class InStorageRestaurantDataSource implements RestaurantDataSource {
     } else {
       return [];
     }
-  }
-
-  @override
-  Future<List<RestaurantReviewData>> getReviewsForRestaurant({required String restaurantId}) async {
-    return [];
   }
 }
