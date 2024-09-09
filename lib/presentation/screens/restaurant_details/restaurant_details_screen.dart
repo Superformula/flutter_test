@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_tour/domain/models/restaurant.dart';
-import 'package:restaurant_tour/domain/models/review.dart';
-import 'package:restaurant_tour/domain/models/user.dart';
 import 'package:restaurant_tour/presentation/components/review_card.dart';
 
 import 'package:restaurant_tour/core/theme/colors.dart';
@@ -109,8 +107,7 @@ class _RestaurantDetailsScreenState extends State<RestaurantDetailsScreen> {
                   ),
                 ),
                 Text(
-                  widget.restaurant.location?.formattedAddress ??
-                      "102 Lakeside Ave Seattle, WA 98122",
+                  widget.restaurant.location?.formattedAddress ?? "",
                   style: AppTextStyles.openRegularTitleSemiBold,
                 ),
                 const Padding(
@@ -165,22 +162,12 @@ class _RestaurantDetailsScreenState extends State<RestaurantDetailsScreen> {
                     ),
                   ),
                   itemBuilder: (context, index) {
-                    return const ReviewCard(
-                      review: Review(
-                        id: 'asdasdasd',
-                        rating: 4,
-                        text:
-                            "Review text goes here. Review text goes here. Review text goes here. This is a review. This is a review. This is a review that is 4 lines long.",
-                        user: User(
-                          id: "asdasd",
-                          name: "User name",
-                          imageUrl: "https://via.placeholder.com/150",
-                        ),
-                      ),
+                    final review = widget.restaurant.reviews![index];
+                    return ReviewCard(
+                      review: review,
                     );
                   },
                 ),
-
                 //-- Reviews
               ],
             ),

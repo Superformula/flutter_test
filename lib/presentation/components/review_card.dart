@@ -31,7 +31,7 @@ class ReviewCard extends StatelessWidget {
                 shape: BoxShape.circle,
                 image: DecorationImage(
                   image: NetworkImage(
-                    review.user!.imageUrl!,
+                    review.user!.imageUrl ?? 'https://eu.ui-avatars.com/api/?name=${review.user!.name!.split('').join('+')}&size=250',
                   ),
                   fit: BoxFit.cover,
                 ),
