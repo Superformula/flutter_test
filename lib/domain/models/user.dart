@@ -1,11 +1,11 @@
 class User {
   final String? id;
-  final String? imageUrl;
+  final String imageUrl;
   final String? name;
 
-  const User({
+   User({
     this.id,
-    this.imageUrl,
+    String? imageUrl,
     this.name,
-  });
+  }) : imageUrl = imageUrl ?? 'https://eu.ui-avatars.com/api/?name=${name?.split('').join('+')}&size=250'  ;
 }
