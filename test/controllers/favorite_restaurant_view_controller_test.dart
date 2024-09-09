@@ -90,7 +90,7 @@ void main() {
               hours: [],
               isFavorite: true,
             ),
-            ...greatestRestaurants.sublist(1)
+            ...greatestRestaurants.sublist(1),
           ];
         });
 

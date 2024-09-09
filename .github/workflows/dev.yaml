@@ -15,5 +15,11 @@ jobs:
       - uses: subosito/flutter-action@v1
         with:
           channel: stable
+      - name: Check formatting
+        run: dart format -l 1000 --set-exit-if-changed -o none lib test
+      - name: Analyze code
+        run: flutter analyze --no-congratulate
+      - name: Generate code
+        run: dart run build_runner build -d
       - name: Test Project
         run: flutter test
