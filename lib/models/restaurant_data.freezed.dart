@@ -11,8 +11,7 @@ part of 'restaurant_data.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+final _privateConstructorUsedError = UnsupportedError('It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 RestaurantDataQuery _$RestaurantDataQueryFromJson(Map<String, dynamic> json) {
   return _RestaurantDataQuery.fromJson(json);
@@ -30,23 +29,18 @@ mixin _$RestaurantDataQuery {
   /// Create a copy of RestaurantDataQuery
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $RestaurantDataQueryCopyWith<RestaurantDataQuery> get copyWith =>
-      throw _privateConstructorUsedError;
+  $RestaurantDataQueryCopyWith<RestaurantDataQuery> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $RestaurantDataQueryCopyWith<$Res> {
-  factory $RestaurantDataQueryCopyWith(
-          RestaurantDataQuery value, $Res Function(RestaurantDataQuery) then) =
-      _$RestaurantDataQueryCopyWithImpl<$Res, RestaurantDataQuery>;
+  factory $RestaurantDataQueryCopyWith(RestaurantDataQuery value, $Res Function(RestaurantDataQuery) then) = _$RestaurantDataQueryCopyWithImpl<$Res, RestaurantDataQuery>;
   @useResult
-  $Res call(
-      {int total, @JsonKey(name: 'business') List<RestaurantData> restaurants});
+  $Res call({int total, @JsonKey(name: 'business') List<RestaurantData> restaurants});
 }
 
 /// @nodoc
-class _$RestaurantDataQueryCopyWithImpl<$Res, $Val extends RestaurantDataQuery>
-    implements $RestaurantDataQueryCopyWith<$Res> {
+class _$RestaurantDataQueryCopyWithImpl<$Res, $Val extends RestaurantDataQuery> implements $RestaurantDataQueryCopyWith<$Res> {
   _$RestaurantDataQueryCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -76,24 +70,16 @@ class _$RestaurantDataQueryCopyWithImpl<$Res, $Val extends RestaurantDataQuery>
 }
 
 /// @nodoc
-abstract class _$$RestaurantDataQueryImplCopyWith<$Res>
-    implements $RestaurantDataQueryCopyWith<$Res> {
-  factory _$$RestaurantDataQueryImplCopyWith(_$RestaurantDataQueryImpl value,
-          $Res Function(_$RestaurantDataQueryImpl) then) =
-      __$$RestaurantDataQueryImplCopyWithImpl<$Res>;
+abstract class _$$RestaurantDataQueryImplCopyWith<$Res> implements $RestaurantDataQueryCopyWith<$Res> {
+  factory _$$RestaurantDataQueryImplCopyWith(_$RestaurantDataQueryImpl value, $Res Function(_$RestaurantDataQueryImpl) then) = __$$RestaurantDataQueryImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {int total, @JsonKey(name: 'business') List<RestaurantData> restaurants});
+  $Res call({int total, @JsonKey(name: 'business') List<RestaurantData> restaurants});
 }
 
 /// @nodoc
-class __$$RestaurantDataQueryImplCopyWithImpl<$Res>
-    extends _$RestaurantDataQueryCopyWithImpl<$Res, _$RestaurantDataQueryImpl>
-    implements _$$RestaurantDataQueryImplCopyWith<$Res> {
-  __$$RestaurantDataQueryImplCopyWithImpl(_$RestaurantDataQueryImpl _value,
-      $Res Function(_$RestaurantDataQueryImpl) _then)
-      : super(_value, _then);
+class __$$RestaurantDataQueryImplCopyWithImpl<$Res> extends _$RestaurantDataQueryCopyWithImpl<$Res, _$RestaurantDataQueryImpl> implements _$$RestaurantDataQueryImplCopyWith<$Res> {
+  __$$RestaurantDataQueryImplCopyWithImpl(_$RestaurantDataQueryImpl _value, $Res Function(_$RestaurantDataQueryImpl) _then) : super(_value, _then);
 
   /// Create a copy of RestaurantDataQuery
   /// with the given fields replaced by the non-null parameter values.
@@ -119,14 +105,9 @@ class __$$RestaurantDataQueryImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$RestaurantDataQueryImpl implements _RestaurantDataQuery {
-  const _$RestaurantDataQueryImpl(
-      {required this.total,
-      @JsonKey(name: 'business')
-      required final List<RestaurantData> restaurants})
-      : _restaurants = restaurants;
+  const _$RestaurantDataQueryImpl({required this.total, @JsonKey(name: 'business') required final List<RestaurantData> restaurants}) : _restaurants = restaurants;
 
-  factory _$RestaurantDataQueryImpl.fromJson(Map<String, dynamic> json) =>
-      _$$RestaurantDataQueryImplFromJson(json);
+  factory _$RestaurantDataQueryImpl.fromJson(Map<String, dynamic> json) => _$$RestaurantDataQueryImplFromJson(json);
 
   @override
   final int total;
@@ -146,27 +127,19 @@ class _$RestaurantDataQueryImpl implements _RestaurantDataQuery {
 
   @override
   bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$RestaurantDataQueryImpl &&
-            (identical(other.total, total) || other.total == total) &&
-            const DeepCollectionEquality()
-                .equals(other._restaurants, _restaurants));
+    return identical(this, other) || (other.runtimeType == runtimeType && other is _$RestaurantDataQueryImpl && (identical(other.total, total) || other.total == total) && const DeepCollectionEquality().equals(other._restaurants, _restaurants));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, total, const DeepCollectionEquality().hash(_restaurants));
+  int get hashCode => Object.hash(runtimeType, total, const DeepCollectionEquality().hash(_restaurants));
 
   /// Create a copy of RestaurantDataQuery
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$RestaurantDataQueryImplCopyWith<_$RestaurantDataQueryImpl> get copyWith =>
-      __$$RestaurantDataQueryImplCopyWithImpl<_$RestaurantDataQueryImpl>(
-          this, _$identity);
+  _$$RestaurantDataQueryImplCopyWith<_$RestaurantDataQueryImpl> get copyWith => __$$RestaurantDataQueryImplCopyWithImpl<_$RestaurantDataQueryImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -177,14 +150,9 @@ class _$RestaurantDataQueryImpl implements _RestaurantDataQuery {
 }
 
 abstract class _RestaurantDataQuery implements RestaurantDataQuery {
-  const factory _RestaurantDataQuery(
-          {required final int total,
-          @JsonKey(name: 'business')
-          required final List<RestaurantData> restaurants}) =
-      _$RestaurantDataQueryImpl;
+  const factory _RestaurantDataQuery({required final int total, @JsonKey(name: 'business') required final List<RestaurantData> restaurants}) = _$RestaurantDataQueryImpl;
 
-  factory _RestaurantDataQuery.fromJson(Map<String, dynamic> json) =
-      _$RestaurantDataQueryImpl.fromJson;
+  factory _RestaurantDataQuery.fromJson(Map<String, dynamic> json) = _$RestaurantDataQueryImpl.fromJson;
 
   @override
   int get total;
@@ -196,8 +164,7 @@ abstract class _RestaurantDataQuery implements RestaurantDataQuery {
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$RestaurantDataQueryImplCopyWith<_$RestaurantDataQueryImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$RestaurantDataQueryImplCopyWith<_$RestaurantDataQueryImpl> get copyWith => throw _privateConstructorUsedError;
 }
 
 RestaurantData _$RestaurantDataFromJson(Map<String, dynamic> json) {
@@ -212,11 +179,9 @@ mixin _$RestaurantData {
   double get rating => throw _privateConstructorUsedError;
   List<String> get photos => throw _privateConstructorUsedError;
   List<RestaurantReviewData> get reviews => throw _privateConstructorUsedError;
-  List<RestaurantCategoryData> get categories =>
-      throw _privateConstructorUsedError;
+  List<RestaurantCategoryData> get categories => throw _privateConstructorUsedError;
   RestaurantLocationData get location => throw _privateConstructorUsedError;
-  List<RestaurantAvailabilityData> get hours =>
-      throw _privateConstructorUsedError;
+  List<RestaurantAvailabilityData> get hours => throw _privateConstructorUsedError;
   dynamic get isFavorite => throw _privateConstructorUsedError;
 
   /// Serializes this RestaurantData to a JSON map.
@@ -225,34 +190,20 @@ mixin _$RestaurantData {
   /// Create a copy of RestaurantData
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $RestaurantDataCopyWith<RestaurantData> get copyWith =>
-      throw _privateConstructorUsedError;
+  $RestaurantDataCopyWith<RestaurantData> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $RestaurantDataCopyWith<$Res> {
-  factory $RestaurantDataCopyWith(
-          RestaurantData value, $Res Function(RestaurantData) then) =
-      _$RestaurantDataCopyWithImpl<$Res, RestaurantData>;
+  factory $RestaurantDataCopyWith(RestaurantData value, $Res Function(RestaurantData) then) = _$RestaurantDataCopyWithImpl<$Res, RestaurantData>;
   @useResult
-  $Res call(
-      {String id,
-      String name,
-      String price,
-      double rating,
-      List<String> photos,
-      List<RestaurantReviewData> reviews,
-      List<RestaurantCategoryData> categories,
-      RestaurantLocationData location,
-      List<RestaurantAvailabilityData> hours,
-      dynamic isFavorite});
+  $Res call({String id, String name, String price, double rating, List<String> photos, List<RestaurantReviewData> reviews, List<RestaurantCategoryData> categories, RestaurantLocationData location, List<RestaurantAvailabilityData> hours, dynamic isFavorite});
 
   $RestaurantLocationDataCopyWith<$Res> get location;
 }
 
 /// @nodoc
-class _$RestaurantDataCopyWithImpl<$Res, $Val extends RestaurantData>
-    implements $RestaurantDataCopyWith<$Res> {
+class _$RestaurantDataCopyWithImpl<$Res, $Val extends RestaurantData> implements $RestaurantDataCopyWith<$Res> {
   _$RestaurantDataCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -332,36 +283,19 @@ class _$RestaurantDataCopyWithImpl<$Res, $Val extends RestaurantData>
 }
 
 /// @nodoc
-abstract class _$$RestaurantDataImplCopyWith<$Res>
-    implements $RestaurantDataCopyWith<$Res> {
-  factory _$$RestaurantDataImplCopyWith(_$RestaurantDataImpl value,
-          $Res Function(_$RestaurantDataImpl) then) =
-      __$$RestaurantDataImplCopyWithImpl<$Res>;
+abstract class _$$RestaurantDataImplCopyWith<$Res> implements $RestaurantDataCopyWith<$Res> {
+  factory _$$RestaurantDataImplCopyWith(_$RestaurantDataImpl value, $Res Function(_$RestaurantDataImpl) then) = __$$RestaurantDataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String id,
-      String name,
-      String price,
-      double rating,
-      List<String> photos,
-      List<RestaurantReviewData> reviews,
-      List<RestaurantCategoryData> categories,
-      RestaurantLocationData location,
-      List<RestaurantAvailabilityData> hours,
-      dynamic isFavorite});
+  $Res call({String id, String name, String price, double rating, List<String> photos, List<RestaurantReviewData> reviews, List<RestaurantCategoryData> categories, RestaurantLocationData location, List<RestaurantAvailabilityData> hours, dynamic isFavorite});
 
   @override
   $RestaurantLocationDataCopyWith<$Res> get location;
 }
 
 /// @nodoc
-class __$$RestaurantDataImplCopyWithImpl<$Res>
-    extends _$RestaurantDataCopyWithImpl<$Res, _$RestaurantDataImpl>
-    implements _$$RestaurantDataImplCopyWith<$Res> {
-  __$$RestaurantDataImplCopyWithImpl(
-      _$RestaurantDataImpl _value, $Res Function(_$RestaurantDataImpl) _then)
-      : super(_value, _then);
+class __$$RestaurantDataImplCopyWithImpl<$Res> extends _$RestaurantDataCopyWithImpl<$Res, _$RestaurantDataImpl> implements _$$RestaurantDataImplCopyWith<$Res> {
+  __$$RestaurantDataImplCopyWithImpl(_$RestaurantDataImpl _value, $Res Function(_$RestaurantDataImpl) _then) : super(_value, _then);
 
   /// Create a copy of RestaurantData
   /// with the given fields replaced by the non-null parameter values.
@@ -424,25 +358,14 @@ class __$$RestaurantDataImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$RestaurantDataImpl extends _RestaurantData {
-  const _$RestaurantDataImpl(
-      {required this.id,
-      required this.name,
-      required this.price,
-      required this.rating,
-      required final List<String> photos,
-      required final List<RestaurantReviewData> reviews,
-      required final List<RestaurantCategoryData> categories,
-      required this.location,
-      required final List<RestaurantAvailabilityData> hours,
-      this.isFavorite = false})
+  const _$RestaurantDataImpl({required this.id, required this.name, required this.price, required this.rating, required final List<String> photos, required final List<RestaurantReviewData> reviews, required final List<RestaurantCategoryData> categories, required this.location, required final List<RestaurantAvailabilityData> hours, this.isFavorite = false})
       : _photos = photos,
         _reviews = reviews,
         _categories = categories,
         _hours = hours,
         super._();
 
-  factory _$RestaurantDataImpl.fromJson(Map<String, dynamic> json) =>
-      _$$RestaurantDataImplFromJson(json);
+  factory _$RestaurantDataImpl.fromJson(Map<String, dynamic> json) => _$$RestaurantDataImplFromJson(json);
 
   @override
   final String id;
@@ -497,47 +420,19 @@ class _$RestaurantDataImpl extends _RestaurantData {
 
   @override
   bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$RestaurantDataImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.price, price) || other.price == price) &&
-            (identical(other.rating, rating) || other.rating == rating) &&
-            const DeepCollectionEquality().equals(other._photos, _photos) &&
-            const DeepCollectionEquality().equals(other._reviews, _reviews) &&
-            const DeepCollectionEquality()
-                .equals(other._categories, _categories) &&
-            (identical(other.location, location) ||
-                other.location == location) &&
-            const DeepCollectionEquality().equals(other._hours, _hours) &&
-            const DeepCollectionEquality()
-                .equals(other.isFavorite, isFavorite));
+    return identical(this, other) || (other.runtimeType == runtimeType && other is _$RestaurantDataImpl && (identical(other.id, id) || other.id == id) && (identical(other.name, name) || other.name == name) && (identical(other.price, price) || other.price == price) && (identical(other.rating, rating) || other.rating == rating) && const DeepCollectionEquality().equals(other._photos, _photos) && const DeepCollectionEquality().equals(other._reviews, _reviews) && const DeepCollectionEquality().equals(other._categories, _categories) && (identical(other.location, location) || other.location == location) && const DeepCollectionEquality().equals(other._hours, _hours) && const DeepCollectionEquality().equals(other.isFavorite, isFavorite));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      name,
-      price,
-      rating,
-      const DeepCollectionEquality().hash(_photos),
-      const DeepCollectionEquality().hash(_reviews),
-      const DeepCollectionEquality().hash(_categories),
-      location,
-      const DeepCollectionEquality().hash(_hours),
-      const DeepCollectionEquality().hash(isFavorite));
+  int get hashCode => Object.hash(runtimeType, id, name, price, rating, const DeepCollectionEquality().hash(_photos), const DeepCollectionEquality().hash(_reviews), const DeepCollectionEquality().hash(_categories), location, const DeepCollectionEquality().hash(_hours), const DeepCollectionEquality().hash(isFavorite));
 
   /// Create a copy of RestaurantData
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$RestaurantDataImplCopyWith<_$RestaurantDataImpl> get copyWith =>
-      __$$RestaurantDataImplCopyWithImpl<_$RestaurantDataImpl>(
-          this, _$identity);
+  _$$RestaurantDataImplCopyWith<_$RestaurantDataImpl> get copyWith => __$$RestaurantDataImplCopyWithImpl<_$RestaurantDataImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -548,21 +443,10 @@ class _$RestaurantDataImpl extends _RestaurantData {
 }
 
 abstract class _RestaurantData extends RestaurantData {
-  const factory _RestaurantData(
-      {required final String id,
-      required final String name,
-      required final String price,
-      required final double rating,
-      required final List<String> photos,
-      required final List<RestaurantReviewData> reviews,
-      required final List<RestaurantCategoryData> categories,
-      required final RestaurantLocationData location,
-      required final List<RestaurantAvailabilityData> hours,
-      final dynamic isFavorite}) = _$RestaurantDataImpl;
+  const factory _RestaurantData({required final String id, required final String name, required final String price, required final double rating, required final List<String> photos, required final List<RestaurantReviewData> reviews, required final List<RestaurantCategoryData> categories, required final RestaurantLocationData location, required final List<RestaurantAvailabilityData> hours, final dynamic isFavorite}) = _$RestaurantDataImpl;
   const _RestaurantData._() : super._();
 
-  factory _RestaurantData.fromJson(Map<String, dynamic> json) =
-      _$RestaurantDataImpl.fromJson;
+  factory _RestaurantData.fromJson(Map<String, dynamic> json) = _$RestaurantDataImpl.fromJson;
 
   @override
   String get id;
@@ -589,8 +473,7 @@ abstract class _RestaurantData extends RestaurantData {
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$RestaurantDataImplCopyWith<_$RestaurantDataImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$RestaurantDataImplCopyWith<_$RestaurantDataImpl> get copyWith => throw _privateConstructorUsedError;
 }
 
 UserData _$UserDataFromJson(Map<String, dynamic> json) {
@@ -610,22 +493,18 @@ mixin _$UserData {
   /// Create a copy of UserData
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $UserDataCopyWith<UserData> get copyWith =>
-      throw _privateConstructorUsedError;
+  $UserDataCopyWith<UserData> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $UserDataCopyWith<$Res> {
-  factory $UserDataCopyWith(UserData value, $Res Function(UserData) then) =
-      _$UserDataCopyWithImpl<$Res, UserData>;
+  factory $UserDataCopyWith(UserData value, $Res Function(UserData) then) = _$UserDataCopyWithImpl<$Res, UserData>;
   @useResult
-  $Res call(
-      {String id, String name, @JsonKey(name: 'image_url') String? imageUrl});
+  $Res call({String id, String name, @JsonKey(name: 'image_url') String? imageUrl});
 }
 
 /// @nodoc
-class _$UserDataCopyWithImpl<$Res, $Val extends UserData>
-    implements $UserDataCopyWith<$Res> {
+class _$UserDataCopyWithImpl<$Res, $Val extends UserData> implements $UserDataCopyWith<$Res> {
   _$UserDataCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -660,24 +539,16 @@ class _$UserDataCopyWithImpl<$Res, $Val extends UserData>
 }
 
 /// @nodoc
-abstract class _$$UserDataImplCopyWith<$Res>
-    implements $UserDataCopyWith<$Res> {
-  factory _$$UserDataImplCopyWith(
-          _$UserDataImpl value, $Res Function(_$UserDataImpl) then) =
-      __$$UserDataImplCopyWithImpl<$Res>;
+abstract class _$$UserDataImplCopyWith<$Res> implements $UserDataCopyWith<$Res> {
+  factory _$$UserDataImplCopyWith(_$UserDataImpl value, $Res Function(_$UserDataImpl) then) = __$$UserDataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String id, String name, @JsonKey(name: 'image_url') String? imageUrl});
+  $Res call({String id, String name, @JsonKey(name: 'image_url') String? imageUrl});
 }
 
 /// @nodoc
-class __$$UserDataImplCopyWithImpl<$Res>
-    extends _$UserDataCopyWithImpl<$Res, _$UserDataImpl>
-    implements _$$UserDataImplCopyWith<$Res> {
-  __$$UserDataImplCopyWithImpl(
-      _$UserDataImpl _value, $Res Function(_$UserDataImpl) _then)
-      : super(_value, _then);
+class __$$UserDataImplCopyWithImpl<$Res> extends _$UserDataCopyWithImpl<$Res, _$UserDataImpl> implements _$$UserDataImplCopyWith<$Res> {
+  __$$UserDataImplCopyWithImpl(_$UserDataImpl _value, $Res Function(_$UserDataImpl) _then) : super(_value, _then);
 
   /// Create a copy of UserData
   /// with the given fields replaced by the non-null parameter values.
@@ -708,13 +579,9 @@ class __$$UserDataImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$UserDataImpl implements _UserData {
-  const _$UserDataImpl(
-      {required this.id,
-      required this.name,
-      @JsonKey(name: 'image_url') this.imageUrl});
+  const _$UserDataImpl({required this.id, required this.name, @JsonKey(name: 'image_url') this.imageUrl});
 
-  factory _$UserDataImpl.fromJson(Map<String, dynamic> json) =>
-      _$$UserDataImplFromJson(json);
+  factory _$UserDataImpl.fromJson(Map<String, dynamic> json) => _$$UserDataImplFromJson(json);
 
   @override
   final String id;
@@ -731,13 +598,7 @@ class _$UserDataImpl implements _UserData {
 
   @override
   bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$UserDataImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.imageUrl, imageUrl) ||
-                other.imageUrl == imageUrl));
+    return identical(this, other) || (other.runtimeType == runtimeType && other is _$UserDataImpl && (identical(other.id, id) || other.id == id) && (identical(other.name, name) || other.name == name) && (identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -749,8 +610,7 @@ class _$UserDataImpl implements _UserData {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$UserDataImplCopyWith<_$UserDataImpl> get copyWith =>
-      __$$UserDataImplCopyWithImpl<_$UserDataImpl>(this, _$identity);
+  _$$UserDataImplCopyWith<_$UserDataImpl> get copyWith => __$$UserDataImplCopyWithImpl<_$UserDataImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -761,13 +621,9 @@ class _$UserDataImpl implements _UserData {
 }
 
 abstract class _UserData implements UserData {
-  const factory _UserData(
-      {required final String id,
-      required final String name,
-      @JsonKey(name: 'image_url') final String? imageUrl}) = _$UserDataImpl;
+  const factory _UserData({required final String id, required final String name, @JsonKey(name: 'image_url') final String? imageUrl}) = _$UserDataImpl;
 
-  factory _UserData.fromJson(Map<String, dynamic> json) =
-      _$UserDataImpl.fromJson;
+  factory _UserData.fromJson(Map<String, dynamic> json) = _$UserDataImpl.fromJson;
 
   @override
   String get id;
@@ -781,8 +637,7 @@ abstract class _UserData implements UserData {
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$UserDataImplCopyWith<_$UserDataImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$UserDataImplCopyWith<_$UserDataImpl> get copyWith => throw _privateConstructorUsedError;
 }
 
 RestaurantReviewData _$RestaurantReviewDataFromJson(Map<String, dynamic> json) {
@@ -802,15 +657,12 @@ mixin _$RestaurantReviewData {
   /// Create a copy of RestaurantReviewData
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $RestaurantReviewDataCopyWith<RestaurantReviewData> get copyWith =>
-      throw _privateConstructorUsedError;
+  $RestaurantReviewDataCopyWith<RestaurantReviewData> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $RestaurantReviewDataCopyWith<$Res> {
-  factory $RestaurantReviewDataCopyWith(RestaurantReviewData value,
-          $Res Function(RestaurantReviewData) then) =
-      _$RestaurantReviewDataCopyWithImpl<$Res, RestaurantReviewData>;
+  factory $RestaurantReviewDataCopyWith(RestaurantReviewData value, $Res Function(RestaurantReviewData) then) = _$RestaurantReviewDataCopyWithImpl<$Res, RestaurantReviewData>;
   @useResult
   $Res call({String id, double rating, String text, UserData user});
 
@@ -818,9 +670,7 @@ abstract class $RestaurantReviewDataCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$RestaurantReviewDataCopyWithImpl<$Res,
-        $Val extends RestaurantReviewData>
-    implements $RestaurantReviewDataCopyWith<$Res> {
+class _$RestaurantReviewDataCopyWithImpl<$Res, $Val extends RestaurantReviewData> implements $RestaurantReviewDataCopyWith<$Res> {
   _$RestaurantReviewDataCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -870,11 +720,8 @@ class _$RestaurantReviewDataCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$RestaurantReviewDataImplCopyWith<$Res>
-    implements $RestaurantReviewDataCopyWith<$Res> {
-  factory _$$RestaurantReviewDataImplCopyWith(_$RestaurantReviewDataImpl value,
-          $Res Function(_$RestaurantReviewDataImpl) then) =
-      __$$RestaurantReviewDataImplCopyWithImpl<$Res>;
+abstract class _$$RestaurantReviewDataImplCopyWith<$Res> implements $RestaurantReviewDataCopyWith<$Res> {
+  factory _$$RestaurantReviewDataImplCopyWith(_$RestaurantReviewDataImpl value, $Res Function(_$RestaurantReviewDataImpl) then) = __$$RestaurantReviewDataImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String id, double rating, String text, UserData user});
@@ -884,12 +731,8 @@ abstract class _$$RestaurantReviewDataImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$RestaurantReviewDataImplCopyWithImpl<$Res>
-    extends _$RestaurantReviewDataCopyWithImpl<$Res, _$RestaurantReviewDataImpl>
-    implements _$$RestaurantReviewDataImplCopyWith<$Res> {
-  __$$RestaurantReviewDataImplCopyWithImpl(_$RestaurantReviewDataImpl _value,
-      $Res Function(_$RestaurantReviewDataImpl) _then)
-      : super(_value, _then);
+class __$$RestaurantReviewDataImplCopyWithImpl<$Res> extends _$RestaurantReviewDataCopyWithImpl<$Res, _$RestaurantReviewDataImpl> implements _$$RestaurantReviewDataImplCopyWith<$Res> {
+  __$$RestaurantReviewDataImplCopyWithImpl(_$RestaurantReviewDataImpl _value, $Res Function(_$RestaurantReviewDataImpl) _then) : super(_value, _then);
 
   /// Create a copy of RestaurantReviewData
   /// with the given fields replaced by the non-null parameter values.
@@ -925,14 +768,9 @@ class __$$RestaurantReviewDataImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$RestaurantReviewDataImpl implements _RestaurantReviewData {
-  const _$RestaurantReviewDataImpl(
-      {required this.id,
-      required this.rating,
-      required this.text,
-      required this.user});
+  const _$RestaurantReviewDataImpl({required this.id, required this.rating, required this.text, required this.user});
 
-  factory _$RestaurantReviewDataImpl.fromJson(Map<String, dynamic> json) =>
-      _$$RestaurantReviewDataImplFromJson(json);
+  factory _$RestaurantReviewDataImpl.fromJson(Map<String, dynamic> json) => _$$RestaurantReviewDataImplFromJson(json);
 
   @override
   final String id;
@@ -950,13 +788,7 @@ class _$RestaurantReviewDataImpl implements _RestaurantReviewData {
 
   @override
   bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$RestaurantReviewDataImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.rating, rating) || other.rating == rating) &&
-            (identical(other.text, text) || other.text == text) &&
-            (identical(other.user, user) || other.user == user));
+    return identical(this, other) || (other.runtimeType == runtimeType && other is _$RestaurantReviewDataImpl && (identical(other.id, id) || other.id == id) && (identical(other.rating, rating) || other.rating == rating) && (identical(other.text, text) || other.text == text) && (identical(other.user, user) || other.user == user));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -968,10 +800,7 @@ class _$RestaurantReviewDataImpl implements _RestaurantReviewData {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$RestaurantReviewDataImplCopyWith<_$RestaurantReviewDataImpl>
-      get copyWith =>
-          __$$RestaurantReviewDataImplCopyWithImpl<_$RestaurantReviewDataImpl>(
-              this, _$identity);
+  _$$RestaurantReviewDataImplCopyWith<_$RestaurantReviewDataImpl> get copyWith => __$$RestaurantReviewDataImplCopyWithImpl<_$RestaurantReviewDataImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -982,14 +811,9 @@ class _$RestaurantReviewDataImpl implements _RestaurantReviewData {
 }
 
 abstract class _RestaurantReviewData implements RestaurantReviewData {
-  const factory _RestaurantReviewData(
-      {required final String id,
-      required final double rating,
-      required final String text,
-      required final UserData user}) = _$RestaurantReviewDataImpl;
+  const factory _RestaurantReviewData({required final String id, required final double rating, required final String text, required final UserData user}) = _$RestaurantReviewDataImpl;
 
-  factory _RestaurantReviewData.fromJson(Map<String, dynamic> json) =
-      _$RestaurantReviewDataImpl.fromJson;
+  factory _RestaurantReviewData.fromJson(Map<String, dynamic> json) = _$RestaurantReviewDataImpl.fromJson;
 
   @override
   String get id;
@@ -1004,12 +828,10 @@ abstract class _RestaurantReviewData implements RestaurantReviewData {
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$RestaurantReviewDataImplCopyWith<_$RestaurantReviewDataImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$RestaurantReviewDataImplCopyWith<_$RestaurantReviewDataImpl> get copyWith => throw _privateConstructorUsedError;
 }
 
-RestaurantCategoryData _$RestaurantCategoryDataFromJson(
-    Map<String, dynamic> json) {
+RestaurantCategoryData _$RestaurantCategoryDataFromJson(Map<String, dynamic> json) {
   return _RestaurantCategoryData.fromJson(json);
 }
 
@@ -1024,23 +846,18 @@ mixin _$RestaurantCategoryData {
   /// Create a copy of RestaurantCategoryData
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $RestaurantCategoryDataCopyWith<RestaurantCategoryData> get copyWith =>
-      throw _privateConstructorUsedError;
+  $RestaurantCategoryDataCopyWith<RestaurantCategoryData> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $RestaurantCategoryDataCopyWith<$Res> {
-  factory $RestaurantCategoryDataCopyWith(RestaurantCategoryData value,
-          $Res Function(RestaurantCategoryData) then) =
-      _$RestaurantCategoryDataCopyWithImpl<$Res, RestaurantCategoryData>;
+  factory $RestaurantCategoryDataCopyWith(RestaurantCategoryData value, $Res Function(RestaurantCategoryData) then) = _$RestaurantCategoryDataCopyWithImpl<$Res, RestaurantCategoryData>;
   @useResult
   $Res call({String title, String alias});
 }
 
 /// @nodoc
-class _$RestaurantCategoryDataCopyWithImpl<$Res,
-        $Val extends RestaurantCategoryData>
-    implements $RestaurantCategoryDataCopyWith<$Res> {
+class _$RestaurantCategoryDataCopyWithImpl<$Res, $Val extends RestaurantCategoryData> implements $RestaurantCategoryDataCopyWith<$Res> {
   _$RestaurantCategoryDataCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -1070,26 +887,16 @@ class _$RestaurantCategoryDataCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$RestaurantCategoryDataImplCopyWith<$Res>
-    implements $RestaurantCategoryDataCopyWith<$Res> {
-  factory _$$RestaurantCategoryDataImplCopyWith(
-          _$RestaurantCategoryDataImpl value,
-          $Res Function(_$RestaurantCategoryDataImpl) then) =
-      __$$RestaurantCategoryDataImplCopyWithImpl<$Res>;
+abstract class _$$RestaurantCategoryDataImplCopyWith<$Res> implements $RestaurantCategoryDataCopyWith<$Res> {
+  factory _$$RestaurantCategoryDataImplCopyWith(_$RestaurantCategoryDataImpl value, $Res Function(_$RestaurantCategoryDataImpl) then) = __$$RestaurantCategoryDataImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String title, String alias});
 }
 
 /// @nodoc
-class __$$RestaurantCategoryDataImplCopyWithImpl<$Res>
-    extends _$RestaurantCategoryDataCopyWithImpl<$Res,
-        _$RestaurantCategoryDataImpl>
-    implements _$$RestaurantCategoryDataImplCopyWith<$Res> {
-  __$$RestaurantCategoryDataImplCopyWithImpl(
-      _$RestaurantCategoryDataImpl _value,
-      $Res Function(_$RestaurantCategoryDataImpl) _then)
-      : super(_value, _then);
+class __$$RestaurantCategoryDataImplCopyWithImpl<$Res> extends _$RestaurantCategoryDataCopyWithImpl<$Res, _$RestaurantCategoryDataImpl> implements _$$RestaurantCategoryDataImplCopyWith<$Res> {
+  __$$RestaurantCategoryDataImplCopyWithImpl(_$RestaurantCategoryDataImpl _value, $Res Function(_$RestaurantCategoryDataImpl) _then) : super(_value, _then);
 
   /// Create a copy of RestaurantCategoryData
   /// with the given fields replaced by the non-null parameter values.
@@ -1115,11 +922,9 @@ class __$$RestaurantCategoryDataImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$RestaurantCategoryDataImpl implements _RestaurantCategoryData {
-  const _$RestaurantCategoryDataImpl(
-      {required this.title, required this.alias});
+  const _$RestaurantCategoryDataImpl({required this.title, required this.alias});
 
-  factory _$RestaurantCategoryDataImpl.fromJson(Map<String, dynamic> json) =>
-      _$$RestaurantCategoryDataImplFromJson(json);
+  factory _$RestaurantCategoryDataImpl.fromJson(Map<String, dynamic> json) => _$$RestaurantCategoryDataImplFromJson(json);
 
   @override
   final String title;
@@ -1133,11 +938,7 @@ class _$RestaurantCategoryDataImpl implements _RestaurantCategoryData {
 
   @override
   bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$RestaurantCategoryDataImpl &&
-            (identical(other.title, title) || other.title == title) &&
-            (identical(other.alias, alias) || other.alias == alias));
+    return identical(this, other) || (other.runtimeType == runtimeType && other is _$RestaurantCategoryDataImpl && (identical(other.title, title) || other.title == title) && (identical(other.alias, alias) || other.alias == alias));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -1149,9 +950,7 @@ class _$RestaurantCategoryDataImpl implements _RestaurantCategoryData {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$RestaurantCategoryDataImplCopyWith<_$RestaurantCategoryDataImpl>
-      get copyWith => __$$RestaurantCategoryDataImplCopyWithImpl<
-          _$RestaurantCategoryDataImpl>(this, _$identity);
+  _$$RestaurantCategoryDataImplCopyWith<_$RestaurantCategoryDataImpl> get copyWith => __$$RestaurantCategoryDataImplCopyWithImpl<_$RestaurantCategoryDataImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -1162,12 +961,9 @@ class _$RestaurantCategoryDataImpl implements _RestaurantCategoryData {
 }
 
 abstract class _RestaurantCategoryData implements RestaurantCategoryData {
-  const factory _RestaurantCategoryData(
-      {required final String title,
-      required final String alias}) = _$RestaurantCategoryDataImpl;
+  const factory _RestaurantCategoryData({required final String title, required final String alias}) = _$RestaurantCategoryDataImpl;
 
-  factory _RestaurantCategoryData.fromJson(Map<String, dynamic> json) =
-      _$RestaurantCategoryDataImpl.fromJson;
+  factory _RestaurantCategoryData.fromJson(Map<String, dynamic> json) = _$RestaurantCategoryDataImpl.fromJson;
 
   @override
   String get title;
@@ -1178,12 +974,10 @@ abstract class _RestaurantCategoryData implements RestaurantCategoryData {
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$RestaurantCategoryDataImplCopyWith<_$RestaurantCategoryDataImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$RestaurantCategoryDataImplCopyWith<_$RestaurantCategoryDataImpl> get copyWith => throw _privateConstructorUsedError;
 }
 
-RestaurantAvailabilityData _$RestaurantAvailabilityDataFromJson(
-    Map<String, dynamic> json) {
+RestaurantAvailabilityData _$RestaurantAvailabilityDataFromJson(Map<String, dynamic> json) {
   return _RestaurantAvailabilityData.fromJson(json);
 }
 
@@ -1198,24 +992,18 @@ mixin _$RestaurantAvailabilityData {
   /// Create a copy of RestaurantAvailabilityData
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $RestaurantAvailabilityDataCopyWith<RestaurantAvailabilityData>
-      get copyWith => throw _privateConstructorUsedError;
+  $RestaurantAvailabilityDataCopyWith<RestaurantAvailabilityData> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $RestaurantAvailabilityDataCopyWith<$Res> {
-  factory $RestaurantAvailabilityDataCopyWith(RestaurantAvailabilityData value,
-          $Res Function(RestaurantAvailabilityData) then) =
-      _$RestaurantAvailabilityDataCopyWithImpl<$Res,
-          RestaurantAvailabilityData>;
+  factory $RestaurantAvailabilityDataCopyWith(RestaurantAvailabilityData value, $Res Function(RestaurantAvailabilityData) then) = _$RestaurantAvailabilityDataCopyWithImpl<$Res, RestaurantAvailabilityData>;
   @useResult
   $Res call({@JsonKey(name: 'is_open_now') bool isNowOpen});
 }
 
 /// @nodoc
-class _$RestaurantAvailabilityDataCopyWithImpl<$Res,
-        $Val extends RestaurantAvailabilityData>
-    implements $RestaurantAvailabilityDataCopyWith<$Res> {
+class _$RestaurantAvailabilityDataCopyWithImpl<$Res, $Val extends RestaurantAvailabilityData> implements $RestaurantAvailabilityDataCopyWith<$Res> {
   _$RestaurantAvailabilityDataCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -1240,26 +1028,16 @@ class _$RestaurantAvailabilityDataCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$RestaurantAvailabilityDataImplCopyWith<$Res>
-    implements $RestaurantAvailabilityDataCopyWith<$Res> {
-  factory _$$RestaurantAvailabilityDataImplCopyWith(
-          _$RestaurantAvailabilityDataImpl value,
-          $Res Function(_$RestaurantAvailabilityDataImpl) then) =
-      __$$RestaurantAvailabilityDataImplCopyWithImpl<$Res>;
+abstract class _$$RestaurantAvailabilityDataImplCopyWith<$Res> implements $RestaurantAvailabilityDataCopyWith<$Res> {
+  factory _$$RestaurantAvailabilityDataImplCopyWith(_$RestaurantAvailabilityDataImpl value, $Res Function(_$RestaurantAvailabilityDataImpl) then) = __$$RestaurantAvailabilityDataImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({@JsonKey(name: 'is_open_now') bool isNowOpen});
 }
 
 /// @nodoc
-class __$$RestaurantAvailabilityDataImplCopyWithImpl<$Res>
-    extends _$RestaurantAvailabilityDataCopyWithImpl<$Res,
-        _$RestaurantAvailabilityDataImpl>
-    implements _$$RestaurantAvailabilityDataImplCopyWith<$Res> {
-  __$$RestaurantAvailabilityDataImplCopyWithImpl(
-      _$RestaurantAvailabilityDataImpl _value,
-      $Res Function(_$RestaurantAvailabilityDataImpl) _then)
-      : super(_value, _then);
+class __$$RestaurantAvailabilityDataImplCopyWithImpl<$Res> extends _$RestaurantAvailabilityDataCopyWithImpl<$Res, _$RestaurantAvailabilityDataImpl> implements _$$RestaurantAvailabilityDataImplCopyWith<$Res> {
+  __$$RestaurantAvailabilityDataImplCopyWithImpl(_$RestaurantAvailabilityDataImpl _value, $Res Function(_$RestaurantAvailabilityDataImpl) _then) : super(_value, _then);
 
   /// Create a copy of RestaurantAvailabilityData
   /// with the given fields replaced by the non-null parameter values.
@@ -1280,12 +1058,9 @@ class __$$RestaurantAvailabilityDataImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$RestaurantAvailabilityDataImpl implements _RestaurantAvailabilityData {
-  const _$RestaurantAvailabilityDataImpl(
-      {@JsonKey(name: 'is_open_now') required this.isNowOpen});
+  const _$RestaurantAvailabilityDataImpl({@JsonKey(name: 'is_open_now') required this.isNowOpen});
 
-  factory _$RestaurantAvailabilityDataImpl.fromJson(
-          Map<String, dynamic> json) =>
-      _$$RestaurantAvailabilityDataImplFromJson(json);
+  factory _$RestaurantAvailabilityDataImpl.fromJson(Map<String, dynamic> json) => _$$RestaurantAvailabilityDataImplFromJson(json);
 
   @override
   @JsonKey(name: 'is_open_now')
@@ -1298,11 +1073,7 @@ class _$RestaurantAvailabilityDataImpl implements _RestaurantAvailabilityData {
 
   @override
   bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$RestaurantAvailabilityDataImpl &&
-            (identical(other.isNowOpen, isNowOpen) ||
-                other.isNowOpen == isNowOpen));
+    return identical(this, other) || (other.runtimeType == runtimeType && other is _$RestaurantAvailabilityDataImpl && (identical(other.isNowOpen, isNowOpen) || other.isNowOpen == isNowOpen));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -1314,9 +1085,7 @@ class _$RestaurantAvailabilityDataImpl implements _RestaurantAvailabilityData {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$RestaurantAvailabilityDataImplCopyWith<_$RestaurantAvailabilityDataImpl>
-      get copyWith => __$$RestaurantAvailabilityDataImplCopyWithImpl<
-          _$RestaurantAvailabilityDataImpl>(this, _$identity);
+  _$$RestaurantAvailabilityDataImplCopyWith<_$RestaurantAvailabilityDataImpl> get copyWith => __$$RestaurantAvailabilityDataImplCopyWithImpl<_$RestaurantAvailabilityDataImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -1326,14 +1095,10 @@ class _$RestaurantAvailabilityDataImpl implements _RestaurantAvailabilityData {
   }
 }
 
-abstract class _RestaurantAvailabilityData
-    implements RestaurantAvailabilityData {
-  const factory _RestaurantAvailabilityData(
-          {@JsonKey(name: 'is_open_now') required final bool isNowOpen}) =
-      _$RestaurantAvailabilityDataImpl;
+abstract class _RestaurantAvailabilityData implements RestaurantAvailabilityData {
+  const factory _RestaurantAvailabilityData({@JsonKey(name: 'is_open_now') required final bool isNowOpen}) = _$RestaurantAvailabilityDataImpl;
 
-  factory _RestaurantAvailabilityData.fromJson(Map<String, dynamic> json) =
-      _$RestaurantAvailabilityDataImpl.fromJson;
+  factory _RestaurantAvailabilityData.fromJson(Map<String, dynamic> json) = _$RestaurantAvailabilityDataImpl.fromJson;
 
   @override
   @JsonKey(name: 'is_open_now')
@@ -1343,12 +1108,10 @@ abstract class _RestaurantAvailabilityData
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$RestaurantAvailabilityDataImplCopyWith<_$RestaurantAvailabilityDataImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$RestaurantAvailabilityDataImplCopyWith<_$RestaurantAvailabilityDataImpl> get copyWith => throw _privateConstructorUsedError;
 }
 
-RestaurantLocationData _$RestaurantLocationDataFromJson(
-    Map<String, dynamic> json) {
+RestaurantLocationData _$RestaurantLocationDataFromJson(Map<String, dynamic> json) {
   return _RestaurantLocationData.fromJson(json);
 }
 
@@ -1363,23 +1126,18 @@ mixin _$RestaurantLocationData {
   /// Create a copy of RestaurantLocationData
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $RestaurantLocationDataCopyWith<RestaurantLocationData> get copyWith =>
-      throw _privateConstructorUsedError;
+  $RestaurantLocationDataCopyWith<RestaurantLocationData> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $RestaurantLocationDataCopyWith<$Res> {
-  factory $RestaurantLocationDataCopyWith(RestaurantLocationData value,
-          $Res Function(RestaurantLocationData) then) =
-      _$RestaurantLocationDataCopyWithImpl<$Res, RestaurantLocationData>;
+  factory $RestaurantLocationDataCopyWith(RestaurantLocationData value, $Res Function(RestaurantLocationData) then) = _$RestaurantLocationDataCopyWithImpl<$Res, RestaurantLocationData>;
   @useResult
   $Res call({@JsonKey(name: 'formatted_address') String address});
 }
 
 /// @nodoc
-class _$RestaurantLocationDataCopyWithImpl<$Res,
-        $Val extends RestaurantLocationData>
-    implements $RestaurantLocationDataCopyWith<$Res> {
+class _$RestaurantLocationDataCopyWithImpl<$Res, $Val extends RestaurantLocationData> implements $RestaurantLocationDataCopyWith<$Res> {
   _$RestaurantLocationDataCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -1404,26 +1162,16 @@ class _$RestaurantLocationDataCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$RestaurantLocationDataImplCopyWith<$Res>
-    implements $RestaurantLocationDataCopyWith<$Res> {
-  factory _$$RestaurantLocationDataImplCopyWith(
-          _$RestaurantLocationDataImpl value,
-          $Res Function(_$RestaurantLocationDataImpl) then) =
-      __$$RestaurantLocationDataImplCopyWithImpl<$Res>;
+abstract class _$$RestaurantLocationDataImplCopyWith<$Res> implements $RestaurantLocationDataCopyWith<$Res> {
+  factory _$$RestaurantLocationDataImplCopyWith(_$RestaurantLocationDataImpl value, $Res Function(_$RestaurantLocationDataImpl) then) = __$$RestaurantLocationDataImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({@JsonKey(name: 'formatted_address') String address});
 }
 
 /// @nodoc
-class __$$RestaurantLocationDataImplCopyWithImpl<$Res>
-    extends _$RestaurantLocationDataCopyWithImpl<$Res,
-        _$RestaurantLocationDataImpl>
-    implements _$$RestaurantLocationDataImplCopyWith<$Res> {
-  __$$RestaurantLocationDataImplCopyWithImpl(
-      _$RestaurantLocationDataImpl _value,
-      $Res Function(_$RestaurantLocationDataImpl) _then)
-      : super(_value, _then);
+class __$$RestaurantLocationDataImplCopyWithImpl<$Res> extends _$RestaurantLocationDataCopyWithImpl<$Res, _$RestaurantLocationDataImpl> implements _$$RestaurantLocationDataImplCopyWith<$Res> {
+  __$$RestaurantLocationDataImplCopyWithImpl(_$RestaurantLocationDataImpl _value, $Res Function(_$RestaurantLocationDataImpl) _then) : super(_value, _then);
 
   /// Create a copy of RestaurantLocationData
   /// with the given fields replaced by the non-null parameter values.
@@ -1444,11 +1192,9 @@ class __$$RestaurantLocationDataImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$RestaurantLocationDataImpl implements _RestaurantLocationData {
-  const _$RestaurantLocationDataImpl(
-      {@JsonKey(name: 'formatted_address') required this.address});
+  const _$RestaurantLocationDataImpl({@JsonKey(name: 'formatted_address') required this.address});
 
-  factory _$RestaurantLocationDataImpl.fromJson(Map<String, dynamic> json) =>
-      _$$RestaurantLocationDataImplFromJson(json);
+  factory _$RestaurantLocationDataImpl.fromJson(Map<String, dynamic> json) => _$$RestaurantLocationDataImplFromJson(json);
 
   @override
   @JsonKey(name: 'formatted_address')
@@ -1461,10 +1207,7 @@ class _$RestaurantLocationDataImpl implements _RestaurantLocationData {
 
   @override
   bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$RestaurantLocationDataImpl &&
-            (identical(other.address, address) || other.address == address));
+    return identical(this, other) || (other.runtimeType == runtimeType && other is _$RestaurantLocationDataImpl && (identical(other.address, address) || other.address == address));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -1476,9 +1219,7 @@ class _$RestaurantLocationDataImpl implements _RestaurantLocationData {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$RestaurantLocationDataImplCopyWith<_$RestaurantLocationDataImpl>
-      get copyWith => __$$RestaurantLocationDataImplCopyWithImpl<
-          _$RestaurantLocationDataImpl>(this, _$identity);
+  _$$RestaurantLocationDataImplCopyWith<_$RestaurantLocationDataImpl> get copyWith => __$$RestaurantLocationDataImplCopyWithImpl<_$RestaurantLocationDataImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -1489,12 +1230,9 @@ class _$RestaurantLocationDataImpl implements _RestaurantLocationData {
 }
 
 abstract class _RestaurantLocationData implements RestaurantLocationData {
-  const factory _RestaurantLocationData(
-          {@JsonKey(name: 'formatted_address') required final String address}) =
-      _$RestaurantLocationDataImpl;
+  const factory _RestaurantLocationData({@JsonKey(name: 'formatted_address') required final String address}) = _$RestaurantLocationDataImpl;
 
-  factory _RestaurantLocationData.fromJson(Map<String, dynamic> json) =
-      _$RestaurantLocationDataImpl.fromJson;
+  factory _RestaurantLocationData.fromJson(Map<String, dynamic> json) = _$RestaurantLocationDataImpl.fromJson;
 
   @override
   @JsonKey(name: 'formatted_address')
@@ -1504,6 +1242,5 @@ abstract class _RestaurantLocationData implements RestaurantLocationData {
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$RestaurantLocationDataImplCopyWith<_$RestaurantLocationDataImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$RestaurantLocationDataImplCopyWith<_$RestaurantLocationDataImpl> get copyWith => throw _privateConstructorUsedError;
 }

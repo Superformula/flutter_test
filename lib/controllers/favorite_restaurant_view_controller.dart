@@ -34,7 +34,7 @@ final class FavoriteRestaurantViewController extends Cubit<FavoriteRestaurantVie
     emit(FavoriteRestaurantViewModel.data(favorites: favoritesRestaurantsUseCase.favorites));
   }
 
-  RestaurantData? getSingleFavoriteRestaurant({required  String restaurantId}) {
+  RestaurantData? getSingleFavoriteRestaurant({required String restaurantId}) {
     return favoritesRestaurantsUseCase.getSingleFavoriteRestaurant(restaurantId: restaurantId);
   }
 

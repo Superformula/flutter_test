@@ -11,8 +11,7 @@ part of 'restaurant_view_controller.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+final _privateConstructorUsedError = UnsupportedError('It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$RestaurantViewModel {
@@ -21,8 +20,7 @@ mixin _$RestaurantViewModel {
     required TResult Function() loading,
     required TResult Function() empty,
     required TResult Function(List<RestaurantData> restaurants) data,
-    required TResult Function(List<RestaurantData> previousRestaurants)
-        loadingMore,
+    required TResult Function(List<RestaurantData> previousRestaurants) loadingMore,
     required TResult Function(List<RestaurantReviewData> reviews) reviews,
     required TResult Function(List<RestaurantData> favorites) favorites,
     required TResult Function(Object? error, StackTrace stackTrace) error,
@@ -89,14 +87,11 @@ mixin _$RestaurantViewModel {
 
 /// @nodoc
 abstract class $RestaurantViewModelCopyWith<$Res> {
-  factory $RestaurantViewModelCopyWith(
-          RestaurantViewModel value, $Res Function(RestaurantViewModel) then) =
-      _$RestaurantViewModelCopyWithImpl<$Res, RestaurantViewModel>;
+  factory $RestaurantViewModelCopyWith(RestaurantViewModel value, $Res Function(RestaurantViewModel) then) = _$RestaurantViewModelCopyWithImpl<$Res, RestaurantViewModel>;
 }
 
 /// @nodoc
-class _$RestaurantViewModelCopyWithImpl<$Res, $Val extends RestaurantViewModel>
-    implements $RestaurantViewModelCopyWith<$Res> {
+class _$RestaurantViewModelCopyWithImpl<$Res, $Val extends RestaurantViewModel> implements $RestaurantViewModelCopyWith<$Res> {
   _$RestaurantViewModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -110,21 +105,12 @@ class _$RestaurantViewModelCopyWithImpl<$Res, $Val extends RestaurantViewModel>
 
 /// @nodoc
 abstract class _$$RestaurantViewModelLoadingImplCopyWith<$Res> {
-  factory _$$RestaurantViewModelLoadingImplCopyWith(
-          _$RestaurantViewModelLoadingImpl value,
-          $Res Function(_$RestaurantViewModelLoadingImpl) then) =
-      __$$RestaurantViewModelLoadingImplCopyWithImpl<$Res>;
+  factory _$$RestaurantViewModelLoadingImplCopyWith(_$RestaurantViewModelLoadingImpl value, $Res Function(_$RestaurantViewModelLoadingImpl) then) = __$$RestaurantViewModelLoadingImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$RestaurantViewModelLoadingImplCopyWithImpl<$Res>
-    extends _$RestaurantViewModelCopyWithImpl<$Res,
-        _$RestaurantViewModelLoadingImpl>
-    implements _$$RestaurantViewModelLoadingImplCopyWith<$Res> {
-  __$$RestaurantViewModelLoadingImplCopyWithImpl(
-      _$RestaurantViewModelLoadingImpl _value,
-      $Res Function(_$RestaurantViewModelLoadingImpl) _then)
-      : super(_value, _then);
+class __$$RestaurantViewModelLoadingImplCopyWithImpl<$Res> extends _$RestaurantViewModelCopyWithImpl<$Res, _$RestaurantViewModelLoadingImpl> implements _$$RestaurantViewModelLoadingImplCopyWith<$Res> {
+  __$$RestaurantViewModelLoadingImplCopyWithImpl(_$RestaurantViewModelLoadingImpl _value, $Res Function(_$RestaurantViewModelLoadingImpl) _then) : super(_value, _then);
 
   /// Create a copy of RestaurantViewModel
   /// with the given fields replaced by the non-null parameter values.
@@ -142,9 +128,7 @@ class _$RestaurantViewModelLoadingImpl implements RestaurantViewModelLoading {
 
   @override
   bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$RestaurantViewModelLoadingImpl);
+    return identical(this, other) || (other.runtimeType == runtimeType && other is _$RestaurantViewModelLoadingImpl);
   }
 
   @override
@@ -156,8 +140,7 @@ class _$RestaurantViewModelLoadingImpl implements RestaurantViewModelLoading {
     required TResult Function() loading,
     required TResult Function() empty,
     required TResult Function(List<RestaurantData> restaurants) data,
-    required TResult Function(List<RestaurantData> previousRestaurants)
-        loadingMore,
+    required TResult Function(List<RestaurantData> previousRestaurants) loadingMore,
     required TResult Function(List<RestaurantReviewData> reviews) reviews,
     required TResult Function(List<RestaurantData> favorites) favorites,
     required TResult Function(Object? error, StackTrace stackTrace) error,
@@ -250,21 +233,12 @@ abstract class RestaurantViewModelLoading implements RestaurantViewModel {
 
 /// @nodoc
 abstract class _$$RestaurantViewModelEmptyImplCopyWith<$Res> {
-  factory _$$RestaurantViewModelEmptyImplCopyWith(
-          _$RestaurantViewModelEmptyImpl value,
-          $Res Function(_$RestaurantViewModelEmptyImpl) then) =
-      __$$RestaurantViewModelEmptyImplCopyWithImpl<$Res>;
+  factory _$$RestaurantViewModelEmptyImplCopyWith(_$RestaurantViewModelEmptyImpl value, $Res Function(_$RestaurantViewModelEmptyImpl) then) = __$$RestaurantViewModelEmptyImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$RestaurantViewModelEmptyImplCopyWithImpl<$Res>
-    extends _$RestaurantViewModelCopyWithImpl<$Res,
-        _$RestaurantViewModelEmptyImpl>
-    implements _$$RestaurantViewModelEmptyImplCopyWith<$Res> {
-  __$$RestaurantViewModelEmptyImplCopyWithImpl(
-      _$RestaurantViewModelEmptyImpl _value,
-      $Res Function(_$RestaurantViewModelEmptyImpl) _then)
-      : super(_value, _then);
+class __$$RestaurantViewModelEmptyImplCopyWithImpl<$Res> extends _$RestaurantViewModelCopyWithImpl<$Res, _$RestaurantViewModelEmptyImpl> implements _$$RestaurantViewModelEmptyImplCopyWith<$Res> {
+  __$$RestaurantViewModelEmptyImplCopyWithImpl(_$RestaurantViewModelEmptyImpl _value, $Res Function(_$RestaurantViewModelEmptyImpl) _then) : super(_value, _then);
 
   /// Create a copy of RestaurantViewModel
   /// with the given fields replaced by the non-null parameter values.
@@ -282,9 +256,7 @@ class _$RestaurantViewModelEmptyImpl implements RestaurantViewModelEmpty {
 
   @override
   bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$RestaurantViewModelEmptyImpl);
+    return identical(this, other) || (other.runtimeType == runtimeType && other is _$RestaurantViewModelEmptyImpl);
   }
 
   @override
@@ -296,8 +268,7 @@ class _$RestaurantViewModelEmptyImpl implements RestaurantViewModelEmpty {
     required TResult Function() loading,
     required TResult Function() empty,
     required TResult Function(List<RestaurantData> restaurants) data,
-    required TResult Function(List<RestaurantData> previousRestaurants)
-        loadingMore,
+    required TResult Function(List<RestaurantData> previousRestaurants) loadingMore,
     required TResult Function(List<RestaurantReviewData> reviews) reviews,
     required TResult Function(List<RestaurantData> favorites) favorites,
     required TResult Function(Object? error, StackTrace stackTrace) error,
@@ -390,23 +361,14 @@ abstract class RestaurantViewModelEmpty implements RestaurantViewModel {
 
 /// @nodoc
 abstract class _$$RestaurantViewModelDataImplCopyWith<$Res> {
-  factory _$$RestaurantViewModelDataImplCopyWith(
-          _$RestaurantViewModelDataImpl value,
-          $Res Function(_$RestaurantViewModelDataImpl) then) =
-      __$$RestaurantViewModelDataImplCopyWithImpl<$Res>;
+  factory _$$RestaurantViewModelDataImplCopyWith(_$RestaurantViewModelDataImpl value, $Res Function(_$RestaurantViewModelDataImpl) then) = __$$RestaurantViewModelDataImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<RestaurantData> restaurants});
 }
 
 /// @nodoc
-class __$$RestaurantViewModelDataImplCopyWithImpl<$Res>
-    extends _$RestaurantViewModelCopyWithImpl<$Res,
-        _$RestaurantViewModelDataImpl>
-    implements _$$RestaurantViewModelDataImplCopyWith<$Res> {
-  __$$RestaurantViewModelDataImplCopyWithImpl(
-      _$RestaurantViewModelDataImpl _value,
-      $Res Function(_$RestaurantViewModelDataImpl) _then)
-      : super(_value, _then);
+class __$$RestaurantViewModelDataImplCopyWithImpl<$Res> extends _$RestaurantViewModelCopyWithImpl<$Res, _$RestaurantViewModelDataImpl> implements _$$RestaurantViewModelDataImplCopyWith<$Res> {
+  __$$RestaurantViewModelDataImplCopyWithImpl(_$RestaurantViewModelDataImpl _value, $Res Function(_$RestaurantViewModelDataImpl) _then) : super(_value, _then);
 
   /// Create a copy of RestaurantViewModel
   /// with the given fields replaced by the non-null parameter values.
@@ -427,9 +389,7 @@ class __$$RestaurantViewModelDataImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$RestaurantViewModelDataImpl implements RestaurantViewModelData {
-  const _$RestaurantViewModelDataImpl(
-      {required final List<RestaurantData> restaurants})
-      : _restaurants = restaurants;
+  const _$RestaurantViewModelDataImpl({required final List<RestaurantData> restaurants}) : _restaurants = restaurants;
 
   final List<RestaurantData> _restaurants;
   @override
@@ -446,25 +406,18 @@ class _$RestaurantViewModelDataImpl implements RestaurantViewModelData {
 
   @override
   bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$RestaurantViewModelDataImpl &&
-            const DeepCollectionEquality()
-                .equals(other._restaurants, _restaurants));
+    return identical(this, other) || (other.runtimeType == runtimeType && other is _$RestaurantViewModelDataImpl && const DeepCollectionEquality().equals(other._restaurants, _restaurants));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_restaurants));
+  int get hashCode => Object.hash(runtimeType, const DeepCollectionEquality().hash(_restaurants));
 
   /// Create a copy of RestaurantViewModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$RestaurantViewModelDataImplCopyWith<_$RestaurantViewModelDataImpl>
-      get copyWith => __$$RestaurantViewModelDataImplCopyWithImpl<
-          _$RestaurantViewModelDataImpl>(this, _$identity);
+  _$$RestaurantViewModelDataImplCopyWith<_$RestaurantViewModelDataImpl> get copyWith => __$$RestaurantViewModelDataImplCopyWithImpl<_$RestaurantViewModelDataImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -472,8 +425,7 @@ class _$RestaurantViewModelDataImpl implements RestaurantViewModelData {
     required TResult Function() loading,
     required TResult Function() empty,
     required TResult Function(List<RestaurantData> restaurants) data,
-    required TResult Function(List<RestaurantData> previousRestaurants)
-        loadingMore,
+    required TResult Function(List<RestaurantData> previousRestaurants) loadingMore,
     required TResult Function(List<RestaurantReviewData> reviews) reviews,
     required TResult Function(List<RestaurantData> favorites) favorites,
     required TResult Function(Object? error, StackTrace stackTrace) error,
@@ -561,38 +513,26 @@ class _$RestaurantViewModelDataImpl implements RestaurantViewModelData {
 }
 
 abstract class RestaurantViewModelData implements RestaurantViewModel {
-  const factory RestaurantViewModelData(
-          {required final List<RestaurantData> restaurants}) =
-      _$RestaurantViewModelDataImpl;
+  const factory RestaurantViewModelData({required final List<RestaurantData> restaurants}) = _$RestaurantViewModelDataImpl;
 
   List<RestaurantData> get restaurants;
 
   /// Create a copy of RestaurantViewModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$RestaurantViewModelDataImplCopyWith<_$RestaurantViewModelDataImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$RestaurantViewModelDataImplCopyWith<_$RestaurantViewModelDataImpl> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class _$$RestaurantViewModelLoadingMoreImplCopyWith<$Res> {
-  factory _$$RestaurantViewModelLoadingMoreImplCopyWith(
-          _$RestaurantViewModelLoadingMoreImpl value,
-          $Res Function(_$RestaurantViewModelLoadingMoreImpl) then) =
-      __$$RestaurantViewModelLoadingMoreImplCopyWithImpl<$Res>;
+  factory _$$RestaurantViewModelLoadingMoreImplCopyWith(_$RestaurantViewModelLoadingMoreImpl value, $Res Function(_$RestaurantViewModelLoadingMoreImpl) then) = __$$RestaurantViewModelLoadingMoreImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<RestaurantData> previousRestaurants});
 }
 
 /// @nodoc
-class __$$RestaurantViewModelLoadingMoreImplCopyWithImpl<$Res>
-    extends _$RestaurantViewModelCopyWithImpl<$Res,
-        _$RestaurantViewModelLoadingMoreImpl>
-    implements _$$RestaurantViewModelLoadingMoreImplCopyWith<$Res> {
-  __$$RestaurantViewModelLoadingMoreImplCopyWithImpl(
-      _$RestaurantViewModelLoadingMoreImpl _value,
-      $Res Function(_$RestaurantViewModelLoadingMoreImpl) _then)
-      : super(_value, _then);
+class __$$RestaurantViewModelLoadingMoreImplCopyWithImpl<$Res> extends _$RestaurantViewModelCopyWithImpl<$Res, _$RestaurantViewModelLoadingMoreImpl> implements _$$RestaurantViewModelLoadingMoreImplCopyWith<$Res> {
+  __$$RestaurantViewModelLoadingMoreImplCopyWithImpl(_$RestaurantViewModelLoadingMoreImpl _value, $Res Function(_$RestaurantViewModelLoadingMoreImpl) _then) : super(_value, _then);
 
   /// Create a copy of RestaurantViewModel
   /// with the given fields replaced by the non-null parameter values.
@@ -612,17 +552,13 @@ class __$$RestaurantViewModelLoadingMoreImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$RestaurantViewModelLoadingMoreImpl
-    implements RestaurantViewModelLoadingMore {
-  const _$RestaurantViewModelLoadingMoreImpl(
-      {required final List<RestaurantData> previousRestaurants})
-      : _previousRestaurants = previousRestaurants;
+class _$RestaurantViewModelLoadingMoreImpl implements RestaurantViewModelLoadingMore {
+  const _$RestaurantViewModelLoadingMoreImpl({required final List<RestaurantData> previousRestaurants}) : _previousRestaurants = previousRestaurants;
 
   final List<RestaurantData> _previousRestaurants;
   @override
   List<RestaurantData> get previousRestaurants {
-    if (_previousRestaurants is EqualUnmodifiableListView)
-      return _previousRestaurants;
+    if (_previousRestaurants is EqualUnmodifiableListView) return _previousRestaurants;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_previousRestaurants);
   }
@@ -634,26 +570,18 @@ class _$RestaurantViewModelLoadingMoreImpl
 
   @override
   bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$RestaurantViewModelLoadingMoreImpl &&
-            const DeepCollectionEquality()
-                .equals(other._previousRestaurants, _previousRestaurants));
+    return identical(this, other) || (other.runtimeType == runtimeType && other is _$RestaurantViewModelLoadingMoreImpl && const DeepCollectionEquality().equals(other._previousRestaurants, _previousRestaurants));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_previousRestaurants));
+  int get hashCode => Object.hash(runtimeType, const DeepCollectionEquality().hash(_previousRestaurants));
 
   /// Create a copy of RestaurantViewModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$RestaurantViewModelLoadingMoreImplCopyWith<
-          _$RestaurantViewModelLoadingMoreImpl>
-      get copyWith => __$$RestaurantViewModelLoadingMoreImplCopyWithImpl<
-          _$RestaurantViewModelLoadingMoreImpl>(this, _$identity);
+  _$$RestaurantViewModelLoadingMoreImplCopyWith<_$RestaurantViewModelLoadingMoreImpl> get copyWith => __$$RestaurantViewModelLoadingMoreImplCopyWithImpl<_$RestaurantViewModelLoadingMoreImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -661,8 +589,7 @@ class _$RestaurantViewModelLoadingMoreImpl
     required TResult Function() loading,
     required TResult Function() empty,
     required TResult Function(List<RestaurantData> restaurants) data,
-    required TResult Function(List<RestaurantData> previousRestaurants)
-        loadingMore,
+    required TResult Function(List<RestaurantData> previousRestaurants) loadingMore,
     required TResult Function(List<RestaurantReviewData> reviews) reviews,
     required TResult Function(List<RestaurantData> favorites) favorites,
     required TResult Function(Object? error, StackTrace stackTrace) error,
@@ -750,39 +677,26 @@ class _$RestaurantViewModelLoadingMoreImpl
 }
 
 abstract class RestaurantViewModelLoadingMore implements RestaurantViewModel {
-  const factory RestaurantViewModelLoadingMore(
-          {required final List<RestaurantData> previousRestaurants}) =
-      _$RestaurantViewModelLoadingMoreImpl;
+  const factory RestaurantViewModelLoadingMore({required final List<RestaurantData> previousRestaurants}) = _$RestaurantViewModelLoadingMoreImpl;
 
   List<RestaurantData> get previousRestaurants;
 
   /// Create a copy of RestaurantViewModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$RestaurantViewModelLoadingMoreImplCopyWith<
-          _$RestaurantViewModelLoadingMoreImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$RestaurantViewModelLoadingMoreImplCopyWith<_$RestaurantViewModelLoadingMoreImpl> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class _$$RestaurantViewModelReviewsImplCopyWith<$Res> {
-  factory _$$RestaurantViewModelReviewsImplCopyWith(
-          _$RestaurantViewModelReviewsImpl value,
-          $Res Function(_$RestaurantViewModelReviewsImpl) then) =
-      __$$RestaurantViewModelReviewsImplCopyWithImpl<$Res>;
+  factory _$$RestaurantViewModelReviewsImplCopyWith(_$RestaurantViewModelReviewsImpl value, $Res Function(_$RestaurantViewModelReviewsImpl) then) = __$$RestaurantViewModelReviewsImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<RestaurantReviewData> reviews});
 }
 
 /// @nodoc
-class __$$RestaurantViewModelReviewsImplCopyWithImpl<$Res>
-    extends _$RestaurantViewModelCopyWithImpl<$Res,
-        _$RestaurantViewModelReviewsImpl>
-    implements _$$RestaurantViewModelReviewsImplCopyWith<$Res> {
-  __$$RestaurantViewModelReviewsImplCopyWithImpl(
-      _$RestaurantViewModelReviewsImpl _value,
-      $Res Function(_$RestaurantViewModelReviewsImpl) _then)
-      : super(_value, _then);
+class __$$RestaurantViewModelReviewsImplCopyWithImpl<$Res> extends _$RestaurantViewModelCopyWithImpl<$Res, _$RestaurantViewModelReviewsImpl> implements _$$RestaurantViewModelReviewsImplCopyWith<$Res> {
+  __$$RestaurantViewModelReviewsImplCopyWithImpl(_$RestaurantViewModelReviewsImpl _value, $Res Function(_$RestaurantViewModelReviewsImpl) _then) : super(_value, _then);
 
   /// Create a copy of RestaurantViewModel
   /// with the given fields replaced by the non-null parameter values.
@@ -803,9 +717,7 @@ class __$$RestaurantViewModelReviewsImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$RestaurantViewModelReviewsImpl implements RestaurantViewModelReviews {
-  const _$RestaurantViewModelReviewsImpl(
-      {required final List<RestaurantReviewData> reviews})
-      : _reviews = reviews;
+  const _$RestaurantViewModelReviewsImpl({required final List<RestaurantReviewData> reviews}) : _reviews = reviews;
 
   final List<RestaurantReviewData> _reviews;
   @override
@@ -822,24 +734,18 @@ class _$RestaurantViewModelReviewsImpl implements RestaurantViewModelReviews {
 
   @override
   bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$RestaurantViewModelReviewsImpl &&
-            const DeepCollectionEquality().equals(other._reviews, _reviews));
+    return identical(this, other) || (other.runtimeType == runtimeType && other is _$RestaurantViewModelReviewsImpl && const DeepCollectionEquality().equals(other._reviews, _reviews));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_reviews));
+  int get hashCode => Object.hash(runtimeType, const DeepCollectionEquality().hash(_reviews));
 
   /// Create a copy of RestaurantViewModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$RestaurantViewModelReviewsImplCopyWith<_$RestaurantViewModelReviewsImpl>
-      get copyWith => __$$RestaurantViewModelReviewsImplCopyWithImpl<
-          _$RestaurantViewModelReviewsImpl>(this, _$identity);
+  _$$RestaurantViewModelReviewsImplCopyWith<_$RestaurantViewModelReviewsImpl> get copyWith => __$$RestaurantViewModelReviewsImplCopyWithImpl<_$RestaurantViewModelReviewsImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -847,8 +753,7 @@ class _$RestaurantViewModelReviewsImpl implements RestaurantViewModelReviews {
     required TResult Function() loading,
     required TResult Function() empty,
     required TResult Function(List<RestaurantData> restaurants) data,
-    required TResult Function(List<RestaurantData> previousRestaurants)
-        loadingMore,
+    required TResult Function(List<RestaurantData> previousRestaurants) loadingMore,
     required TResult Function(List<RestaurantReviewData> reviews) reviews,
     required TResult Function(List<RestaurantData> favorites) favorites,
     required TResult Function(Object? error, StackTrace stackTrace) error,
@@ -936,38 +841,26 @@ class _$RestaurantViewModelReviewsImpl implements RestaurantViewModelReviews {
 }
 
 abstract class RestaurantViewModelReviews implements RestaurantViewModel {
-  const factory RestaurantViewModelReviews(
-          {required final List<RestaurantReviewData> reviews}) =
-      _$RestaurantViewModelReviewsImpl;
+  const factory RestaurantViewModelReviews({required final List<RestaurantReviewData> reviews}) = _$RestaurantViewModelReviewsImpl;
 
   List<RestaurantReviewData> get reviews;
 
   /// Create a copy of RestaurantViewModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$RestaurantViewModelReviewsImplCopyWith<_$RestaurantViewModelReviewsImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$RestaurantViewModelReviewsImplCopyWith<_$RestaurantViewModelReviewsImpl> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class _$$RestaurantViewModelFavoritesImplCopyWith<$Res> {
-  factory _$$RestaurantViewModelFavoritesImplCopyWith(
-          _$RestaurantViewModelFavoritesImpl value,
-          $Res Function(_$RestaurantViewModelFavoritesImpl) then) =
-      __$$RestaurantViewModelFavoritesImplCopyWithImpl<$Res>;
+  factory _$$RestaurantViewModelFavoritesImplCopyWith(_$RestaurantViewModelFavoritesImpl value, $Res Function(_$RestaurantViewModelFavoritesImpl) then) = __$$RestaurantViewModelFavoritesImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<RestaurantData> favorites});
 }
 
 /// @nodoc
-class __$$RestaurantViewModelFavoritesImplCopyWithImpl<$Res>
-    extends _$RestaurantViewModelCopyWithImpl<$Res,
-        _$RestaurantViewModelFavoritesImpl>
-    implements _$$RestaurantViewModelFavoritesImplCopyWith<$Res> {
-  __$$RestaurantViewModelFavoritesImplCopyWithImpl(
-      _$RestaurantViewModelFavoritesImpl _value,
-      $Res Function(_$RestaurantViewModelFavoritesImpl) _then)
-      : super(_value, _then);
+class __$$RestaurantViewModelFavoritesImplCopyWithImpl<$Res> extends _$RestaurantViewModelCopyWithImpl<$Res, _$RestaurantViewModelFavoritesImpl> implements _$$RestaurantViewModelFavoritesImplCopyWith<$Res> {
+  __$$RestaurantViewModelFavoritesImplCopyWithImpl(_$RestaurantViewModelFavoritesImpl _value, $Res Function(_$RestaurantViewModelFavoritesImpl) _then) : super(_value, _then);
 
   /// Create a copy of RestaurantViewModel
   /// with the given fields replaced by the non-null parameter values.
@@ -987,11 +880,8 @@ class __$$RestaurantViewModelFavoritesImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$RestaurantViewModelFavoritesImpl
-    implements RestaurantViewModelFavorites {
-  const _$RestaurantViewModelFavoritesImpl(
-      {required final List<RestaurantData> favorites})
-      : _favorites = favorites;
+class _$RestaurantViewModelFavoritesImpl implements RestaurantViewModelFavorites {
+  const _$RestaurantViewModelFavoritesImpl({required final List<RestaurantData> favorites}) : _favorites = favorites;
 
   final List<RestaurantData> _favorites;
   @override
@@ -1008,26 +898,18 @@ class _$RestaurantViewModelFavoritesImpl
 
   @override
   bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$RestaurantViewModelFavoritesImpl &&
-            const DeepCollectionEquality()
-                .equals(other._favorites, _favorites));
+    return identical(this, other) || (other.runtimeType == runtimeType && other is _$RestaurantViewModelFavoritesImpl && const DeepCollectionEquality().equals(other._favorites, _favorites));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_favorites));
+  int get hashCode => Object.hash(runtimeType, const DeepCollectionEquality().hash(_favorites));
 
   /// Create a copy of RestaurantViewModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$RestaurantViewModelFavoritesImplCopyWith<
-          _$RestaurantViewModelFavoritesImpl>
-      get copyWith => __$$RestaurantViewModelFavoritesImplCopyWithImpl<
-          _$RestaurantViewModelFavoritesImpl>(this, _$identity);
+  _$$RestaurantViewModelFavoritesImplCopyWith<_$RestaurantViewModelFavoritesImpl> get copyWith => __$$RestaurantViewModelFavoritesImplCopyWithImpl<_$RestaurantViewModelFavoritesImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1035,8 +917,7 @@ class _$RestaurantViewModelFavoritesImpl
     required TResult Function() loading,
     required TResult Function() empty,
     required TResult Function(List<RestaurantData> restaurants) data,
-    required TResult Function(List<RestaurantData> previousRestaurants)
-        loadingMore,
+    required TResult Function(List<RestaurantData> previousRestaurants) loadingMore,
     required TResult Function(List<RestaurantReviewData> reviews) reviews,
     required TResult Function(List<RestaurantData> favorites) favorites,
     required TResult Function(Object? error, StackTrace stackTrace) error,
@@ -1124,39 +1005,26 @@ class _$RestaurantViewModelFavoritesImpl
 }
 
 abstract class RestaurantViewModelFavorites implements RestaurantViewModel {
-  const factory RestaurantViewModelFavorites(
-          {required final List<RestaurantData> favorites}) =
-      _$RestaurantViewModelFavoritesImpl;
+  const factory RestaurantViewModelFavorites({required final List<RestaurantData> favorites}) = _$RestaurantViewModelFavoritesImpl;
 
   List<RestaurantData> get favorites;
 
   /// Create a copy of RestaurantViewModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$RestaurantViewModelFavoritesImplCopyWith<
-          _$RestaurantViewModelFavoritesImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$RestaurantViewModelFavoritesImplCopyWith<_$RestaurantViewModelFavoritesImpl> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class _$$RestaurantViewModelErrorImplCopyWith<$Res> {
-  factory _$$RestaurantViewModelErrorImplCopyWith(
-          _$RestaurantViewModelErrorImpl value,
-          $Res Function(_$RestaurantViewModelErrorImpl) then) =
-      __$$RestaurantViewModelErrorImplCopyWithImpl<$Res>;
+  factory _$$RestaurantViewModelErrorImplCopyWith(_$RestaurantViewModelErrorImpl value, $Res Function(_$RestaurantViewModelErrorImpl) then) = __$$RestaurantViewModelErrorImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Object? error, StackTrace stackTrace});
 }
 
 /// @nodoc
-class __$$RestaurantViewModelErrorImplCopyWithImpl<$Res>
-    extends _$RestaurantViewModelCopyWithImpl<$Res,
-        _$RestaurantViewModelErrorImpl>
-    implements _$$RestaurantViewModelErrorImplCopyWith<$Res> {
-  __$$RestaurantViewModelErrorImplCopyWithImpl(
-      _$RestaurantViewModelErrorImpl _value,
-      $Res Function(_$RestaurantViewModelErrorImpl) _then)
-      : super(_value, _then);
+class __$$RestaurantViewModelErrorImplCopyWithImpl<$Res> extends _$RestaurantViewModelCopyWithImpl<$Res, _$RestaurantViewModelErrorImpl> implements _$$RestaurantViewModelErrorImplCopyWith<$Res> {
+  __$$RestaurantViewModelErrorImplCopyWithImpl(_$RestaurantViewModelErrorImpl _value, $Res Function(_$RestaurantViewModelErrorImpl) _then) : super(_value, _then);
 
   /// Create a copy of RestaurantViewModel
   /// with the given fields replaced by the non-null parameter values.
@@ -1179,8 +1047,7 @@ class __$$RestaurantViewModelErrorImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$RestaurantViewModelErrorImpl implements RestaurantViewModelError {
-  const _$RestaurantViewModelErrorImpl(
-      {required this.error, required this.stackTrace});
+  const _$RestaurantViewModelErrorImpl({required this.error, required this.stackTrace});
 
   @override
   final Object? error;
@@ -1194,26 +1061,18 @@ class _$RestaurantViewModelErrorImpl implements RestaurantViewModelError {
 
   @override
   bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$RestaurantViewModelErrorImpl &&
-            const DeepCollectionEquality().equals(other.error, error) &&
-            (identical(other.stackTrace, stackTrace) ||
-                other.stackTrace == stackTrace));
+    return identical(this, other) || (other.runtimeType == runtimeType && other is _$RestaurantViewModelErrorImpl && const DeepCollectionEquality().equals(other.error, error) && (identical(other.stackTrace, stackTrace) || other.stackTrace == stackTrace));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(error), stackTrace);
+  int get hashCode => Object.hash(runtimeType, const DeepCollectionEquality().hash(error), stackTrace);
 
   /// Create a copy of RestaurantViewModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$RestaurantViewModelErrorImplCopyWith<_$RestaurantViewModelErrorImpl>
-      get copyWith => __$$RestaurantViewModelErrorImplCopyWithImpl<
-          _$RestaurantViewModelErrorImpl>(this, _$identity);
+  _$$RestaurantViewModelErrorImplCopyWith<_$RestaurantViewModelErrorImpl> get copyWith => __$$RestaurantViewModelErrorImplCopyWithImpl<_$RestaurantViewModelErrorImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1221,8 +1080,7 @@ class _$RestaurantViewModelErrorImpl implements RestaurantViewModelError {
     required TResult Function() loading,
     required TResult Function() empty,
     required TResult Function(List<RestaurantData> restaurants) data,
-    required TResult Function(List<RestaurantData> previousRestaurants)
-        loadingMore,
+    required TResult Function(List<RestaurantData> previousRestaurants) loadingMore,
     required TResult Function(List<RestaurantReviewData> reviews) reviews,
     required TResult Function(List<RestaurantData> favorites) favorites,
     required TResult Function(Object? error, StackTrace stackTrace) error,
@@ -1310,9 +1168,7 @@ class _$RestaurantViewModelErrorImpl implements RestaurantViewModelError {
 }
 
 abstract class RestaurantViewModelError implements RestaurantViewModel {
-  const factory RestaurantViewModelError(
-      {required final Object? error,
-      required final StackTrace stackTrace}) = _$RestaurantViewModelErrorImpl;
+  const factory RestaurantViewModelError({required final Object? error, required final StackTrace stackTrace}) = _$RestaurantViewModelErrorImpl;
 
   Object? get error;
   StackTrace get stackTrace;
@@ -1320,6 +1176,5 @@ abstract class RestaurantViewModelError implements RestaurantViewModel {
   /// Create a copy of RestaurantViewModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$RestaurantViewModelErrorImplCopyWith<_$RestaurantViewModelErrorImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$RestaurantViewModelErrorImplCopyWith<_$RestaurantViewModelErrorImpl> get copyWith => throw _privateConstructorUsedError;
 }

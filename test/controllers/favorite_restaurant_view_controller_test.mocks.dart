@@ -47,8 +47,7 @@ class _FakeCompleter_1<T> extends _i1.SmartFake implements _i3.Completer<T> {
 /// A class which mocks [RemoteRestaurantDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockRemoteRestaurantDataSource extends _i1.Mock
-    implements _i4.RemoteRestaurantDataSource {
+class MockRemoteRestaurantDataSource extends _i1.Mock implements _i4.RemoteRestaurantDataSource {
   @override
   _i2.Dio get source => (super.noSuchMethod(
         Invocation.getter(#source),
@@ -76,10 +75,8 @@ class MockRemoteRestaurantDataSource extends _i1.Mock
             #limit: limit,
           },
         ),
-        returnValue:
-            _i3.Future<List<_i5.RestaurantData>>.value(<_i5.RestaurantData>[]),
-        returnValueForMissingStub:
-            _i3.Future<List<_i5.RestaurantData>>.value(<_i5.RestaurantData>[]),
+        returnValue: _i3.Future<List<_i5.RestaurantData>>.value(<_i5.RestaurantData>[]),
+        returnValueForMissingStub: _i3.Future<List<_i5.RestaurantData>>.value(<_i5.RestaurantData>[]),
       ) as _i3.Future<List<_i5.RestaurantData>>);
 
   @override
@@ -93,8 +90,7 @@ class MockRemoteRestaurantDataSource extends _i1.Mock
       ) as _i3.Future<void>);
 
   @override
-  _i3.Future<void> addRestaurants({required _i4.RestaurantPage? page}) =>
-      (super.noSuchMethod(
+  _i3.Future<void> addRestaurants({required _i4.RestaurantPage? page}) => (super.noSuchMethod(
         Invocation.method(
           #addRestaurants,
           [],
@@ -105,27 +101,21 @@ class MockRemoteRestaurantDataSource extends _i1.Mock
       ) as _i3.Future<void>);
 
   @override
-  _i3.Future<List<_i5.RestaurantReviewData>> getReviewsForRestaurant(
-          {required String? restaurantId}) =>
-      (super.noSuchMethod(
+  _i3.Future<List<_i5.RestaurantReviewData>> getReviewsForRestaurant({required String? restaurantId}) => (super.noSuchMethod(
         Invocation.method(
           #getReviewsForRestaurant,
           [],
           {#restaurantId: restaurantId},
         ),
-        returnValue: _i3.Future<List<_i5.RestaurantReviewData>>.value(
-            <_i5.RestaurantReviewData>[]),
-        returnValueForMissingStub:
-            _i3.Future<List<_i5.RestaurantReviewData>>.value(
-                <_i5.RestaurantReviewData>[]),
+        returnValue: _i3.Future<List<_i5.RestaurantReviewData>>.value(<_i5.RestaurantReviewData>[]),
+        returnValueForMissingStub: _i3.Future<List<_i5.RestaurantReviewData>>.value(<_i5.RestaurantReviewData>[]),
       ) as _i3.Future<List<_i5.RestaurantReviewData>>);
 }
 
 /// A class which mocks [InStorageRestaurantDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockInStorageRestaurantDataSource extends _i1.Mock
-    implements _i4.InStorageRestaurantDataSource {
+class MockInStorageRestaurantDataSource extends _i1.Mock implements _i4.InStorageRestaurantDataSource {
   @override
   _i3.Completer<_i6.LazyBox<String>> get boxInitializer => (super.noSuchMethod(
         Invocation.getter(#boxInitializer),
@@ -140,8 +130,7 @@ class MockInStorageRestaurantDataSource extends _i1.Mock
       ) as _i3.Completer<_i6.LazyBox<String>>);
 
   @override
-  set boxInitializer(_i3.Completer<_i6.LazyBox<String>>? _boxInitializer) =>
-      super.noSuchMethod(
+  set boxInitializer(_i3.Completer<_i6.LazyBox<String>>? _boxInitializer) => super.noSuchMethod(
         Invocation.setter(
           #boxInitializer,
           _boxInitializer,
@@ -150,8 +139,7 @@ class MockInStorageRestaurantDataSource extends _i1.Mock
       );
 
   @override
-  _i3.Future<void> addRestaurants({required _i4.RestaurantPage? page}) =>
-      (super.noSuchMethod(
+  _i3.Future<void> addRestaurants({required _i4.RestaurantPage? page}) => (super.noSuchMethod(
         Invocation.method(
           #addRestaurants,
           [],
@@ -185,25 +173,18 @@ class MockInStorageRestaurantDataSource extends _i1.Mock
             #limit: limit,
           },
         ),
-        returnValue:
-            _i3.Future<List<_i5.RestaurantData>>.value(<_i5.RestaurantData>[]),
-        returnValueForMissingStub:
-            _i3.Future<List<_i5.RestaurantData>>.value(<_i5.RestaurantData>[]),
+        returnValue: _i3.Future<List<_i5.RestaurantData>>.value(<_i5.RestaurantData>[]),
+        returnValueForMissingStub: _i3.Future<List<_i5.RestaurantData>>.value(<_i5.RestaurantData>[]),
       ) as _i3.Future<List<_i5.RestaurantData>>);
 
   @override
-  _i3.Future<List<_i5.RestaurantReviewData>> getReviewsForRestaurant(
-          {required String? restaurantId}) =>
-      (super.noSuchMethod(
+  _i3.Future<List<_i5.RestaurantReviewData>> getReviewsForRestaurant({required String? restaurantId}) => (super.noSuchMethod(
         Invocation.method(
           #getReviewsForRestaurant,
           [],
           {#restaurantId: restaurantId},
         ),
-        returnValue: _i3.Future<List<_i5.RestaurantReviewData>>.value(
-            <_i5.RestaurantReviewData>[]),
-        returnValueForMissingStub:
-            _i3.Future<List<_i5.RestaurantReviewData>>.value(
-                <_i5.RestaurantReviewData>[]),
+        returnValue: _i3.Future<List<_i5.RestaurantReviewData>>.value(<_i5.RestaurantReviewData>[]),
+        returnValueForMissingStub: _i3.Future<List<_i5.RestaurantReviewData>>.value(<_i5.RestaurantReviewData>[]),
       ) as _i3.Future<List<_i5.RestaurantReviewData>>);
 }
