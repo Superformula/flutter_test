@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:hive/hive.dart';
 import 'package:restaurant_tour/core/utils/app_exceptions.dart';
 import 'package:restaurant_tour/core/utils/app_failures.dart';
 import 'package:restaurant_tour/features/restaurant/data/data_sources/remote_datasource.dart';
@@ -24,6 +25,48 @@ class YelpRepositoryImpl implements YelpRepository {
       return Right(restaurants);
     } on ServerException catch (e) {
       return Left(ServerFailure(message: e.message));
+    } catch (e) {
+      return Left(AppFailure());
+    }
+  }
+
+  @override
+  Future markFavorite(String id) async {
+    if (await Hive.boxExists("favorites")) {
+      final box = Hive.box("favorites");
+      for (final b in box.values) {
+        if (b == id) {
+          box.delete(b);
+        } else {
+          box.add(id);
+        }
+      }
+    } else {
+      Hive.openBox("favorites");
+      final box = Hive.box("favorites");
+      for (final b in box.values) {
+        if (b == id) {
+          box.delete(b);
+        } else {
+          box.add(id);
+        }
+      }
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<String>>> getFavorites() async {
+    try {
+      if (await Hive.boxExists("favorites")) {
+        final box = await Hive.openBox("favorites");
+        List<String> favorites = [];
+        for (final b in box.values) {
+          favorites.add(b);
+        }
+        return Right(favorites);
+      } else {
+        return const Right([]);
+      }
     } catch (e) {
       return Left(AppFailure());
     }

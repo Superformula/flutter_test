@@ -8,7 +8,11 @@ class HomeLoading extends HomeState {}
 
 class HomeLoaded extends HomeState {
   final List<Restaurant> restaurants;
-  HomeLoaded({required this.restaurants});
+  final List<Restaurant> favorites;
+  HomeLoaded({
+    required this.restaurants,
+    required this.favorites,
+  });
 }
 
 class HomeError extends HomeState {}

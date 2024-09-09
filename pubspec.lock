@@ -347,6 +347,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.1"
+  hive:
+    dependency: "direct main"
+    description:
+      name: hive
+      sha256: "8dcf6db979d7933da8217edcec84e9df1bdb4e4edc7fc77dbd5aa74356d6d941"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.3"
   http:
     dependency: transitive
     description:
@@ -379,6 +387,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.3"
+  isar:
+    dependency: transitive
+    description:
+      name: isar
+      sha256: "9f61cc74d160f9ed85ef30baf2f9c51cc0d027ae701dbc0051087800d14a9501"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.0.0-dev.3"
+  isar_flutter_libs:
+    dependency: "direct main"
+    description:
+      name: isar_flutter_libs
+      sha256: "2db3c5c34fa78c13837da1055a6e05d3f1d8a4d039bd95a94c24b6368c19f10f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.0.0-dev.3"
   js:
     dependency: transitive
     description:
@@ -524,7 +548,7 @@ packages:
     source: hosted
     version: "1.0.1"
   path_provider:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: path_provider
       sha256: fec0d61223fba3154d87759e3cc27fe2c8dc498f6386c6d6fc80d1afdd1bf378
@@ -689,7 +713,7 @@ packages:
     source: hosted
     version: "7.0.0"
   sqflite:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: sqflite
       sha256: a43e5a27235518c03ca238e7b4732cf35eabe863a369ceba6cbefa537a66f16d

@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:restaurant_tour/core/utils/app_keys.dart';
+import 'package:restaurant_tour/di.dart';
 
+import '../manager/home_cubit.dart';
+import '../manager/home_state.dart';
 import '../tabs/list_restaurants_widget.dart';
 
 class HomePage extends StatelessWidget {
@@ -22,15 +27,18 @@ class HomePage extends StatelessWidget {
               fontSize: 18,
             ),
           ),
-          bottom: const TabBar(
-            labelStyle: TextStyle(
+          bottom: TabBar(
+            onTap: (_) {
+              getIt.get<HomeCubit>().getRestaurants();
+            },
+            labelStyle: const TextStyle(
               color: Colors.black,
               fontFamily: 'Open-Sans',
               fontWeight: FontWeight.w600,
               fontSize: 14,
             ),
             indicatorColor: Colors.black,
-            tabs: [
+            tabs: const [
               Tab(
                 text: "All Restaurants",
               ),
@@ -40,15 +48,63 @@ class HomePage extends StatelessWidget {
             ],
           ),
         ),
-        body: const TabBarView(
-          children: [
-            Center(
-              child: ListRestaurants(),
-            ),
-            Center(
-              child: Text("Teste 2"),
-            ),
-          ],
+        body: BlocBuilder<HomeCubit, HomeState>(
+          builder: (context, state) {
+            if (state is HomeInitial) {
+              context.watch<HomeCubit>().getRestaurants();
+            } else if (state is HomeLoading) {
+              return const Center(
+                child: CircularProgressIndicator(
+                  key: Key(AppKeys.loadingRestaurantsIndicator),
+                  color: Colors.black,
+                ),
+              );
+            } else if (state is HomeLoaded) {
+              return TabBarView(
+                children: [
+                  Center(
+                    child: state.restaurants.isNotEmpty
+                        ? ListRestaurants(
+                            restaurants: state.restaurants,
+                          )
+                        : const Text(
+                            "Error when fetching restaurants",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontFamily: 'Open-Sans',
+                              fontWeight: FontWeight.w600,
+                              fontSize: 14,
+                            ),
+                            key: Key(AppKeys.restaurantListIsEmpty),
+                          ),
+                  ),
+                  Center(
+                    child: state.favorites.isNotEmpty
+                        ? ListRestaurants(
+                            restaurants: state.favorites,
+                          )
+                        : const Text(
+                            "Error when fetching favorites restaurants",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontFamily: 'Open-Sans',
+                              fontWeight: FontWeight.w600,
+                              fontSize: 14,
+                            ),
+                          ),
+                  ),
+                ],
+              );
+            } else if (state is HomeError) {
+              return const Center(
+                child: Text(
+                  "Error when try to get a restaurants list!",
+                  key: Key(AppKeys.listRestaurantsError),
+                ),
+              );
+            }
+            return const SizedBox.shrink();
+          },
         ),
       ),
     );

@@ -3,7 +3,9 @@ import 'package:get_it/get_it.dart';
 import 'package:restaurant_tour/features/restaurant/data/data_sources/remote_datasource.dart';
 import 'package:restaurant_tour/features/restaurant/data/repositories/yelp_repository_impl.dart';
 import 'package:restaurant_tour/features/restaurant/domain/repositories/yelp_repository.dart';
+import 'package:restaurant_tour/features/restaurant/domain/use_cases/get_favorites.dart';
 import 'package:restaurant_tour/features/restaurant/domain/use_cases/get_restaurants.dart';
+import 'package:restaurant_tour/features/restaurant/domain/use_cases/mark_favorite.dart';
 import 'package:restaurant_tour/features/restaurant/presentation/manager/home_cubit.dart';
 
 final getIt = GetIt.instance;
@@ -32,7 +34,15 @@ void setupDependencies() {
 
   getIt.registerFactory(() => GetRestaurants(getIt()));
 
+  getIt.registerFactory(() => GetFavorites(getIt()));
+
+  getIt.registerFactory(() => MarkFavorite(getIt()));
+
   getIt.registerFactory<HomeCubit>(
-    () => HomeCubit(getIt()),
+    () => HomeCubit(
+      getIt(),
+      getIt(),
+      getIt(),
+    ),
   );
 }

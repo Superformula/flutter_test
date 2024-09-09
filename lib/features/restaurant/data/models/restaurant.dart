@@ -95,8 +95,9 @@ class Restaurant {
   final List<Hours>? hours;
   final List<Review>? reviews;
   final Location? location;
+  bool favorite;
 
-  const Restaurant({
+  Restaurant({
     this.id,
     this.name,
     this.price,
@@ -106,6 +107,7 @@ class Restaurant {
     this.hours,
     this.reviews,
     this.location,
+    this.favorite = false,
   });
 
   factory Restaurant.fromJson(Map<String, dynamic> json) =>
