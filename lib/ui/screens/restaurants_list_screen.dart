@@ -54,7 +54,6 @@ class _RestaurantsListScreenState extends State<RestaurantsListScreen> with Auto
     return BlocBuilder<RestaurantViewController, RestaurantViewModel>(
       bloc: viewController,
       builder: (context, state) {
-
         if (state is RestaurantViewModelLoading) {
           return const Center(child: CircularProgressIndicator());
         } else {
@@ -66,7 +65,7 @@ class _RestaurantsListScreenState extends State<RestaurantsListScreen> with Auto
               onLoadSingleFavorite: widget.onLoadSingleFavorite,
               shouldDisplayLoading: true,
             );
-          } 
+          }
         }
 
         return const SizedBox.shrink();

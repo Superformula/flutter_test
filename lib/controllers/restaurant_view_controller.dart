@@ -48,7 +48,6 @@ final class RestaurantViewController extends Cubit<RestaurantViewModel> {
 
   static final _logger = Logger('RestaurantViewController');
 
-
   Future<void> getMoreRestaurants() async {
     try {
       final restaurants = await listRestaurantsUseCase.call(offset: offset);

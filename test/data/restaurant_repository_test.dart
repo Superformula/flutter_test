@@ -171,7 +171,6 @@ void main() {
 
         expect(subject.favorites.isNotEmpty, isTrue);
         expect(subject.favorites[0].isFavorite, isTrue);
-
       });
 
       test('should provide review data for an specific restaurant', () async {
