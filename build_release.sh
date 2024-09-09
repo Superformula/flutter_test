@@ -1,0 +1,1 @@
+flutter build apk --pub --release --obfuscate --split-debug-info=build --dart-define=API_KEY=$API_KEY --dart-define=API_URL=$API_URL
