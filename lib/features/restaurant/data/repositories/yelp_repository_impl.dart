@@ -34,22 +34,14 @@ class YelpRepositoryImpl implements YelpRepository {
   Future markFavorite(String id) async {
     if (await Hive.boxExists("favorites")) {
       final box = Hive.box("favorites");
-      for (final b in box.values) {
-        if (b == id) {
-          box.delete(b);
-        } else {
-          box.add(id);
-        }
+      if (!box.values.contains(id)) {
+        box.add(id);
       }
     } else {
       Hive.openBox("favorites");
       final box = Hive.box("favorites");
-      for (final b in box.values) {
-        if (b == id) {
-          box.delete(b);
-        } else {
-          box.add(id);
-        }
+      if (!box.values.contains(id)) {
+        box.add(id);
       }
     }
   }
