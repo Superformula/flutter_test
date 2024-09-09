@@ -27,7 +27,7 @@ abstract class RestaurantDataSource {
 /// A data source capable of loading restaurant information from the backend
 ///
 /// It works as if it were in read-only mode, since we do not mutate data.
-final class RemoteRestaurantDataSource extends RestaurantDataSource {
+class RemoteRestaurantDataSource extends RestaurantDataSource {
   RemoteRestaurantDataSource({@visibleForOverriding Dio? client}) : source = client ?? Environment.createDioClient();
 
   final Dio source;
@@ -69,7 +69,6 @@ query getRestaurants {
 }
 ''';
 
-    
     final response = await source.post<Map<String, Object?>>('/v3/graphql', data: query);
 
     if (response.data?['data'] case final Map<String, Object?> data?) {
@@ -89,7 +88,7 @@ query getRestaurants {
 
 // TODO: fill in implementation
 /// A data source that permanently stores all possible data about restaurants already loaded
-final class InStorageRestaurantDataSource implements RestaurantDataSource {
+class InStorageRestaurantDataSource implements RestaurantDataSource {
   InStorageRestaurantDataSource() {
     boxInitializer = Completer();
     boxInitializer.complete(Hive.openLazyBox<String>(kRestaurantsBox));

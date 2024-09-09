@@ -100,7 +100,6 @@ final class RestaurantRepository extends RestaurantDataSource {
   }
 
   List<RestaurantData> get favorites {
-
     return _restaurantsCache.values.where((restaurant) => restaurant.isFavorite).toList(growable: false);
   }
 

@@ -27,6 +27,8 @@ dependencies:
   collection: ^1.18.0
   hive_flutter: ^1.1.0
   flash: ^3.1.1
+  mockito: ^5.4.4
+  uuid: ^4.5.0
 
 dev_dependencies:
   flutter_test:
