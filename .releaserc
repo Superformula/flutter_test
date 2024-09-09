@@ -1,0 +1,19 @@
+{
+  "release": {
+    "branches": ["master"]
+  },
+  "prepare": [{
+    "path": "@semantic-release/exec",
+     "cmd": "./build_release.sh ${nextRelease.version}"
+  }],
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    ["@semantic-release/github", {
+      "assets": ["build/app/outputs/apk/release/**.apk"]
+      }],
+    "@semantic-release/git",
+    "@semantic-release/exec"
+  ],
+  "preset": "angular"
+}
