@@ -40,10 +40,8 @@ class _RestaurantsListScreenState extends State<RestaurantsListScreen> with Auto
   void onScrollToEnd() {
     if (mounted && scrollController.hasClients) {
       final position = scrollController.position;
-      final pixels = position.pixels;
-      final extent = position.maxScrollExtent * 0.85;
 
-      if (pixels >= extent && viewController.currentState is! RestaurantViewModelLoadingMore) {
+      if (position.maxScrollExtent == scrollController.offset) {
         viewController.getMoreRestaurants();
       }
     }
@@ -56,42 +54,22 @@ class _RestaurantsListScreenState extends State<RestaurantsListScreen> with Auto
     return BlocBuilder<RestaurantViewController, RestaurantViewModel>(
       bloc: viewController,
       builder: (context, state) {
-        // TODO fix
-        Widget content = const SizedBox.shrink();
 
         if (state is RestaurantViewModelLoading) {
-          content = const Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator());
         } else {
           if (state is RestaurantViewModelData) {
-            content = RestaurantsList(
+            return RestaurantsList(
               controller: scrollController,
               restaurants: state.restaurants,
               onSelectFavorite: widget.onSelectFavorite,
               onLoadSingleFavorite: widget.onLoadSingleFavorite,
+              shouldDisplayLoading: true,
             );
-          } else if (state is RestaurantViewModelLoadingMore) {
-            content = Column(
-              children: [
-                Expanded(
-                  child: RestaurantsList(
-                    controller: scrollController,
-                    restaurants: state.previousRestaurants,
-                    onSelectFavorite: widget.onSelectFavorite,
-                    onLoadSingleFavorite: widget.onLoadSingleFavorite,
-                  ),
-                ),
-                const Padding(
-                  padding: EdgeInsets.all(24),
-                  child: Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                ),
-              ],
-            );
-          }
+          } 
         }
 
-        return content;
+        return const SizedBox.shrink();
       },
     );
   }

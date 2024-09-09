@@ -48,20 +48,13 @@ final class RestaurantViewController extends Cubit<RestaurantViewModel> {
 
   static final _logger = Logger('RestaurantViewController');
 
-  RestaurantViewModel currentState = const RestaurantViewModel.empty();
 
   Future<void> getMoreRestaurants() async {
     try {
-      if (state case RestaurantViewModelData(restaurants: final restaurants)) {
-        currentState = RestaurantViewModel.loadingMore(previousRestaurants: restaurants);
-        emit(currentState);
-      }
-
       final restaurants = await listRestaurantsUseCase.call(offset: offset);
       offset = offset + 1;
 
-      currentState = RestaurantViewModel.data(restaurants: restaurants);
-      emit(currentState);
+      emit(RestaurantViewModel.data(restaurants: restaurants));
     } catch (error, stackTrace) {
       _logger.severe('Fail to load restaurants data when using offset $offset', error, stackTrace);
       emit(RestaurantViewModel.error(error: error, stackTrace: stackTrace));
@@ -70,14 +63,12 @@ final class RestaurantViewController extends Cubit<RestaurantViewModel> {
 
   Future<void> getRestaurants() async {
     try {
-      currentState = const RestaurantViewModel.loading();
-      emit(currentState);
+      emit(const RestaurantViewModel.loading());
 
       final restaurants = await listRestaurantsUseCase.call(offset: offset);
       offset = offset + 1;
 
-      currentState = RestaurantViewModel.data(restaurants: restaurants);
-      emit(currentState);
+      emit(RestaurantViewModel.data(restaurants: restaurants));
     } catch (error, stackTrace) {
       _logger.severe('Fail to load restaurants data when using offset $offset', error, stackTrace);
       emit(RestaurantViewModel.error(error: error, stackTrace: stackTrace));

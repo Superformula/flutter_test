@@ -19,12 +19,14 @@ final class RestaurantsList extends StatefulWidget {
     required this.onSelectFavorite,
     required this.onLoadSingleFavorite,
     this.controller,
+    this.shouldDisplayLoading = false,
   });
 
   final ScrollController? controller;
   final List<RestaurantData> restaurants;
   final OnSelectFavoriteCallback onSelectFavorite;
   final OnLoadSingleFavorite onLoadSingleFavorite;
+  final bool shouldDisplayLoading;
 
   @override
   State<RestaurantsList> createState() => _RestaurantsListState();
@@ -33,19 +35,36 @@ final class RestaurantsList extends StatefulWidget {
 class _RestaurantsListState extends State<RestaurantsList> {
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      controller: widget.controller,
-      padding: const EdgeInsets.all(12),
-      itemCount: widget.restaurants.length,
-      itemBuilder: (context, index) {
-        return RestaurantCard(
-          restaurant: widget.restaurants[index],
-          onSelectFavorite: widget.onSelectFavorite,
-          onLoadSingleFavorite: widget.onLoadSingleFavorite,
-        );
-      },
-      separatorBuilder: (BuildContext context, int index) => const Gap(12),
-    );
+    final restaurants = widget.restaurants;
+
+    if (restaurants.isEmpty) {
+      return const SizedBox.shrink();
+    } else {
+      final length = widget.shouldDisplayLoading //
+          ? restaurants.length + 1
+          : restaurants.length;
+
+      return ListView.separated(
+        controller: widget.controller,
+        padding: const EdgeInsets.all(12),
+        itemCount: length,
+        itemBuilder: (context, index) {
+          if (index < restaurants.length) {
+            return RestaurantCard(
+              restaurant: widget.restaurants[index],
+              onSelectFavorite: widget.onSelectFavorite,
+              onLoadSingleFavorite: widget.onLoadSingleFavorite,
+            );
+          } else {
+            return const Padding(
+              padding: EdgeInsets.all(24),
+              child: Center(child: CircularProgressIndicator()),
+            );
+          }
+        },
+        separatorBuilder: (BuildContext context, int index) => const Gap(12),
+      );
+    }
   }
 }
 
@@ -132,7 +151,8 @@ final class RestaurantCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      restaurant.name,
+                      //restaurant.name,
+                      restaurant.id,
                       style: AppTextStyles.loraRegularTitle,
                       softWrap: true,
                       overflow: TextOverflow.ellipsis,
