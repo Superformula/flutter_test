@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "522423601420",
+    "project_id": "restauranttour-c10b6",
+    "storage_bucket": "restauranttour-c10b6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:522423601420:android:465adebed27091026da129",
+        "android_client_info": {
+          "package_name": "com.example.restaurant_tour"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAS-QgF5_2eGRlRRM52eE1Nv9oi4eeyiG4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -19,13 +21,20 @@ void main() {
     () async {
       WidgetsFlutterBinding.ensureInitialized();
 
+      Logger.root.level = Level.ALL;
       Logger.root.onRecord.listen((record) {
         debugPrint('${record.level.name}: ${record.time}: ${record.message}');
+
+        if (record.level == Level.SEVERE) {
+          FirebaseCrashlytics.instance.recordError(record.error, record.stackTrace);
+        }
       });
 
-      FlutterError.onError = (errorDetails) {
-        Logger.root.severe(errorDetails.summary, errorDetails.exception, errorDetails.stack);
-      };
+      await Firebase.initializeApp();
+
+      FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+
+      FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(kReleaseMode);
 
       await Hive.initFlutter();
 
