@@ -151,8 +151,7 @@ final class RestaurantCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      //restaurant.name,
-                      restaurant.id,
+                      restaurant.name,
                       style: AppTextStyles.loraRegularTitle,
                       softWrap: true,
                       overflow: TextOverflow.ellipsis,
