@@ -65,7 +65,7 @@ void main() {
         verify(localDataSource.addRestaurants(page: anyNamed('page'))).called(1);
       });
 
-      test('should not touch the local storage when data isalready loaded in memory for the same offset', () async {
+      test('should not touch the local storage when data is already loaded in memory for the same offset', () async {
         when(remoteDataSoruce.getRestaurants(offset: anyNamed('offset'))).thenAnswer((invocation) async {
           return greatestRestaurants;
         });
@@ -79,6 +79,22 @@ void main() {
         expect(moreRestaurants.length, equals(20));
 
         verify(localDataSource.addRestaurants(page: anyNamed('page'))).called(1);
+      });
+
+      test('should load data from local storage into memory when it is present for offset', () async {
+        when(localDataSource.getRestaurants(offset: anyNamed('offset'))).thenAnswer((invocation) async {
+          return greatestRestaurants;
+        });
+
+        final restaurants = await subject.getRestaurants(offset: 0);
+
+        expect(restaurants, equals(greatestRestaurants));
+
+        final moreRestaurants = await subject.getRestaurants(offset: 0);
+
+        expect(moreRestaurants.length, equals(20));
+
+        verifyNever(remoteDataSoruce.getRestaurants(offset: anyNamed('offset')));
       });
 
       test('should load and store more data for different offsets', () async {
@@ -130,6 +146,32 @@ void main() {
         final notFavorites = subject.favorites;
 
         expect(notFavorites.isEmpty, isTrue);
+      });
+
+      test('should load favorite restaurants from disk', () async {
+        when(localDataSource.getRestaurants(offset: anyNamed('offset'))).thenAnswer((invocation) async {
+          return [
+            const RestaurantData(
+              id: '0',
+              name: 'name',
+              price: r'$$$',
+              rating: 5.0,
+              photos: [],
+              reviews: [],
+              categories: [],
+              location: RestaurantLocationData(address: 'address'),
+              hours: [],
+              isFavorite: true,
+            ),
+            ...greatestRestaurants.sublist(1)
+          ];
+        });
+
+        await subject.getRestaurants(offset: 0);
+
+        expect(subject.favorites.isNotEmpty, isTrue);
+        expect(subject.favorites[0].isFavorite, isTrue);
+
       });
 
       test('should provide review data for an specific restaurant', () async {
