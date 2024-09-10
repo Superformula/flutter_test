@@ -4,7 +4,6 @@ import 'package:restaurant_tour/models/restaurant.dart';
 import '../../../../core/config/strings.dart';
 import '../../../../core/utils/router_manager.dart';
 import '../../../../typography.dart';
-import 'restaurant_list_categories_widget.dart';
 import 'restaurant_list_rating_icons_widget.dart';
 
 class RestaurantListCardWidget extends StatelessWidget {
@@ -50,13 +49,17 @@ class RestaurantListCardWidget extends StatelessWidget {
               Row(
                 children: [
                   // Price
-                  Text(restaurant.price!),
+                  Text(
+                    restaurant.price ?? '\$\$',
+                    style: AppTextStyles.openRegularText,
+                  ),
                   const SizedBox(
                     width: 10,
                   ),
                   // Category
-                  RestaurantListCategoriesWidget(
-                    categories: restaurant.categories ?? [],
+                  Text(
+                    restaurant.displayCategory,
+                    style: AppTextStyles.openRegularText,
                   ),
                 ],
               ),
@@ -64,7 +67,8 @@ class RestaurantListCardWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   // Rating
-                  RestaurantListRatingIconsWidget(rating: (restaurant.rating ?? 0).round()),
+                  RestaurantListRatingIconsWidget(
+                      rating: (restaurant.rating ?? 0).round()),
                   // Open/Closed
                   Row(
                     children: [

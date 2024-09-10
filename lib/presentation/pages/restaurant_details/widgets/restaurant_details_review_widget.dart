@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../../core/config/strings.dart';
 import '../../../../models/restaurant.dart';
 import '../../../../typography.dart';
-import '../../restaurant_list/widgets/restaurant_list_categories_widget.dart';
 import '../../restaurant_list/widgets/restaurant_list_rating_icons_widget.dart';
 
 class RestaurantDetailsReviewsWidget extends StatelessWidget {
@@ -24,7 +22,7 @@ class RestaurantDetailsReviewsWidget extends StatelessWidget {
           ),
           Row(
             children: [
-              review.user!.imageUrl != null
+              review.user?.imageUrl != null
               ? ClipOval(
                 child: SizedBox.fromSize(
                   size: const Size.fromRadius(20),

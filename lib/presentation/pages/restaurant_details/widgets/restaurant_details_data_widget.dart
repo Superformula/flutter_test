@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import '../../../../core/config/strings.dart';
 import '../../../../models/restaurant.dart';
 import '../../../../typography.dart';
-import '../../restaurant_list/widgets/restaurant_list_categories_widget.dart';
-import 'restaurant_details_review_list_widget.dart';
 
 class RestaurantDetailsDataWidget extends StatelessWidget {
   final Restaurant restaurant;
@@ -28,8 +26,9 @@ class RestaurantDetailsDataWidget extends StatelessWidget {
                 width: 10,
               ),
               // Category
-              RestaurantListCategoriesWidget(
-                categories: restaurant.categories!,
+              Text(
+                restaurant.displayCategory,
+                style: AppTextStyles.openRegularText,
               ),
               const Expanded(
                 child: SizedBox(),

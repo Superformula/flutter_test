@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_tour/presentation/pages/restaurant_details/widgets/restaurant_details_favorite_button.dart';
-import '../../../core/config/strings.dart';
 import '../../../models/restaurant.dart';
-import '../restaurant_list/widgets/restaurant_list_categories_widget.dart';
 import 'widgets/restaurant_details_data_widget.dart';
 import 'widgets/restaurant_details_review_list_widget.dart';
 

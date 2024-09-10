@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_tour/presentation/pages/restaurant_details/widgets/restaurant_details_review_widget.dart';
-import '../../../../core/config/strings.dart';
 import '../../../../models/restaurant.dart';
-import '../../restaurant_list/widgets/restaurant_list_categories_widget.dart';
 
 class RestaurantDetailsReviewListWidget extends StatelessWidget {
   final List<Review> reviews;
