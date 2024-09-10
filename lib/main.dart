@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_tour/repositories/yelp_repository.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '/core/utils/router_manager.dart';
+import '/repositories/yelp_repository.dart';
+import 'models/restaurant.dart';
 
 void main() {
-  runApp(const RestaurantTour());
+  runApp(const ProviderScope(child: RestaurantTour()));
 }
 
 class RestaurantTour extends StatelessWidget {
@@ -12,7 +16,8 @@ class RestaurantTour extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'Restaurant Tour',
-      home: HomePage(),
+      initialRoute: Routes.main,
+      onGenerateRoute: RouterManager.generateRoute,
     );
   }
 }
@@ -29,20 +34,12 @@ class HomePage extends StatelessWidget {
           children: [
             const Text('Restaurant Tour'),
             ElevatedButton(
-              child: const Text('Fetch Restaurants'),
+              child: const Text('Go To Restaurants List'),
               onPressed: () async {
-                final yelpRepo = YelpRepository();
-
-                try {
-                  final result = await yelpRepo.getRestaurants();
-                  if (result != null) {
-                    print('Fetched ${result.restaurants!.length} restaurants');
-                  } else {
-                    print('No restaurants fetched');
-                  }
-                } catch (e) {
-                  print('Failed to fetch restaurants: $e');
-                }
+                Navigator.pushNamed(
+                  context,
+                  Routes.restaurantList,
+                );
               },
             ),
           ],
