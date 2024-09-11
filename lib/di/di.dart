@@ -14,6 +14,7 @@ final getIt = GetIt.instance;
 void setupDI() {
   const apiKey = String.fromEnvironment('API_KEY');
   const mockApi = bool.fromEnvironment('MOCK_API', defaultValue: false);
+  final shouldMockApi = apiKey.isEmpty || mockApi;
 
   getIt.registerLazySingleton<Dio>(
     () => Dio(
@@ -28,7 +29,7 @@ void setupDI() {
   );
 
   getIt.registerLazySingleton<BaseRestaurantsRepository>(
-    () => mockApi
+    () => shouldMockApi
         ? MockedRestaurantsRepository()
         : RestaurantsRepository(httpClient: getIt.get()),
     dispose: (repo) => repo.dispose(),
