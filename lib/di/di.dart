@@ -13,8 +13,7 @@ final getIt = GetIt.instance;
 
 void setupDI() {
   const apiKey = String.fromEnvironment('API_KEY');
-  final shouldMockApi = apiKey.isEmpty;
-  final mockApi = bool.fromEnvironment('MOCK_API', defaultValue: shouldMockApi);
+  const mockApi = bool.fromEnvironment('MOCK_API', defaultValue: false);
 
   getIt.registerLazySingleton<Dio>(
     () => Dio(
