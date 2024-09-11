@@ -23,8 +23,9 @@ class AllRestaurantsTab extends StatefulWidget {
   State<AllRestaurantsTab> createState() => _AllRestaurantsTabState();
 }
 
-class _AllRestaurantsTabState extends State<AllRestaurantsTab> {
+class _AllRestaurantsTabState extends State<AllRestaurantsTab> with AutomaticKeepAliveClientMixin {
   late Future<List<Restaurant>?> restaurantsFuture;
+
   @override
   void initState() {
     super.initState();
@@ -32,7 +33,12 @@ class _AllRestaurantsTabState extends State<AllRestaurantsTab> {
   }
 
   @override
+  bool get wantKeepAlive => true;
+
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
+
     return FutureBuilder(
       future: restaurantsFuture,
       builder: (context, snapshot) {
@@ -73,4 +79,5 @@ class _AllRestaurantsTabState extends State<AllRestaurantsTab> {
       },
     );
   }
+
 }
