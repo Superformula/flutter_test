@@ -41,7 +41,7 @@ void main() {
 
     final data = await restaurantsRepository.getRestaurants();
 
-    expect(data?.length, 20);
+    expect(data.tryGetSuccess()?.length, 20);
   });
 
   test('should return favorite restaurants', () {

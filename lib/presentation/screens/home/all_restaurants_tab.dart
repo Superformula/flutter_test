@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:multiple_result/multiple_result.dart';
 import 'package:restaurant_tour/domain/models/restaurant.dart';
 import 'package:restaurant_tour/domain/use_cases/toggle_favorite.dart';
 
 import 'package:restaurant_tour/domain/use_cases/get_restaurants_use_case.dart';
 import 'package:restaurant_tour/presentation/components/restaurant_card.dart';
+
+import '../../../core/domain/error/data_error.dart';
+import '../../../core/domain/error/error.dart';
 
 class AllRestaurantsTab extends StatefulWidget {
   final GetRestaurantsUseCase getAllRestaurantsUseCase;
@@ -23,8 +27,9 @@ class AllRestaurantsTab extends StatefulWidget {
   State<AllRestaurantsTab> createState() => _AllRestaurantsTabState();
 }
 
-class _AllRestaurantsTabState extends State<AllRestaurantsTab> with AutomaticKeepAliveClientMixin {
-  late Future<List<Restaurant>?> restaurantsFuture;
+class _AllRestaurantsTabState extends State<AllRestaurantsTab>
+    with AutomaticKeepAliveClientMixin {
+  late Future<Result<List<Restaurant>, BaseError>> restaurantsFuture;
 
   @override
   void initState() {
@@ -50,34 +55,46 @@ class _AllRestaurantsTabState extends State<AllRestaurantsTab> with AutomaticKee
           );
         }
 
-        if (snapshot.hasError || snapshot.data == null) {
-          return const Center(
-            child: Text("Failed to fetch restaurants"),
-          );
-        }
+        return snapshot.data!.when(
+          (data) {
+            return ListView.builder(
+              itemCount: data.length,
+              itemBuilder: (context, index) {
+                final restaurant = data[index];
+                final isFavorite = widget.favoriteRestaurants
+                        .indexWhere((element) => element.id == restaurant.id) !=
+                    -1;
 
-        if (snapshot.data!.isEmpty) {
-          return const Center(
-            child: Text("No restaurants found"),
-          );
-        }
+                return RestaurantCard(
+                  restaurant: restaurant,
+                  onTap: () => widget.onTapRestaurant(restaurant, isFavorite),
+                );
+              },
+            );
+          },
+          (error) {
+            if (error case DataError()) {
+              // here we could map data errors
+              return switch (error) {
+                RateLimitError() => const Center(
+                    child: Text("Rate limit exceeded"),
+                  ),
+                NoInternetConnectionError() => const Center(
+                    child: Text("No internet connection"),
+                  ),
+                _ => const Center(
+                    child: Text("Something went wrong"),
+                  ),
+              };
+            }
 
-        return ListView.builder(
-          itemCount: snapshot.data!.length,
-          itemBuilder: (context, index) {
-            final restaurant = snapshot.data![index];
-            final isFavorite = widget.favoriteRestaurants
-                    .indexWhere((element) => element.id == restaurant.id) !=
-                -1;
-
-            return RestaurantCard(
-              restaurant: restaurant,
-              onTap: () => widget.onTapRestaurant(restaurant, isFavorite),
+            // here we can map other errors
+            return const Center(
+              child: Text("Something went wrong"),
             );
           },
         );
       },
     );
   }
-
 }

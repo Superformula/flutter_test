@@ -18,6 +18,6 @@ void main() {
   test('should get restaurants', () async {
     final data = await getRestaurantsUseCase();
 
-    expect(data?.length, fakeRestaurantsRepository.restaurants.length);
+    expect(data.tryGetSuccess()?.length, fakeRestaurantsRepository.restaurants.length);
   });
 }

@@ -1,9 +1,13 @@
 import 'dart:async';
 
 import 'package:dio/dio.dart';
+import 'package:multiple_result/multiple_result.dart';
 import 'package:restaurant_tour/data/dtos/restaurant_dto.dart';
 import 'package:restaurant_tour/domain/models/restaurant.dart';
 import 'package:restaurant_tour/domain/repositories/restaurants_repository.dart';
+
+import '../../core/domain/error/data_error.dart';
+import '../../core/domain/error/error.dart';
 
 class RestaurantsRepository extends BaseRestaurantsRepository {
   // I could have created a remote data provider for this
@@ -28,7 +32,7 @@ class RestaurantsRepository extends BaseRestaurantsRepository {
   }
 
   @override
-  Future<List<Restaurant>?> getRestaurants({int offset = 0}) async {
+  Future<Result<List<Restaurant>, BaseError>> getRestaurants({int offset = 0}) async {
     try {
       final response = await _httpClient.post<Map<String, dynamic>>(
         '/v3/graphql',
@@ -38,12 +42,26 @@ class RestaurantsRepository extends BaseRestaurantsRepository {
       final data = RestaurantDto.fromJson(response.data!['data']['search']);
 
       if (data.restaurants != null) {
-        return data.restaurants!.map((e) => e.toDomain()).toList();
+        return Success(data.restaurants!.map((e) => e.toDomain()).toList());
       }
-      // TODO: This could be improved by returning a custom response with success or error, something like either_dart
-      return null;
-    } catch (e) {
-      return null;
+
+      return Error(UnknownError());
+    } on DioException catch (e) {
+      // we could map all network errors here and create something to share the logic
+      // here a simple example
+      if (e.response?.statusCode == 400) {
+        return Error(RateLimitError());
+      }
+
+      return switch (e.type) {
+        DioExceptionType.badResponse => Error(UnknownError()),
+        DioExceptionType.connectionTimeout => Error(TimeoutError()),
+        DioExceptionType.connectionError => Error(NoInternetConnectionError()),
+        _ => Error(UnknownError()),
+      };
+    }
+    catch (e) {
+      return Error(UnknownError());
     }
   }
 
