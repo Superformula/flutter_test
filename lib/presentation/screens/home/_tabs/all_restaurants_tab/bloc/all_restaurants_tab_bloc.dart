@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:restaurant_tour/core/domain/error/error.dart';
 import 'package:restaurant_tour/domain/models/restaurant.dart';
 import 'package:restaurant_tour/domain/use_cases/get_restaurants_use_case.dart';
@@ -32,7 +31,7 @@ class AllRestaurantsTabBloc
           contentIsLoading: false,
         ),
       ),
-      (error) => state.copyWith(error: error, contentIsLoading: false),
+      (error) => emit(state.copyWith(error: error, contentIsLoading: false)),
     );
   }
 }
