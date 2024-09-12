@@ -1,5 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
+
 import 'package:restaurant_tour/data/models/user.dart';
+
 import 'package:restaurant_tour/domain/models/review.dart'
     as review_domain_model;
 

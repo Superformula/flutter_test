@@ -1,13 +1,14 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+
+import 'package:restaurant_tour/core/theme/typography.dart';
 import 'package:restaurant_tour/domain/models/restaurant.dart';
 import 'package:restaurant_tour/domain/use_cases/get_favorites_restaurants_use_case.dart';
 import 'package:restaurant_tour/domain/use_cases/get_restaurants_use_case.dart';
 import 'package:restaurant_tour/domain/use_cases/toggle_favorite.dart';
 import 'package:restaurant_tour/presentation/screens/home/all_restaurants_tab.dart';
 import 'package:restaurant_tour/presentation/screens/home/favorite_restaurants_tab.dart';
-import 'package:restaurant_tour/core/theme/typography.dart';
 
 class HomeScreen extends StatefulWidget {
   final GetRestaurantsUseCase getAllRestaurantsUseCase;

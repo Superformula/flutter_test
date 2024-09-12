@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:restaurant_tour/di/di.dart';
 import 'package:restaurant_tour/domain/use_cases/get_favorites_restaurants_use_case.dart';
 import 'package:restaurant_tour/domain/use_cases/get_restaurants_use_case.dart';

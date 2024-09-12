@@ -1,9 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:restaurant_tour/data/models/restaurant.dart';
 import 'package:network_image_mock/network_image_mock.dart';
 
+import 'package:restaurant_tour/data/models/restaurant.dart';
 import 'package:restaurant_tour/presentation/components/restaurant_card.dart';
-
 import '../../fakes/data/fake_restaurant.dart';
 import '../../make_testable_widget.dart';
 

@@ -1,8 +1,10 @@
 import 'package:json_annotation/json_annotation.dart';
+
 import 'package:restaurant_tour/data/models/category.dart';
 import 'package:restaurant_tour/data/models/hours.dart';
 import 'package:restaurant_tour/data/models/location.dart';
 import 'package:restaurant_tour/data/models/review.dart';
+
 import 'package:restaurant_tour/domain/models/restaurant.dart'
     as restaurant_domain_model;
 

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_tour/domain/models/review.dart';
-import 'package:restaurant_tour/presentation/components/rating_stars.dart';
 
 import 'package:restaurant_tour/core/theme/typography.dart';
+import 'package:restaurant_tour/domain/models/review.dart';
+import 'package:restaurant_tour/presentation/components/rating_stars.dart';
 
 class ReviewCard extends StatelessWidget {
   final Review review;

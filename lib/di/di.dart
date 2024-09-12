@@ -1,13 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-import 'package:restaurant_tour/domain/use_cases/get_restaurants_use_case.dart';
-import 'package:restaurant_tour/domain/use_cases/toggle_favorite.dart';
 
+import 'package:restaurant_tour/data/repositories/mock/mocked_restaurants_repository.dart';
 import 'package:restaurant_tour/data/repositories/restaurants_repository.dart';
 import 'package:restaurant_tour/domain/repositories/restaurants_repository.dart';
 import 'package:restaurant_tour/domain/use_cases/get_favorites_restaurants_use_case.dart';
-
-import 'package:restaurant_tour/data/repositories/mock/mocked_restaurants_repository.dart';
+import 'package:restaurant_tour/domain/use_cases/get_restaurants_use_case.dart';
+import 'package:restaurant_tour/domain/use_cases/toggle_favorite.dart';
 
 final getIt = GetIt.instance;
 

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:restaurant_tour/presentation/components/rating_stars.dart';
 
+import 'package:flutter_test/flutter_test.dart';
+
+import 'package:restaurant_tour/presentation/components/rating_stars.dart';
 import '../../make_testable_widget.dart';
 
 void main() {

@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
+
 import 'package:restaurant_tour/data/repositories/mock/mocked_cached_response.dart';
 import 'package:restaurant_tour/data/repositories/restaurants_repository.dart';
 import 'package:restaurant_tour/domain/models/restaurant.dart';

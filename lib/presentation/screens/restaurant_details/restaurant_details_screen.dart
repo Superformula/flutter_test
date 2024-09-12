@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_tour/domain/models/restaurant.dart';
-import 'package:restaurant_tour/presentation/components/review_card.dart';
 
 import 'package:restaurant_tour/core/theme/colors.dart';
 import 'package:restaurant_tour/core/theme/typography.dart';
+import 'package:restaurant_tour/domain/models/restaurant.dart';
 import 'package:restaurant_tour/presentation/components/rating_stars.dart';
+import 'package:restaurant_tour/presentation/components/review_card.dart';
 
 class RestaurantDetailsScreen extends StatefulWidget {
   final Restaurant restaurant;

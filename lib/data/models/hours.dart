@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+
 import 'package:restaurant_tour/domain/models/hours.dart' as hours_domain_model;
 
 part 'hours.g.dart';

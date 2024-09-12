@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+
 import 'package:restaurant_tour/domain/models/location.dart'
     as location_domain_model;
 

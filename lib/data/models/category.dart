@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+
 import 'package:restaurant_tour/domain/models/category.dart'
     as category_domain_model;
 

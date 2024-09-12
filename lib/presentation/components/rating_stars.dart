@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:restaurant_tour/core/theme/colors.dart';
 
 class RatingStars extends StatelessWidget {

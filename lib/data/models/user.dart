@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+
 import 'package:restaurant_tour/domain/models/user.dart' as review_domain_model;
 
 part 'user.g.dart';

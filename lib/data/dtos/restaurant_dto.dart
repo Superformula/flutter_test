@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+
 import 'package:restaurant_tour/data/models/restaurant.dart';
 
 part 'restaurant_dto.g.dart';

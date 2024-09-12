@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:multiple_result/multiple_result.dart';
-import 'package:restaurant_tour/domain/models/restaurant.dart';
-import 'package:restaurant_tour/domain/use_cases/toggle_favorite.dart';
 
-import 'package:restaurant_tour/domain/use_cases/get_restaurants_use_case.dart';
-import 'package:restaurant_tour/presentation/components/restaurant_card.dart';
+import 'package:multiple_result/multiple_result.dart';
 
 import 'package:restaurant_tour/core/domain/error/data_error.dart';
 import 'package:restaurant_tour/core/domain/error/error.dart';
+import 'package:restaurant_tour/domain/models/restaurant.dart';
+import 'package:restaurant_tour/domain/use_cases/get_restaurants_use_case.dart';
+import 'package:restaurant_tour/domain/use_cases/toggle_favorite.dart';
+import 'package:restaurant_tour/presentation/components/restaurant_card.dart';
 
 class AllRestaurantsTab extends StatefulWidget {
   final GetRestaurantsUseCase getAllRestaurantsUseCase;

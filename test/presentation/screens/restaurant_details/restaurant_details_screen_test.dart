@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:network_image_mock/network_image_mock.dart';
-import 'package:restaurant_tour/presentation/screens/restaurant_details/restaurant_details_screen.dart';
 
+import 'package:restaurant_tour/presentation/screens/restaurant_details/restaurant_details_screen.dart';
 import '../../../fakes/data/fake_restaurant.dart';
 import '../../../make_testable_widget.dart';
 
