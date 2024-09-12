@@ -6,8 +6,8 @@ import 'package:restaurant_tour/data/dtos/restaurant_dto.dart';
 import 'package:restaurant_tour/domain/models/restaurant.dart';
 import 'package:restaurant_tour/domain/repositories/restaurants_repository.dart';
 
-import '../../core/domain/error/data_error.dart';
-import '../../core/domain/error/error.dart';
+import 'package:restaurant_tour/core/domain/error/data_error.dart';
+import 'package:restaurant_tour/core/domain/error/error.dart';
 
 class RestaurantsRepository extends BaseRestaurantsRepository {
   // I could have created a remote data provider for this
@@ -32,7 +32,8 @@ class RestaurantsRepository extends BaseRestaurantsRepository {
   }
 
   @override
-  Future<Result<List<Restaurant>, BaseError>> getRestaurants({int offset = 0}) async {
+  Future<Result<List<Restaurant>, BaseError>> getRestaurants(
+      {int offset = 0}) async {
     try {
       final response = await _httpClient.post<Map<String, dynamic>>(
         '/v3/graphql',
@@ -59,8 +60,7 @@ class RestaurantsRepository extends BaseRestaurantsRepository {
         DioExceptionType.connectionError => Error(NoInternetConnectionError()),
         _ => Error(UnknownError()),
       };
-    }
-    catch (e) {
+    } catch (e) {
       return Error(UnknownError());
     }
   }

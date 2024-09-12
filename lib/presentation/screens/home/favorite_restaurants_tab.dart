@@ -3,7 +3,6 @@ import 'package:restaurant_tour/domain/models/restaurant.dart';
 
 import 'package:restaurant_tour/presentation/components/restaurant_card.dart';
 
-
 class FavoriteRestaurantsTab extends StatelessWidget {
   final List<Restaurant> restaurants;
   final void Function(Restaurant restaurant, bool isFavorite) onTapRestaurant;

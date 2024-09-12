@@ -6,8 +6,8 @@ import 'package:restaurant_tour/domain/use_cases/toggle_favorite.dart';
 import 'package:restaurant_tour/domain/use_cases/get_restaurants_use_case.dart';
 import 'package:restaurant_tour/presentation/components/restaurant_card.dart';
 
-import '../../../core/domain/error/data_error.dart';
-import '../../../core/domain/error/error.dart';
+import 'package:restaurant_tour/core/domain/error/data_error.dart';
+import 'package:restaurant_tour/core/domain/error/error.dart';
 
 class AllRestaurantsTab extends StatefulWidget {
   final GetRestaurantsUseCase getAllRestaurantsUseCase;

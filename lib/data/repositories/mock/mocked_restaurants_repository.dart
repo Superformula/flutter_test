@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:dio/dio.dart';
 import 'package:multiple_result/multiple_result.dart';
 import 'package:restaurant_tour/core/domain/error/data_error.dart';
 import 'package:restaurant_tour/data/dtos/restaurant_dto.dart';
@@ -9,7 +8,7 @@ import 'package:restaurant_tour/domain/repositories/restaurants_repository.dart'
 
 import 'package:restaurant_tour/data/repositories/mock/mocked_cached_response.dart';
 
-import '../../../core/domain/error/error.dart';
+import 'package:restaurant_tour/core/domain/error/error.dart';
 
 class MockedRestaurantsRepository extends BaseRestaurantsRepository {
   MockedRestaurantsRepository();
@@ -29,7 +28,8 @@ class MockedRestaurantsRepository extends BaseRestaurantsRepository {
   }
 
   @override
-  Future<Result<List<Restaurant>, BaseError>> getRestaurants({int offset = 0}) async {
+  Future<Result<List<Restaurant>, BaseError>> getRestaurants(
+      {int offset = 0}) async {
     try {
       final response = cachedResponse;
 

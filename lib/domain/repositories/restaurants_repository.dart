@@ -1,8 +1,7 @@
 import 'package:multiple_result/multiple_result.dart';
 import 'package:restaurant_tour/domain/models/restaurant.dart';
 
-import '../../core/domain/error/data_error.dart';
-import '../../core/domain/error/error.dart';
+import 'package:restaurant_tour/core/domain/error/error.dart';
 
 abstract class BaseRestaurantsRepository {
   const BaseRestaurantsRepository();

@@ -9,7 +9,6 @@ import 'package:restaurant_tour/presentation/screens/home/all_restaurants_tab.da
 import 'package:restaurant_tour/presentation/screens/home/favorite_restaurants_tab.dart';
 import 'package:restaurant_tour/core/theme/typography.dart';
 
-
 class HomeScreen extends StatefulWidget {
   final GetRestaurantsUseCase getAllRestaurantsUseCase;
   final GetFavoriteRestaurantsUseCase getFavoriteRestaurantsUseCase;
