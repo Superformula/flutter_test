@@ -32,8 +32,9 @@ class RestaurantsRepository extends BaseRestaurantsRepository {
   }
 
   @override
-  Future<Result<List<Restaurant>, BaseError>> getRestaurants(
-      {int offset = 0}) async {
+  Future<Result<List<Restaurant>, BaseError>> getRestaurants({
+    int offset = 0,
+  }) async {
     try {
       final response = await _httpClient.post<Map<String, dynamic>>(
         '/v3/graphql',

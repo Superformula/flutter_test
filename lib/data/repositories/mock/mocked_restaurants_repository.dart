@@ -27,8 +27,11 @@ class MockedRestaurantsRepository extends BaseRestaurantsRepository {
   }
 
   @override
-  Future<Result<List<Restaurant>, BaseError>> getRestaurants(
-      {int offset = 0}) async {
+  Future<Result<List<Restaurant>, BaseError>> getRestaurants({
+    int offset = 0,
+  }) async {
+    await Future.delayed(const Duration(seconds: 2)); // Simulate network delay
+
     try {
       final response = cachedResponse;
 

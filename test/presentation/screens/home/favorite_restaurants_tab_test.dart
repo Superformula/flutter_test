@@ -2,7 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:network_image_mock/network_image_mock.dart';
 
 import 'package:restaurant_tour/presentation/components/restaurant_card.dart';
-import 'package:restaurant_tour/presentation/screens/home/favorite_restaurants_tab.dart';
+import 'package:restaurant_tour/presentation/screens/home/_tabs/favorite_restaurants_tab/favorite_restaurants_tab.dart';
 import '../../../fakes/data/fake_restaurant.dart';
 import '../../../make_testable_widget.dart';
 

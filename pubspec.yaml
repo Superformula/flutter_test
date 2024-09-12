@@ -19,6 +19,8 @@ dependencies:
   get_it: ^7.7.0
   multiple_result: ^5.1.0
   import_sorter: ^4.6.0
+  flutter_bloc: ^8.1.6
+  equatable: ^2.0.5
 
 dev_dependencies:
   flutter_test:
