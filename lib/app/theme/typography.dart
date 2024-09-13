@@ -6,11 +6,13 @@ class AppTextStyles {
     fontFamily: 'Lora',
     fontWeight: FontWeight.w700,
     fontSize: 18.0,
+    color: Colors.black,
   );
   static const loraRegularTitle = TextStyle(
     fontFamily: 'Lora',
     fontWeight: FontWeight.w500,
     fontSize: 16.0,
+    color: Colors.black,
   );
 
   //----- Open Sans -----//

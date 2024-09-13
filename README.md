@@ -1,202 +1,86 @@
 # Restaurant Tour
 
-Welcome to Superformula's Coding challenge, we are excited to see what you can build!
+This Flutter project is created as a response to **Superformula's** coding challenge. Below you’ll find the instructions on how to configure and run the project, as well as a brief overview of the technologies used.
 
-This take home test aims to evaluate your skills in building a Flutter application. We are looking for a well-structured and well-tested application that demonstrates your knowledge of Flutter and the Dart language.
+## Project Setup
 
-We are not looking for pixel perfect designs, but we are looking for a well-structured application that demonstrates your skills and best practices developing a flutter application. We know there are many ways to solve a problem, and we are interested in seeing how you approach this one. If you have any questions, please don't hesitate to ask.
+### Prerequisites
 
-Things we'll be looking on your submission:
-- App structure for scalability
-- Error and optional (?) handling
-- Widget tree optimization
-- State management
-- Test coverage
+Install dependencies using `fvm`: This project uses [fvm](https://fvm.app/) to manage the Flutter version.
 
-Think of the app you'll be building as the final product, do not over engineer it for possible future features, but do not under engineer it either. We are looking for a balance. We want that the functionalities that you implement are well thought out and implemented.
+- **Install `fvm`** if you don’t have it installed:
 
-As an example, for the favorites feature you can simply use SharedPreferences, you don't need to use a complex database solution, but we're looking for a solid shared preferences implementation.
+  ```sh
+  dart pub global activate fvm
+  ```
 
+  Make sure you add `~/.pub-cache/bin` to your PATH if necessary.
 
+- **Use the Flutter version specified in the project**:
 
-Be sure to read **all** of this document carefully, and follow the guidelines within.
+  ```sh
+  fvm use
+  ```
 
-## Vendorized Flutter
+- **Install all the project dependencies**:
 
-3. We use [fvm](https://fvm.app/) for managing the flutter version within the project. Using terminal, while being on the test repository, install the tools dependencies by running the following commands:
+  ```sh
+  fvm flutter pub get
+  ```
 
-    ```sh
-    dart pub global activate fvm
-    ```
+### Environment Configuration
 
-    The output of the command will ask to add the folder `./pub-cache/bin` to your PATH variables, if you didn't already. If that is the case, add it to your environment variables, and restart the terminal.
+Create a `.env` file in the root of the project with the following variables:
 
-    ```sh
-    export PATH="$PATH":"$HOME/.pub-cache/bin" # Add this to your environment variables
-    ```
-
-4. Install the project's flutter version using `fvm`.
-
-    ```sh
-    fvm use
-    ```
-
-5. From now on, you will run all the flutter commands with the `fvm` prefix. Get all the projects dependencies.
-
-    ```sh
-    fvm flutter pub get
-    ```
-
-More information on the approach can be found here:
-
-> hhttps://fvm.app/docs/getting_started/installation
-
-From the root directory:
-
-
-### IDE Setup
-
-<details>
-<summary>Use with VSCode</summary>
-<p>
-
-If you're a VScode user link the new Flutter SDK path in your settings
-`$projectRoot/.vscode/settings.json` (create if it doesn't exist yet)
-
-```json
-{
-  "dart.flutterSdkPath": ".fvm/flutter_sdk"
-}
+```env
+YELP_API_KEY=your_yelp_api_key
+USE_FAKE_DATA=false
 ```
 
+If you don’t want to use the Yelp API, you can set `USE_FAKE_DATA=true` to use mocked restaurant data instead of fetching from Yelp.
 
-</p>
-</details>
+### Running the App
 
-<details>
-<summary>Use with IntelliJ / Android Studio</summary>
-<p>
+After configuring the environment, run the app with the following command:
 
-Go to `Preferences > Languages & Frameworks > Flutter` and set the Flutter SDK path to `$projectRoot/.fvm/flutter_sdk`
+```sh
+fvm flutter run
+```
 
-<img width="800" alt="IntelliJ Settings" src="https://user-images.githubusercontent.com/1096485/64658026-3a1fdd00-d436-11e9-9457-556059f68e2c.png">
-
-</p>
-</details>
-
-## Requirements
-
-### App Structure
-
-#### Restaurant List Page
-
-- Tab Bar
-  - List of favorites (stored client side)
-  - List of businesses
-    - Hero image
-    - Name
-    - Price
-    - Category
-    - Rating (rounded to the nearest value)
-    - Open/Closed
-
-#### Restaurant Detail View
-
-- Ability to favorite a business
-- Name
-- Hero image
-- Price and category
-- Address
-- Rating
-- Total reviews
-- List of reviews
-  - User name
-  - Rating
-  - User image
-  - Review Text (These are just snippets of the full review, usually like 3-4 lines long)
-
-#### Misc.
-
-- Clear documentation on the structure and architecture of your application.
-- Clear and logical commit messages.
-  - We suggest following [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
-
-## Test Coverage
-
-To demonstrate your experience writing different types of tests in Flutter please do the following:
-
-- We are looking to see how you write tests in Flutter. We are not looking for 100% coverage but we are looking for a good mix of unit and widget tests.
-- We are specially looking for you to cover at least one file for each domain layer (interface, application, repositories, etc).
-
-Feel free to add more tests as you see fit but the above is the minimum requirement.
-
-## Design
-
-- See this [Figma File](https://www.figma.com/file/KsEhQUp66m9yeVkvQ0hSZm/Flutter-Test?node-id=0%3A1) for design information related to the overall look and feel of the application. We do not expect pixel-perfection but would like the application to visually be close to what is specified in the Figma file.
-
-![List View](screenshots/listview.png)
-![Detail View](screenshots/detailview.png)
-
-## API
-
-The [Yelp GraphQL API](https://www.yelp.com/developers/graphql/guides/intro) is used as the API for this Application. We have provided the boilerplate of the API requests and backing data models to save you some time. To successfully make a request to the Yelp GraphQL API, please follow these steps:
-
-1. Please go to https://www.yelp.com/signup and sign up for a developer account.
-1. Once signed up, navigate to https://www.yelp.com/developers/v3/manage_app.
-1. Create a new app by filling out the required information.
-1. Once your app is created, scroll down and join the `Developer Beta`. This allows you to use the GraphQL API.
-1. Copy your API Key from your app page and paste it on `line 5` [yelp_repository.dart](app/lib/yelp_repository.dart) replacing the `<PUT YOUR API KEY HERE>` with your key.
-1. Run the app and tap the `Fetch Restaurants` button. If you see a log like `Fetched x restaurants` you are all set!
-
-## Technical Requirements
+## Overview of the Project
 
 ### State Management
 
-Please restrict your usage of state management or dependency injection to the following options:
+The project utilizes **Cubits** (from the `flutter_bloc` package) for state management, offering a clear separation of concerns. The user’s favorite restaurant data is persisted locally using **HydratedBloc**, which stores the data across app sessions.
 
-1. [provider](https://pub.dev/packages/provider)
-2. [Riverpod](https://pub.dev/packages/riverpod)
-3. [bloc](https://pub.dev/packages/bloc)
-4. [get_it](https://pub.dev/packages/get_it)/[get_it_mixins](https://pub.dev/packages/get_it_mixin)
-5. [Mobx](https://pub.dev/packages/mobx)
+### Local Data Persistence
 
-We ask this because this challenge values consistency and efficiency over ingenuity. Using commonly used libraries ensures that we can review your code in a timely manner and allows us to provide better feedback.
+- **Favorites**: The app uses `hydrated_bloc` to store the user's favorite restaurants locally. This ensures that even when the app is restarted, the user’s favorite restaurants are preserved.
 
-## Coding Values
+### Tests
 
-At **Superformula** we strive to build applications that have
+The project includes a number of tests to demonstrate knowledge of unit testing and widget testing. While not every single part of the app has full test coverage, the main parts are well tested to show how to approach Flutter testing with tools such as `bloc_test` and `mocktail`.
 
-- Consistent architecture
-- Extensible, clean code
-- Solid testing
-- Good security & performance best practices
+## Test Coverage Reports
 
-### Clear, consistent architecture
+To generate the test coverage reports for this project, **LCOV** was used.
 
-Approach your submission as if it were a real world app. This includes Use any libraries that you would normally choose.
+### Generating a Coverage Report
 
-_Please note: we're interested in your code & the way you solve the problem, not how well you can use a particular library or feature._
+To generate the LCOV report:
 
-### Easy to understand
+1. Run the following command to collect coverage information:
 
-Writing boring code that is easy to follow is essential at **Superformula**.
+   ```sh
+   fvm flutter test --coverage
+   ```
 
-We're interested in your method and how you approach the problem just as much as we're interested in the end result.
+2. Generate the LCOV report:
 
-### Solid testing approach
+   ```sh
+   genhtml coverage/lcov.info -o coverage/
+   ```
 
-While the purpose of this challenge is not to gauge whether you can achieve 100% test coverage, we do seek to evaluate whether you know how & what to test.
+3. Open the `index.html` file from the generated `coverage/` folder to view the detailed coverage report.
 
-## Q&A
-
-> Where should I send back the result when I'm done?
-
-Please fork this repo and then send us a pull request to our repo when you think you are done. There is no deadline for this task unless otherwise noted to you directly.
-
-> What if I have a question?
-
-Just create a new issue in this repo and we will respond and get back to you quickly.
-
-## Review
-
-The coding challenge is a take-home test upon which we'll be conducting a thorough code review once complete. The review will consist of meeting some more of our mobile engineers and giving a review of the solution you have designed. Please be prepared to share your screen and run/demo the application to the group. During this process, the engineers will be asking questions.
+The report provides a breakdown of the test coverage across all directories and files in the project, ensuring that key areas are well tested.
