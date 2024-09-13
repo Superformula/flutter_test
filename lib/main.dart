@@ -2,14 +2,22 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:restaurant_tour/app.dart';
 import 'package:restaurant_tour/models/restaurant.dart';
 import 'package:restaurant_tour/query.dart';
 
-const _apiKey = '<PUT YOUR API KEY HERE>';
+const _apiKey =
+    'nR4hTLTG9yrxOefBEzGgaEn7pZwmXsyigjye-VSHOed-JNqkKKdOVEmwjv6Z0J54PziaI6XVwDPt0rcgIbknCEiYbWFQW_vx4Hss6qGrg_HaQWxUiIJOYY4mtDbkZnYx';
 const _baseUrl = 'https://api.yelp.com/v3/graphql';
 
 void main() {
-  runApp(const RestaurantTour());
+  WidgetsFlutterBinding.ensureInitialized();
+  // runApp(const RestaurantTour());
+  runApp(
+    MaterialApp(
+      home: MyApp(),
+    ),
+  );
 }
 
 class RestaurantTour extends StatelessWidget {
