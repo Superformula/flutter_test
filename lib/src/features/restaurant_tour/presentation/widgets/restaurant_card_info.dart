@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_tour/src/features/restaurant_tour/presentation/widgets/star_icon.dart';
 import 'package:restaurant_tour/typography.dart';
 
 class RestaurantCardInfo extends StatelessWidget {
@@ -30,10 +31,7 @@ class RestaurantCardInfo extends StatelessWidget {
           children: [
             ...List.generate(
               2,
-              (index) => const Icon(
-                Icons.star,
-                color: Color(0xffffb800),
-              ),
+              (index) => const StarIcon(),
             ),
             const Spacer(),
             const SizedBox(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_tour/src/constants/strings.dart';
 import 'package:restaurant_tour/src/features/restaurant_tour/presentation/widgets/restaurant_reviews.dart';
+import 'package:restaurant_tour/src/features/restaurant_tour/presentation/widgets/star_icon.dart';
 import 'package:restaurant_tour/typography.dart';
 
 class RestaurantInfoView extends StatefulWidget {
@@ -88,10 +89,7 @@ class _RestaurantInfoViewState extends State<RestaurantInfoView> {
               fontSize: 28,
             ),
           ),
-          const Icon(
-            Icons.star,
-            color: Color(0xffffb800),
-          ),
+          const StarIcon(),
         ],
       ),
     ];
