@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_tour/src/features/restaurant_tour/models/restaurant.dart';
 import 'package:restaurant_tour/src/features/restaurant_tour/presentation/widgets/star_icon.dart';
 import 'package:restaurant_tour/typography.dart';
 
 class RestaurantReviews extends StatelessWidget {
-  const RestaurantReviews({super.key});
+  const RestaurantReviews({
+    super.key,
+    required this.reviews,
+  });
+
+  final Review reviews;
 
   Row _buildStarIcons() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         ...List.generate(
-          4,
+          reviews.rating ?? 0,
           (index) => const StarIcon(),
         ),
       ],
@@ -18,8 +24,8 @@ class RestaurantReviews extends StatelessWidget {
   }
 
   Text _buildTextSection() {
-    return const Text(
-      'Review text goes there. Review text goes here. This is a review. This is a review that is 3 lines long.',
+    return Text(
+      reviews.text ?? '',
       maxLines: 3,
       overflow: TextOverflow.ellipsis,
       style: AppTextStyles.openRegularHeadline,
@@ -32,7 +38,7 @@ class RestaurantReviews extends StatelessWidget {
         ClipRRect(
           borderRadius: BorderRadius.circular(50),
           child: Image.network(
-            'https://cdn.openart.ai/stable_diffusion/872b4795cdc6c81e042cb9494c5c7a499c9ec899_2000x2000.webp',
+            reviews.user!.imageUrl!,
             fit: BoxFit.cover,
             height: 45,
             width: 45,
@@ -41,8 +47,8 @@ class RestaurantReviews extends StatelessWidget {
         const SizedBox(
           width: 15,
         ),
-        const Text(
-          'Iron Man',
+        Text(
+          reviews.user!.name!,
           style: AppTextStyles.openRegularText,
         ),
       ],

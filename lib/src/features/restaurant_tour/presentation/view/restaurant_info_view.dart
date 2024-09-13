@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_tour/src/constants/strings.dart';
+import 'package:restaurant_tour/src/features/restaurant_tour/models/restaurant.dart';
 import 'package:restaurant_tour/src/features/restaurant_tour/presentation/widgets/restaurant_reviews.dart';
 import 'package:restaurant_tour/src/features/restaurant_tour/presentation/widgets/star_icon.dart';
 import 'package:restaurant_tour/typography.dart';
 
 class RestaurantInfoView extends StatefulWidget {
-  const RestaurantInfoView({super.key});
+  const RestaurantInfoView({
+    super.key,
+    required this.restaurant,
+  });
+
+  final Restaurant restaurant;
 
   @override
   State<RestaurantInfoView> createState() => _RestaurantInfoViewState();
@@ -19,10 +25,10 @@ class _RestaurantInfoViewState extends State<RestaurantInfoView> {
         style: AppTextStyles.openRegularText,
       ),
       const SizedBox(height: 14),
-      const SizedBox(
+      SizedBox(
         width: 150,
         child: Text(
-          '102 Lakeside Ave Seattle, WA 98122',
+          widget.restaurant.location?.formattedAddress ?? '',
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
           style: AppTextStyles.openRegularTitleSemiBold,
@@ -33,27 +39,27 @@ class _RestaurantInfoViewState extends State<RestaurantInfoView> {
 
   List<Widget> _buildAvailabilitySection() {
     return [
-      const Row(
+      Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            '\$\$\$\$ Italian',
+            '${widget.restaurant.price} ${widget.restaurant.categories![0].title}',
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             style: AppTextStyles.openRegularText,
           ),
-          Spacer(),
+          const Spacer(),
           SizedBox(
             child: Text(
-              'Open Now',
+              widget.restaurant.isOpen ? openNowText : closedText,
               style: AppTextStyles.openRegularItalic,
             ),
           ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8.0),
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Icon(
               Icons.circle,
-              color: Colors.green,
+              color: widget.restaurant.isOpen ? Colors.green : Colors.red,
               size: 12.0,
             ),
           ),
@@ -67,7 +73,7 @@ class _RestaurantInfoViewState extends State<RestaurantInfoView> {
       height: 280,
       width: double.infinity,
       child: Image.network(
-        'https://media.es.wired.com/photos/64370c54f381a957088482cc/4:3/w_2668,h_2001,c_limit/reboot%20de%20harry%20potter%20warner.jpg',
+        widget.restaurant.heroImage,
         fit: BoxFit.cover,
       ),
     );
@@ -84,7 +90,7 @@ class _RestaurantInfoViewState extends State<RestaurantInfoView> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Text(
-            '4.6',
+            widget.restaurant.rating.toString(),
             style: AppTextStyles.loraRegularHeadline.copyWith(
               fontSize: 28,
             ),
@@ -120,13 +126,15 @@ class _RestaurantInfoViewState extends State<RestaurantInfoView> {
                 ..._divider(),
                 ..._buildOverallRatingSection(),
                 ..._divider(),
-                const Text(
-                  '42 $reviewsText',
+                Text(
+                  '${widget.restaurant.reviews?.length ?? 0} $reviewsText',
                   style: AppTextStyles.openRegularText,
                 ),
                 ...List.generate(
-                  4,
-                  (index) => const RestaurantReviews(),
+                  widget.restaurant.reviews?.length ?? 0,
+                  (index) => RestaurantReviews(
+                    reviews: widget.restaurant.reviews![index],
+                  ),
                 ),
               ],
             ),

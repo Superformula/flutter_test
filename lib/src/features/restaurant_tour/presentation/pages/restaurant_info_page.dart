@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_tour/src/features/restaurant_tour/models/restaurant.dart';
 import 'package:restaurant_tour/src/features/restaurant_tour/presentation/view/restaurant_info_view.dart';
 
 class RestaurantInfoPage extends StatefulWidget {
-  const RestaurantInfoPage({super.key});
+  const RestaurantInfoPage({super.key, required this.restaurant});
+
+  final Restaurant restaurant;
 
   @override
   State<RestaurantInfoPage> createState() => _RestaurantInfoPageState();
@@ -28,9 +31,11 @@ class _RestaurantInfoPageState extends State<RestaurantInfoPage> {
             },
             iconSize: 30,
           ),
-          title: const Text('Restaurant Name Goes Here And Wrap 2 Lines'),
+          title: Text(widget.restaurant.name ?? ''),
         ),
-        body: const RestaurantInfoView(),
+        body: RestaurantInfoView(
+          restaurant: widget.restaurant,
+        ),
       ),
     );
   }
