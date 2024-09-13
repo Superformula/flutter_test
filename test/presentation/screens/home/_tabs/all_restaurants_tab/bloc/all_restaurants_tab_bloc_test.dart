@@ -52,6 +52,22 @@ void main() {
 
       blocTest(
         'emits the restaurants list when LoadAllRestaurants is added',
+        build: () => bloc,
+        act: (bloc) => bloc.add(const LoadAllRestaurants()),
+        expect: () async {
+          final data = await restaurantsRepository.getRestaurants();
+          final expected = data.getOrThrow();
+          return [
+            AllRestaurantsTabState(
+              restaurants: expected,
+              contentIsLoading: false,
+            ),
+          ];
+        },
+      );
+
+      blocTest(
+        'emits an error when LoadAllRestaurants is added',
         build: () => AllRestaurantsTabBloc(
           getRestaurantsUseCase: const FakeGetRestaurantsUseCaseWithError(),
         ),
