@@ -10,6 +10,17 @@ final class TimeoutError extends NetworkError {}
 
 final class ServerError extends NetworkError {}
 
-final class UnknownError extends NetworkError {}
+// adding override only in this class to help with tests
+// just an example as I need to compare the result of an error in a test
+final class UnknownError extends NetworkError {
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    return other is UnknownError;
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+}
 
 final class RateLimitError extends NetworkError {}

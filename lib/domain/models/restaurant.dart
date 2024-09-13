@@ -1,9 +1,10 @@
+import 'package:equatable/equatable.dart';
 import 'package:restaurant_tour/domain/models/category.dart';
 import 'package:restaurant_tour/domain/models/hours.dart';
 import 'package:restaurant_tour/domain/models/location.dart';
 import 'package:restaurant_tour/domain/models/review.dart';
 
-class Restaurant {
+class Restaurant extends Equatable {
   final String? id;
   final String? name;
   final String? price;
@@ -50,4 +51,12 @@ class Restaurant {
     }
     return false;
   }
+
+  // adding Equatable to compare objects and make AllRestaurantsTabBloc tests pass
+  // Using just the id and name for simplicity
+  @override
+  List<Object?> get props => [
+        id,
+        name,
+      ];
 }
