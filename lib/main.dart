@@ -5,7 +5,9 @@ import 'package:http/http.dart' as http;
 import 'package:restaurant_tour/models/restaurant.dart';
 import 'package:restaurant_tour/query.dart';
 
-const _apiKey = '<PUT YOUR API KEY HERE>';
+import 'env/env.dart';
+
+String _apiKey = Env.yelpApiKey;
 const _baseUrl = 'https://api.yelp.com/v3/graphql';
 
 void main() {

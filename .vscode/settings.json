@@ -1,5 +1,5 @@
 {
-    "dart.flutterSdkPath": ".fvm/flutter_sdk",
+    "dart.flutterSdkPath": "/opt/homebrew/Caskroom/flutter/3.22.2/flutter",
     "search.exclude": {
         "**/.fvm": true
     },
