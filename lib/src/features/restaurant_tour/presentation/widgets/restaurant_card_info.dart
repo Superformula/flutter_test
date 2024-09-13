@@ -1,27 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_tour/src/constants/strings.dart';
+import 'package:restaurant_tour/src/features/restaurant_tour/models/restaurant.dart';
 import 'package:restaurant_tour/src/features/restaurant_tour/presentation/widgets/star_icon.dart';
 import 'package:restaurant_tour/typography.dart';
 
 class RestaurantCardInfo extends StatelessWidget {
-  const RestaurantCardInfo({super.key});
+  const RestaurantCardInfo({
+    super.key,
+    required this.restaurant,
+  });
+
+  final Restaurant restaurant;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SizedBox(
+        SizedBox(
           width: 235,
           child: Text(
-            'Restaurant Name Goes Here And Wrap 2 Lines',
+            restaurant.name ?? '',
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             style: AppTextStyles.loraRegularTitle,
           ),
         ),
         const SizedBox(height: 10),
-        const Text(
-          '\$\$\$\$ Italian',
+        Text(
+          '${restaurant.price} ${restaurant.categories![0].title}',
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
           style: AppTextStyles.openRegularText,
@@ -30,21 +37,21 @@ class RestaurantCardInfo extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             ...List.generate(
-              2,
+              restaurant.rating!.round(),
               (index) => const StarIcon(),
             ),
             const Spacer(),
-            const SizedBox(
+            SizedBox(
               child: Text(
-                'Open Now',
+                restaurant.isOpen ? openNowText : closedText,
                 style: AppTextStyles.openRegularItalic,
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8.0),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Icon(
                 Icons.circle,
-                color: Colors.green,
+                color: restaurant.isOpen ? Colors.green : Colors.red,
                 size: 12.0,
               ),
             ),
