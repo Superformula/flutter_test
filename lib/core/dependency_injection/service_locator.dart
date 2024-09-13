@@ -1,0 +1,21 @@
+import 'package:get_it/get_it.dart';
+import 'package:http/http.dart' as http;
+import 'package:restaurant_tour/core/http_service/http_client.dart';
+
+import '../../data/repositories/yelp_repository.dart';
+
+final dependency = GetIt.instance;
+
+void setupLocator() {
+  dependency.registerLazySingleton<http.Client>(
+    () => http.Client(),
+  );
+
+  dependency.registerLazySingleton<IHttpClient>(
+    () => HttpClient(dependency<http.Client>()),
+  );
+
+  dependency.registerLazySingleton<YelpRepository>(
+    () => YelpRepository(client: dependency<IHttpClient>()),
+  );
+}
