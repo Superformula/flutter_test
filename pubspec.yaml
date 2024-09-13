@@ -1,20 +1,29 @@
 name: restaurant_tour
 description: Flutter developer coding challenge starter project.
 
-publish_to: 'none'
+publish_to: "none"
 
 version: 1.0.0+1
-
 
 environment:
   sdk: ">=3.1.0 <4.0.0"
   flutter: ">=3.19.6"
 
 dependencies:
+  bloc: ^8.1.4
+  bloc_test: ^9.1.7
+  cached_network_image: ^3.4.1
   flutter:
     sdk: flutter
+  flutter_bloc: ^8.1.6
+  flutter_dotenv: ^5.1.0
+  go_router: ^14.2.7
   http: ^1.2.2
+  hydrated_bloc: ^9.1.5
   json_annotation: ^4.9.0
+  mocktail: ^1.0.4
+  path_provider: ^2.1.4
+  shimmer: ^3.0.0
 
 dev_dependencies:
   flutter_test:
@@ -45,4 +54,5 @@ flutter:
           style: italic
         - asset: assets/fonts/OpenSans/OpenSans-SemiBold.ttf
           weight: 600
-        
+  assets:
+    - .env
