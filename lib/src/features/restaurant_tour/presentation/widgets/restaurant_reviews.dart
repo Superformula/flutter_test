@@ -9,6 +9,9 @@ class RestaurantReviews extends StatelessWidget {
     required this.reviews,
   });
 
+  static const _notFoundImage =
+      'https://static.vecteezy.com/system/resources/thumbnails/001/840/612/small_2x/picture-profile-icon-male-icon-human-or-people-sign-and-symbol-free-vector.jpg';
+
   final Review reviews;
 
   Row _buildStarIcons() {
@@ -38,7 +41,7 @@ class RestaurantReviews extends StatelessWidget {
         ClipRRect(
           borderRadius: BorderRadius.circular(50),
           child: Image.network(
-            reviews.user!.imageUrl!,
+            reviews.user!.imageUrl ?? _notFoundImage,
             fit: BoxFit.cover,
             height: 45,
             width: 45,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_tour/src/features/restaurant_tour/data/mock.dart';
+import 'package:restaurant_tour/src/features/restaurant_tour/data/restaurants_repository.dart';
 import 'package:restaurant_tour/src/features/restaurant_tour/models/restaurant.dart';
 import 'package:restaurant_tour/src/features/restaurant_tour/presentation/widgets/restaurant_card.dart';
 
@@ -18,32 +18,28 @@ class _AllRestaurantsViewState extends State<AllRestaurantsView> {
   @override
   void initState() {
     super.initState();
-    _simulateLoading();
     _fetchRestaurants();
   }
 
   _fetchRestaurants() async {
     try {
-      // final result = await RestaurantsRepository.getRestaurants();
-      restaurants = mockRestaurants;
-      print('Fetched ${restaurants.length} restaurants');
+      final result = await RestaurantsRepository.getRestaurants();
+      if (result != null) {
+        restaurants = result.restaurants!;
+        if (mounted) {
+          setState(() {
+            _showProgressIndicator = false;
+          });
+        }
+      }
+      // restaurants = mockRestaurants;
     } catch (e) {
       print('Failed to fetch restaurants: $e');
     }
   }
 
-  void _simulateLoading() async {
-    await Future.delayed(const Duration(seconds: 3));
-    if (mounted) {
-      setState(() {
-        _showProgressIndicator = false;
-      });
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    print('restaurants ${restaurants[0].toJson()}');
     return !_showProgressIndicator
         ? ListView.builder(
             itemCount: restaurants.length,

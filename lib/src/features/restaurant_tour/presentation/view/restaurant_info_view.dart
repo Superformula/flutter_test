@@ -18,6 +18,14 @@ class RestaurantInfoView extends StatefulWidget {
 }
 
 class _RestaurantInfoViewState extends State<RestaurantInfoView> {
+  bool _showProgressIndicator = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _initializeLoading();
+  }
+
   List<Widget> _buildAddressSection() {
     return [
       const Text(
@@ -109,38 +117,53 @@ class _RestaurantInfoViewState extends State<RestaurantInfoView> {
     ];
   }
 
+  void _initializeLoading() async {
+    await Future.delayed(const Duration(seconds: 1));
+    if (mounted) {
+      setState(() {
+        _showProgressIndicator = false;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          _buildImage(),
-          Padding(
-            padding: const EdgeInsets.all(24.0),
+    return !_showProgressIndicator
+        ? SingleChildScrollView(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ..._buildAvailabilitySection(),
-                ..._divider(),
-                ..._buildAddressSection(),
-                ..._divider(),
-                ..._buildOverallRatingSection(),
-                ..._divider(),
-                Text(
-                  '${widget.restaurant.reviews?.length ?? 0} $reviewsText',
-                  style: AppTextStyles.openRegularText,
-                ),
-                ...List.generate(
-                  widget.restaurant.reviews?.length ?? 0,
-                  (index) => RestaurantReviews(
-                    reviews: widget.restaurant.reviews![index],
+                _buildImage(),
+                Padding(
+                  padding: const EdgeInsets.all(24.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      ..._buildAvailabilitySection(),
+                      ..._divider(),
+                      ..._buildAddressSection(),
+                      ..._divider(),
+                      ..._buildOverallRatingSection(),
+                      ..._divider(),
+                      Text(
+                        '${widget.restaurant.reviews?.length ?? 0} $reviewsText',
+                        style: AppTextStyles.openRegularText,
+                      ),
+                      ...List.generate(
+                        widget.restaurant.reviews?.length ?? 0,
+                        (index) => RestaurantReviews(
+                          reviews: widget.restaurant.reviews![index],
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
             ),
-          ),
-        ],
-      ),
-    );
+          )
+        : const Center(
+            child: CircularProgressIndicator(
+              color: Colors.black,
+            ),
+          );
   }
 }

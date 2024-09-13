@@ -27,30 +27,5 @@ class HomePage extends StatelessWidget {
         body: RestaurantTourPage(),
       ),
     );
-    // return Scaffold(
-    //   body: Center(
-    //     child: Column(
-    //       mainAxisAlignment: MainAxisAlignment.center,
-    //       children: [
-    //         const Text('Restaurant Tour'),
-    //         ElevatedButton(
-    //           child: const Text('Fetch Restaurants'),
-    //           onPressed: () async {
-    //             try {
-    //               final result = await RestaurantsRepository.getRestaurants();
-    //               if (result != null) {
-    //                 print('Fetched ${result.restaurants!.length} restaurants');
-    //               } else {
-    //                 print('No restaurants fetched');
-    //               }
-    //             } catch (e) {
-    //               print('Failed to fetch restaurants: $e');
-    //             }
-    //           },
-    //         ),
-    //       ],
-    //     ),
-    //   ),
-    // );
   }
 }
