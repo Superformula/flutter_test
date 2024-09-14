@@ -1,4 +1,7 @@
-import 'package:restaurant_tour/src/features/restaurant_tour/data/mock.dart';
+import 'dart:convert';
+
+import 'package:http/http.dart' as http;
+import 'package:restaurant_tour/src/constants/query.dart';
 import 'package:restaurant_tour/src/features/restaurant_tour/models/restaurant.dart';
 
 class RestaurantsRepository {
@@ -16,25 +19,25 @@ class RestaurantsRepository {
     };
 
     try {
-      // final response = await http.post(
-      //   Uri.parse(_baseUrl),
-      //   headers: headers,
-      //   body: query(offset),
-      // );
-
-      // if (response.statusCode == 200) {
-      //   _restaurantsResponse = RestaurantQueryResult.fromJson(
-      //     jsonDecode(response.body)['data']['search'],
-      //   );
-      //   return _restaurantsResponse;
-      // } else {
-      //   print('Failed to load restaurants: ${response.statusCode}');
-      //   return null;
-      // }
-      return _restaurantsResponse = RestaurantQueryResult(
-        restaurants: mockRestaurants,
-        total: 5,
+      final response = await http.post(
+        Uri.parse(_baseUrl),
+        headers: headers,
+        body: query(offset),
       );
+
+      if (response.statusCode == 200) {
+        _restaurantsResponse = RestaurantQueryResult.fromJson(
+          jsonDecode(response.body)['data']['search'],
+        );
+        return _restaurantsResponse;
+      } else {
+        print('Failed to load restaurants: ${response.statusCode}');
+        return null;
+      }
+      // return _restaurantsResponse = RestaurantQueryResult(
+      //   restaurants: mockRestaurants,
+      //   total: 5,
+      // );
     } catch (e) {
       print('Error fetching restaurants: $e');
       return null;
