@@ -8,23 +8,26 @@ class RestaurantCard extends StatelessWidget {
   const RestaurantCard({
     super.key,
     required this.restaurant,
+    this.onTap,
   });
 
   final Restaurant restaurant;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => RestaurantInfoPage(
-              restaurant: restaurant,
-            ),
-          ),
-        );
-      },
+      onTap: onTap ??
+          () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => RestaurantInfoPage(
+                  restaurant: restaurant,
+                ),
+              ),
+            );
+          },
       child: Card(
         margin: const EdgeInsets.all(4),
         child: Row(

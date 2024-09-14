@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:restaurant_tour/src/constants/strings.dart';
 import 'package:restaurant_tour/src/features/restaurant_tour/data/restaurants_repository.dart';
 import 'package:restaurant_tour/src/features/restaurant_tour/models/restaurant.dart';
+import 'package:restaurant_tour/src/features/restaurant_tour/presentation/pages/restaurant_info_page.dart';
 import 'package:restaurant_tour/src/features/restaurant_tour/presentation/widgets/restaurant_card.dart';
+import 'package:restaurant_tour/typography.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class FavoriteRestaurantsView extends StatefulWidget {
@@ -23,25 +25,26 @@ class _FavoriteRestaurantsViewState extends State<FavoriteRestaurantsView> {
   }
 
   Widget _emptyFavoritesView() {
-    return const Center(
+    return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Icon(
+          const Icon(
             Icons.restaurant,
             size: 60,
             color: Colors.black,
           ),
           Text(
             sorryText,
-            style: TextStyle(fontSize: 30, color: Colors.black),
+            style: AppTextStyles.openRegularTitleSemiBold.copyWith(
+              fontSize: 30,
+            ),
           ),
           Text(
             noFavoriteRestaurantsText,
-            style: TextStyle(
+            style: AppTextStyles.openRegularText.copyWith(
               fontSize: 20,
-              color: Colors.black45,
             ),
           ),
         ],
@@ -69,6 +72,19 @@ class _FavoriteRestaurantsViewState extends State<FavoriteRestaurantsView> {
     });
   }
 
+  Future<void> _onNavigateToRestaurantInfoPage(Restaurant restaurant) async {
+    final result = await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => RestaurantInfoPage(restaurant: restaurant),
+      ),
+    );
+
+    if (result == true) {
+      _loadFavorites();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return _favoriteRestaurants.isNotEmpty
@@ -79,6 +95,9 @@ class _FavoriteRestaurantsViewState extends State<FavoriteRestaurantsView> {
                 padding: const EdgeInsets.all(8.0),
                 child: RestaurantCard(
                   restaurant: _favoriteRestaurants[index],
+                  onTap: () => _onNavigateToRestaurantInfoPage(
+                    _favoriteRestaurants[index],
+                  ),
                 ),
               );
             },

@@ -9,5 +9,7 @@ const String noFavoriteRestaurantsText = 'You do not have favorite restaurants';
 const String overallRatingText = 'Overall Rating';
 const String openNowText = 'Open Now';
 const String reviewsText = 'Reviews';
+const String restaurantAddedText = 'Restaurant added to favorites';
+const String restaurantDeletedText = 'Restaurant deleted from favorites';
 const String sorryText = '¡Sorry!';
 const String titleApp = 'Restaurant Tour';

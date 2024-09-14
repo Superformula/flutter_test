@@ -48,9 +48,6 @@ class RestaurantsRepository {
         favoriteRestaurants.add(restaurant);
       }
     }
-    for (var i = 0; i < favoriteRestaurants.length; i++) {
-      print('rest $i : ${favoriteRestaurants[i].name}');
-    }
     return favoriteRestaurants;
   }
 }
