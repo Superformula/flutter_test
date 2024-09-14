@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_tour/src/features/restaurant_tour/models/restaurant.dart';
 import 'package:restaurant_tour/src/features/restaurant_tour/presentation/view/restaurant_info_view.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class RestaurantInfoPage extends StatefulWidget {
   const RestaurantInfoPage({super.key, required this.restaurant});
@@ -12,6 +13,31 @@ class RestaurantInfoPage extends StatefulWidget {
 }
 
 class _RestaurantInfoPageState extends State<RestaurantInfoPage> {
+  bool _isFavorite = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadFavoriteStatus();
+  }
+
+  Future<void> _loadFavoriteStatus() async {
+    final favoriteRestaurant = await SharedPreferences.getInstance();
+    final isFavorite =
+        favoriteRestaurant.getBool(widget.restaurant.id ?? '') ?? false;
+    setState(() {
+      _isFavorite = isFavorite;
+    });
+  }
+
+  Future<void> _toggleFavorite() async {
+    final preferences = await SharedPreferences.getInstance();
+    setState(() {
+      _isFavorite = !_isFavorite;
+    });
+    await preferences.setBool(widget.restaurant.id ?? '', _isFavorite);
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -19,8 +45,10 @@ class _RestaurantInfoPageState extends State<RestaurantInfoPage> {
         appBar: AppBar(
           actions: [
             IconButton(
-              icon: const Icon(Icons.favorite_outline),
-              onPressed: () {},
+              icon: Icon(
+                _isFavorite ? Icons.favorite : Icons.favorite_outline,
+              ),
+              onPressed: () => _toggleFavorite(),
               iconSize: 30,
             ),
           ],

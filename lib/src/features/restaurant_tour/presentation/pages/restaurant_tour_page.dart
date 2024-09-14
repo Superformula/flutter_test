@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_tour/src/constants/strings.dart';
 import 'package:restaurant_tour/src/features/restaurant_tour/presentation/view/all_restaurants_view.dart';
-import 'package:restaurant_tour/src/features/restaurant_tour/presentation/view/favorite_restaurants.dart';
+import 'package:restaurant_tour/src/features/restaurant_tour/presentation/view/favorite_restaurants_view.dart';
 
 class RestaurantTourPage extends StatefulWidget {
   const RestaurantTourPage({super.key});

@@ -1,8 +1,13 @@
 import 'package:restaurant_tour/src/features/restaurant_tour/models/restaurant.dart';
 
+RestaurantQueryResult? mockQueryResult = RestaurantQueryResult(
+  total: 10,
+  restaurants: mockRestaurants,
+);
+
 List<Restaurant> mockRestaurants = [
   Restaurant(
-    id: '1',
+    id: '100',
     name: 'Pasta Paradise',
     price: '\$\$',
     rating: 4.5,
@@ -45,7 +50,7 @@ List<Restaurant> mockRestaurants = [
     ),
   ),
   Restaurant(
-    id: '2',
+    id: '200',
     name: 'Burger Bonanza',
     price: '\$\$',
     rating: 4.0,
@@ -76,7 +81,7 @@ List<Restaurant> mockRestaurants = [
     ),
   ),
   Restaurant(
-    id: '3',
+    id: '300',
     name: 'Sushi World',
     price: '\$\$\$',
     rating: 4.8,
@@ -107,7 +112,7 @@ List<Restaurant> mockRestaurants = [
     ),
   ),
   Restaurant(
-    id: '4',
+    id: '400',
     name: 'Taco Haven',
     price: '\$',
     rating: 4.2,
@@ -138,7 +143,7 @@ List<Restaurant> mockRestaurants = [
     ),
   ),
   Restaurant(
-    id: '5',
+    id: '500',
     name: 'Vegan Delight',
     price: '\$\$',
     rating: 4.7,
