@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_tour/src/constants/strings.dart';
-import 'package:restaurant_tour/src/features/restaurant_tour/data/mock.dart';
+import 'package:restaurant_tour/src/features/restaurant_tour/data/restaurants_repository.dart';
 import 'package:restaurant_tour/src/features/restaurant_tour/models/restaurant.dart';
 import 'package:restaurant_tour/src/features/restaurant_tour/presentation/widgets/restaurant_card.dart';
 
@@ -24,11 +24,16 @@ class _AllRestaurantsViewState extends State<AllRestaurantsView> {
 
   Future<void> _fetchRestaurants() async {
     try {
-      // final result = await RestaurantsRepository.getRestaurants();
-      final result = mockQueryResult;
+      final result = await RestaurantsRepository.getRestaurants();
       if (result != null &&
           result.restaurants != null &&
           result.restaurants!.isNotEmpty) {
+        restaurants = result.restaurants!;
+        if (mounted) {
+          setState(() {
+            _showProgressIndicator = false;
+          });
+        }
       } else {
         _handleDataNotFound();
       }
