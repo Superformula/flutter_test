@@ -1,12 +1,12 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:restaurant_tour/src/constants/constants.dart';
 import 'package:restaurant_tour/src/constants/query.dart';
 import 'package:restaurant_tour/src/features/restaurant_tour/models/restaurant.dart';
 
 class RestaurantsRepository {
-  static const _apiKey =
-      'y0RvKbozyu07RfpByqrdTJGyAOzhaNZH9T5X5pzBOoSh9uqOULc8h6yx89Z5nPjYtNaPHp9aqX0ZKF5pHSuYTeWcrYJS9r4EoHb7WmVLKPSmPW-L0FloXZJUInTkZnYx';
+  static const _apiKey = apiKey;
   static const _baseUrl = 'https://api.yelp.com/v3/graphql';
 
   static RestaurantQueryResult? restaurantsResponse;
@@ -34,6 +34,7 @@ class RestaurantsRepository {
         print('Failed to load restaurants: ${response.statusCode}');
         return null;
       }
+      // TODO: Uncomment if you want to use the app with Mocks
       // return _restaurantsResponse = RestaurantQueryResult(
       //   restaurants: mockRestaurants,
       //   total: 5,
