@@ -3,12 +3,14 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:restaurant_tour/models/restaurant.dart';
-import 'package:restaurant_tour/query.dart';
+import 'package:restaurant_tour/utils/restaurants_query.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 const _apiKey = '<PUT YOUR API KEY HERE>';
 const _baseUrl = 'https://api.yelp.com/v3/graphql';
 
-void main() {
+void main() async {
+  await dotenv.load(fileName: ".env");
   runApp(const RestaurantTour());
 }
 
@@ -39,7 +41,7 @@ class HomePage extends StatelessWidget {
       final response = await http.post(
         Uri.parse(_baseUrl),
         headers: headers,
-        body: query(offset),
+        body: restaurantsQuery(offset),
       );
 
       if (response.statusCode == 200) {
