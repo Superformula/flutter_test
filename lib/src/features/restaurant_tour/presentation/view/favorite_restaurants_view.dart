@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_tour/src/constants/strings.dart';
+import 'package:restaurant_tour/src/constants/typography.dart';
 import 'package:restaurant_tour/src/features/restaurant_tour/data/restaurants_repository.dart';
 import 'package:restaurant_tour/src/features/restaurant_tour/models/restaurant.dart';
 import 'package:restaurant_tour/src/features/restaurant_tour/presentation/pages/restaurant_info_page.dart';
 import 'package:restaurant_tour/src/features/restaurant_tour/presentation/widgets/restaurant_card.dart';
-import 'package:restaurant_tour/typography.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class FavoriteRestaurantsView extends StatefulWidget {

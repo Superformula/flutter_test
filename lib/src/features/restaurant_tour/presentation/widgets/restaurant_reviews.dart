@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_tour/src/constants/typography.dart';
 import 'package:restaurant_tour/src/features/restaurant_tour/models/restaurant.dart';
 import 'package:restaurant_tour/src/features/restaurant_tour/presentation/widgets/star_icon.dart';
-import 'package:restaurant_tour/typography.dart';
 
 class RestaurantReviews extends StatelessWidget {
   const RestaurantReviews({

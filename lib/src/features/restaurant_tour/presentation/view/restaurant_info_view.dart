@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_tour/src/constants/strings.dart';
+import 'package:restaurant_tour/src/constants/typography.dart';
 import 'package:restaurant_tour/src/features/restaurant_tour/models/restaurant.dart';
 import 'package:restaurant_tour/src/features/restaurant_tour/presentation/widgets/restaurant_reviews.dart';
 import 'package:restaurant_tour/src/features/restaurant_tour/presentation/widgets/star_icon.dart';
-import 'package:restaurant_tour/typography.dart';
 
 class RestaurantInfoView extends StatefulWidget {
   const RestaurantInfoView({

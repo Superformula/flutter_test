@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_tour/src/constants/strings.dart';
+import 'package:restaurant_tour/src/constants/typography.dart';
 import 'package:restaurant_tour/src/features/restaurant_tour/models/restaurant.dart';
 import 'package:restaurant_tour/src/features/restaurant_tour/presentation/view/restaurant_info_view.dart';
-import 'package:restaurant_tour/typography.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class RestaurantInfoPage extends StatefulWidget {

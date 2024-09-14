@@ -8,6 +8,7 @@ class RestaurantsRepository {
 
   static RestaurantQueryResult? _restaurantsResponse;
 
+// API call to get restaurant information
   static Future<RestaurantQueryResult?> getRestaurants({int offset = 0}) async {
     final headers = {
       'Authorization': 'Bearer $_apiKey',
@@ -40,6 +41,7 @@ class RestaurantsRepository {
     }
   }
 
+// Method to validate favorite restaurants
   static List<Restaurant> getFavoriteRestaurants(String id) {
     var favoriteRestaurants = <Restaurant>[];
 
