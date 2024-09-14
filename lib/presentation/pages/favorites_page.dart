@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:restaurant_tour/presentation/controllers/favorites/favorites_cubit.dart';
+import 'package:restaurant_tour/presentation/widgets/restaurants_list.dart';
 
 class FavoritesPage extends StatefulWidget {
   const FavoritesPage({super.key});
@@ -9,33 +12,27 @@ class FavoritesPage extends StatefulWidget {
 
 class _FavoritesPageState extends State<FavoritesPage> {
   @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Text('Favorites'),
-          ElevatedButton(
-            child: const Text('Favorites'),
-            onPressed: () async {
-              // final yelpRepo = YelpRepository();
+  void initState() {
+    super.initState();
+    context.read<FavoritesCubit>().getFavorites();
+  }
 
-              try {
-                // final result = await yelpRepo.getRestaurants();
-                // if (result != null) {
-                //   print(
-                //     'Fetched ${result.restaurants!.length} restaurants',
-                //   );
-                // } else {
-                //   print('No restaurants fetched');
-                // }
-              } catch (e) {
-                print('Failed to fetch restaurants: $e');
-              }
-            },
-          ),
-        ],
-      ),
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<FavoritesCubit, FavoritesState>(
+      builder: (context, state) {
+        if (state is FavoritesLoading) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+        if (state is FavoritesLoaded) {
+          return RestaurantsList(restaurants: state.favorites);
+        }
+        return const Center(
+          child: Text('Failed to fetch restaurants'),
+        );
+      },
     );
   }
 }

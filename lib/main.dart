@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:restaurant_tour/core/dependency_injection.dart';
 import 'package:restaurant_tour/core/environment.dart';
-import 'package:restaurant_tour/presentation/controllers/cubit/restaurants_cubit.dart';
+import 'package:restaurant_tour/presentation/controllers/favorites/favorites_cubit.dart';
+import 'package:restaurant_tour/presentation/controllers/restaurants/restaurants_cubit.dart';
 import 'package:restaurant_tour/presentation/pages/home_page.dart';
 
 void main() async {
@@ -19,8 +20,15 @@ class RestaurantTour extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Restaurant Tour',
-      home: BlocProvider(
-        create: (context) => getIt.get<RestaurantsCubit>(),
+      home: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => getIt.get<RestaurantsCubit>(),
+          ),
+          BlocProvider(
+            create: (context) => getIt.get<FavoritesCubit>(),
+          ),
+        ],
         child: const HomePage(),
       ),
     );

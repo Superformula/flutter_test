@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:restaurant_tour/presentation/controllers/cubit/restaurants_cubit.dart';
+import 'package:restaurant_tour/presentation/controllers/restaurants/restaurants_cubit.dart';
 import 'package:restaurant_tour/presentation/widgets/restaurants_list.dart';
 
 class RestaurantsPage extends StatefulWidget {

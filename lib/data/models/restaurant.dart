@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'restaurant.g.dart';
@@ -85,7 +86,7 @@ class Location {
 }
 
 @JsonSerializable()
-class Restaurant {
+class Restaurant extends Equatable {
   final String? id;
   final String? name;
   final String? price;
@@ -137,6 +138,13 @@ class Restaurant {
     }
     return false;
   }
+
+  @override
+  List<Object?> get props => [
+        id,
+        name,
+        price,
+      ];
 }
 
 @JsonSerializable()
