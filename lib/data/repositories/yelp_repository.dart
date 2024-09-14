@@ -91,8 +91,7 @@ class YelpRepository extends YelpRepositoryContract {
                     "Review text goes here. Review text goes here. This is a review. This is a review that is 3 lines long.",
                 "user": {
                   "id": "u1",
-                  "image_url":
-                      "https://media.licdn.com/dms/image/v2/C4E03AQFZWrm17QwLIQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1652147256110?e=1731542400&v=beta&t=gR9A-qKQ63iBuzeyS3YG6qGNH0CrqLmi0VI7ELRJ8Gw",
+                  "image_url": "https://example.com/user1.jpg",
                   "name": "John Doe",
                 },
               },
