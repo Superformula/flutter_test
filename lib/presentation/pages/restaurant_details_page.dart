@@ -23,12 +23,8 @@ class _RestaurantDetailsPageState extends State<RestaurantDetailsPage> {
   Widget build(BuildContext context) {
     final restaurant = widget.restaurant;
 
-    initState() {
-      super.initState();
-    }
-
-    return BlocProvider(
-      create: (context) => getIt.get<FavoritesCubit>(),
+    return BlocProvider.value(
+      value: getIt.get<FavoritesCubit>(),
       child: BlocBuilder<FavoritesCubit, FavoritesState>(
         builder: (context, state) {
           context.read<FavoritesCubit>().isFavorite(restaurant);
