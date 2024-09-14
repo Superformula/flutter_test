@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_tour/core/utils/typography.dart';
-import 'package:restaurant_tour/data/models/restaurant.dart';
+import 'package:restaurant_tour/domain/models/restaurant.dart';
 import 'package:restaurant_tour/presentation/widgets/ratings.dart';
 
 class ReviewsSection extends StatelessWidget {
@@ -31,7 +31,7 @@ class ReviewsSection extends StatelessWidget {
               ),
               Text(
                 review.text ?? 'description text',
-                style: AppTextStyles.openRegularText,
+                style: AppTextStyles.openRegularHeadline,
               ),
               Row(
                 children: [

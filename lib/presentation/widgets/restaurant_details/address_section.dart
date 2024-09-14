@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_tour/core/utils/typography.dart';
-import 'package:restaurant_tour/data/models/restaurant.dart';
+import 'package:restaurant_tour/domain/models/restaurant.dart';
 
 class AddressSection extends StatelessWidget {
   const AddressSection({super.key, required this.restaurant});
@@ -27,7 +27,7 @@ class AddressSection extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 24),
           child: Text(
             restaurant.location?.formattedAddress ?? '',
-            style: AppTextStyles.openRegularTitle,
+            style: AppTextStyles.openRegularTitleSemiBold,
             textAlign: TextAlign.start,
           ),
         ),

@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:restaurant_tour/data/models/restaurant.dart';
+import 'package:restaurant_tour/domain/models/restaurant.dart';
 import 'package:restaurant_tour/domain/repositories/yelp_repository_contract.dart';
 
 const _apiKey =
@@ -61,6 +61,7 @@ class YelpRepository extends YelpRepositoryContract {
       );
       return RestaurantQueryResult.fromJson(response.data!['data']['search']);
     } on DioException catch (e) {
+      //Used to mock values beacuse of API limit
       final Map<String, dynamic> mockedResponse = {
         "total": 10,
         "business": [
@@ -437,7 +438,7 @@ class YelpRepository extends YelpRepositoryContract {
       };
       return RestaurantQueryResult.fromJson(mockedResponse);
     } catch (e) {
-      return null;
+      throw Exception('Failed to get restaurants');
     }
   }
 

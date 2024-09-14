@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:restaurant_tour/data/models/restaurant.dart';
+import 'package:restaurant_tour/domain/models/restaurant.dart';
 import 'package:restaurant_tour/domain/usecase_contracts/get_restaurants_usecase_contract.dart';
 
 part 'restaurants_cubit_state.dart';

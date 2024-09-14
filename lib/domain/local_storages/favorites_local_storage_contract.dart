@@ -1,4 +1,4 @@
-import 'package:restaurant_tour/data/models/restaurant.dart';
+import 'package:restaurant_tour/domain/models/restaurant.dart';
 
 abstract class FavoritesLocalStorageContract {
   Future<List<Restaurant>> getFavorites();

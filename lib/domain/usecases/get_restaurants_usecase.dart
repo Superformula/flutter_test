@@ -1,5 +1,5 @@
-import 'package:restaurant_tour/data/models/restaurant.dart';
 import 'package:restaurant_tour/domain/local_storages/restaurants_local_storage_contract.dart';
+import 'package:restaurant_tour/domain/models/restaurant.dart';
 import 'package:restaurant_tour/domain/repositories/yelp_repository_contract.dart';
 import 'package:restaurant_tour/domain/usecase_contracts/get_restaurants_usecase_contract.dart';
 

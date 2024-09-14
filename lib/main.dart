@@ -19,6 +19,7 @@ class RestaurantTour extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Restaurant Tour',
       home: MultiBlocProvider(
         providers: [

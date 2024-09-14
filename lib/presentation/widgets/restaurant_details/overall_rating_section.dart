@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_tour/core/utils/typography.dart';
-import 'package:restaurant_tour/data/models/restaurant.dart';
+import 'package:restaurant_tour/domain/models/restaurant.dart';
 
 class OverallRatingSection extends StatelessWidget {
   const OverallRatingSection({super.key, required this.restaurant});
@@ -16,7 +16,7 @@ class OverallRatingSection extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 24),
           child: Text(
             'Overall Rating',
-            style: AppTextStyles.openRegularTitle,
+            style: AppTextStyles.openRegularText,
             textAlign: TextAlign.start,
           ),
         ),
@@ -29,7 +29,7 @@ class OverallRatingSection extends StatelessWidget {
             children: [
               Text(
                 restaurant.rating.toString(),
-                style: AppTextStyles.openRegularTitle,
+                style: AppTextStyles.loraRegularHeadline,
                 textAlign: TextAlign.start,
               ),
               const Icon(

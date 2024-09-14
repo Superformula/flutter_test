@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:restaurant_tour/data/models/restaurant.dart';
+import 'package:restaurant_tour/domain/models/restaurant.dart';
 import 'package:restaurant_tour/domain/usecase_contracts/favorites_usecase_contract.dart';
 
 part 'favorites_state.dart';
@@ -12,9 +12,13 @@ class FavoritesCubit extends Cubit<FavoritesState> {
   final FavoritesUsecaseContract favoritesUsecaseContract;
 
   void getFavorites() async {
-    emit(FavoritesLoading());
-    final favorites = await favoritesUsecaseContract.getFavorites();
-    emit(FavoritesLoaded(favorites: favorites));
+    try {
+      emit(FavoritesLoading());
+      final favorites = await favoritesUsecaseContract.getFavorites();
+      emit(FavoritesLoaded(favorites: favorites));
+    } catch (e) {
+      emit(FavoritesError(message: e.toString()));
+    }
   }
 
   void saveFavorite(Restaurant restaurant) async {

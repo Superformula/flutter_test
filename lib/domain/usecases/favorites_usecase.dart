@@ -1,5 +1,5 @@
-import 'package:restaurant_tour/data/models/restaurant.dart';
 import 'package:restaurant_tour/domain/local_storages/favorites_local_storage_contract.dart';
+import 'package:restaurant_tour/domain/models/restaurant.dart';
 import 'package:restaurant_tour/domain/usecase_contracts/favorites_usecase_contract.dart';
 
 class FavoritesUsecase implements FavoritesUsecaseContract {

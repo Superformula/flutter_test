@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:restaurant_tour/core/dependency_injection.dart';
 import 'package:restaurant_tour/core/utils/typography.dart';
-import 'package:restaurant_tour/data/models/restaurant.dart';
+import 'package:restaurant_tour/domain/models/restaurant.dart';
 import 'package:restaurant_tour/presentation/controllers/favorites/favorites_cubit.dart';
 import 'package:restaurant_tour/presentation/widgets/restaurant_details/address_section.dart';
 import 'package:restaurant_tour/presentation/widgets/restaurant_details/general_info_section.dart';
@@ -79,7 +79,7 @@ class _RestaurantDetailsPageState extends State<RestaurantDetailsPage> {
                     padding: const EdgeInsets.symmetric(horizontal: 24),
                     child: Text(
                       '${restaurant.reviews?.length} Reviews',
-                      style: AppTextStyles.openRegularTitle,
+                      style: AppTextStyles.openRegularText,
                       textAlign: TextAlign.start,
                     ),
                   ),

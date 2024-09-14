@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_tour/core/utils/typography.dart';
-import 'package:restaurant_tour/data/models/restaurant.dart';
+import 'package:restaurant_tour/domain/models/restaurant.dart';
 import 'package:restaurant_tour/presentation/pages/restaurant_details_page.dart';
 import 'package:restaurant_tour/presentation/widgets/is_open_widget.dart';
 import 'package:restaurant_tour/presentation/widgets/ratings.dart';
