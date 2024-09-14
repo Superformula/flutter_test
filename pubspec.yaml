@@ -28,6 +28,14 @@ dev_dependencies:
   flutter_lints: ^4.0.0
   build_runner: ^2.4.10
   json_serializable: ^6.8.0
+  watcher: ^1.1.0
+  pub_semver: ^2.1.4
+  mockito: ^5.4.4
+  mocktail: ^1.0.4
+  frontend_server_client: ^4.0.0
+  analyzer: ^5.13.0
+  bloc_test: ^9.1.7
+  dio: ^5.7.0
 
 flutter:
   generate: true
