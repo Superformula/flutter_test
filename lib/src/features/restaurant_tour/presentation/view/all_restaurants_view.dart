@@ -13,8 +13,9 @@ class AllRestaurantsView extends StatefulWidget {
 
 class _AllRestaurantsViewState extends State<AllRestaurantsView> {
   late List<Restaurant> restaurants;
-  bool _showProgressIndicator = true;
+
   bool _dataNotFound = false;
+  bool _showProgressIndicator = true;
 
   @override
   void initState() {
