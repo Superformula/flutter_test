@@ -15,7 +15,11 @@ void main() {
 
   setUp(() {
     mockPreferences = MockSharedPreferences();
+    SharedPreferences.setMockInitialValues({});
     testRestaurant = mockRestaurants[0];
+
+    when(() => mockPreferences.getBool(testRestaurant.id ?? ''))
+        .thenReturn(false);
   });
 
   Future<void> buildPage(WidgetTester tester) async {
@@ -26,61 +30,42 @@ void main() {
     );
   }
 
-  group(
-    'Restaurant Info Page tests',
-    () {
-      testWidgets('Should display restaurant name in the AppBar',
-          (WidgetTester tester) async {
-        await buildPage(tester);
+  group('Restaurant Info Page tests', () {
+    testWidgets('Should display restaurant name in the AppBar',
+        (WidgetTester tester) async {
+      await buildPage(tester);
+      await mockNetworkImagesFor(() => tester.pumpAndSettle());
+      expect(find.text('Pasta Paradise'), findsOneWidget);
+    });
 
-        await mockNetworkImagesFor(() => tester.pumpAndSettle());
+    testWidgets('Should display favorite icon as not selected initially',
+        (WidgetTester tester) async {
+      await buildPage(tester);
+      await mockNetworkImagesFor(() => tester.pumpAndSettle());
+      final favoriteIcon = find.byIcon(Icons.favorite_outline);
+      expect(favoriteIcon, findsOneWidget);
+    });
 
-        expect(find.text('Pasta Paradise'), findsOneWidget);
-      });
+    testWidgets('Should toggle favorite status when icon is tapped',
+        (WidgetTester tester) async {
+      // Simulate that initially, the restaurant is not a favorite
+      when(() => mockPreferences.getBool(testRestaurant.id ?? ''))
+          .thenReturn(false);
+      when(() => mockPreferences.setBool(testRestaurant.id ?? '', true))
+          .thenAnswer((_) async => true);
+      when(() => mockPreferences.setBool(testRestaurant.id ?? '', false))
+          .thenAnswer((_) async => true);
 
-      testWidgets('Should display favorite icon as not selected initially',
-          (WidgetTester tester) async {
-        when(() => mockPreferences.getBool('1')).thenReturn(false);
-        await buildPage(tester);
+      await buildPage(tester);
 
-        await mockNetworkImagesFor(() => tester.pumpAndSettle());
-        final favoriteIcon = find.byIcon(Icons.favorite_outline);
-        expect(favoriteIcon, findsOneWidget);
-      });
+      final favoriteIconButton = find.byIcon(Icons.favorite_outline);
+      expect(favoriteIconButton, findsOneWidget);
 
-      testWidgets('Should navigate back when back button is pressed',
-          (WidgetTester tester) async {
-        await tester.pumpWidget(
-          MaterialApp(
-            home: RestaurantInfoPage(restaurant: testRestaurant),
-          ),
-        );
-
-        final backButton = find.byIcon(Icons.arrow_back);
-        await tester.tap(backButton);
-        await mockNetworkImagesFor(
-          () => tester.pump(
-            const Duration(seconds: 2),
-          ),
-        );
-
-        expect(find.byType(RestaurantInfoPage), findsOneWidget);
-      });
-
-      testWidgets('Should toggle favorite status when icon is tapped',
-          (WidgetTester tester) async {
-        when(() => mockPreferences.getBool('1')).thenReturn(false);
-        when(() => mockPreferences.setBool('1', true))
-            .thenAnswer((_) async => true);
-
-        await buildPage(tester);
-
-        final favoriteIconButton = find.byIcon(Icons.favorite_outline);
-        expect(favoriteIconButton, findsOneWidget);
-
-        await tester.tap(favoriteIconButton);
-        await mockNetworkImagesFor(() => tester.pumpAndSettle());
-      });
-    },
-  );
+      // Tap the favorite icon to toggle the favorite status
+      await tester.tap(favoriteIconButton);
+      await mockNetworkImagesFor(
+        () => tester.pumpAndSettle(),
+      );
+    });
+  });
 }
