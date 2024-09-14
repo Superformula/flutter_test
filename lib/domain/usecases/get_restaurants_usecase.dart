@@ -14,7 +14,10 @@ class GetRestaurantsUsecase implements GetRestaurantsUsecaseContract {
   final RestaurantsLocalStorageContract _restaurantsLocalStorageContract;
 
   @override
-  Future<List<Restaurant>> getRestaurants({bool forceFetch = false}) async {
+  Future<List<Restaurant>> getRestaurants({
+    bool forceFetch = false,
+    int offset = 0,
+  }) async {
     final cachedRestaurants =
         await _restaurantsLocalStorageContract.getCachedRestaurants();
 
@@ -23,7 +26,7 @@ class GetRestaurantsUsecase implements GetRestaurantsUsecaseContract {
     }
 
     final restaurantsQueryResults =
-        await _yelpRepositoryContract.getRestaurants();
+        await _yelpRepositoryContract.getRestaurants(offset: offset);
     final restaurants = restaurantsQueryResults?.restaurants;
     await _restaurantsLocalStorageContract.saveRestaurants(restaurants ?? []);
     return restaurants ?? [];

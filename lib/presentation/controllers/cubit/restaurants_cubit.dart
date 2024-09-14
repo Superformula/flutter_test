@@ -11,12 +11,31 @@ class RestaurantsCubit extends Cubit<RestaurantsCubitState> {
 
   final GetRestaurantsUsecaseContract getRestaurantsUsecaseContract;
 
+  int offset = 0;
+  final List<Restaurant> _restaurants = [];
+
   Future<void> getRestaurants({bool forceFetch = false}) async {
     emit(RestaurantsCubitLoading());
     try {
       final restaurants = await getRestaurantsUsecaseContract.getRestaurants(
         forceFetch: forceFetch,
+        offset: offset,
       );
+      emit(RestaurantsCubitLoaded(restaurants));
+    } catch (e) {
+      emit(RestaurantsCubitError(e.toString()));
+    }
+  }
+
+  Future<void> getNextPage({bool forceFetch = false}) async {
+    emit(RestaurantsCubitLoading());
+    try {
+      offset += 20;
+      final restaurants = await getRestaurantsUsecaseContract.getRestaurants(
+        forceFetch: true,
+        offset: offset,
+      );
+      _restaurants.addAll(restaurants);
       emit(RestaurantsCubitLoaded(restaurants));
     } catch (e) {
       emit(RestaurantsCubitError(e.toString()));
