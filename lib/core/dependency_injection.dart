@@ -77,7 +77,7 @@ class DependencyInjection {
       ),
     );
 
-    getIt.registerLazySingleton<FavoritesCubit>(
+    getIt.registerFactory<FavoritesCubit>(
       () => FavoritesCubit(
         favoritesUsecaseContract: getIt.get<FavoritesUsecaseContract>(),
       ),
