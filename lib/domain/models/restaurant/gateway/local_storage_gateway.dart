@@ -1,7 +1,7 @@
-import 'package:restaurant_tour/domain/models/restaurant/gateway/restaurant.dart';
+import 'package:restaurant_tour/domain/models/restaurant/gateway/restaurant_entity.dart';
 
 abstract class LocalStorageGatewayInterface {
-  Future<List<Restaurant>?> getFavoriteRestaurants();
+  Future<List<RestaurantEntity>?> getFavoriteRestaurants();
   Future<void> addFavoriteRestaurant();
   Future<void> deleteFavoriteRestaurant();
 }

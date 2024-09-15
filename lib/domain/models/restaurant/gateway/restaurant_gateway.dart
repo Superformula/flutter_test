@@ -1,6 +1,6 @@
-import 'package:restaurant_tour/infrastructure/helpers/mappers/restaurant.dart';
+import 'package:restaurant_tour/domain/models/restaurant/gateway/restaurant_entity.dart';
 
 abstract class RestaurantGateway {
-  Future<List<Restaurant>?> getRestaurants({int offset = 0});
-  Future<Restaurant?> getRestaurant(String id);
+  Future<List<RestaurantEntity>?> getRestaurants({int offset = 0});
+  Future<RestaurantEntity?> getRestaurant(String id);
 }
