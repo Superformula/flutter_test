@@ -13,6 +13,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_dotenv: ^5.1.0
   http: ^1.2.2
   json_annotation: ^4.9.0
 
@@ -26,6 +27,8 @@ dev_dependencies:
 flutter:
   generate: true
   uses-material-design: true
+  assets:
+    - .env
   fonts:
     - family: Lora
       fonts:

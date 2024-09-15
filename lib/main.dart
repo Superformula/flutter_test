@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:restaurant_tour/models/restaurant.dart';
 import 'package:restaurant_tour/query.dart';
@@ -8,8 +9,11 @@ import 'package:restaurant_tour/query.dart';
 const _apiKey = '<PUT YOUR API KEY HERE>';
 const _baseUrl = 'https://api.yelp.com/v3/graphql';
 
-void main() {
-  runApp(const RestaurantTour());
+Future<void> main() async {
+  await dotenv.load(fileName: ".env");
+  runApp(
+    const RestaurantTour(),
+  );
 }
 
 class RestaurantTour extends StatelessWidget {
@@ -31,7 +35,7 @@ class HomePage extends StatelessWidget {
 
   Future<RestaurantQueryResult?> getRestaurants({int offset = 0}) async {
     final headers = {
-      'Authorization': 'Bearer $_apiKey',
+      'Authorization': 'Bearer ${dotenv.env['YEP_API_KEY']}',
       'Content-Type': 'application/graphql',
     };
 
