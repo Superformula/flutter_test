@@ -5,8 +5,8 @@ import 'package:restaurant_tour/view/pages/favorites/favorites_page.dart';
 
 import '../../cubit/favorite/favorite.dart';
 import '../../cubit/restaurants/restaurants.dart';
-import '../restaurant/restaurant_page.dart';
 import '../../widgets/restaurant_card_widget.dart';
+import '../restaurant/restaurant_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -123,7 +123,7 @@ class _HomeState extends State<HomePage> with SingleTickerProviderStateMixin {
                       return const Center(
                         child: CircularProgressIndicator(),
                       );
-                    case FavoriteStatus.success:
+                    case FavoriteStatus.success || FavoriteStatus.removed:
                       return FavoritesListBuilder(
                         restaurants: state.favorites,
                       );
