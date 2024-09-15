@@ -5,6 +5,8 @@ import 'package:restaurant_tour/domain/local_storages/favorites_local_storage_co
 import 'package:restaurant_tour/domain/local_storages/restaurants_local_storage_contract.dart';
 import 'package:restaurant_tour/domain/models/restaurant.dart';
 import 'package:restaurant_tour/domain/repositories/yelp_repository_contract.dart';
+import 'package:restaurant_tour/domain/usecase_contracts/favorites_usecase_contract.dart';
+import 'package:restaurant_tour/domain/usecase_contracts/get_restaurants_usecase_contract.dart';
 
 class MockStorage extends Mock implements Storage {}
 
@@ -19,3 +21,9 @@ class MockYelpRepository extends Mock implements YelpRepositoryContract {}
 
 class MockRestaurantsLocalStorageContract extends Mock
     implements RestaurantsLocalStorageContract {}
+
+class MockFavoritesUsecaseContract extends Mock
+    implements FavoritesUsecaseContract {}
+
+class MockGetRestaurantsUsecaseContract extends Mock
+    implements GetRestaurantsUsecaseContract {}
