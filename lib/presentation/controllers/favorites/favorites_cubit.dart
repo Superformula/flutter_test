@@ -15,6 +15,10 @@ class FavoritesCubit extends Cubit<FavoritesState> {
     try {
       emit(FavoritesLoading());
       final favorites = await favoritesUsecaseContract.getFavorites();
+      if (favorites.isEmpty) {
+        emit(FavoritesEmpty());
+        return;
+      }
       emit(FavoritesLoaded(favorites: favorites));
     } catch (e) {
       emit(FavoritesError(message: e.toString()));

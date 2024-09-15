@@ -46,46 +46,44 @@ class RestaurantsCard extends StatelessWidget {
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.all(8),
-                child: Expanded(
-                  child: Column(
-                    children: [
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Text(
-                              restaurant.name ?? '',
-                              maxLines: 2,
-                              style: AppTextStyles.loraRegularTitle,
-                            ),
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            restaurant.name ?? '',
+                            maxLines: 2,
+                            style: AppTextStyles.loraRegularTitle,
                           ),
-                        ],
-                      ),
-                      const SizedBox(height: 8),
-                      Row(
-                        children: [
-                          Text(
-                            '${restaurant.price}',
-                            style: AppTextStyles.openRegularText,
-                          ),
-                          const SizedBox(width: 4),
-                          Text(
-                            restaurant.categories?.first.alias ?? '',
-                            style: AppTextStyles.openRegularText,
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 8),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Ratings(
-                            rating: restaurant.rating ?? 0,
-                          ),
-                          IsOpenWidget(isOpen: restaurant.isOpen),
-                        ],
-                      ),
-                    ],
-                  ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 8),
+                    Row(
+                      children: [
+                        Text(
+                          '${restaurant.price}',
+                          style: AppTextStyles.openRegularText,
+                        ),
+                        const SizedBox(width: 4),
+                        Text(
+                          restaurant.categories?.first.alias ?? '',
+                          style: AppTextStyles.openRegularText,
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 8),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Ratings(
+                          rating: restaurant.rating ?? 0,
+                        ),
+                        IsOpenWidget(isOpen: restaurant.isOpen),
+                      ],
+                    ),
+                  ],
                 ),
               ),
             ),

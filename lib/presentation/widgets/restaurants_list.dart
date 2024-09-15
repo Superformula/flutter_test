@@ -35,15 +35,13 @@ class _RestaurantsListState extends State<RestaurantsList> {
               forceFetch: true,
             );
       },
-      child: Expanded(
-        child: ListView.builder(
-          controller: _scrollController,
-          itemCount: widget.restaurants.length,
-          itemBuilder: (context, index) {
-            final restaurant = widget.restaurants[index];
-            return RestaurantsCard(restaurant: restaurant);
-          },
-        ),
+      child: ListView.builder(
+        controller: _scrollController,
+        itemCount: widget.restaurants.length,
+        itemBuilder: (context, index) {
+          final restaurant = widget.restaurants[index];
+          return RestaurantsCard(restaurant: restaurant);
+        },
       ),
     );
   }

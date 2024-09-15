@@ -30,3 +30,5 @@ final class FavoritesError extends FavoritesState {
 
   final String message;
 }
+
+final class FavoritesEmpty extends FavoritesState {}
