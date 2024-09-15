@@ -1,5 +1,4 @@
 import 'package:json_annotation/json_annotation.dart';
-
 import 'package:restaurant_tour/domain/models/user.dart' as review_domain_model;
 
 part 'user.g.dart';
@@ -25,5 +24,11 @@ class User {
         id: id,
         imageUrl: imageUrl,
         name: name,
+      );
+
+  factory User.fromDomain(review_domain_model.User domain) => User(
+        id: domain.id,
+        imageUrl: domain.imageUrl,
+        name: domain.name,
       );
 }

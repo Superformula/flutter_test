@@ -1,5 +1,5 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-
 import 'package:restaurant_tour/core/theme/colors.dart';
 import 'package:restaurant_tour/core/theme/typography.dart';
 import 'package:restaurant_tour/domain/models/restaurant.dart';
@@ -64,8 +64,8 @@ class _RestaurantDetailsScreenState extends State<RestaurantDetailsScreen> {
           SizedBox(
             width: double.infinity,
             height: 361,
-            child: Image.network(
-              widget.restaurant.heroImage,
+            child: CachedNetworkImage(
+              imageUrl: widget.restaurant.heroImage,
               fit: BoxFit.cover,
             ),
           ),

@@ -1,66 +1,61 @@
 import 'dart:async';
 
-import 'package:dio/dio.dart';
 import 'package:multiple_result/multiple_result.dart';
-
 import 'package:restaurant_tour/core/domain/error/data_error.dart';
 import 'package:restaurant_tour/core/domain/error/error.dart';
-import 'package:restaurant_tour/data/dtos/restaurant_dto.dart';
+import 'package:restaurant_tour/data/models/restaurant.dart'
+    as restaurant_data_model;
+import 'package:restaurant_tour/data/repositories/datasource/restaurant_local_data_source.dart';
+import 'package:restaurant_tour/data/repositories/datasource/restaurant_remote_data_source.dart';
 import 'package:restaurant_tour/domain/models/restaurant.dart';
 import 'package:restaurant_tour/domain/repositories/restaurants_repository.dart';
 
 class RestaurantsRepository extends BaseRestaurantsRepository {
-  // I could have created a remote data provider for this
-  final Dio _httpClient;
-
   RestaurantsRepository({
-    required Dio httpClient,
-  }) : _httpClient = httpClient;
+    required BaseRestaurantRemoteDataSource remoteDataSource,
+    required BaseRestaurantLocalDataSource localDataSource,
+  })  : _remoteDataSource = remoteDataSource,
+        _localDataSource = localDataSource;
 
-  // This is a simple in memory provider for the favorites
-  final List<Restaurant> _favorites = [];
-  final StreamController<List<Restaurant>>
-      _favoriteRestaurantsStreamController =
-      StreamController<List<Restaurant>>();
-
-  Stream<List<Restaurant>> get _favoriteRestaurants =>
-      _favoriteRestaurantsStreamController.stream;
+  final BaseRestaurantRemoteDataSource _remoteDataSource;
+  final BaseRestaurantLocalDataSource _localDataSource;
 
   @override
   Stream<List<Restaurant>> getFavorites() {
-    return _favoriteRestaurants;
+    return _localDataSource
+        .getFavorites()
+        .map((event) => event.map((e) => e.toDomain()).toList());
   }
 
   @override
   Future<Result<List<Restaurant>, BaseError>> getRestaurants({
     int offset = 0,
   }) async {
+    final data = await _remoteDataSource.getRestaurants(offset: offset);
+
+    if (data.isError()) {
+      // failed to fetch data from the remote source, let's try to get it from the local source
+      final localData =
+          (await _localDataSource.getRestaurants()).tryGetSuccess();
+
+      if (localData == null) {
+        return Error(ReadLocalDataError());
+      }
+
+      return Success(localData.map((e) => e.toDomain()).toList());
+    }
+
+    // we have the data from the remote source, let's work on it
     try {
-      final response = await _httpClient.post<Map<String, dynamic>>(
-        '/v3/graphql',
-        data: _getRestaurantsQuery(offset),
-      );
+      // cache it
+      final cacheOperationResult =
+          await _localDataSource.insertRestaurants(data.getOrThrow());
 
-      final data = RestaurantDto.fromJson(response.data!['data']['search']);
-
-      if (data.restaurants != null) {
-        return Success(data.restaurants!.map((e) => e.toDomain()).toList());
+      if (cacheOperationResult.isError()) {
+        return Error(SaveDataError());
       }
 
-      return Error(UnknownError());
-    } on DioException catch (e) {
-      // we could map all network errors here and create something to share the logic
-      // here a simple example
-      if (e.response?.statusCode == 400) {
-        return Error(RateLimitError());
-      }
-
-      return switch (e.type) {
-        DioExceptionType.badResponse => Error(UnknownError()),
-        DioExceptionType.connectionTimeout => Error(TimeoutError()),
-        DioExceptionType.connectionError => Error(NoInternetConnectionError()),
-        _ => Error(UnknownError()),
-      };
+      return Success(data.getOrThrow().map((e) => e.toDomain()).toList());
     } catch (e) {
       return Error(UnknownError());
     }
@@ -68,57 +63,11 @@ class RestaurantsRepository extends BaseRestaurantsRepository {
 
   @override
   void toggleFavorite(Restaurant restaurant) {
-    final found =
-        _favorites.indexWhere((element) => element.id == restaurant.id) != -1;
-
-    if (found) {
-      _favorites.removeWhere((element) => element.id == restaurant.id);
-    } else {
-      _favorites.add(restaurant);
-    }
-
-    _favoriteRestaurantsStreamController.add(_favorites);
+    _localDataSource.toggleFavorite(
+      restaurant_data_model.Restaurant.fromDomain(restaurant),
+    );
   }
 
   @override
-  dispose() {
-    _favoriteRestaurantsStreamController.close();
-  }
-
-  String _getRestaurantsQuery(int offset) {
-    return '''
-query getRestaurants {
-  search(location: "Las Vegas", limit: 20, offset: $offset) {
-    total    
-    business {
-      id
-      name
-      price
-      rating
-      photos
-      reviews {
-        id
-        rating
-        text
-        user {
-          id
-          image_url
-          name
-        }
-      }
-      categories {
-        title
-        alias
-      }
-      hours {
-        is_open_now
-      }
-      location {
-        formatted_address
-      }
-    }
-  }
-}
-''';
-  }
+  dispose() {}
 }

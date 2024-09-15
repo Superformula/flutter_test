@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:restaurant_tour/core/domain/error/data_error.dart';
 import 'package:restaurant_tour/core/domain/error/error.dart';
 import 'package:restaurant_tour/domain/models/restaurant.dart';
@@ -55,6 +53,12 @@ class _AllRestaurantsTabState extends State<AllRestaurantsTab>
 
               if (state.error != null) {
                 return _ErrorContent(error: state.error!);
+              }
+
+              if (state.restaurants.isEmpty) {
+                return const Center(
+                  child: Text("No restaurants found"),
+                );
               }
 
               return _RestaurantsList(

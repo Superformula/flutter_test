@@ -1,7 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-
 import 'package:restaurant_tour/data/models/user.dart';
-
 import 'package:restaurant_tour/domain/models/review.dart'
     as review_domain_model;
 
@@ -30,5 +28,12 @@ class Review {
         rating: rating,
         text: text,
         user: user?.toDomain(),
+      );
+
+  factory Review.fromDomain(review_domain_model.Review domain) => Review(
+        id: domain.id,
+        rating: domain.rating,
+        text: domain.text,
+        user: domain.user != null ? User.fromDomain(domain.user!) : null,
       );
 }

@@ -1,5 +1,4 @@
 import 'package:json_annotation/json_annotation.dart';
-
 import 'package:restaurant_tour/domain/models/hours.dart' as hours_domain_model;
 
 part 'hours.g.dart';
@@ -19,5 +18,9 @@ class Hours {
 
   hours_domain_model.Hours toDomain() => hours_domain_model.Hours(
         isOpenNow: isOpenNow,
+      );
+
+  factory Hours.fromDomain(hours_domain_model.Hours domain) => Hours(
+        isOpenNow: domain.isOpenNow,
       );
 }

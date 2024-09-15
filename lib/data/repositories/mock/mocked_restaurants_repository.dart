@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:multiple_result/multiple_result.dart';
-
 import 'package:restaurant_tour/core/domain/error/data_error.dart';
 import 'package:restaurant_tour/core/domain/error/error.dart';
 import 'package:restaurant_tour/data/dtos/restaurant_dto.dart';

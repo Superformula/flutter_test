@@ -1,5 +1,5 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-
 import 'package:restaurant_tour/core/theme/typography.dart';
 import 'package:restaurant_tour/domain/models/restaurant.dart';
 import 'package:restaurant_tour/presentation/components/rating_stars.dart';
@@ -15,6 +15,7 @@ class RestaurantCard extends StatelessWidget {
   });
 
   String get openStatusLabel => restaurant.isOpen ? "Open Now" : "Closed";
+
   Color get openStatusColor =>
       restaurant.isOpen ? const Color(0xFF5CD313) : const Color(0xFFEA5E5E);
 
@@ -34,8 +35,8 @@ class RestaurantCard extends StatelessWidget {
                   child: SizedBox(
                     width: 88,
                     height: 88,
-                    child: Image.network(
-                      restaurant.heroImage,
+                    child: CachedNetworkImage(
+                      imageUrl: restaurant.heroImage,
                       fit: BoxFit.cover,
                     ),
                   ),

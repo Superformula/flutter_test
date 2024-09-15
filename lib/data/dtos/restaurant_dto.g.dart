@@ -17,5 +17,5 @@ RestaurantDto _$RestaurantDtoFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$RestaurantDtoToJson(RestaurantDto instance) =>
     <String, dynamic>{
       'total': instance.total,
-      'business': instance.restaurants,
+      'business': instance.restaurants?.map((e) => e.toJson()).toList(),
     };

@@ -1,11 +1,12 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-
 import 'package:restaurant_tour/core/theme/typography.dart';
 import 'package:restaurant_tour/domain/models/review.dart';
 import 'package:restaurant_tour/presentation/components/rating_stars.dart';
 
 class ReviewCard extends StatelessWidget {
   final Review review;
+
   const ReviewCard({super.key, required this.review});
 
   @override
@@ -30,9 +31,7 @@ class ReviewCard extends StatelessWidget {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 image: DecorationImage(
-                  image: NetworkImage(
-                    review.user!.imageUrl,
-                  ),
+                  image: CachedNetworkImageProvider(review.user!.imageUrl),
                   fit: BoxFit.cover,
                 ),
               ),

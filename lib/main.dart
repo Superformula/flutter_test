@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:restaurant_tour/di/di.dart';
 import 'package:restaurant_tour/domain/use_cases/get_favorites_restaurants_use_case.dart';
 import 'package:restaurant_tour/domain/use_cases/get_restaurants_use_case.dart';
@@ -7,8 +6,9 @@ import 'package:restaurant_tour/domain/use_cases/toggle_favorite.dart';
 import 'package:restaurant_tour/presentation/screens/home/home_screen.dart';
 import 'package:restaurant_tour/presentation/screens/restaurant_details/restaurant_details_screen.dart';
 
-void main() {
-  setupDI();
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await setupDI();
   runApp(const RestaurantTour());
 }
 

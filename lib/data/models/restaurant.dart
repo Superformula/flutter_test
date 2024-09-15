@@ -1,16 +1,12 @@
-import 'package:json_annotation/json_annotation.dart';
-
 import 'package:restaurant_tour/data/models/category.dart';
 import 'package:restaurant_tour/data/models/hours.dart';
 import 'package:restaurant_tour/data/models/location.dart';
 import 'package:restaurant_tour/data/models/review.dart';
-
 import 'package:restaurant_tour/domain/models/restaurant.dart'
     as restaurant_domain_model;
 
 part 'restaurant.g.dart';
 
-@JsonSerializable()
 class Restaurant {
   final String? id;
   final String? name;
@@ -50,5 +46,21 @@ class Restaurant {
         hours: hours?.map((e) => e.toDomain()).toList(),
         reviews: reviews?.map((e) => e.toDomain()).toList(),
         location: location?.toDomain(),
+      );
+
+  factory Restaurant.fromDomain(restaurant_domain_model.Restaurant domain) =>
+      Restaurant(
+        id: domain.id,
+        name: domain.name,
+        price: domain.price,
+        rating: domain.rating,
+        photos: domain.photos,
+        categories:
+            domain.categories?.map((e) => Category.fromDomain(e)).toList(),
+        hours: domain.hours?.map((e) => Hours.fromDomain(e)).toList(),
+        reviews: domain.reviews?.map((e) => Review.fromDomain(e)).toList(),
+        location: domain.location != null
+            ? Location.fromDomain(domain.location!)
+            : null,
       );
 }
