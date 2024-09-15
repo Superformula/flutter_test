@@ -20,6 +20,13 @@ class RestaurantDetailsPage extends StatefulWidget {
 
 class _RestaurantDetailsPageState extends State<RestaurantDetailsPage> {
   @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    context.read<FavoritesCubit>().getFavorites();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final restaurant = widget.restaurant;
 
