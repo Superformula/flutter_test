@@ -7,7 +7,7 @@ import 'package:restaurant_tour/src/features/restaurant_tour/models/restaurant.d
 
 class RestaurantsRepository {
   static const _apiKey = apiKey;
-  static const _baseUrl = 'https://api.yelp.com/v3/graphql';
+  static const _baseUrl = baseUrl;
 
   static RestaurantQueryResult? restaurantsResponse;
 
