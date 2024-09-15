@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:restaurant_tour/src/constants/strings.dart';
-import 'package:restaurant_tour/src/features/restaurant_tour/data/restaurants_repository.dart';
 import 'package:restaurant_tour/src/features/restaurant_tour/models/restaurant.dart';
+import 'package:restaurant_tour/src/features/restaurant_tour/presentation/providers/restaurants_provider.dart';
 import 'package:restaurant_tour/src/features/restaurant_tour/presentation/widgets/restaurant_card.dart';
 
-class AllRestaurantsView extends StatefulWidget {
+class AllRestaurantsView extends ConsumerStatefulWidget {
   const AllRestaurantsView({super.key});
 
   @override
-  State<AllRestaurantsView> createState() => _AllRestaurantsViewState();
+  ConsumerState<AllRestaurantsView> createState() => _AllRestaurantsViewState();
 }
 
-class _AllRestaurantsViewState extends State<AllRestaurantsView> {
+class _AllRestaurantsViewState extends ConsumerState<AllRestaurantsView> {
   late List<Restaurant> restaurants;
 
   bool _dataNotFound = false;
@@ -25,10 +26,9 @@ class _AllRestaurantsViewState extends State<AllRestaurantsView> {
 
   Future<void> _fetchRestaurants() async {
     try {
-      final result = await RestaurantsRepository.getRestaurants();
-      if (result != null &&
-          result.restaurants != null &&
-          result.restaurants!.isNotEmpty) {
+      final result =
+          await ref.read(getRestaurantsProvider.notifier).loadRestaurants();
+      if (result.restaurants != null && result.restaurants!.isNotEmpty) {
         restaurants = result.restaurants!;
         if (mounted) {
           setState(() {

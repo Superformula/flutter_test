@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:restaurant_tour/src/features/restaurant_tour/presentation/pages/restaurant_tour_page.dart';
 
 void main() {
-  runApp(const RestaurantTour());
+  runApp(const ProviderScope(child: RestaurantTour()));
 }
 
 class RestaurantTour extends StatelessWidget {
