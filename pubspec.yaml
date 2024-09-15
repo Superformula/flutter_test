@@ -12,14 +12,17 @@ environment:
 
 dependencies:
   bloc: ^8.1.4
+  bloc_test: ^9.1.7
+  dartz: ^0.10.1
   envied: ^0.5.4+1
-  equatable: ^2.0.5
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.6
   get_it: ^7.7.0
   http: ^1.2.2
   json_annotation: ^4.9.0
+  mocktail: ^1.0.4
+  mocktail_image_network: ^1.2.0
 
 dev_dependencies:
   flutter_test:
