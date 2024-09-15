@@ -1,5 +1,5 @@
 import '../entities/entities.dart';
 
-abstract class GetRestaurants {
-  Future<List<RestaurantEntity>> call();
+abstract class GetRestaurants<T> {
+  Future<List<RestaurantEntity>> call(T data);
 }
