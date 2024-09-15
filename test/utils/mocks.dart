@@ -1,3 +1,4 @@
+import 'package:bloc_test/bloc_test.dart';
 import 'package:dio/dio.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:restaurant_tour/core/utils/storage.dart';
@@ -7,6 +8,7 @@ import 'package:restaurant_tour/domain/models/restaurant.dart';
 import 'package:restaurant_tour/domain/repositories/yelp_repository_contract.dart';
 import 'package:restaurant_tour/domain/usecase_contracts/favorites_usecase_contract.dart';
 import 'package:restaurant_tour/domain/usecase_contracts/get_restaurants_usecase_contract.dart';
+import 'package:restaurant_tour/presentation/controllers/restaurants/restaurants_cubit.dart';
 
 class MockStorage extends Mock implements Storage {}
 
@@ -27,3 +29,6 @@ class MockFavoritesUsecaseContract extends Mock
 
 class MockGetRestaurantsUsecaseContract extends Mock
     implements GetRestaurantsUsecaseContract {}
+
+class MockRestaurantsCubit extends MockCubit<RestaurantsCubitState>
+    implements RestaurantsCubit {}
