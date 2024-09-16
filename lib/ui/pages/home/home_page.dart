@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_tour/ui/pages/favorites/favorites_restaurants_page.dart';
 import 'package:restaurant_tour/ui/pages/home/widgets/app_bar.dart';
 import 'package:restaurant_tour/ui/pages/restaurants/restaurant_list_page.dart';
 
@@ -26,17 +27,11 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
       ),
       body: TabBarView(
         controller: _tabController,
-        children: [
-          const RestaurantListPage(),
-          _buildFavoritesTab(),
+        children: const [
+          RestaurantListPage(),
+          FavoritesRestaurantsPage(),
         ],
       ),
-    );
-  }
-
-  Widget _buildFavoritesTab() {
-    return Center(
-      child: Text("My Favorites"),
     );
   }
 }
