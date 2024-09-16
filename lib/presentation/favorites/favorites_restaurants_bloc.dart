@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
+import 'package:restaurant_tour/common/exceptions/exceptions.dart';
 import 'package:restaurant_tour/domain/usecase/restaurants_usecase.dart';
 import 'package:restaurant_tour/models/restaurant.dart';
 
@@ -10,15 +11,44 @@ class FavoritesRestaurantsBloc
     extends Bloc<FavoritesRestaurantsEvent, FavoritesRestaurantsState> {
   FavoritesRestaurantsBloc(this.usecase)
       : super(FavoritesRestaurantsInitial()) {
-    on<LoadFavoriteRestaurants>((event, emit) async {
+    on<LoadFavoritesRestaurants>((event, emit) async {
       try {
-        emit(FavoriteRestaurantsLoading());
+        emit(FavoritesRestaurantsLoading());
         final favorites = await usecase.getFavoriteRestaurants();
-        emit(FavoriteRestaurantReady(favorites));
+        emit(FavoritesRestaurantsReady(favorites));
       } catch (e) {
-        emit(FavoriteRestaurantsError());
+        emit(FavoriteRestaurantsListError(FavoritesRestaurantsListException()));
       }
     });
+    on<AddFavoriteRestaurant>(
+      (event, emit) async {
+        try {
+          emit(FavoritesRestaurantsLoading());
+          await usecase.addFavoriteRestaurant(event.restaurant);
+          final favoritesRestaurants = await usecase.getFavoriteRestaurants();
+          emit(FavoritesRestaurantsReady(favoritesRestaurants));
+        } catch (e) {
+          emit(AddFavoriteRestaurantsError(AddFavoriteRestaurantException()));
+        }
+      },
+    );
+
+    on<RemoveFavoriteRestaurant>(
+      (event, emit) async {
+        try {
+          emit(FavoritesRestaurantsLoading());
+          await usecase.removeFavoriteRestaurant(event.restaurant);
+          final favoritesRestaurants = await usecase.getFavoriteRestaurants();
+          emit(FavoritesRestaurantsReady(favoritesRestaurants));
+        } catch (e) {
+          emit(
+            RemoveFavoriteRestaurantsError(
+              RemoveFavoriteRestaurantException(),
+            ),
+          );
+        }
+      },
+    );
   }
   final RestaurantsUsecase usecase;
 }

@@ -24,3 +24,24 @@ class RestaurantListException extends AppException {
     description = "The restaurant is not available at the moment",
   }) : super(code, description);
 }
+
+class FavoritesRestaurantsListException extends AppException {
+  FavoritesRestaurantsListException({
+    code = "FAVORITES_RESTAURANTS_LIST_NOT_AVAILABLE",
+    description = "The favorite restaurant is not available at the moment",
+  }) : super(code, description);
+}
+
+class AddFavoriteRestaurantException extends AppException {
+  AddFavoriteRestaurantException({
+    code = "ADD_FAVORITE_RESTAURANT_EXCEPTION",
+    description = "Couldn't register the favorite restaurant",
+  }) : super(code, description);
+}
+
+class RemoveFavoriteRestaurantException extends AppException {
+  RemoveFavoriteRestaurantException({
+    code = "REMOVE_FAVORITE_RESTAURANT_EXCEPTION",
+    description = "Couldn't remove the favorite restaurant",
+  }) : super(code, description);
+}
