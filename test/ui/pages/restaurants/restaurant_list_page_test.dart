@@ -8,7 +8,6 @@ import 'package:restaurant_tour/domain/models/restaurant/gateway/restaurant_enti
 import 'package:restaurant_tour/ui/pages/home/widgets/card_item.dart';
 import 'package:restaurant_tour/ui/pages/restaurants/restaurant_list_page.dart';
 
-// Mock class for RestaurantProvider
 class MockRestaurantProvider extends Mock implements RestaurantProvider {}
 
 void main() {
@@ -40,6 +39,12 @@ void main() {
 
       // Assert
       expect(find.byType(CircularProgressIndicator), findsOneWidget);
+
+      //Add Golden test for loading state
+      await expectLater(
+        find.byType(RestaurantListPage),
+        matchesGoldenFile('goldens/restaurant_list_loading.png'),
+      );
     });
 
     testWidgets('Shows list of restaurants', (WidgetTester tester) async {
@@ -77,6 +82,12 @@ void main() {
       // Assert
       expect(find.text('Test Restaurant'), findsOneWidget);
       expect(find.byType(CardItem), findsOneWidget);
+
+      // Add golden test for list state
+      await expectLater(
+        find.byType(RestaurantListPage),
+        matchesGoldenFile('goldens/restaurant_list_with_data.png'),
+      );
     });
 
     testWidgets('Shows "No restaurants available" message when list is empty', (WidgetTester tester) async {
