@@ -34,6 +34,7 @@ class HomePage extends StatelessWidget {
                 height: 40,
                 margin: const EdgeInsets.symmetric(horizontal: 10),
                 child: const TabBar(
+                  tabAlignment: TabAlignment.center,
                   indicatorSize: TabBarIndicatorSize.tab,
                   dividerColor: Colors.transparent,
                   labelColor: Colors.black,

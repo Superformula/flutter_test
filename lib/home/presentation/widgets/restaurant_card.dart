@@ -4,7 +4,7 @@ import 'package:flutter_rating/flutter_rating.dart';
 import 'package:restaurant_tour/home/models/restaurant.dart';
 
 import '../../../navigator.dart';
-import '../../../typography.dart';
+import '../../../themes/typography.dart';
 
 class RestaurantCard extends StatelessWidget {
   final String photo;

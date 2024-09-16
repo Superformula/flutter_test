@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating/flutter_rating.dart';
-import 'package:restaurant_tour/typography.dart';
+import 'package:restaurant_tour/themes/typography.dart';
 
 import '../../utils/utils.dart';
 

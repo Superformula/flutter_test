@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:dartz/dartz.dart';
 
+import '../../../env.dart';
 import '../../models/restaurant.dart';
 import '../../../query.dart';
 import '../../failures/failures.dart';
@@ -19,9 +20,8 @@ abstract class HomeDataSourceInterface {
 class HomeDataSource implements HomeDataSourceInterface {
   HomeDataSource();
 
-  final _apiKey =
-      'yT1sJ3lRDxaU8jTfgmRuGnvd0Pj-OAU9KqV8VmQ9rK0L-M8sID9ZN0UmBfmPiMTFTHO11ziGqcb6gILaUj7zdkYUfZoUHshf7HsBUd2LEU5nIASGbkfYLaaUPZ_kZnYx';
-  final _baseUrl = 'https://api.yelp.com/v3/graphql';
+  final _apiKey = Env.API_KEY;
+  final _baseUrl = Env.BASE_URL;
 
   @override
   Future<Either<RestaurantsFailure, Map<String, RestaurantQueryResult>>>

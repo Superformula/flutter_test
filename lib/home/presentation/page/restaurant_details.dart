@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:restaurant_tour/home/presentation/widgets/comment.dart';
 import 'package:restaurant_tour/home/models/restaurant.dart';
 
-import '../../../typography.dart';
+import '../../../themes/typography.dart';
 import '../widgets/custom_divider.dart';
 import '../widgets/header.dart';
 
@@ -19,6 +19,7 @@ class RestaurantDetails extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        surfaceTintColor: Colors.transparent,
         backgroundColor: Colors.white,
         shadowColor: Colors.white,
         title: HeaderHome(
@@ -117,10 +118,13 @@ class RestaurantDetails extends StatelessWidget {
                       fontSize: 32,
                     ),
                   ),
-                  const Icon(
-                    Icons.star,
-                    color: Colors.amber,
-                    size: 16,
+                  Container(
+                    margin: const EdgeInsets.only(top: 12),
+                    child: const Icon(
+                      Icons.star,
+                      color: Colors.amber,
+                      size: 16,
+                    ),
                   ),
                 ],
               ),
