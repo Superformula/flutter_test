@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:restaurant_tour/features/home_page/presenter/bloc/home_screen_bloc.dart';
-import 'package:restaurant_tour/features/home_page/presenter/page/widgets/all_restaurants_tab.dart';
-import 'package:restaurant_tour/features/home_page/presenter/page/widgets/my_favorites_tab.dart';
+import 'package:restaurant_tour/features/home_page/presenter/bloc/home_bloc.dart';
+import 'package:restaurant_tour/features/home_page/presenter/page/widgets/home_loading_skeleton.dart';
+import 'package:restaurant_tour/features/home_page/presenter/page/widgets/tab_views.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<HomeScreenBloc>(
-      create: (context) => HomeScreenBloc(),
+    return BlocProvider<HomeBloc>(
+      create: (context) => HomeBloc()..add(const InitialEvent()),
       child: _Page(),
     );
   }
@@ -23,7 +23,7 @@ class _Page extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<HomeScreenBloc, HomeScreenState>(
+    return BlocListener<HomeBloc, HomeState>(
       listener: (context, state) {
         // TODO: implement listener
       },
@@ -47,17 +47,15 @@ class _Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const DefaultTabController(
+    return DefaultTabController(
       length: 2,
-      child: Column(
-        children: [
-          Material(
-            elevation: 6.0,
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(10.0),
-              topRight: Radius.circular(10.0),
-            ),
-            child: ClipRRect(
+      child: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Material(
+              elevation: 6.0,
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(10.0),
                 topRight: Radius.circular(10.0),
@@ -77,8 +75,17 @@ class _Body extends StatelessWidget {
                 ],
               ),
             ),
-          ),
-        ],
+            BlocBuilder<HomeBloc, HomeState>(
+              builder: (context, state) {
+                if (state is HomeLoadingState) {
+                  return const HomeLoadingSkeleton();
+                } else {
+                  return const TabViews();
+                }
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

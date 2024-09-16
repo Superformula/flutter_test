@@ -14,11 +14,6 @@ class AllRestaurantsTab extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            RestaurantCardSkeleton(),
-            RestaurantCardSkeleton(),
-            RestaurantCardSkeleton(),
-            RestaurantCardSkeleton(),
-
             Text('All Restaurants')
           ],
         ),

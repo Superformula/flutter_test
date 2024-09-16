@@ -16,7 +16,6 @@ class MyFavoritesTab extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            RtSkeleton(height: 50, width: 100),
             Text('My Favorites'),
           ],
         ),
