@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_tour/domain/models/restaurant/gateway/restaurant_entity.dart';
+import 'package:restaurant_tour/ui/pages/detail_restaurant/restaurant_details_page.dart';
 import 'package:restaurant_tour/ui/ui.dart';
 import 'package:restaurant_tour/ui/widgets/availability_widget.dart';
 import 'package:restaurant_tour/ui/widgets/image_widget.dart';
@@ -13,25 +14,37 @@ class CardItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 104,
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(8.0)),
-        color: OsColors.light,
-        boxShadow: <BoxShadow>[
-          BoxShadow(
-            color: OsColors.shadowColor,
-            blurRadius: 5.0,
-            offset: Offset(0, 1),
-            spreadRadius: 0,
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => RestaurantDetailsPage(
+              restaurant: restaurant,
+            ),
           ),
-        ],
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: _getBody(),
+        );
+      },
+      child: Container(
+        height: 104,
+        decoration: const BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(8.0)),
+          color: OsColors.light,
+          boxShadow: <BoxShadow>[
+            BoxShadow(
+              color: OsColors.shadowColor,
+              blurRadius: 5.0,
+              offset: Offset(0, 1),
+              spreadRadius: 0,
+            ),
+          ],
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: _getBody(),
+          ),
         ),
       ),
     );
@@ -45,6 +58,10 @@ class CardItem extends StatelessWidget {
           restaurant.photos.isNotEmpty
               ? ImageWidget(
                   imageUrl: restaurant.photos.first,
+                  id: restaurant.id,
+                  height: 88.0,
+                  withd: 88.0,
+                  rounded: true,
                 )
               : const Icon(Icons.image_not_supported, size: 88),
         ],

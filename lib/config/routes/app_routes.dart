@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_tour/ui/pages/home/home_page.dart';
-import 'package:restaurant_tour/ui/pages/restaurant_details_page.dart';
-import 'package:restaurant_tour/ui/pages/restaurant_list_page.dart';
+import 'package:restaurant_tour/ui/pages/detail_restaurant/restaurant_details_page.dart';
+import 'package:restaurant_tour/ui/pages/restaurants/restaurant_list_page.dart';
 
 class AppRoutes {
   AppRoutes._(); // Private constructor to prevent instantiation.

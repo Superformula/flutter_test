@@ -5,6 +5,8 @@ class AppTypography {
   /// The name of the primary font family used throughout the app.
   static const String familyLora = 'Lora';
 
+  static const String familyOpenSans = 'OpenSans';
+
   /// The base font size for body text.
   static const double body = 12;
 

@@ -12,4 +12,6 @@ class AppConstants {
   static const String openNow = 'Open Now';
   static const String closed = 'Closed';
   static const String rating = 'Rating:';
+  static const String addres = 'Address';
+  static const String overrallRating = 'Overall Rating';
 }

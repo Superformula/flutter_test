@@ -32,4 +32,7 @@ class OsColors {
 
   ///The color for bg
   static const bgColor = Color(0xFFfafafa);
+
+  ///The color for divider
+  static const dividerColor = Color(0xFFEEEEEE);
 }
