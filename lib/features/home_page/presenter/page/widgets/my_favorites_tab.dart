@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_tour/core/constants.dart';
-import 'package:restaurant_tour/shared/rt_skeleton.dart';
 
 
 class MyFavoritesTab extends StatelessWidget {

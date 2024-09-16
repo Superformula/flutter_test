@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
 class RateStars extends StatelessWidget {
-  final double rate;
-  final double starSize;
-  final Color color;
-
   const RateStars({
     Key? key,
     required this.rate,
     this.starSize = 20.0,
     this.color = Colors.amber,
   }) : super(key: key);
+
+  final double rate;
+  final double starSize;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
