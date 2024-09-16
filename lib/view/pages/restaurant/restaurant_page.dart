@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../data/models/restaurant.dart';
-import '../../../typography.dart';
+import '../../../core/utils/typography.dart';
 import '../../cubit/favorite/favorite.dart';
 import '../../widgets/restaurant_rating_widget.dart';
 

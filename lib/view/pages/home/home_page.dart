@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:restaurant_tour/typography.dart';
-import 'package:restaurant_tour/view/pages/favorites/favorites_page.dart';
+import 'package:restaurant_tour/core/utils/typography.dart';
 
 import '../../cubit/favorite/favorite.dart';
 import '../../cubit/restaurants/restaurants.dart';
-import '../../widgets/restaurant_card_widget.dart';
-import '../restaurant/restaurant_page.dart';
+import 'widgets/favorites_tab_widget.dart';
+import 'widgets/restaurants_tab_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -58,80 +57,9 @@ class _HomeState extends State<HomePage> with SingleTickerProviderStateMixin {
         body: SafeArea(
           child: TabBarView(
             controller: tabController,
-            children: [
-              BlocBuilder<RestaurantsCubit, RestaurantsState>(
-                builder: (context, state) {
-                  switch (state.status) {
-                    case RestaurantsStatus.initial:
-                      return const SizedBox.shrink(
-                        key: Key('initial state'),
-                      );
-                    case RestaurantsStatus.loading:
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    case RestaurantsStatus.success:
-                      return Padding(
-                        padding: const EdgeInsets.only(top: 16.0),
-                        child: ListView.builder(
-                          itemCount: state.restaurants.length,
-                          itemBuilder: (context, index) {
-                            final restaurant =
-                                state.restaurants.elementAt(index);
-
-                            return RestaurantCardWidget(
-                              onTap: () => Navigator.of(context).push(
-                                MaterialPageRoute<void>(
-                                  builder: (context) => BlocProvider.value(
-                                    value: favoriteCubit,
-                                    child: RestaurantPage(
-                                      restaurant: restaurant,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              restaurant: state.restaurants[index],
-                            );
-                          },
-                        ),
-                      );
-
-                    case RestaurantsStatus.failure:
-                      return Center(
-                        child: Text(state.errorMessage),
-                      );
-                  }
-                },
-              ),
-              BlocBuilder<FavoriteCubit, FavoriteState>(
-                builder: (context, state) {
-                  switch (state.status) {
-                    case FavoriteStatus.initial:
-                      return const Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.inbox,
-                            size: 48,
-                          ),
-                          Text(
-                            'You have not added any favorite resaturants!',
-                          ),
-                        ],
-                      );
-                    case FavoriteStatus.loading:
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    case FavoriteStatus.success || FavoriteStatus.removed:
-                      return FavoritesListBuilder(
-                        restaurants: state.favorites,
-                      );
-                    default:
-                      return const SizedBox.shrink();
-                  }
-                },
-              ),
+            children: const [
+              RestaurantsTabWidget(),
+              FavoritesTabWidget(),
             ],
           ),
         ),
