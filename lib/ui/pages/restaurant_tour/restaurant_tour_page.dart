@@ -8,6 +8,7 @@ import '../../widgets/widgets.dart';
 import '../pages.dart';
 
 part 'widgets/app_bar.dart';
+part 'widgets/error_content.dart';
 part 'widgets/image.dart';
 part 'widgets/restaurant_item.dart';
 part 'widgets/restaurant_list.dart';
@@ -63,13 +64,7 @@ class _RestaurantTourPageState extends State<RestaurantTourPage> {
               }
 
               if (state is RestaurantErrorState) {
-                return Center(
-                  child: Text(
-                    state.message,
-                    style: AppTextStyles.openRegularHeadline,
-                    textAlign: TextAlign.center,
-                  ),
-                );
+                return _ErrorContent(state.message);
               }
 
               return const TabBarView(
