@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:oxidized/oxidized.dart';
 import 'package:restaurant_tour/core/models/restaurant.dart';
 
 class YelpRepository {
@@ -17,16 +18,25 @@ class YelpRepository {
     );
   }
 
-  Future<RestaurantQueryResult?> getRestaurants({int offset = 0}) async {
+  Future<Result<RestaurantQueryResult, DioException>> getRestaurants({int offset = 0}) async {
     try {
       final response = await dio.post<Map<String, dynamic>>(
         '/v3/graphql',
         data: _getQuery(offset),
       );
-      return RestaurantQueryResult.fromJson(response.data!['data']['search']);
+      final result = RestaurantQueryResult.fromJson(response.data!['data']['search']);
+      return Ok(result);
     } catch (e) {
-      print('Error fetching restaurants: $e');
-      return null;
+      if(e is DioException) {
+        return Err(e);
+      } else {
+        return Err(
+          DioException(
+            requestOptions: RequestOptions(path: '/v3/graphql'),
+            error: e,
+          ),
+        );
+      }
     }
   }
 
