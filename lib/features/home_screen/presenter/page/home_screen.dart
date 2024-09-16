@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:restaurant_tour/features/home_page/presenter/bloc/home_bloc.dart';
-import 'package:restaurant_tour/features/home_page/presenter/page/widgets/home_loading_skeleton.dart';
-import 'package:restaurant_tour/features/home_page/presenter/page/widgets/tab_views.dart';
+import 'package:restaurant_tour/core/helpers/hive_helper.dart';
+import 'package:restaurant_tour/features/home_screen/presenter/bloc/home_bloc.dart';
+import 'package:restaurant_tour/features/home_screen/presenter/page/widgets/home_loading_skeleton.dart';
+import 'package:restaurant_tour/features/home_screen/presenter/page/widgets/tab_views.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const _Page();
+    return BlocProvider(
+      create: (context) => HomeBloc(
+        hiveHelper: HiveHelper(),
+      )..add(const InitialEvent()),
+      child: const _Page(),
+    );
   }
 }
 

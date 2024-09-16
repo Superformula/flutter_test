@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:restaurant_tour/core/helpers/hive_helper.dart';
 import 'package:restaurant_tour/core/models/restaurant.dart';
-import 'package:restaurant_tour/features/home_page/presenter/bloc/home_bloc.dart';
-import 'package:restaurant_tour/features/home_page/presenter/page/home_screen.dart';
-import 'package:restaurant_tour/features/restaurant_page/presenter/page/restaurant_screen.dart';
+import 'package:restaurant_tour/features/home_screen/presenter/page/home_screen.dart';
+import 'package:restaurant_tour/features/restaurant_screen/presenter/page/restaurant_screen.dart';
 import 'package:restaurant_tour/features/splash_screen/presenter/splash_screen.dart';
 
 final GoRouter router = GoRouter(
@@ -20,10 +17,7 @@ final GoRouter router = GoRouter(
       path: '/home',
       name: 'home',
       builder: (BuildContext context, GoRouterState state) {
-        return BlocProvider<HomeBloc>(
-          create: (_) => HomeBloc(hiveHelper: HiveHelper())..add(const InitialEvent()),
-          child: const HomeScreen(),
-        );
+        return const HomeScreen();
       },
     ),
     GoRoute(

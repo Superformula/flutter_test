@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_tour/core/models/restaurant.dart';
-import 'package:restaurant_tour/features/home_page/presenter/page/widgets/rate_stars.dart';
+import 'package:restaurant_tour/shared/rate_stars.dart';
 
 class ReviewsArea extends StatelessWidget {
   const ReviewsArea({

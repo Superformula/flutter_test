@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:restaurant_tour/core/models/restaurant.dart';
-import 'package:restaurant_tour/features/home_page/presenter/page/widgets/rate_stars.dart';
-import 'package:restaurant_tour/features/home_page/presenter/page/widgets/status_indicator.dart';
+import 'package:restaurant_tour/shared/rate_stars.dart';
+import 'package:restaurant_tour/features/home_screen/presenter/page/widgets/card_restaurant/status_indicator.dart';
 
 
 class CardRestaurant extends StatelessWidget {

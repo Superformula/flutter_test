@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:restaurant_tour/core/models/restaurant.dart';
-import 'package:restaurant_tour/features/restaurant_page/presenter/bloc/restaurant_bloc.dart';
+import 'package:restaurant_tour/features/restaurant_screen/presenter/bloc/restaurant_bloc.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({
