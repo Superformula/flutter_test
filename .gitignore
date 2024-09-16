@@ -47,3 +47,10 @@ app.*.map.json
 
 # fvm
 .fvm/flutter_sdk
+
+# exclude all .env files from source control
+*.env
+*env.g.dart
+
+#exclude api-key file
+*api-keys.json

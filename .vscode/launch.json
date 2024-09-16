@@ -5,9 +5,20 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "app",
+            "name": "App Dev",
             "request": "launch",
-            "type": "dart"
+            "type": "dart",
+            "program": "lib/main_dev.dart"
+        }, 
+        {
+            "name": "App Prod",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main_prod.dart",
+            "args": [
+                "--dart-define-from-file",
+                "api-keys.json"
+            ]
         }
     ]
 }

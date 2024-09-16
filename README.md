@@ -1,202 +1,219 @@
-# Restaurant Tour
-
-Welcome to Superformula's Coding challenge, we are excited to see what you can build!
-
-This take home test aims to evaluate your skills in building a Flutter application. We are looking for a well-structured and well-tested application that demonstrates your knowledge of Flutter and the Dart language.
-
-We are not looking for pixel perfect designs, but we are looking for a well-structured application that demonstrates your skills and best practices developing a flutter application. We know there are many ways to solve a problem, and we are interested in seeing how you approach this one. If you have any questions, please don't hesitate to ask.
-
-Things we'll be looking on your submission:
-- App structure for scalability
-- Error and optional (?) handling
-- Widget tree optimization
-- State management
-- Test coverage
-
-Think of the app you'll be building as the final product, do not over engineer it for possible future features, but do not under engineer it either. We are looking for a balance. We want that the functionalities that you implement are well thought out and implemented.
-
-As an example, for the favorites feature you can simply use SharedPreferences, you don't need to use a complex database solution, but we're looking for a solid shared preferences implementation.
 
 
+# Project Documentation 🇺🇸
 
-Be sure to read **all** of this document carefully, and follow the guidelines within.
+## Overview
 
-## Vendorized Flutter
+This challenge was proposed by the Superformula team, and it’s an application I developed focused on restaurants. The app features two main screens:
 
-3. We use [fvm](https://fvm.app/) for managing the flutter version within the project. Using terminal, while being on the test repository, install the tools dependencies by running the following commands:
+### Home Page
 
-    ```sh
-    dart pub global activate fvm
-    ```
+- **Tab View**: I organized the home page into two tabs:
+  - **Restaurant Catalog**: Displays a list of restaurants with relevant information.
+  - **Favorites**: Shows the list of restaurants that user marks as favorites.
 
-    The output of the command will ask to add the folder `./pub-cache/bin` to your PATH variables, if you didn't already. If that is the case, add it to your environment variables, and restart the terminal.
+### Restaurant Page
 
-    ```sh
-    export PATH="$PATH":"$HOME/.pub-cache/bin" # Add this to your environment variables
-    ```
+- **Restaurant Details**: Provides detailed information about restaurants, which are obtained via the Yelp API.
+- **Favorite Option**: Allows the user to add a restaurant to a favorites list. Favorited restaurants are stored locally on user device.
 
-4. Install the project's flutter version using `fvm`.
+## Development Environments
 
-    ```sh
-    fvm use
-    ```
+The application supports two distinct environments:
 
-5. From now on, you will run all the flutter commands with the `fvm` prefix. Get all the projects dependencies.
+- **Development Environment (Dev)**: I created a mocked data json endpoint to avoid exceeding Yelp API’s daily limit. the endpoint can be accessed using [link](https://raw.githubusercontent.com/fonsecguilherme/sf_flutter_test/master/restaurants.json).
+  
+- **Production Environment (Prod)**: Connects to the official Yelp API endpoint to retrieve real data.
 
-    ```sh
-    fvm flutter pub get
-    ```
+## API Key Configuration
 
-More information on the approach can be found here:
+To ensure the security of the Yelp API key, I used `dart-define` along with a JSON file containing the key. This file is not included in the Git repository to protect the key from unauthorized access.
 
-> hhttps://fvm.app/docs/getting_started/installation
+### API Key File Structure
 
-From the root directory:
-
-
-### IDE Setup
-
-<details>
-<summary>Use with VSCode</summary>
-<p>
-
-If you're a VScode user link the new Flutter SDK path in your settings
-`$projectRoot/.vscode/settings.json` (create if it doesn't exist yet)
+The `api-keys.json` file should follow this structure:
 
 ```json
 {
-  "dart.flutterSdkPath": ".fvm/flutter_sdk"
+    "YELP_KEY": "<Insert your key here>"
 }
 ```
 
+### Security Considerations
 
+- **Key Protection**: By using `dart-define` and not include the API key file from the Git repository, I protect the key from unauthorized access. The key will not be accessible to end users upon APK decompilation.
+
+# Project Technical Overview
+
+## Technologies and Packages
+
+### Dart and Flutter Packages
+
+- **[Mocktail](https://pub.dev/packages/mocktail)**: A package used for creating mock objects for unit testing.
+- **[Flutter_bloc](https://pub.dev/packages/flutter_bloc)**: Provides integration between Flutter and BLoC for state management.
+- **[Bloc](https://pub.dev/packages/bloc)**: A library for implementing the BLoC pattern.
+- **[Mocktail_image_network](https://pub.dev/packages/mocktail_image_network)**: Provides mock image responses for network image testing.
+- **[Bloc_test](https://pub.dev/packages/bloc_test)**: A package used for testing BLoC events and states.
+- **[GetIt](https://pub.dev/packages/get_it)**: A service locator for dependency injection.
+- **[Dartz](https://pub.dev/packages/dartz)**: A library for functional programming in Dart.
+- **[Shared_preferences](https://pub.dev/packages/shared_preferences)**: For local data persistence using key-value pairs.
+
+### Key Features and Practices
+
+- **State Management**: I utilized BLoC and Flutter BLoC for managing the state of the application.
+- **Dependency Injection**: Managed through the GetIt package for efficient service location and injection.
+- **API Requests**: Handled via the HTTP package for network communication.
+- **Testing**: Mocktail, Bloc Test, and Mocktail Image Network for comprehensive unit and widget testing.
+- **Data Persistence**: Achieved with Shared Preferences for storing key-value data locally.
+- **Functional Programming**: Leveraged through the Dartz package to incorporate functional programming concepts into the application.
+
+This combination of packages and practices ensures a robust, maintainable, and testable application architecture.
+
+## BLoC
+
+- In this project, I chose to use **cubits** for state management. My choice was motivated by several reasons: cubits is a well-defined pattern, highly testable, widely adopted in the market, and offers flexibility for fine-tuning the user interface.
+
+## Tests
+
+- Page tests (home, favorites, and restaurant), cubits (favorite and restaurants), and the dev repository.
+
+## App Structure
+
+- **Core**: Essential components and features used throughout the app.
+- **Data**: Handles communication with external sources and data management.
+- **View**: Visual representation of app screens, incorporating cubits and states.
+
+<p float="left">
+  <img src="https://github.com/user-attachments/assets/0a806050-c4d0-4d78-9105-9779a6dc4cdf" width="350" />
 </p>
-</details>
 
-<details>
-<summary>Use with IntelliJ / Android Studio</summary>
-<p>
+## Video
 
-Go to `Preferences > Languages & Frameworks > Flutter` and set the Flutter SDK path to `$projectRoot/.fvm/flutter_sdk`
+[Video](https://drive.google.com/file/d/1zMk82eiCxKuIeOENQ8drDcDEveOictqX/view?usp=sharing)
 
-<img width="800" alt="IntelliJ Settings" src="https://user-images.githubusercontent.com/1096485/64658026-3a1fdd00-d436-11e9-9457-556059f68e2c.png">
+## Screenshots
 
+App screenshots are at the end of the file.
+
+---
+
+## Documentação do Projeto 🇧🇷
+
+## Visão Geral
+
+Este desafio foi proposto pela equipe Superformula, e trata-se de um aplicativo que foi desenvolvido focado em restaurantes. O aplicativo possui duas telas principais:
+
+### Página Inicial
+
+- **Visualização por Abas**: Organizei a página inicial em duas abas:
+  - **Catálogo de Restaurantes**: Exibe uma lista de restaurantes com informações relevantes.
+  - **Favoritos**: Mostra a lista de restaurantes que o usuário marca como favorito.
+
+### Página do Restaurante
+
+- **Detalhes do Restaurante**: Fornece informações detalhadas sobre restaurantes, obtidas através da API do Yelp.
+- **Opção de Favorito**: Permite que o usuário adicione um restaurante à lista de favoritos. Os restaurantes favoritados são armazenados localmente no dispositivo do usuário.
+
+## Ambientes de Desenvolvimento
+
+O aplicativo suporta dois ambientes distintos:
+
+- **Ambiente de Desenvolvimento (Dev)**: Criei um endpoint JSON de dados simulados para evitar exceder o limite diário da API do Yelp. O endpoint pode ser acessado usando o [link](https://raw.githubusercontent.com/fonsecguilherme/sf_flutter_test/master/restaurants.json).
+
+- **Ambiente de Produção (Prod)**: Conecta-se ao endpoint oficial da API do Yelp para recuperar dados reais.
+
+## Configuração da Chave API
+
+Para garantir a segurança da chave API do Yelp, usei `dart-define` juntamente com um arquivo JSON contendo a chave. Este arquivo não está incluído no repositório Git para proteger a chave de acesso não autorizado.
+
+### Estrutura do Arquivo da Chave API
+
+O arquivo `api-keys.json` deve seguir esta estrutura:
+
+```json
+{
+    "YELP_KEY": "<Insira sua chave aqui>"
+}
+```
+
+### Considerações de Segurança
+
+- **Proteção da Chave**: Usando `dart-define` e não incluindo o arquivo que contém a chave API no repositório Git, proteje a chave de acesso não autorizado. A chave não será acessível aos usuários caso o apk do app seja decompilado.
+
+# Visão Técnica do Projeto
+
+## Tecnologias e Pacotes
+
+### Pacotes Dart e Flutter
+
+- **[Mocktail](https://pub.dev/packages/mocktail)**: Um pacote usado para criar mocks para testes unitários.
+- **[Flutter_bloc](https://pub.dev/packages/flutter_bloc)**: Fornece integração entre Flutter e BLoC para gerenciamento de estado.
+- **[Bloc](https://pub.dev/packages/bloc)**: Uma biblioteca para implementar o padrão BLoC.
+- **[Mocktail_image_network](https://pub.dev/packages/mocktail_image_network)**: Fornece image mocks para testes de imagens de rede.
+- **[Bloc_test](https://pub.dev/packages/bloc_test)**: Pacote usado para testar eventos e estados BLoC.
+- **[GetIt](https://pub.dev/packages/get_it)**: Service locator para injeção de dependência.
+- **[Dartz](https://pub.dev/packages/dartz)**: Uma biblioteca para programação funcional em Dart.
+- **[Shared_preferences](https://pub.dev/packages/shared_preferences)**: Para persistência de dados local usando pares chave-valor.
+
+### Principais Recursos e Práticas
+
+- **Gerenciamento de Estado**: Foi utilizado BLoC e Flutter BLoC para gerenciar o estado do aplicativo.
+- **Injeção de Dependência**: Gerenciado através do pacote GetIt para localização e injeção de serviços eficientes.
+- **Solicitações de API**: HTTP para comunicação de rede.
+- **Testes**: Mocktail, Bloc Test e Mocktail Image Network para testes unitários e de widgets.
+- **Persistência de Dados**: Obtida com Shared Preferences para armazenar dados chave-valor localmente.
+- **Programação Funcional**: Aproveitada através do pacote Dartz para incorporar conceitos de programação funcional no aplicativo.
+
+Esta combinação de pacotes e práticas garante uma arquitetura de aplicativo robusta, manutenível e testável.
+
+## BLoC
+
+- Neste projeto, escolhi usar **cubits** para gerenciamento de estado. Minha escolha foi motivada por vários motivos: cubits/BLoC é um padrão bem definido, altamente testável, amplamente adotado no mercado e oferece flexibilidade para ajustar a interface do usuário.
+
+## Testes
+
+- Testes de página (home, favorite e restaurant), cubits (favorit e restaurant) e o repositório dev.
+
+## Estrutura do Aplicativo
+
+- **Core**: Componentes e recursos essenciais usados em todo o aplicativo.
+- **Data**: Lidar com a comunicação com fontes externas e gerenciamento de dados.
+- **View**: Representação visual das telas do aplicativo, incorporando cubits e estados.
+
+<p float="left">
+  <img src="https://github.com/user-attachments/assets/0a806050-c4d0-4d78-9105-9779a6dc4cdf" width="350" />
 </p>
-</details>
 
-## Requirements
+## Vídeo
 
-### App Structure
+[Vídeo](https://drive.google.com/file/d/1zMk82eiCxKuIeOENQ8drDcDEveOictqX/view?usp=sharing)
 
-#### Restaurant List Page
+## Screenshots
+* Home page Android
+<p float="left">
+  <img src="https://github.com/user-attachments/assets/45f781eb-1e54-4f7f-9de8-e488d097b7f3" width="350" />
+  <img src="https://github.com/user-attachments/assets/e1cb311d-aa7c-43dc-98cb-f606c7e057ab" width="350" />
+</p>
 
-- Tab Bar
-  - List of favorites (stored client side)
-  - List of businesses
-    - Hero image
-    - Name
-    - Price
-    - Category
-    - Rating (rounded to the nearest value)
-    - Open/Closed
+* Favorites page Android
+<p float="left">
+  <img src="https://github.com/user-attachments/assets/26f8884d-ddd1-4d0f-be1a-b2aa59afc26d" width="350" />
+  <img src="https://github.com/user-attachments/assets/4d0370ad-5d7f-4e8b-8a10-35ed47ea6f83" width="350" />
+</p>
 
-#### Restaurant Detail View
+* Restaurant details Android
+<p float="left">
+  <img src="https://github.com/user-attachments/assets/62bac8d4-bc0c-406a-bd72-5253858fb3b6" width="350" />
+  <img src="https://github.com/user-attachments/assets/565c0892-15f5-46ae-9b70-d0c4e0df8ad8" width="350" />
+</p>
 
-- Ability to favorite a business
-- Name
-- Hero image
-- Price and category
-- Address
-- Rating
-- Total reviews
-- List of reviews
-  - User name
-  - Rating
-  - User image
-  - Review Text (These are just snippets of the full review, usually like 3-4 lines long)
+* Error to fetch restaurans Android
+<p float="left">
+  <img src="https://github.com/user-attachments/assets/16992708-03e0-405a-a306-1d8297893afa" width="350" />
+</p>
 
-#### Misc.
-
-- Clear documentation on the structure and architecture of your application.
-- Clear and logical commit messages.
-  - We suggest following [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
-
-## Test Coverage
-
-To demonstrate your experience writing different types of tests in Flutter please do the following:
-
-- We are looking to see how you write tests in Flutter. We are not looking for 100% coverage but we are looking for a good mix of unit and widget tests.
-- We are specially looking for you to cover at least one file for each domain layer (interface, application, repositories, etc).
-
-Feel free to add more tests as you see fit but the above is the minimum requirement.
-
-## Design
-
-- See this [Figma File](https://www.figma.com/file/KsEhQUp66m9yeVkvQ0hSZm/Flutter-Test?node-id=0%3A1) for design information related to the overall look and feel of the application. We do not expect pixel-perfection but would like the application to visually be close to what is specified in the Figma file.
-
-![List View](screenshots/listview.png)
-![Detail View](screenshots/detailview.png)
-
-## API
-
-The [Yelp GraphQL API](https://www.yelp.com/developers/graphql/guides/intro) is used as the API for this Application. We have provided the boilerplate of the API requests and backing data models to save you some time. To successfully make a request to the Yelp GraphQL API, please follow these steps:
-
-1. Please go to https://www.yelp.com/signup and sign up for a developer account.
-1. Once signed up, navigate to https://www.yelp.com/developers/v3/manage_app.
-1. Create a new app by filling out the required information.
-1. Once your app is created, scroll down and join the `Developer Beta`. This allows you to use the GraphQL API.
-1. Copy your API Key from your app page and paste it on `line 5` [yelp_repository.dart](app/lib/yelp_repository.dart) replacing the `<PUT YOUR API KEY HERE>` with your key.
-1. Run the app and tap the `Fetch Restaurants` button. If you see a log like `Fetched x restaurants` you are all set!
-
-## Technical Requirements
-
-### State Management
-
-Please restrict your usage of state management or dependency injection to the following options:
-
-1. [provider](https://pub.dev/packages/provider)
-2. [Riverpod](https://pub.dev/packages/riverpod)
-3. [bloc](https://pub.dev/packages/bloc)
-4. [get_it](https://pub.dev/packages/get_it)/[get_it_mixins](https://pub.dev/packages/get_it_mixin)
-5. [Mobx](https://pub.dev/packages/mobx)
-
-We ask this because this challenge values consistency and efficiency over ingenuity. Using commonly used libraries ensures that we can review your code in a timely manner and allows us to provide better feedback.
-
-## Coding Values
-
-At **Superformula** we strive to build applications that have
-
-- Consistent architecture
-- Extensible, clean code
-- Solid testing
-- Good security & performance best practices
-
-### Clear, consistent architecture
-
-Approach your submission as if it were a real world app. This includes Use any libraries that you would normally choose.
-
-_Please note: we're interested in your code & the way you solve the problem, not how well you can use a particular library or feature._
-
-### Easy to understand
-
-Writing boring code that is easy to follow is essential at **Superformula**.
-
-We're interested in your method and how you approach the problem just as much as we're interested in the end result.
-
-### Solid testing approach
-
-While the purpose of this challenge is not to gauge whether you can achieve 100% test coverage, we do seek to evaluate whether you know how & what to test.
-
-## Q&A
-
-> Where should I send back the result when I'm done?
-
-Please fork this repo and then send us a pull request to our repo when you think you are done. There is no deadline for this task unless otherwise noted to you directly.
-
-> What if I have a question?
-
-Just create a new issue in this repo and we will respond and get back to you quickly.
-
-## Review
-
-The coding challenge is a take-home test upon which we'll be conducting a thorough code review once complete. The review will consist of meeting some more of our mobile engineers and giving a review of the solution you have designed. Please be prepared to share your screen and run/demo the application to the group. During this process, the engineers will be asking questions.
+* Restaurant details snack bar Android
+<p float="left">
+  <img src="https://github.com/user-attachments/assets/a18255c9-efeb-4e94-8893-1654310b92c8" width="350" />
+  <img src="https://github.com/user-attachments/assets/505db944-d65f-4d2c-9d3b-398a820599e3" width="350" />
+</p>
