@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:restaurant_tour/models/restaurant.dart';
 import 'package:restaurant_tour/query.dart';
+import 'package:restaurant_tour/view/pages/main_page.dart';
+import './view/theme/app_theme.dart';
 
 const _apiKey = '<PUT YOUR API KEY HERE>';
 const _baseUrl = 'https://api.yelp.com/v3/graphql';
@@ -17,9 +19,10 @@ class RestaurantTour extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'Restaurant Tour',
-      home: HomePage(),
+      theme: AppTheme.lightTheme,
+      home: const MainPage(),
     );
   }
 }
