@@ -1,7 +1,9 @@
 part of '../restaurant_tour_page.dart';
 
 class _RestaurantItem extends StatelessWidget {
-  const _RestaurantItem();
+  final RestaurantEntity _restaurant;
+
+  const _RestaurantItem(this._restaurant);
 
   @override
   Widget build(BuildContext context) {
@@ -23,23 +25,23 @@ class _RestaurantItem extends StatelessWidget {
             ),
           ],
         ),
-        child: const Row(
+        child: Row(
           children: [
-            _Image(''),
-            SizedBox(width: 12),
+            _Image(_restaurant.heroImage),
+            const SizedBox(width: 12),
             Flexible(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Restaurant Name Goes Here And Wraps 2 Lines', style: AppTextStyles.loraRegularTitle),
-                  SizedBox(height: 4),
-                  Text('\$\$\$\$ Italian', style: AppTextStyles.openRegularText),
-                  SizedBox(height: 4),
+                  Text(_restaurant.name, style: AppTextStyles.loraRegularTitle),
+                  const SizedBox(height: 4),
+                  const Text('\$\$\$\$ Italian', style: AppTextStyles.openRegularText),
+                  const SizedBox(height: 4),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Stars(5),
-                      Status(true),
+                      Stars(_restaurant.rating),
+                      Status(_restaurant.isOpen),
                     ],
                   ),
                 ],

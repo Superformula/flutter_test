@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../domain/entities/entities.dart';
 import '../../domain/usecases/usecases.dart';
 import '../../ui/pages/pages.dart';
 
@@ -15,6 +16,11 @@ class CubitRestaurantTourPresenter extends Cubit<RestaurantState> implements Res
     getAllRestaurants();
   }
 
+  final _restaurantList = <RestaurantEntity>[];
+
+  @override
+  List<RestaurantEntity> get restaurantList => _restaurantList;
+
   @override
   Future<void> getFavoriteRestaurants() {
     // TODO: implement getFavoriteRestaurants
@@ -25,13 +31,15 @@ class CubitRestaurantTourPresenter extends Cubit<RestaurantState> implements Res
   Future<void> getAllRestaurants() async {
     try {
       emit(RestaurantLoadingState());
-      await _getRestaurants();
+      _restaurantList.addAll(await _getRestaurants());
       emit(RestaurantSuccessState());
     } catch (e, s) {
       debugPrintStack(label: 'Error - $e', stackTrace: s);
-      emit(RestaurantErrorState('There was an error when searching for restaurants.'));
+      emit(RestaurantErrorState('There was an error \nwhen get restaurants.'));
     }
   }
 
-  void dispose() {}
+  void dispose() {
+    _restaurantList.clear();
+  }
 }
