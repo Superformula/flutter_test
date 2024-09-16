@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurant_tour/config/constants/constants.dart';
 import 'package:restaurant_tour/config/environment.dart';
+import 'package:restaurant_tour/config/providers/favorites_provider.dart';
 import 'package:restaurant_tour/config/providers/restaurant_providers.dart';
 import 'package:restaurant_tour/config/routes/app_routes.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -23,6 +24,7 @@ void main() async {
             ),
           ),
         ),
+        ChangeNotifierProvider(create: (_) => FavoritesProvider()),
       ],
       child: const RestaurantTour(),
     ),
