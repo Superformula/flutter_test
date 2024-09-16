@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class OsColors {
   OsColors._(); // Private constructor to prevent instantiation.
+
   /// The primary light color of the app
   static const light = Color(0xFFFFFFFF);
 
@@ -25,4 +26,10 @@ class OsColors {
 
   /// The color for primary text
   static const lightTextColor = Color(0xFF606060);
+
+  ///The color for shadow card
+  static const shadowColor = Color(0x33A8B5C4);
+
+  ///The color for bg
+  static const bgColor = Color(0xFFfafafa);
 }
