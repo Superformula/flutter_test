@@ -1,11 +1,10 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:restaurant_tour/features/home_screen/presenter/children/favorite_restaurants/domain/entities/category_entity.dart';
 
-
 void main() {
   group(
     'CategoryEntity',
-        () {
+    () {
       test('should have the correct properties', () {
         const title = 'Italian';
         const alias = 'italian';
@@ -20,7 +19,7 @@ void main() {
 
       test(
         'should support value equality',
-            () {
+        () {
           const categoryEntity1 = CategoryEntity(
             title: 'Italian',
             alias: 'italian',
@@ -41,9 +40,9 @@ void main() {
 
       test('should not be equal when properties differ', () {
         const categoryEntity1 =
-        CategoryEntity(title: 'Italian', alias: 'italian');
+            CategoryEntity(title: 'Italian', alias: 'italian');
         const categoryEntity2 =
-        CategoryEntity(title: 'Mexican', alias: 'mexican');
+            CategoryEntity(title: 'Mexican', alias: 'mexican');
 
         expect(
           categoryEntity1,

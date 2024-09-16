@@ -58,12 +58,12 @@ class ReviewsArea extends StatelessWidget {
                                   child: CircularProgressIndicator(),
                                 ),
                                 errorWidget: (context, url, error) =>
-                                  Image.network(
-                                    'https://fakeimg.pl/600x400',
-                                    width: 40,
-                                    height: 40,
-                                    fit: BoxFit.cover,
-                                  ),
+                                    Image.network(
+                                  'https://fakeimg.pl/600x400',
+                                  width: 40,
+                                  height: 40,
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
                           ),

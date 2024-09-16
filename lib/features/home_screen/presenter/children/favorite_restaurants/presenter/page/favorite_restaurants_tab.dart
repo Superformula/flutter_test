@@ -8,7 +8,6 @@ import 'package:restaurant_tour/features/home_screen/presenter/children/favorite
 import 'package:restaurant_tour/features/home_screen/presenter/children/favorite_restaurants/presenter/bloc/favorite_restaurants_bloc.dart';
 import 'package:restaurant_tour/shared/widgets/home_loading_skeleton.dart';
 
-
 class FavoriteRestaurantsTab extends StatelessWidget {
   const FavoriteRestaurantsTab({super.key});
 
@@ -19,17 +18,15 @@ class FavoriteRestaurantsTab extends StatelessWidget {
         hiveHelper: HiveHelper(),
         favoriteRestaurantsRepository: FavoriteRestaurantsApi(),
       )..add(
-        const InitialEvent(),
-      ),
+          const InitialEvent(),
+        ),
       child: const _Page(),
     );
   }
 }
 
 class _Page extends StatelessWidget {
-  const _Page({
-    super.key,
-  });
+  const _Page();
 
   @override
   Widget build(BuildContext context) {
@@ -50,9 +47,7 @@ class _Page extends StatelessWidget {
 }
 
 class _Body extends StatelessWidget {
-  const _Body({
-    super.key,
-  });
+  const _Body();
 
   @override
   Widget build(BuildContext context) {
@@ -70,11 +65,11 @@ class _Body extends StatelessWidget {
               final parseRestaurant = Restaurant.fromJson(restaurant.toJson());
               final int delay = index * 500;
               return FadeInRight(
+                delay: Duration(milliseconds: delay),
                 child: CardRestaurant(
-                  isFromFavorites:true,
+                  isFromFavorites: true,
                   restaurant: parseRestaurant,
                 ),
-                delay: Duration(milliseconds: delay),
               );
             },
           );
@@ -82,7 +77,7 @@ class _Body extends StatelessWidget {
         if (state is NoFavoritesState) {
           return const Center(
             child: Text(
-              'No favorite restaurantes were added',
+              'No favorite restaurants were added',
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w500,

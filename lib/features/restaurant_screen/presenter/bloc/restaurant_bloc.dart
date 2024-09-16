@@ -16,9 +16,9 @@ class RestaurantBloc extends Bloc<RestaurantEvent, RestaurantState> {
   final HiveHelper hiveHelper;
 
   Future<void> _onCheckFavoriteEvent(
-      CheckFavoriteEvent event,
-      Emitter<RestaurantState> emit,
-      ) async {
+    CheckFavoriteEvent event,
+    Emitter<RestaurantState> emit,
+  ) async {
     emit(const AppBarLoadingState());
     try {
       List<String> favoriteIds = hiveHelper.getAllFavoriteIds();
@@ -31,9 +31,9 @@ class RestaurantBloc extends Bloc<RestaurantEvent, RestaurantState> {
   }
 
   Future<void> _onAddFavoriteEvent(
-      AddFavoriteEvent event,
-      Emitter<RestaurantState> emit,
-      ) async {
+    AddFavoriteEvent event,
+    Emitter<RestaurantState> emit,
+  ) async {
     emit(const AppBarLoadingState());
     try {
       await hiveHelper.addFavorite(event.restaurantId);
@@ -44,9 +44,9 @@ class RestaurantBloc extends Bloc<RestaurantEvent, RestaurantState> {
   }
 
   Future<void> _onRemoveFavoriteEvent(
-      RemoveFavoriteEvent event,
-      Emitter<RestaurantState> emit,
-      ) async {
+    RemoveFavoriteEvent event,
+    Emitter<RestaurantState> emit,
+  ) async {
     emit(const AppBarLoadingState());
     try {
       await hiveHelper.removeFavorite(event.restaurantId);

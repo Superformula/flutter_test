@@ -23,8 +23,8 @@ class RestaurantScreen extends StatelessWidget {
       child: Builder(
         builder: (context) {
           context.read<RestaurantBloc>().add(
-            CheckFavoriteEvent(restaurant: restaurant),
-          );
+                CheckFavoriteEvent(restaurant: restaurant),
+              );
           return _Page(restaurant: restaurant);
         },
       ),

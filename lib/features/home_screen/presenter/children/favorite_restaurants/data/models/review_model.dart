@@ -3,16 +3,11 @@ import 'package:restaurant_tour/features/home_screen/presenter/children/favorite
 
 class ReviewModel extends ReviewEntity {
   const ReviewModel({
-    required String id,
-    required int rating,
-    required String text,
-    required UserModel user,
-  }) : super(
-    id: id,
-    rating: rating,
-    text: text,
-    user: user,
-  );
+    required super.id,
+    required super.rating,
+    required super.text,
+    required super.user,
+  });
 
   Map<String, dynamic> toJson() {
     return {

@@ -1,11 +1,10 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:restaurant_tour/features/home_screen/presenter/children/favorite_restaurants/domain/entities/hour_entity.dart';
 
-
 void main() {
   group(
     'HourEntity',
-        () {
+    () {
       test('should have isOpenNow property correctly assigned', () {
         const isOpenNow = true;
         const hourEntity = HourEntity(isOpenNow: isOpenNow);

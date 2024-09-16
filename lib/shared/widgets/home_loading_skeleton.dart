@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_tour/features/home_screen/presenter/children/all_restaurant/presenter/page/widgets/card_restaurant/restaurant_card_skeleton.dart';
 
-
 class CardsLoadingSkeleton extends StatelessWidget {
-  const CardsLoadingSkeleton({Key? key}) : super(key: key);
+  const CardsLoadingSkeleton({super.key});
 
   @override
   Widget build(BuildContext context) {

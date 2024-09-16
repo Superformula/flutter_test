@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:restaurant_tour/core/models/restaurant.dart';
 import 'package:restaurant_tour/features/home_screen/presenter/children/all_restaurant/presenter/page/widgets/card_restaurant/card_restaurant_export.dart';
 
-
-
 class RestaurantDetailsArea extends StatelessWidget {
   const RestaurantDetailsArea({super.key, required this.restaurant});
 
@@ -25,20 +23,20 @@ class RestaurantDetailsArea extends StatelessWidget {
           ),
           child: Row(
             children: [
-              Text(restaurant.price.toString() + ', '),
+              Text('${restaurant.price}, '),
               Text(
                 restaurant.categories?.first.title ?? '',
               ),
               const Spacer(),
               restaurant.isOpen
                   ? const StatusIndicator(
-                text: "Open Now",
-                color: Colors.green,
-              )
+                      text: "Open Now",
+                      color: Colors.green,
+                    )
                   : const StatusIndicator(
-                text: "Closed",
-                color: Colors.red,
-              ),
+                      text: "Closed",
+                      color: Colors.red,
+                    ),
             ],
           ),
         ),

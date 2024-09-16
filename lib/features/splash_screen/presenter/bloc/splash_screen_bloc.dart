@@ -11,8 +11,11 @@ class SplashScreenBloc extends Bloc<SplashScreenEvent, SplashScreenState> {
     on<InitialEvent>(_onInitialEvent);
   }
 
-  Future<void> _onInitialEvent(InitialEvent event, Emitter<SplashScreenState> emit) async {
-    await Future.delayed(const Duration(seconds: 2),);
+  Future<void> _onInitialEvent(
+      InitialEvent event, Emitter<SplashScreenState> emit) async {
+    await Future.delayed(
+      const Duration(seconds: 2),
+    );
 
     emit(const PushToHomeState());
   }

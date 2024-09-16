@@ -1,5 +1,3 @@
-
-
 import 'package:restaurant_tour/features/home_screen/presenter/children/favorite_restaurants/data/models/category_model.dart';
 import 'package:restaurant_tour/features/home_screen/presenter/children/favorite_restaurants/data/models/hour_model.dart';
 import 'package:restaurant_tour/features/home_screen/presenter/children/favorite_restaurants/data/models/location_model.dart';
@@ -50,19 +48,18 @@ class RestaurantModel extends RestaurantEntity {
         .map((x) => HourModel.fromJson(x as Map<String, dynamic>))
         .toList();
     final locationJson = businessJson['location'] as Map<String, dynamic>?;
-    final location =  LocationModel.fromJson(locationJson!);
+    final location = LocationModel.fromJson(locationJson!);
 
     return RestaurantModel(
-        id: id,
-        name: name,
-        price: price,
-        rating: rating,
-        photos: photos,
-        reviews: reviews,
-        categories: categories,
-        hours: hours,
-        location:location
+      id: id,
+      name: name,
+      price: price,
+      rating: rating,
+      photos: photos,
+      reviews: reviews,
+      categories: categories,
+      hours: hours,
+      location: location,
     );
   }
-
 }

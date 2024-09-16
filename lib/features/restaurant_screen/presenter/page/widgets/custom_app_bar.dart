@@ -21,12 +21,26 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     bool isFavorite = false;
     return AppBar(
+      backgroundColor: Colors.white,
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            title,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontWeight: FontWeight.w700,
+              color: Colors.black,
+            ),
+          ),
+        ],
+      ),
       leading: BackButton(
+        color: Colors.black,
         onPressed: () {
           context.pop(!isFavorite);
         },
       ),
-      title: Text(title),
       actions: [
         BlocBuilder<RestaurantBloc, RestaurantState>(
           builder: (context, state) {
@@ -37,7 +51,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               return IconButton(
                 icon: Icon(
                   isFavorite ? Icons.favorite : Icons.favorite_border,
-                  color: isFavorite ? Colors.red : null,
+                  color: isFavorite ? Colors.red : Colors.black,
                 ),
                 onPressed: () {
                   if (!isFavorite) {

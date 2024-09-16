@@ -22,9 +22,9 @@ class FavoriteRestaurantsBloc
   final FavoriteRestaurantsRepository favoriteRestaurantsRepository;
 
   Future<void> _onInitialEvent(
-      InitialEvent event,
-      Emitter<FavoriteRestaurantsState> emit,
-      ) async {
+    InitialEvent event,
+    Emitter<FavoriteRestaurantsState> emit,
+  ) async {
     emit(const LoadingState());
 
     final favoriteList = hiveHelper.getAllFavoriteIds();

@@ -21,8 +21,9 @@ class YelpRepository {
     );
   }
 
-  Future<Result<RestaurantQueryResult, DioException>> getRestaurants(
-      {int offset = 0}) async {
+  Future<Result<RestaurantQueryResult, DioException>> getRestaurants({
+    int offset = 0,
+  }) async {
     try {
       final String jsonString =
           await rootBundle.loadString('assets/restaurants.json');

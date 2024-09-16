@@ -1,4 +1,3 @@
-
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,7 +7,6 @@ import 'package:restaurant_tour/features/home_screen/presenter/children/all_rest
 
 import 'package:restaurant_tour/repositories/yelp_repository.dart';
 import 'package:restaurant_tour/shared/widgets/home_loading_skeleton.dart';
-
 
 class AllRestaurantsTab extends StatelessWidget {
   const AllRestaurantsTab({
@@ -66,11 +64,11 @@ class _Body extends StatelessWidget {
               final restaurant = state.restaurantList[index];
               final int delay = index * 500;
               return FadeInRight(
+                delay: Duration(milliseconds: delay),
                 child: CardRestaurant(
                   restaurant: restaurant,
                   isFromFavorites: false,
                 ),
-                delay: Duration(milliseconds: delay),
               );
             },
           );

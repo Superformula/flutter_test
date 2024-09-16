@@ -4,8 +4,6 @@ import 'package:restaurant_tour/core/helpers/dio_helper.dart';
 import 'package:restaurant_tour/features/home_screen/presenter/children/favorite_restaurants/data/models/restaurant_model.dart';
 import 'package:restaurant_tour/features/home_screen/presenter/children/favorite_restaurants/domain/repository/favorite_restaurant_respository.dart';
 
-
-
 class FavoriteRestaurantsApi extends FavoriteRestaurantsRepository {
   final Dio dio;
 
@@ -59,18 +57,22 @@ class FavoriteRestaurantsApi extends FavoriteRestaurantsRepository {
         final result = RestaurantModel.fromJson(response.data!);
         return Ok(result);
       } else {
-        return Err(DioException(
-          error: 'La respuesta no contiene datos',
-          requestOptions: RequestOptions(path: '/v3/graphql'),
-        ));
+        return Err(
+          DioException(
+            error: 'La respuesta no contiene datos',
+            requestOptions: RequestOptions(path: '/v3/graphql'),
+          ),
+        );
       }
     } on DioException catch (e) {
       return Err(e);
     } catch (e) {
-      return Err(DioException(
-        error: 'Error desconocido: $e',
-        requestOptions: RequestOptions(path: '/v3/graphql'),
-      ));
+      return Err(
+        DioException(
+          error: 'Error desconocido: $e',
+          requestOptions: RequestOptions(path: '/v3/graphql'),
+        ),
+      );
     }
   }
 }

@@ -8,7 +8,6 @@ import 'package:restaurant_tour/core/models/restaurant.dart';
 import 'package:restaurant_tour/features/home_screen/presenter/children/all_restaurant/presenter/bloc/all_restaurant/all_restaurant_bloc.dart';
 import 'package:restaurant_tour/repositories/yelp_repository.dart';
 
-
 class MockYelpRepository extends Mock implements YelpRepository {}
 
 class MockHiveHelper extends Mock implements HiveHelper {}
@@ -65,7 +64,7 @@ var mockRestaurants = [
 void main() {
   group(
     'AllRestaurantBloc',
-        () {
+    () {
       late YelpRepository yelpRepository;
       late AllRestaurantBloc allRestaurantBloc;
       late HiveHelper hiveHelper;
@@ -85,7 +84,7 @@ void main() {
         'emits [LoadingState, DataLoadedState] when restaurants are fetched successfully',
         build: () {
           when(() => yelpRepository.getRestaurants()).thenAnswer(
-                (_) async => Result.ok(
+            (_) async => Result.ok(
               RestaurantQueryResult(
                 restaurants: mockRestaurants,
               ),
@@ -108,7 +107,7 @@ void main() {
           final dioError = MockDioException();
 
           when(() => yelpRepository.getRestaurants()).thenAnswer(
-                (_) async => Result.err(dioError),
+            (_) async => Result.err(dioError),
           );
           return allRestaurantBloc;
         },

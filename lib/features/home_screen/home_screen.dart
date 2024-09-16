@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_tour/features/home_screen/presenter/children/widgets/tab_views.dart';
 
-
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +17,19 @@ class _Page extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'RestauranTour',
-          style: TextStyle(fontWeight: FontWeight.w700),
+        backgroundColor: Colors.white,
+        title: const Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'RestauranTour',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontWeight: FontWeight.w700,
+                color: Colors.black,
+              ),
+            ),
+          ],
         ),
       ),
       body: const _Body(),

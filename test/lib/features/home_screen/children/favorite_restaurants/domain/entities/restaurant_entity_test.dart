@@ -8,7 +8,6 @@ import 'package:restaurant_tour/features/home_screen/presenter/children/favorite
 
 void main() {
   group('RestaurantEntity', () {
-
     const id = '1';
     const name = 'Test Restaurant';
     const price = '\$\$';
@@ -16,13 +15,14 @@ void main() {
     final photos = ['photo1.jpg', 'photo2.jpg'];
     final reviews = [
       const ReviewModel(
-          id: 'review1',
-          user: UserModel(id: 'asdf', name: 'TEST USER', imageUrl: ''),
-          rating: 5,
-          text: 'Great!')
+        id: 'review1',
+        user: UserModel(id: 'asdf', name: 'TEST USER', imageUrl: ''),
+        rating: 5,
+        text: 'Great!',
+      ),
     ];
     final categories = [
-      const CategoryModel(title: 'Italian', alias: 'italian')
+      const CategoryModel(title: 'Italian', alias: 'italian'),
     ];
     final hours = [const HourModel(isOpenNow: true)];
     const location = LocationModel(formattedAddress: '123 Test St');

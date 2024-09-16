@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 class RateStars extends StatelessWidget {
   const RateStars({
-    Key? key,
+    super.key,
     required this.rate,
     this.starSize = 20.0,
     this.color = Colors.amber,
-  }) : super(key: key);
+  });
 
   final double rate;
   final double starSize;

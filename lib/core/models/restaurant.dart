@@ -154,8 +154,8 @@ class RestaurantQueryResult {
     return RestaurantQueryResult(
       total: json['total'] as int?,
       restaurants: (json['business'] as List<dynamic>?)
-          ?.map((e) => Restaurant.fromJson(e as Map<String, dynamic>))
-          .toList() ??
+              ?.map((e) => Restaurant.fromJson(e as Map<String, dynamic>))
+              .toList() ??
           [],
     );
   }

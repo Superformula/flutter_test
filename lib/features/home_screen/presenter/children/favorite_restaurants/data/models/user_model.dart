@@ -2,14 +2,10 @@ import 'package:restaurant_tour/features/home_screen/presenter/children/favorite
 
 class UserModel extends UserEntity {
   const UserModel({
-    required String id,
-    required String name,
-    required String imageUrl,
-  }) : super(
-    id: id,
-    name: name,
-    imageUrl: imageUrl,
-  );
+    required super.id,
+    required super.name,
+    required super.imageUrl,
+  });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(

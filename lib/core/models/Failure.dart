@@ -15,13 +15,13 @@ abstract class Failure extends Equatable {
 
 class ServerFailure extends Failure {
   const ServerFailure({
-    required String message,
-    int? statusCode,
-  }) : super(message: message, statusCode: statusCode);
+    required super.message,
+    super.statusCode = null,
+  });
 }
 
 class LocalFailure extends Failure {
   const LocalFailure({
-    required String message,
-  }) : super(message: message);
+    required super.message,
+  });
 }

@@ -1,7 +1,6 @@
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
 
-
 class HiveHelper {
   static final HiveHelper _singleton = HiveHelper._internal();
   late Box box;
@@ -14,7 +13,7 @@ class HiveHelper {
 
   Future<void> init() async {
     final appDocumentDir =
-    await path_provider.getApplicationDocumentsDirectory();
+        await path_provider.getApplicationDocumentsDirectory();
     Hive.init(appDocumentDir.path);
     box = await Hive.openBox('favorites');
   }
@@ -36,4 +35,4 @@ class HiveHelper {
   List<String> getAllFavoriteIds() {
     return box.get('favoriteIds', defaultValue: <String>[])!.cast<String>();
   }
- }
+}

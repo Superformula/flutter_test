@@ -20,8 +20,11 @@ class CardRestaurant extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => onTap(context,
-          restaurant: restaurant, isFromFavorites: isFromFavorites),
+      onTap: () => onTap(
+        context,
+        restaurant: restaurant,
+        isFromFavorites: isFromFavorites,
+      ),
       child: Padding(
         padding: const EdgeInsets.symmetric(
           vertical: 4.0,
@@ -122,7 +125,11 @@ class CardRestaurant extends StatelessWidget {
     required Restaurant restaurant,
     required bool isFromFavorites,
   }) {
-    context.pushNamed('restaurant-page', extra: restaurant,)
+    context
+        .pushNamed(
+      'restaurant-page',
+      extra: restaurant,
+    )
         .then(
       (result) {
         if (result == true && isFromFavorites) {

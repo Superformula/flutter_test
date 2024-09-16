@@ -19,15 +19,13 @@ class AllRestaurantBloc extends Bloc<AllRestaurantEvent, AllRestaurantState> {
   final YelpRepository yelpRepository;
 
   Future<void> _onInitEvent(
-      InitialEvent event,
-      Emitter<AllRestaurantState> emit,
-      ) async {
+    InitialEvent event,
+    Emitter<AllRestaurantState> emit,
+  ) async {
     emit(
       const LoadingState(),
     );
-    final yelpRepo = yelpRepository;
-    final result = await yelpRepo.getRestaurants();
-
+    final result = await yelpRepository.getRestaurants();
     result.when(
       ok: (data) {
         if (data.restaurants.isNotEmpty) {

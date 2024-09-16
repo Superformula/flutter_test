@@ -4,4 +4,4 @@ class LocationEntity {
   const LocationEntity({
     required this.formattedAddress,
   });
-} 
+}
