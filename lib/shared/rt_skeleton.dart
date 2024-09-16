@@ -4,21 +4,21 @@ import 'package:shimmer/shimmer.dart';
 class RtSkeleton extends StatelessWidget {
   const RtSkeleton({
     super.key,
-    required this.marginBottom,
-    required this.borderRadius,
+    this.marginBottom,
+    this.borderRadius,
     required this.width,
     required this.height,
   });
 
-  final double marginBottom;
-  final double borderRadius;
+  final double? marginBottom;
+  final double? borderRadius;
   final double width;
   final double height;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: marginBottom),
+      margin: EdgeInsets.only(bottom: marginBottom ?? 0),
       child: Shimmer.fromColors(
         baseColor: Colors.grey.shade300,
         highlightColor: Colors.grey.shade100,
@@ -26,7 +26,7 @@ class RtSkeleton extends StatelessWidget {
           width: width,
           height: height,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(borderRadius),
+            borderRadius: BorderRadius.circular(borderRadius ?? 0),
             color: Colors.white,
           ),
         ),
