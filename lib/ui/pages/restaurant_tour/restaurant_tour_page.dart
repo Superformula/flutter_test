@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:restaurant_tour/presentation/restaurant_tour/cubit_restaurant_tour_presenter.dart';
 
 import '../../../domain/entities/entities.dart';
 import '../../../presentation/presentation.dart';
@@ -8,10 +9,12 @@ import '../../widgets/widgets.dart';
 import '../pages.dart';
 
 part 'widgets/app_bar.dart';
-part 'widgets/error_content.dart';
+part 'widgets/message_content.dart';
 part 'widgets/image.dart';
+part 'widgets/favorite_restaurant_list.dart';
 part 'widgets/restaurant_item.dart';
 part 'widgets/restaurant_list.dart';
+part 'widgets/snack_bar.dart';
 
 class RestaurantTourPage extends StatefulWidget {
   final RestaurantTourPresenter _presenter;
@@ -25,15 +28,18 @@ class RestaurantTourPage extends StatefulWidget {
   State<RestaurantTourPage> createState() => _RestaurantTourPageState();
 }
 
-class _RestaurantTourPageState extends State<RestaurantTourPage> {
+class _RestaurantTourPageState extends State<RestaurantTourPage> with SingleTickerProviderStateMixin {
   late final CubitRestaurantTourPresenter _bloc;
+  late final TabController _tabController;
 
   void _setUp() {
     _bloc = widget._presenter as CubitRestaurantTourPresenter;
+    _tabController = TabController(length: 2, vsync: this);
   }
 
   void _dispose() {
     _bloc.dispose();
+    _tabController.dispose();
   }
 
   @override
@@ -53,25 +59,25 @@ class _RestaurantTourPageState extends State<RestaurantTourPage> {
     return BlocProvider(
       create: (_) => _bloc,
       child: DefaultTabController(
-        length: 2,
+        length: _tabController.length,
         child: Scaffold(
-          appBar: const _AppBar(),
-          body: BlocBuilder<CubitRestaurantTourPresenter, RestaurantState>(
+          appBar: _AppBar(_tabController),
+          body: BlocConsumer<CubitRestaurantTourPresenter, RestaurantState>(
+            listener: (context, state) {
+              if (state is RestaurantErrorState) showSnackBar(context, state: state);
+            },
             bloc: _bloc,
             builder: (context, state) {
               if (state is RestaurantLoadingState) {
                 return const Center(child: CircularLoading());
               }
 
-              if (state is RestaurantErrorState) {
-                return _ErrorContent(state.message);
-              }
-
-              return const TabBarView(
-                physics: NeverScrollableScrollPhysics(),
-                children: [
+              return TabBarView(
+                controller: _tabController,
+                physics: const NeverScrollableScrollPhysics(),
+                children: const [
                   _RestaurantList(),
-                  Center(child: Text('My Favorites Content')),
+                  _FavoriteRestaurantList(),
                 ],
               );
             },

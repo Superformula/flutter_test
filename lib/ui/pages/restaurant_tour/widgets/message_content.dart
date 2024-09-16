@@ -1,9 +1,9 @@
 part of '../restaurant_tour_page.dart';
 
-class _ErrorContent extends StatelessWidget {
+class _MessageContent extends StatelessWidget {
   final String message;
 
-  const _ErrorContent(
+  const _MessageContent(
     this.message,
   );
 

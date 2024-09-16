@@ -53,7 +53,7 @@ class CubitRestaurantTourPresenter extends Cubit<RestaurantState> implements Res
       emit(RestaurantSuccessState());
     } catch (e, s) {
       debugPrintStack(label: 'Error - getFavoriteRestaurants - $e', stackTrace: s);
-      emit(RestaurantErrorState('There was an error \nwhen get favorite restaurants.'));
+      emit(RestaurantErrorState('An error occurred when get favorite restaurants'));
     }
   }
 
@@ -65,7 +65,7 @@ class CubitRestaurantTourPresenter extends Cubit<RestaurantState> implements Res
       emit(RestaurantSuccessState());
     } catch (e, s) {
       debugPrintStack(label: 'Error - getAllRestaurants - $e', stackTrace: s);
-      emit(RestaurantErrorState('There was an error \nwhen get restaurants.'));
+      emit(RestaurantErrorState('An error occurred when searching for the restaurants'));
     }
   }
 

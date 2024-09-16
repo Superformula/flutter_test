@@ -1,7 +1,9 @@
 part of '../restaurant_tour_page.dart';
 
 class _AppBar extends StatefulWidget implements PreferredSizeWidget {
-  const _AppBar() : preferredSize = const Size.fromHeight(kToolbarHeight + 32);
+  final TabController _tabController;
+
+  const _AppBar(this._tabController) : preferredSize = const Size.fromHeight(kToolbarHeight + 32);
 
   @override
   final Size preferredSize;
@@ -11,6 +13,10 @@ class _AppBar extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _AppBarState extends State<_AppBar> {
+  void _onTabBarTapped(int index) {
+    widget._tabController.animateTo(index);
+  }
+
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -24,6 +30,8 @@ class _AppBarState extends State<_AppBar> {
           color: Colors.white,
           shadowColor: Colors.black.withOpacity(0.4),
           child: TabBar(
+            controller: widget._tabController,
+            onTap: _onTabBarTapped,
             tabAlignment: TabAlignment.center,
             splashFactory: NoSplash.splashFactory,
             overlayColor: const WidgetStatePropertyAll(Colors.transparent),

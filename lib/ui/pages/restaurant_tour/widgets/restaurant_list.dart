@@ -6,12 +6,16 @@ class _RestaurantList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final restaurantList = context.read<CubitRestaurantTourPresenter>().restaurantList;
-    return ListView.builder(
-      padding: const EdgeInsets.all(16),
-      itemBuilder: (itemBuilder, index) {
-        final restaurant = restaurantList[index];
-        return _RestaurantItem(restaurant);
-      },
-    );
+    if (restaurantList.isEmpty) {
+      return const _MessageContent('No restaurants.');
+    } else {
+      return ListView.builder(
+        padding: const EdgeInsets.all(16),
+        itemBuilder: (itemBuilder, index) {
+          final restaurant = restaurantList[index];
+          return _RestaurantItem(restaurant);
+        },
+      );
+    }
   }
 }
