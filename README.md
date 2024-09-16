@@ -9,6 +9,8 @@ PT/BR 🇧🇷
 
 Criei dois ambientes para o app. Prod e dev. Cada ambiente acessa um endpoint diferente. Caso o ambiente seja Dev, é acessado um endpoint com dados mockados nesse [link](https://raw.githubusercontent.com/fonsecguilherme/sf_flutter_test/master/restaurants.json) para não exceder o limite diário da API da Yelp. Caso o ambiente selecionado seja de prod, aí sim é usado o endpoint da Yelp. 
 
+Para configuração da API Key da Yelp com segurança eu usei o dart-define com um arquivo json que contem a chave e não é feito seu upload para o git. Além de garantir mais segurança para a chave, visto que dessa maneira que ao decompilar o apk, o usuário não tenha acesso a chave da API.
+
 English 🇺🇸
 - Project proposed by Superformula team. Where it is shown a two main screens. 
 
@@ -16,7 +18,9 @@ English 🇺🇸
 
 **Restaurants page**: A page with all restaurant details provided by yelp API where it's given to the user the possibility to favorite and the restaurant is saved locally.
 
-I created two flavors for the app. Prod and dev. Each flavor access a different endpoint. Case flavor is set ad Dev, an endpoint witch mocked data is accessed in this [link](https://raw.githubusercontent.com/fonsecguilherme/sf_flutter_test/master/restaurants.json) to not exceed the daily limit of Yelp API. Case  the flavor select is prod, so the Yelp endpoint is used
+I created two flavors for the app. Prod and dev. Each flavor access a different endpoint. Case flavor is set ad Dev, an endpoint witch mocked data is accessed in this [link](https://raw.githubusercontent.com/fonsecguilherme/sf_flutter_test/master/restaurants.json) to not exceed the daily limit of Yelp API. Case  the flavor select is prod, so the Yelp endpoint is used.
+
+To configure the Yelp API Key safety, I used dart-define command with a json file that has the key information and this file is not uploaded to github. Ensuring more safety, because whe user tries to decompile app apk, it has not access to Api key. 
 
 ## Autor
 - Guilherme Fonseca [Github](https://github.com/fonsecguilherme) e [Linkedin](https://www.linkedin.com/in/devfonsecguilherme/)
