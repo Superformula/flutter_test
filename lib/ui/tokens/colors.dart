@@ -13,7 +13,7 @@ class OsColors {
   static const secondaryColor = Color(0xFF000000);
 
   /// The color used to indicate an error state.
-  static const statusError = Color.fromARGB(255, 191, 48, 48);
+  static const statusError = Color(0xFFEA5E5E);
 
   /// The color used to indicate a success state.
   static const statusSuccess = Color(0xFF5CD313);
@@ -28,7 +28,7 @@ class OsColors {
   static const lightTextColor = Color(0xFF606060);
 
   ///The color for shadow card
-  static const shadowColor = Color(0x33A8B5C4);
+  static const shadowColor = Color.fromARGB(51, 105, 113, 123);
 
   ///The color for bg
   static const bgColor = Color(0xFFfafafa);
