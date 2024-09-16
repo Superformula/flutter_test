@@ -4,7 +4,7 @@ import 'package:restaurant_tour/core/navigation/route_navigator.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await dotenv.load(fileName: ".env");
+  AppInit.initializeApp();
   runApp(
     const RestaurantTour(),
   );
