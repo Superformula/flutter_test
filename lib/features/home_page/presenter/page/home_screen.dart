@@ -9,10 +9,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<HomeBloc>(
-      create: (context) => HomeBloc()..add(const InitialEvent()),
-      child: _Page(),
-    );
+    return const _Page();
   }
 }
 
@@ -79,7 +76,10 @@ class _Body extends StatelessWidget {
                 return const HomeLoadingSkeleton();
               }
               if (state is HomeDataLoadedState) {
-                return TabViews(restaurantList: state.restaurantList);
+                return TabViews(
+                  restaurantList: state.restaurantList,
+                  favoriteList: state.favoriteList,
+                );
               } else {
                 return const SizedBox();
               }

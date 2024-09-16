@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:restaurant_tour/core/helpers/hive_helper.dart';
 import 'package:restaurant_tour/core/models/restaurant.dart';
 import 'package:restaurant_tour/repositories/yelp_repository.dart';
 
@@ -8,9 +9,11 @@ part 'home_event.dart';
 part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
-  HomeBloc() : super(HomeInitial()) {
+  HomeBloc({required this.hiveHelper}) : super(HomeInitial()) {
     on<InitialEvent>(_onInitialEvent);
   }
+
+  final HiveHelper hiveHelper;
 
   Future<void> _onInitialEvent(
       InitialEvent event,
@@ -25,9 +28,14 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     result.when(
       ok: (data) {
         if (data.restaurants.isNotEmpty) {
+          List<String> favoriteIds = hiveHelper.getAllFavoriteIds();
+          List<Restaurant> favoriteList = data.restaurants
+              .where((restaurant) => favoriteIds.contains(restaurant.id))
+              .toList();
           emit(
             HomeDataLoadedState(
               restaurantList: data.restaurants,
+              favoriteList: favoriteList,
             ),
           );
         } else {
