@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:restaurant_tour/config/constants/constants.dart';
 import 'package:restaurant_tour/domain/models/restaurant/gateway/restaurant_entity.dart';
 import 'package:restaurant_tour/infrastructure/helpers/mappers/restaurant.dart';
 import 'package:restaurant_tour/infrastructure/helpers/mappers/restaurant_data_to_restaurants.dart';
@@ -13,10 +14,9 @@ class FavoritesProvider extends ChangeNotifier {
   }
 
   List<RestaurantEntity> get favoriteRestaurants => _favoriteRestaurants;
-
   Future<void> _loadFavorites() async {
     final prefs = await SharedPreferences.getInstance();
-    final List<String>? favoriteRestaurantsJson = prefs.getStringList('favoriteRestaurants');
+    final List<String>? favoriteRestaurantsJson = prefs.getStringList(AppConstants.keyFavoriteRestaurants);
     if (favoriteRestaurantsJson != null) {
       _favoriteRestaurants = favoriteRestaurantsJson.map((json) {
         final restaurantInfra = Restaurant.fromJson(jsonDecode(json));
@@ -39,7 +39,7 @@ class FavoritesProvider extends ChangeNotifier {
       return jsonEncode(restaurantInfra.toJson());
     }).toList();
 
-    prefs.setStringList('favoriteRestaurants', favoriteRestaurantsJson);
+    prefs.setStringList(AppConstants.keyFavoriteRestaurants, favoriteRestaurantsJson);
     notifyListeners();
   }
 

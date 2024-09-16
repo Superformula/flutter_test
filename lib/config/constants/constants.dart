@@ -15,4 +15,6 @@ class AppConstants {
   static const String addres = 'Address';
   static const String overrallRating = 'Overall Rating';
   static const String reviews = 'Reviews';
+  static const String noFavoriteRestaurants = 'No favorite restaurants';
+  static const String keyFavoriteRestaurants = 'favoriteRestaurants';
 }

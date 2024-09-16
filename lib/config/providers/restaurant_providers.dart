@@ -28,7 +28,7 @@ class RestaurantProvider extends ChangeNotifier {
       final result = await restaurantUseCase.fetchRestaurants();
       _restaurants = result;
     } catch (e) {
-      _errorMessage = 'Error al obtener los restaurantes: $e';
+      _errorMessage = 'Error retrieving restaurants: $e';
     } finally {
       _isLoading = false;
       notifyListeners();
