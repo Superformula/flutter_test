@@ -2,9 +2,13 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:restaurant_tour/data/models/restaurant.dart';
+import 'package:restaurant_tour/data/shared_services.dart';
 import 'package:restaurant_tour/view/cubit/favorite/favorite.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class FakeRestaurant extends Fake implements Restaurant {}
+
+class MockSharedServices extends Mock implements SharedServices {}
 
 Restaurant _restaurant = Restaurant(
   categories: [Category(title: 'Italiano'), Category(title: 'Mexicano')],
@@ -23,11 +27,13 @@ Restaurant _restaurant = Restaurant(
 );
 
 void main() {
+  SharedPreferences.setMockInitialValues({});
   late FavoriteCubit favoriteCubit;
+  late MockSharedServices sharedServices;
 
   setUp(() {
-    favoriteCubit = FavoriteCubit();
-    registerFallbackValue(FakeRestaurant);
+    sharedServices = MockSharedServices();
+    favoriteCubit = FavoriteCubit(sharedServices: sharedServices);
   });
 
   tearDown(() {
@@ -37,7 +43,15 @@ void main() {
   group('Favorite Restaurant function test', () {
     blocTest<FavoriteCubit, FavoriteState>(
       'Should emit favoriteSuccess and Success status when an restaurant is added to empty list',
-      build: () => favoriteCubit,
+      build: () {
+        when(
+          () => sharedServices.saveListString(
+            SharedPreferencesKeys.savedRestaurants,
+            [_restaurant],
+          ),
+        ).thenAnswer((_) async {});
+        return favoriteCubit;
+      },
       act: (cubit) => cubit.favoriteRestaurant(_restaurant),
       expect: () => <FavoriteState>[
         FavoriteState(status: FavoriteStatus.favoriteSuccess),
@@ -45,8 +59,18 @@ void main() {
       ],
     );
     blocTest<FavoriteCubit, FavoriteState>(
-      'When removing last restaurant should emit an empty list and removed and initial states',
-      build: () => favoriteCubit,
+      'When removing last restaurant should emit an '
+      'empty list and removed and initial states',
+      build: () {
+        when(
+          () => sharedServices.saveListString(
+            SharedPreferencesKeys.savedRestaurants,
+            [],
+          ),
+        ).thenAnswer((_) async {});
+
+        return favoriteCubit;
+      },
       seed: () => FavoriteState(favorites: [_restaurant]),
       act: (cubit) => favoriteCubit.favoriteRestaurant(_restaurant),
       expect: () => <dynamic>[
@@ -59,7 +83,16 @@ void main() {
 
     blocTest<FavoriteCubit, FavoriteState>(
       'Should remove an already added restaurant ',
-      build: () => favoriteCubit,
+      build: () {
+        when(
+          () => sharedServices.saveListString(
+            SharedPreferencesKeys.savedRestaurants,
+            [const Restaurant(id: '2', name: 'Better call saul')],
+          ),
+        ).thenAnswer((_) async {});
+
+        return favoriteCubit;
+      },
       seed: () => FavoriteState(
         favorites: [
           const Restaurant(id: '1', name: 'Breaking bad'),
@@ -81,6 +114,46 @@ void main() {
           'favorites',
           const [Restaurant(id: '2', name: 'Better call saul')],
         ),
+      ],
+    );
+  });
+
+  group('Load Restaurant function test ', () {
+    blocTest<FavoriteCubit, FavoriteState>(
+      'Should emit an FavoriteStatus.initial if restaurantList is empty',
+      build: () {
+        when(
+          () => sharedServices.getListString(
+            SharedPreferencesKeys.savedRestaurants,
+          ),
+        ).thenAnswer((_) async => []);
+
+        return favoriteCubit;
+      },
+      act: (cubit) => cubit.loadRestaurants(),
+      expect: () => <dynamic>[
+        isA<FavoriteState>()
+            .having((f) => f.status, 'status', FavoriteStatus.initial)
+            .having((f) => f.favorites, 'favorites', const []),
+      ],
+    );
+
+    blocTest<FavoriteCubit, FavoriteState>(
+      'Should emit an FavoriteStatus.success if restaurantList is not empty',
+      build: () {
+        when(
+          () => sharedServices.getListString(
+            SharedPreferencesKeys.savedRestaurants,
+          ),
+        ).thenAnswer((_) async => [_restaurant]);
+
+        return favoriteCubit;
+      },
+      act: (cubit) => cubit.loadRestaurants(),
+      expect: () => <dynamic>[
+        isA<FavoriteState>()
+            .having((f) => f.status, 'status', FavoriteStatus.success)
+            .having((f) => f.favorites, 'favorites', [_restaurant]),
       ],
     );
   });
