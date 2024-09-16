@@ -21,6 +21,7 @@ dependencies:
   http: ^1.2.2
   json_annotation: ^4.9.0
   oxidized: ^6.2.0
+  shimmer: ^3.0.0
 
 dev_dependencies:
   flutter_test:
