@@ -39,6 +39,9 @@ void main() {
     when(() => restaurantsCubit.fetchRestaurants())
         .thenAnswer((_) => Future.value());
 
+    when(() => favoriteCubit.loadRestaurants())
+        .thenAnswer((_) => Future.value());
+
     when(() => restaurantsCubit.state).thenReturn(
       RestaurantsState(
         status: RestaurantsStatus.success,

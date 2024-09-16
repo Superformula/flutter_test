@@ -49,8 +49,11 @@ class _RestaurantPageState extends State<RestaurantPage> {
         ),
         actions: [
           IconButton(
-            onPressed: () =>
-                favoriteCubit.favoriteRestaurant(widget.restaurant),
+            onPressed: () {
+              favoriteCubit.favoriteRestaurant(widget.restaurant);
+
+              favoriteCubit.loadRestaurants();
+            },
             icon: BlocConsumer<FavoriteCubit, FavoriteState>(
               bloc: favoriteCubit,
               listener: listener,

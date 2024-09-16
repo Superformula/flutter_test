@@ -51,3 +51,6 @@ app.*.map.json
 # exclude all .env files from source control
 *.env
 *env.g.dart
+
+#exclude api-key file
+*api-keys.json
