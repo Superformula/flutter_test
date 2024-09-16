@@ -71,6 +71,7 @@ class _Body extends StatelessWidget {
               final int delay = index * 500;
               return FadeInRight(
                 child: CardRestaurant(
+                  isFromFavorites:true,
                   restaurant: parseRestaurant,
                 ),
                 delay: Duration(milliseconds: delay),

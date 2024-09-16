@@ -7,26 +7,21 @@ import 'package:restaurant_tour/features/home_screen/presenter/children/all_rest
 import 'package:restaurant_tour/features/home_screen/presenter/children/favorite_restaurants/presenter/bloc/favorite_restaurants_bloc.dart';
 import 'package:restaurant_tour/shared/rate_stars.dart';
 
-
-
 class CardRestaurant extends StatelessWidget {
   const CardRestaurant({
     super.key,
     required this.restaurant,
+    required this.isFromFavorites,
   });
 
   final Restaurant restaurant;
+  final bool isFromFavorites;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        context.pushNamed('restaurant-screen', extra: restaurant).then((result) {
-          if (result == true) {
-            context.read<FavoriteRestaurantsBloc>().add(const InitialEvent());
-          }
-        });
-      },
+      onTap: () => onTap(context,
+          restaurant: restaurant, isFromFavorites: isFromFavorites),
       child: Padding(
         padding: const EdgeInsets.symmetric(
           vertical: 4.0,
@@ -76,7 +71,7 @@ class CardRestaurant extends StatelessWidget {
                               ),
                               Padding(
                                 padding:
-                                const EdgeInsets.symmetric(horizontal: 4.0),
+                                    const EdgeInsets.symmetric(horizontal: 4.0),
                                 child: Text(
                                   restaurant.categories?.first.title ?? '',
                                   style: Theme.of(context).textTheme.bodyMedium,
@@ -97,16 +92,16 @@ class CardRestaurant extends StatelessWidget {
                             const Spacer(),
                             Padding(
                               padding:
-                              const EdgeInsets.symmetric(vertical: 8.0),
+                                  const EdgeInsets.symmetric(vertical: 8.0),
                               child: restaurant.isOpen
                                   ? const StatusIndicator(
-                                text: "Open Now",
-                                color: Colors.green,
-                              )
+                                      text: "Open Now",
+                                      color: Colors.green,
+                                    )
                                   : const StatusIndicator(
-                                text: "Closed",
-                                color: Colors.red,
-                              ),
+                                      text: "Closed",
+                                      color: Colors.red,
+                                    ),
                             ),
                           ],
                         ),
@@ -119,6 +114,23 @@ class CardRestaurant extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  onTap(
+    BuildContext context, {
+    required Restaurant restaurant,
+    required bool isFromFavorites,
+  }) {
+    context.pushNamed('restaurant-page', extra: restaurant,)
+        .then(
+      (result) {
+        if (result == true && isFromFavorites) {
+          context.read<FavoriteRestaurantsBloc>().add(
+                const InitialEvent(),
+              );
+        }
+      },
     );
   }
 }

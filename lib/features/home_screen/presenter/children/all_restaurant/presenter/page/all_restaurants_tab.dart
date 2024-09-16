@@ -68,6 +68,7 @@ class _Body extends StatelessWidget {
               return FadeInRight(
                 child: CardRestaurant(
                   restaurant: restaurant,
+                  isFromFavorites: false,
                 ),
                 delay: Duration(milliseconds: delay),
               );
