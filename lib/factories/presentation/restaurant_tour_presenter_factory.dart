@@ -6,5 +6,6 @@ RestaurantTourPresenter makeRestaurantTourPresenter() {
   return CubitRestaurantTourPresenter(
     getRestaurants: makeGetRestaurants(),
     getFavoriteRestaurants: makeGetFavoriteRestaurants(),
+    saveFavoriteRestaurants: makeSaveFavoriteRestaurants(),
   );
 }
