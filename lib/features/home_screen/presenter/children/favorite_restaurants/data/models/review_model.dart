@@ -1,29 +1,31 @@
 import 'package:restaurant_tour/features/home_screen/presenter/children/favorite_restaurants/data/models/user_model.dart';
 import 'package:restaurant_tour/features/home_screen/presenter/children/favorite_restaurants/domain/entities/review_entity.dart';
 
-class ReviewModel extends ReviewEntity {
-  const ReviewModel({
-    required super.id,
-    required super.rating,
-    required super.text,
-    required super.user,
-  });
+class ReviewModel {
+  final ReviewEntity reviewEntity;
+
+  const ReviewModel(this.reviewEntity);
 
   Map<String, dynamic> toJson() {
+    final (id, rating, text, user) = reviewEntity;
     return {
       'id': id,
       'rating': rating,
       'text': text,
-      'user': user.toMap(),
+      'user': user.toJson(),
     };
   }
 
   factory ReviewModel.fromJson(Map<String, dynamic> json) {
     return ReviewModel(
-      id: json['id'] ?? '',
-      rating: json['rating'] ?? 0.0,
-      text: json['text'] ?? '',
-      user: UserModel.fromJson(json['user'] as Map<String, dynamic>),
+      (
+        json['id'] as String,
+        json['rating'] as int,
+        json['text'] as String,
+        UserModel.fromJson(
+          json['user'] as Map<String, dynamic>,
+        ),
+      ),
     );
   }
 }
