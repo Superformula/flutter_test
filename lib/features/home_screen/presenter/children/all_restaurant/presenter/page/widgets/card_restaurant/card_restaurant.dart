@@ -125,9 +125,8 @@ class CardRestaurant extends StatelessWidget {
     required Restaurant restaurant,
     required bool isFromFavorites,
   }) {
-    context
-        .pushNamed(
-      'restaurant-page',
+    context.pushNamed(
+      'restaurant-screen',
       extra: restaurant,
     )
         .then(
