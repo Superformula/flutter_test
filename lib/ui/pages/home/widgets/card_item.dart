@@ -42,9 +42,11 @@ class CardItem extends StatelessWidget {
       Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          ImageWidget(
-            imageUrl: restaurant.photos.first,
-          ),
+          restaurant.photos.isNotEmpty
+              ? ImageWidget(
+                  imageUrl: restaurant.photos.first,
+                )
+              : const Icon(Icons.image_not_supported, size: 88),
         ],
       ),
       const SizedBox(width: 12.0),
@@ -69,7 +71,9 @@ class CardItem extends StatelessWidget {
                     ),
                     const SizedBox(width: 4.0),
                     Text(
-                      restaurant.categories.first.title,
+                      restaurant.categories != null && restaurant.categories.isNotEmpty
+                          ? restaurant.categories.first.title
+                          : '',
                       style: AppTextStyles.openRegularText,
                       overflow: TextOverflow.ellipsis,
                     ),
