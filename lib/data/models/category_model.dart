@@ -28,6 +28,13 @@ class CategoryModel {
     }
   }
 
+  Map<String, dynamic> toJson() {
+    return {
+      'title': title,
+      'alias': alias,
+    };
+  }
+
   CategoryEntity toEntity() {
     return CategoryEntity(
       title: title,

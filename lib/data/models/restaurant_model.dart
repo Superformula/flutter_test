@@ -65,8 +65,39 @@ class RestaurantModel {
     }
   }
 
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'categories': categories.map((category) => category.toJson()).toList(),
+      'displayCategory': displayCategory,
+      'heroImage': heroImage,
+      'isOpen': isOpen,
+      'address': address,
+      'photos': photos,
+      'price': price,
+      'rating': rating,
+      'reviews': reviews.map((review) => review.toJson()).toList(),
+    };
+  }
+
   RestaurantEntity toEntity() {
     return RestaurantEntity(
+      id: id,
+      rating: rating,
+      categories: categories.map((category) => category.toEntity()).toList(),
+      displayCategory: displayCategory,
+      heroImage: heroImage,
+      isOpen: isOpen,
+      address: address,
+      name: name,
+      photos: photos,
+      price: price,
+      reviews: reviews.map((review) => review.toEntity()).toList(),
+    );
+  }
+
+  FavoriteRestaurantEntity toFavoriteEntity() {
+    return FavoriteRestaurantEntity(
       id: id,
       rating: rating,
       categories: categories.map((category) => category.toEntity()).toList(),
