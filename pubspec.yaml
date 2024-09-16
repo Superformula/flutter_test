@@ -14,7 +14,6 @@ dependencies:
   bloc: ^8.1.4
   bloc_test: ^9.1.7
   dartz: ^0.10.1
-  envied: ^0.5.4+1
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.6
@@ -31,7 +30,6 @@ dev_dependencies:
   flutter_lints: ^4.0.0
   build_runner: ^2.4.10
   json_serializable: ^6.8.0
-  envied_generator: ^0.5.4+1
 
 flutter:
   generate: true

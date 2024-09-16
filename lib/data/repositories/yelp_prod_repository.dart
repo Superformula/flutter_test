@@ -4,7 +4,6 @@ import 'package:dartz/dartz.dart';
 import 'package:restaurant_tour/core/http_service/http_client.dart';
 import 'package:restaurant_tour/data/repositories/yelp_repository.dart';
 
-import '../../env/env.dart';
 import '../../core/query.dart';
 import '../models/restaurant.dart';
 
@@ -15,8 +14,13 @@ class YelpProdRepository implements YelpRepository {
 
   @override
   Future<Option<RestaurantQueryResult>> getRestaurants({int offset = 0}) async {
+    const yelpApiKey = String.fromEnvironment('YELP_KEY');
+    if (yelpApiKey.isEmpty) {
+      throw AssertionError('YELP KEY IS NOT SET');
+    }
+
     final headers = {
-      'Authorization': 'Bearer ${Env.yelpApiKey}',
+      'Authorization': 'Bearer $yelpApiKey',
       'Content-Type': 'application/graphql',
     };
 
