@@ -71,9 +71,7 @@ class CardItem extends StatelessWidget {
                     ),
                     const SizedBox(width: 4.0),
                     Text(
-                      restaurant.categories != null && restaurant.categories.isNotEmpty
-                          ? restaurant.categories.first.title
-                          : '',
+                      restaurant.categories.isNotEmpty ? restaurant.categories.first.title : '',
                       style: AppTextStyles.openRegularText,
                       overflow: TextOverflow.ellipsis,
                     ),
