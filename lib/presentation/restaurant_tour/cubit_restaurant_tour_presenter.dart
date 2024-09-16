@@ -20,12 +20,20 @@ class CubitRestaurantTourPresenter extends Cubit<RestaurantState> implements Res
         _getFavoriteRestaurants = getFavoriteRestaurants,
         _saveFavoriteRestaurants = saveFavoriteRestaurants,
         super(RestaurantInitialState()) {
-    _load();
+    _loadData();
   }
 
-  void _load() {
-    getAllRestaurants();
-    getFavoriteRestaurants();
+  Future<void> _loadData() async {
+    await getFavoriteRestaurants();
+    await getAllRestaurants();
+    _matchFavoriteRestaurants();
+  }
+
+  void _matchFavoriteRestaurants() {
+    for (var favoriteRestaurant in _favoriteRestaurantList) {
+      final index = _restaurantList.indexWhere((restaurant) => restaurant.id == favoriteRestaurant.id);
+      if (index != -1) _restaurantList[index] = favoriteRestaurant;
+    }
   }
 
   final _restaurantList = <RestaurantEntity>[];
