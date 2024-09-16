@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_tour/core/constants.dart';
+import 'package:restaurant_tour/features/home_page/presenter/page/widgets/restaurant_card_skeleton.dart';
 import 'package:restaurant_tour/shared/rt_skeleton.dart';
 
 class AllRestaurantsTab extends StatelessWidget {
@@ -13,10 +14,11 @@ class AllRestaurantsTab extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            RtSkeleton(
-              width: 50,
-              height: 100,
-            ),
+            RestaurantCardSkeleton(),
+            RestaurantCardSkeleton(),
+            RestaurantCardSkeleton(),
+            RestaurantCardSkeleton(),
+
             Text('All Restaurants')
           ],
         ),
