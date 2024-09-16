@@ -21,7 +21,7 @@ Furthermore, the project utilizes `dotenv` for environment variable administrati
 ## How to install it
 Prior to executing the project, establish an `.env` file make a copy from the `.env.example` file in the project's root directory with the following entry:
 
-YELP_API_KEY=thisISanApiKEYYouMUSTAdd
+YELP_API_KEY=<add_the_api_key_here>
 
 ## Code
 This app use `oxidized` for functional programming constructs, fostering a more resilient, fault-tolerant development ecosystem.
