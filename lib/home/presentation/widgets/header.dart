@@ -1,5 +1,3 @@
-// ignore_for_file: require_trailing_commas
-
 import 'package:flutter/material.dart';
 import 'package:restaurant_tour/typography.dart';
 
@@ -28,7 +26,7 @@ class HeaderHome extends StatelessWidget {
           const Icon(
             Icons.favorite,
           ),
-        ]
+        ],
       ],
     );
   }

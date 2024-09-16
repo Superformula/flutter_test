@@ -16,34 +16,36 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      color: Colors.white,
       home: DefaultTabController(
         length: 2,
         child: Scaffold(
+          backgroundColor: Colors.white,
           appBar: AppBar(
+            backgroundColor: Colors.white,
             title: const HeaderHome(
               text: 'Restaurant Tour',
             ),
             centerTitle: false,
             bottom: PreferredSize(
               preferredSize: const Size.fromHeight(50),
-              child: ClipRRect(
-                borderRadius: const BorderRadius.all(Radius.circular(10)),
-                child: Container(
-                  height: 40,
-                  margin: const EdgeInsets.symmetric(horizontal: 10),
-                  child: const TabBar(
-                    indicatorSize: TabBarIndicatorSize.tab,
-                    dividerColor: Colors.transparent,
-                    labelColor: Colors.black,
-                    tabs: [
-                      TabItem(
-                        title: 'All Restaurants',
-                      ),
-                      TabItem(
-                        title: 'My Favorities',
-                      ),
-                    ],
-                  ),
+              child: Container(
+                color: Colors.white,
+                height: 40,
+                margin: const EdgeInsets.symmetric(horizontal: 10),
+                child: const TabBar(
+                  indicatorSize: TabBarIndicatorSize.tab,
+                  dividerColor: Colors.transparent,
+                  labelColor: Colors.black,
+                  indicatorColor: Colors.black,
+                  tabs: [
+                    TabItem(
+                      title: 'All Restaurants',
+                    ),
+                    TabItem(
+                      title: 'My Favorities',
+                    ),
+                  ],
                 ),
               ),
             ),

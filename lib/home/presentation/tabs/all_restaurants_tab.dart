@@ -32,9 +32,12 @@ class _AllRestaurantsTabState extends State<AllRestaurantsTab> {
               itemBuilder: (_, index) => RestaurantCard(
                 photo: widget.allRestaurants[index].photos?.first ?? '',
                 name: widget.allRestaurants[index].name!,
-                price: widget.allRestaurants[index].price!,
+                price: widget.allRestaurants[index].price ?? '',
                 rating: widget.allRestaurants[index].rating!,
                 isOpenNow: widget.allRestaurants[index].isOpen,
+                category:
+                    widget.allRestaurants[index].categories?.first.title! ?? '',
+                data: widget.allRestaurants[index],
               ),
             ),
           ],

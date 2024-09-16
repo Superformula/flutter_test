@@ -36,6 +36,7 @@ dev_dependencies:
   analyzer: ^5.13.0
   bloc_test: ^9.1.7
   dio: ^5.7.0
+  path_provider: ^2.0.2
 
 flutter:
   generate: true
@@ -59,4 +60,9 @@ flutter:
           style: italic
         - asset: assets/fonts/OpenSans/OpenSans-SemiBold.ttf
           weight: 600
+  assets:
+    # Add assets from the images directory to the application.
+    - assets/json/
+    - assets/images/
+    - assets/
         

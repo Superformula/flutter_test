@@ -22,7 +22,9 @@ class Routes {
       GoRoute(
         path: '/restaurant_details',
         builder: (BuildContext context, GoRouterState state) {
-          return const RestaurantDetails();
+          return RestaurantDetails(
+            restaurant: (state.extra as Map)['restaurant'] ?? [],
+          );
         },
       ),
     ],

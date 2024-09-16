@@ -1,106 +1,159 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rating/flutter_rating.dart';
+import 'package:restaurant_tour/home/presentation/widgets/comment.dart';
+import 'package:restaurant_tour/models/restaurant.dart';
 
+import '../../../typography.dart';
+import '../widgets/custom_divider.dart';
 import '../widgets/header.dart';
 
 class RestaurantDetails extends StatelessWidget {
+  final Restaurant restaurant;
   const RestaurantDetails({
+    required this.restaurant,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const HeaderHome(
-          text: 'Restaurant Name',
+        backgroundColor: Colors.white,
+        shadowColor: Colors.white,
+        title: HeaderHome(
+          text: restaurant.name!,
+          isDetailsPage: true,
         ),
         centerTitle: false,
       ),
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CachedNetworkImage(
-              imageUrl:
-                  'https://s3-media2.fl.yelpcdn.com/bphoto/q771KjLzI5y638leJsnJnQ/o.jpg',
+              imageUrl: restaurant.photos!.first,
               height: 360,
               width: MediaQuery.of(context).size.width,
+              fit: BoxFit.cover,
             ),
             const SizedBox(
               height: 16,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                StarRating(rating: 3.5),
-                const Text('Open Now'),
-              ],
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            const Divider(
-              thickness: 1,
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            // const Column(
-            //   crossAxisAlignment: CrossAxisAlignment.start,
-            //   children: [
-            const Text('Address'),
-            const SizedBox(
-              height: 16,
-            ),
-            const Text('102 Lakerside Ave'),
-            const Text('Seattle, WA 98122'),
-            const SizedBox(
-              height: 16,
-            ),
-            const Divider(
-              thickness: 1,
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            const Text('Overall Rating'),
-            const SizedBox(
-              height: 16,
-            ),
-            const Row(
-              children: [
-                Text('4.6'),
-                Icon(
-                  Icons.star,
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            const Divider(
-              thickness: 1,
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            const Text('42 reviews'),
-            const SizedBox(
-              height: 16,
-            ),
-            StarRating(rating: 3.5),
-            const Text('Open Now'),
-            const Row(
-              children: [
-                CircleAvatar(
-                  backgroundImage: NetworkImage(
-                    'https://s3-media2.fl.yelpcdn.com/photo/rEWek1sYL0F35KZ0zRt3sw/o.jpg',
+            Padding(
+              padding: const EdgeInsets.only(
+                left: 16,
+                right: 16,
+                top: 8,
+                bottom: 8,
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    '${restaurant.price} ${restaurant.categories?.first.title!}',
+                    style: AppTextStyles.openRegularText,
                   ),
-                  radius: 24,
+                  const Spacer(),
+                  Text(
+                    restaurant.isOpen ? 'Open Now' : 'Closed',
+                    style: AppTextStyles.openRegularItalic,
+                  ),
+                  const SizedBox(width: 8),
+                  Icon(
+                    Icons.circle,
+                    color: restaurant.isOpen ? Colors.green : Colors.red,
+                    size: 8,
+                  ),
+                ],
+              ),
+            ),
+            const CustomDivider(),
+            const SizedBox(
+              height: 8,
+            ),
+            const Padding(
+              padding: EdgeInsets.only(left: 16.0),
+              child: Text(
+                'Address',
+                style: AppTextStyles.openRegularTitle,
+              ),
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 16.0),
+              child: Text(
+                restaurant.location!.formattedAddress!,
+                style: AppTextStyles.openRegularTitleSemiBold,
+              ),
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+            const CustomDivider(),
+            const SizedBox(
+              height: 8,
+            ),
+            const Padding(
+              padding: EdgeInsets.only(left: 16.0),
+              child: Text(
+                'Overall Rating',
+                style: AppTextStyles.openRegularTitle,
+              ),
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 16.0),
+              child: Row(
+                children: [
+                  Text(
+                    restaurant.rating.toString(),
+                    style: AppTextStyles.loraRegularHeadline.copyWith(
+                      fontSize: 32,
+                    ),
+                  ),
+                  const Icon(
+                    Icons.star,
+                    color: Colors.amber,
+                    size: 16,
+                  ),
+                ],
+              ),
+            ),
+            const CustomDivider(),
+            const SizedBox(
+              height: 8,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 16.0),
+              child: Text(
+                '${restaurant.reviews!.length}  reviews',
+                style: AppTextStyles.openRegularTitle,
+              ),
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(
+                left: 16.0,
+                bottom: 16,
+              ),
+              child: ListView.builder(
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: restaurant.reviews!.length,
+                itemBuilder: (_, index) => Comment(
+                  photo: restaurant.reviews![index].user!.imageUrl ?? '',
+                  userName: restaurant.reviews![index].user!.name ?? '',
+                  text: restaurant.reviews![index].text ?? '',
+                  rating: restaurant.reviews![index].rating ?? 4,
                 ),
-                Text('Helder'),
-              ],
+              ),
             ),
           ],
         ),

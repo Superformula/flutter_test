@@ -22,7 +22,7 @@ class RestaurantsBloc extends Bloc<RestaurantsEvent, RestaurantsState> {
     final result = await getAllRestaurants();
     result.fold(
       (failure) => emit(ErrorRestaurantsState(failure)),
-      (movie) => emit(ResultRestaurantsState(movie)),
+      (restaurantList) => emit(ResultRestaurantsState(restaurantList)),
     );
   }
 }

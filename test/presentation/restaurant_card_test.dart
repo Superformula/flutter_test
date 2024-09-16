@@ -10,6 +10,7 @@ void main() {
       const price = '\$\$\$ Italian';
       const rating = 4.4;
       const isOpenNow = true;
+      const category = 'Italian';
 
       await tester.pumpWidget(
         const MaterialApp(
@@ -20,6 +21,7 @@ void main() {
               price: price,
               rating: rating,
               isOpenNow: isOpenNow,
+              category: category,
             ),
           ),
         ),

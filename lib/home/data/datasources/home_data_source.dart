@@ -7,6 +7,8 @@ import '../../../query.dart';
 import '../../failures/failures.dart';
 import 'package:http/http.dart' as http;
 
+import '../../utils/utils.dart';
+
 abstract class HomeDataSourceInterface {
   Future<Either<RestaurantsFailure, RestaurantQueryResult>> getAllRestaurants();
 }
@@ -41,16 +43,21 @@ class HomeDataSource implements HomeDataSourceInterface {
           ),
         );
       } else {
-        return left(
-          MovieFailure(
-            message: 'Failed to load restaurants: ${response.statusCode}',
+        String resp = await Utils.readJson();
+        print(
+          RestaurantQueryResult.fromJson(
+            jsonDecode(resp)['data']['search'],
+          ),
+        );
+        return right(
+          RestaurantQueryResult.fromJson(
+            jsonDecode(resp)['data']['search'],
           ),
         );
       }
     } catch (e) {
-      print('Error fetching restaurants: $e');
       return left(
-        MovieFailure(
+        RestaurantFailure(
           message: 'Error fetching restaurants: $e',
         ),
       );
