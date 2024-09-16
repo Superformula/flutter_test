@@ -1,3 +1,3 @@
-abstract class SaveCache<T> {
-  Future<T> save({required String key, String? value});
+abstract class SaveCache {
+  Future<void> save({required String key, required String value});
 }
