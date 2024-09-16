@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_tour/ui/pages/home/widgets/app_bar.dart';
-import 'package:restaurant_tour/ui/pages/restaurant_list_page.dart';
+import 'package:restaurant_tour/ui/pages/restaurants/restaurant_list_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
