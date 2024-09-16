@@ -8,10 +8,12 @@ class _ReviewList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text('${_reviews.length} reviews', style: AppTextStyles.openRegularText),
         const SizedBox(height: 16),
         ListView.builder(
+          physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           itemCount: _reviews.length,
           itemBuilder: (context, index) {

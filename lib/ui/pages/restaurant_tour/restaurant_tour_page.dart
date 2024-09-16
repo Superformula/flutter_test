@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:restaurant_tour/presentation/restaurant_tour/cubit_restaurant_tour_presenter.dart';
-
 import '../../../domain/entities/entities.dart';
 import '../../../presentation/presentation.dart';
 import '../../../typography.dart';

@@ -13,11 +13,14 @@ part 'widgets/review_list.dart';
 
 class RestaurantDetailPage extends StatelessWidget {
   final RestaurantEntity _restaurant;
+  final VoidCallback _onFavorite;
 
   const RestaurantDetailPage({
     super.key,
     required RestaurantEntity restaurant,
-  }) : _restaurant = restaurant;
+    required VoidCallback onFavorite,
+  })  : _restaurant = restaurant,
+        _onFavorite = onFavorite;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +29,8 @@ class RestaurantDetailPage extends StatelessWidget {
         leading: const _ArrowBackIcon(),
         actions: [
           _FavoriteIcon(
-            onFavorite: () {},
+            isFavorite: _restaurant is FavoriteRestaurantEntity,
+            onFavorite: _onFavorite,
           ),
         ],
         title: Text(

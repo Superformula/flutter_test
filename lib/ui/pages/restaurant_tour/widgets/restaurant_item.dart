@@ -5,12 +5,24 @@ class _RestaurantItem extends StatelessWidget {
 
   const _RestaurantItem(this._restaurant);
 
+  void _onItemTapped(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => RestaurantDetailPage(
+          restaurant: _restaurant,
+          onFavorite: () {
+            context.read<CubitRestaurantTourPresenter>().addFavoriteRestaurants(_restaurant);
+          },
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        Navigator.pushNamed(context, '/detail');
-      },
+      onTap: () => _onItemTapped(context),
       child: Container(
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(

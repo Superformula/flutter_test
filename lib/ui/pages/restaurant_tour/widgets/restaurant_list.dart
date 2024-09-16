@@ -9,12 +9,14 @@ class _RestaurantList extends StatelessWidget {
     if (restaurantList.isEmpty) {
       return const _MessageContent('No restaurants.');
     } else {
-      return ListView.builder(
+      return ListView.separated(
         padding: const EdgeInsets.all(16),
-        itemBuilder: (itemBuilder, index) {
+        itemCount: restaurantList.length,
+        itemBuilder: (context, index) {
           final restaurant = restaurantList[index];
           return _RestaurantItem(restaurant);
         },
+        separatorBuilder: (_, __) => const SizedBox(height: 12),
       );
     }
   }

@@ -9,12 +9,14 @@ class _FavoriteRestaurantList extends StatelessWidget {
     if (favoriteRestaurantList.isEmpty) {
       return const _MessageContent('No favorites.');
     } else {
-      return ListView.builder(
+      return ListView.separated(
+        itemCount: favoriteRestaurantList.length,
         padding: const EdgeInsets.all(16),
-        itemBuilder: (itemBuilder, index) {
+        itemBuilder: (context, index) {
           final restaurant = favoriteRestaurantList[index];
           return _RestaurantItem(restaurant);
         },
+        separatorBuilder: (_, __) => const SizedBox(height: 12),
       );
     }
   }

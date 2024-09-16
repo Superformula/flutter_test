@@ -3,7 +3,7 @@ import '../../../domain/entities/entities.dart';
 abstract class RestaurantTourPresenter {
   List<RestaurantEntity> get restaurantList;
   Future<void> getAllRestaurants();
-  List<RestaurantEntity> get favoriteRestaurantList;
+  List<FavoriteRestaurantEntity> get favoriteRestaurantList;
   Future<void> getFavoriteRestaurants();
-  Future<void> addFavoriteRestaurants();
+  Future<void> addFavoriteRestaurants(RestaurantEntity restaurant);
 }
