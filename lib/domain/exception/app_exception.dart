@@ -1,3 +1,5 @@
+// coverage:ignore-file
+
 enum FetchAppError { notFound, serverError, unknowError, networkError }
 
 class AppException implements Exception {

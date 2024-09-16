@@ -1,3 +1,4 @@
+// coverage:ignore-file
 ///Entity defining the data
 class RestaurantEntity {
   String id;

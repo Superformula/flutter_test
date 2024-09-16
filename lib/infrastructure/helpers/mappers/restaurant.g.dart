@@ -1,3 +1,4 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 part of 'restaurant.dart';
@@ -39,9 +40,7 @@ Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
 Review _$ReviewFromJson(Map<String, dynamic> json) => Review(
       id: json['id'] as String?,
       rating: (json['rating'] as num?)?.toInt(),
-      user: json['user'] == null
-          ? null
-          : User.fromJson(json['user'] as Map<String, dynamic>),
+      user: json['user'] == null ? null : User.fromJson(json['user'] as Map<String, dynamic>),
       text: json['text'] as String?,
     );
 
@@ -65,24 +64,15 @@ Restaurant _$RestaurantFromJson(Map<String, dynamic> json) => Restaurant(
       name: json['name'] as String?,
       price: json['price'] as String?,
       rating: (json['rating'] as num?)?.toDouble(),
-      photos:
-          (json['photos'] as List<dynamic>?)?.map((e) => e as String).toList(),
-      categories: (json['categories'] as List<dynamic>?)
-          ?.map((e) => Category.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      hours: (json['hours'] as List<dynamic>?)
-          ?.map((e) => Hours.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      reviews: (json['reviews'] as List<dynamic>?)
-          ?.map((e) => Review.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      location: json['location'] == null
-          ? null
-          : Location.fromJson(json['location'] as Map<String, dynamic>),
+      photos: (json['photos'] as List<dynamic>?)?.map((e) => e as String).toList(),
+      categories:
+          (json['categories'] as List<dynamic>?)?.map((e) => Category.fromJson(e as Map<String, dynamic>)).toList(),
+      hours: (json['hours'] as List<dynamic>?)?.map((e) => Hours.fromJson(e as Map<String, dynamic>)).toList(),
+      reviews: (json['reviews'] as List<dynamic>?)?.map((e) => Review.fromJson(e as Map<String, dynamic>)).toList(),
+      location: json['location'] == null ? null : Location.fromJson(json['location'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$RestaurantToJson(Restaurant instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$RestaurantToJson(Restaurant instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'price': instance.price,
@@ -94,32 +84,22 @@ Map<String, dynamic> _$RestaurantToJson(Restaurant instance) =>
       'location': instance.location,
     };
 
-RestaurantQueryResult _$RestaurantQueryResultFromJson(
-        Map<String, dynamic> json) =>
-    RestaurantQueryResult(
+RestaurantQueryResult _$RestaurantQueryResultFromJson(Map<String, dynamic> json) => RestaurantQueryResult(
       total: (json['total'] as num?)?.toInt(),
-      restaurants: (json['business'] as List<dynamic>?)
-          ?.map((e) => Restaurant.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      restaurants:
+          (json['business'] as List<dynamic>?)?.map((e) => Restaurant.fromJson(e as Map<String, dynamic>)).toList(),
     );
 
-Map<String, dynamic> _$RestaurantQueryResultToJson(
-        RestaurantQueryResult instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$RestaurantQueryResultToJson(RestaurantQueryResult instance) => <String, dynamic>{
       'total': instance.total,
       'business': instance.restaurants,
     };
 
-RestaurantDetailQueryResult _$RestaurantDetailQueryResultFromJson(
-        Map<String, dynamic> json) =>
+RestaurantDetailQueryResult _$RestaurantDetailQueryResultFromJson(Map<String, dynamic> json) =>
     RestaurantDetailQueryResult(
-      restaurant: json['business'] == null
-          ? null
-          : Restaurant.fromJson(json['business'] as Map<String, dynamic>),
+      restaurant: json['business'] == null ? null : Restaurant.fromJson(json['business'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$RestaurantDetailQueryResultToJson(
-        RestaurantDetailQueryResult instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$RestaurantDetailQueryResultToJson(RestaurantDetailQueryResult instance) => <String, dynamic>{
       'business': instance.restaurant,
     };

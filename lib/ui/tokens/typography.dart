@@ -1,3 +1,4 @@
+// coverage:ignore-file
 /// A class containing the typography definitions for the app.
 class AppTypography {
   AppTypography._(); // Private constructor to prevent instantiation.

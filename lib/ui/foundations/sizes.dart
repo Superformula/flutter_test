@@ -1,9 +1,9 @@
+// coverage:ignore-file
 import './../ui.dart';
 
 /// A class that consolidates foundation size definitions for the app.
-class WeincodeSizesFoundation {
-  WeincodeSizesFoundation._(); // Private constructor to prevent instantiation.
-
+class SizesFoundation {
+  SizesFoundation._(); // Private constructor to prevent instantiation.
   // Widget sizes
   /// The size for cards
   static const double sizeCard = AppSSizes.sizeLG;

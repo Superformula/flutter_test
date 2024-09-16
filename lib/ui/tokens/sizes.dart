@@ -1,3 +1,4 @@
+// coverage:ignore-file
 /// A class containing pre-defined sizes for various UI elements.
 class AppSSizes {
   AppSSizes._(); // Private constructor to prevent instantiation.

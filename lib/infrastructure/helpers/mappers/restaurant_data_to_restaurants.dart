@@ -1,3 +1,4 @@
+// coverage:ignore-file
 import 'package:restaurant_tour/domain/models/restaurant/gateway/restaurant_entity.dart';
 import 'package:restaurant_tour/infrastructure/helpers/mappers/restaurant.dart' as infrastructure;
 
