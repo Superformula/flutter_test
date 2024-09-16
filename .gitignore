@@ -46,4 +46,11 @@ app.*.map.json
 /android/app/release
 
 # fvm
-.fvm/flutter_sdk
+
+# FVM Version Cache
+.fvm/
+.fvmrc
+
+# ENV
+.env
+test/.env.test
