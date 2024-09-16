@@ -1,7 +1,9 @@
 part of '../restaurant_detail_page.dart';
 
 class _Rating extends StatelessWidget {
-  const _Rating();
+  final String _rating;
+
+  const _Rating(this._rating);
 
   @override
   Widget build(BuildContext context) {
@@ -9,7 +11,7 @@ class _Rating extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         Text(
-          '4.6',
+          _rating,
           style: AppTextStyles.loraRegularHeadline.copyWith(fontSize: 28),
         ),
         const Padding(

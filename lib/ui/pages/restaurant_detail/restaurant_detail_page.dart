@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../domain/entities/entities.dart';
 import '../../../typography.dart';
 import '../../widgets/widgets.dart';
 
@@ -8,9 +9,15 @@ part 'widgets/divider.dart';
 part 'widgets/favorite_icon.dart';
 part 'widgets/rating.dart';
 part 'widgets/review_item.dart';
+part 'widgets/review_list.dart';
 
 class RestaurantDetailPage extends StatelessWidget {
-  const RestaurantDetailPage({super.key});
+  final RestaurantEntity _restaurant;
+
+  const RestaurantDetailPage({
+    super.key,
+    required RestaurantEntity restaurant,
+  }) : _restaurant = restaurant;
 
   @override
   Widget build(BuildContext context) {
@@ -22,42 +29,39 @@ class RestaurantDetailPage extends StatelessWidget {
             onFavorite: () {},
           ),
         ],
-        title: const Text(
-          'Restaurant Name Goes Here And Wraps 2 Lines',
+        title: Text(
+          _restaurant.name,
           style: AppTextStyles.loraRegularHeadline,
         ),
       ),
       body: ListView(
         children: [
-          Container(
+          SizedBox(
             height: 360,
-            color: Colors.red,
+            child: Image.network(_restaurant.heroImage),
           ),
-          const Padding(
-            padding: EdgeInsets.all(24),
+          Padding(
+            padding: const EdgeInsets.all(24),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('\$\$\$\$ Italian', style: AppTextStyles.openRegularText),
-                    Status(true),
+                    const Text('\$\$\$\$ Italian', style: AppTextStyles.openRegularText),
+                    Status(_restaurant.isOpen),
                   ],
                 ),
-                _Divider(),
-                Text('Address', style: AppTextStyles.openRegularText),
-                SizedBox(height: 24),
-                Text('102 Lakeside Ave\nSeattle, WA 98122', style: AppTextStyles.openRegularTitleSemiBold),
-                _Divider(),
-                Text('Overall Rating', style: AppTextStyles.openRegularText),
-                SizedBox(height: 16),
-                _Rating(),
-                _Divider(),
-                Text('42 reviews', style: AppTextStyles.openRegularText),
-                SizedBox(height: 16),
-                _ReviewItem(),
-                _ReviewItem(),
+                const _Divider(),
+                const Text('Address', style: AppTextStyles.openRegularText),
+                const SizedBox(height: 24),
+                Text(_restaurant.address, style: AppTextStyles.openRegularTitleSemiBold),
+                const _Divider(),
+                const Text('Overall Rating', style: AppTextStyles.openRegularText),
+                const SizedBox(height: 16),
+                _Rating(_restaurant.rating.toString()),
+                const _Divider(),
+                _ReviewList(_restaurant.reviews),
               ],
             ),
           ),

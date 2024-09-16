@@ -1,33 +1,35 @@
 part of '../restaurant_detail_page.dart';
 
 class _ReviewItem extends StatelessWidget {
-  const _ReviewItem();
+  final ReviewEntity _review;
+
+  const _ReviewItem(this._review);
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       children: [
-        Stars(4),
-        SizedBox(height: 8),
+        Stars(_review.rating),
+        const SizedBox(height: 8),
         Text(
-          'Review text goes here. Review text goes here. This is a review. This is a review that is 3 lines long.',
+          _review.text,
           style: AppTextStyles.openRegularHeadline,
         ),
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         Row(
           children: [
             SizedBox(
               height: 40,
               width: 40,
               child: CircleAvatar(
-                backgroundColor: Colors.grey,
+                child: Image.network(_review.user.imageUrl),
               ),
             ),
-            SizedBox(width: 8),
-            Text('User Name', style: AppTextStyles.openRegularText),
+            const SizedBox(width: 8),
+            Text(_review.user.name, style: AppTextStyles.openRegularText),
           ],
         ),
-        _Divider(verticalPadding: 16),
+        const _Divider(verticalPadding: 16),
       ],
     );
   }
