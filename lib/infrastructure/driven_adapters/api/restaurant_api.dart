@@ -1,10 +1,9 @@
 import 'package:restaurant_tour/domain/exception/app_exception.dart';
 import 'package:restaurant_tour/domain/models/restaurant/gateway/restaurant_gateway.dart';
-import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:restaurant_tour/infrastructure/helpers/mappers/restaurant.dart';
 import 'package:restaurant_tour/infrastructure/helpers/mappers/restaurant_data_to_restaurants.dart';
-import 'package:restaurant_tour/utils/restaurants_query.dart';
+import 'package:restaurant_tour/config/utils/restaurants_query.dart';
 import 'package:restaurant_tour/domain/models/restaurant/gateway/restaurant_entity.dart';
 
 class RestaurantApi extends RestaurantGateway {
@@ -36,9 +35,10 @@ class RestaurantApi extends RestaurantGateway {
   @override
   Future<List<RestaurantEntity>?> getRestaurants({int offset = 0}) async {
     try {
-      final response = await dio.post('/v3/graphql', data: restaurantsQuery(offset));
+      final response = await dio.post('v3/graphql', data: restaurantsQuery(offset));
       if (response.statusCode == 200) {
-        final restaurantsData = jsonDecode(response.data!)['data']['search']['business'];
+        final data = response.data as Map<String, dynamic>;
+        final restaurantsData = data['data']['search']['business'];
         if (restaurantsData == null || restaurantsData.isEmpty) {
           return [];
         }

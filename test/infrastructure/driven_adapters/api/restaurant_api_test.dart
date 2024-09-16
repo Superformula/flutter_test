@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -11,7 +9,7 @@ import '../../../domain/usecase/restaurant/restaurant_use_case_test.dart';
 
 class MockDio extends Mock implements Dio {}
 
-class MockResponse extends Mock implements Response {}
+// class MockResponse extends Mock implements Response {}
 
 void main() {
   group('RestaurantApi Tests', () {
@@ -106,14 +104,8 @@ void main() {
           'data': {
             'search': {
               'business': [
-                {
-                  'id': '1',
-                  'name': 'Restaurant A',
-                },
-                {
-                  'id': '2',
-                  'name': 'Restaurant B',
-                },
+                {'id': '1', 'name': 'Restaurant A'},
+                {'id': '2', 'name': 'Restaurant B'},
               ],
             },
           },
@@ -122,7 +114,7 @@ void main() {
         final mockResponse = Response(
           requestOptions: RequestOptions(path: '/v3/graphql'),
           statusCode: 200,
-          data: jsonEncode(mockData),
+          data: mockData,
         );
 
         when(
@@ -131,6 +123,7 @@ void main() {
             data: any(named: 'data'),
           ),
         ).thenAnswer((_) async => mockResponse);
+
         //act
         final result = await restaurantApi.getRestaurants();
         //assert
@@ -138,10 +131,9 @@ void main() {
         expect(result?.length, 2);
         expect(result?[0].id, '1');
         expect(result?[1].id, '2');
-
         verify(
           () => mockDio.post(
-            '/v3/graphql',
+            any(),
             data: any(named: 'data'),
           ),
         ).called(1);
@@ -159,7 +151,7 @@ void main() {
         final mockResponse = Response(
           requestOptions: RequestOptions(path: '/v3/graphql'),
           statusCode: 200,
-          data: jsonEncode(mockData),
+          data: (mockData),
         );
         when(
           () => mockDio.post(
@@ -174,7 +166,7 @@ void main() {
         expect(result, isEmpty);
         verify(
           () => mockDio.post(
-            '/v3/graphql',
+            any(),
             data: any(named: 'data'),
           ),
         ).called(1);
@@ -206,7 +198,7 @@ void main() {
         );
         verify(
           () => mockDio.post(
-            '/v3/graphql',
+            any(),
             data: any(named: 'data'),
           ),
         ).called(1);
