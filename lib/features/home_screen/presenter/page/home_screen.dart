@@ -4,6 +4,7 @@ import 'package:restaurant_tour/core/helpers/hive_helper.dart';
 import 'package:restaurant_tour/features/home_screen/presenter/bloc/home_bloc.dart';
 import 'package:restaurant_tour/features/home_screen/presenter/page/widgets/home_loading_skeleton.dart';
 import 'package:restaurant_tour/features/home_screen/presenter/page/widgets/tab_views.dart';
+import 'package:restaurant_tour/repositories/yelp_repository.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -13,6 +14,7 @@ class HomeScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => HomeBloc(
         hiveHelper: HiveHelper(),
+        yelpRepository: YelpRepository(),
       )..add(const InitialEvent()),
       child: const _Page(),
     );
