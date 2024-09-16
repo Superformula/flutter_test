@@ -1,1 +1,1 @@
-typedef HourEntity = (bool isOpenNow,);
+typedef HourEntity = (bool,);

@@ -1,20 +1,19 @@
 import 'package:restaurant_tour/features/home_screen/presenter/children/favorite_restaurants/domain/entities/hour_entity.dart';
 
 class HourModel {
-  const HourModel(this.hourEntity);
-
   final HourEntity hourEntity;
 
+  const HourModel(this.hourEntity);
+
   Map<String, dynamic> toJson() {
-    final (isOpenNow) = hourEntity;
+    final isOpenNow = hourEntity.$1;
     return {
       'is_open_now': isOpenNow,
     };
   }
 
   factory HourModel.fromJson(Map<String, dynamic> json) {
-    return HourModel(
-      (json['is_open_now'] as bool? ?? false,),
-    );
+    HourEntity hourEntity = (json['is_open_now'] as bool? ?? false,);
+    return HourModel(hourEntity);
   }
 }
