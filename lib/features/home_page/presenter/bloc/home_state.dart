@@ -13,3 +13,28 @@ class HomeLoadingState extends HomeState {
   @override
   List<Object> get props => [];
 }
+
+class HomeDataLoadedState extends HomeState {
+  const HomeDataLoadedState({required this.restaurantList});
+
+  final List<Restaurant> restaurantList;
+
+  @override
+  List<Object> get props => [restaurantList];
+}
+
+class HomeEmptyDataState extends HomeState {
+  const HomeEmptyDataState();
+
+  @override
+  List<Object> get props => [];
+}
+
+class ErrorState extends HomeState {
+  const ErrorState({required this.error});
+
+  final String error;
+
+  @override
+  List<Object> get props => [error];
+}
