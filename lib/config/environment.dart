@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 final class Environment {
-  static const String _baseUrl = 'https://api.yelp.com/v3/graphql';
+  static const String _baseUrl = 'https://api.yelp.com/';
   static final String _apiKey = dotenv.env['API_KEY_YELP'] ?? '';
 
   static Dio baseDioClient({String? url, String? key}) {

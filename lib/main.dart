@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:restaurant_tour/config/constants/constants.dart';
 import 'package:restaurant_tour/config/environment.dart';
 import 'package:restaurant_tour/config/providers/restaurant_providers.dart';
 import 'package:restaurant_tour/config/routes/app_routes.dart';
@@ -8,7 +9,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:restaurant_tour/infrastructure/driven_adapters/api/restaurant_api.dart';
 
 void main() async {
-  await dotenv.load(fileName: ".env");
+  await dotenv.load(fileName: AppConstants.env);
   runApp(
     MultiProvider(
       providers: [
@@ -34,27 +35,9 @@ class RestaurantTour extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      title: 'Restaurant Tour',
+      title: AppConstants.appName,
       initialRoute: AppRoutes.home,
       onGenerateRoute: RouterManager.generateRoute,
     );
   }
 }
-
-// @override
-// Widget build(BuildContext context) {
-//   return Scaffold(
-//     body: Center(
-//       child: Column(
-//         mainAxisAlignment: MainAxisAlignment.center,
-//         children: [
-//           const Text('Restaurant Tour'),
-//           ElevatedButton(
-//             child: const Text('Fetch Restaurants'),
-//             onPressed: () async {},
-//           ),
-//         ],
-//       ),
-//     ),
-//   );
-// }
