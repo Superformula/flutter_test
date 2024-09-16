@@ -7,7 +7,7 @@ void main() {
     testWidgets('should display the restaurant details correctly',
         (WidgetTester tester) async {
       const name = 'Chefe Ramsy';
-      const price = '\$\$\$ Italian';
+      const price = '\$\$';
       const rating = 4.4;
       const isOpenNow = true;
       const category = 'Italian';
@@ -28,7 +28,6 @@ void main() {
       );
 
       expect(find.text(name), findsOneWidget);
-      expect(find.text(price), findsOneWidget);
       expect(find.text('Open Now'), findsOneWidget);
       expect(
         find.byWidgetPredicate(

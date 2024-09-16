@@ -31,6 +31,9 @@ void main() {
 
     final result = await datasource.getAllRestaurants();
 
-    expect(result, isA<Either<RestaurantsFailure, RestaurantQueryResult>>());
+    expect(
+      result,
+      isA<Either<RestaurantsFailure, Map<String, RestaurantQueryResult>>>(),
+    );
   });
 }
