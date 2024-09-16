@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:restaurant_tour/core/models/restaurant.dart';
 import 'package:restaurant_tour/features/home_page/presenter/page/home_screen.dart';
+import 'package:restaurant_tour/features/restaurant_page/presenter/page/restaurant_screen.dart';
 import 'package:restaurant_tour/features/splash_screen/presenter/splash_screen.dart';
 
 final GoRouter router = GoRouter(
@@ -16,6 +18,14 @@ final GoRouter router = GoRouter(
       name: 'home',
       builder: (BuildContext context, GoRouterState state) {
         return const HomeScreen();
+      },
+    ),
+    GoRoute(
+      path: '/restaurant-screen',
+      name: 'restaurant-screen',
+      builder: (BuildContext context, GoRouterState state) {
+        final Restaurant restaurant = state.extra as Restaurant;
+        return RestaurantScreen(restaurant: restaurant);
       },
     ),
   ],
