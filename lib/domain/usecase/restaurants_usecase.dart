@@ -5,10 +5,12 @@ class RestaurantsUsecase {
   const RestaurantsUsecase(this._repository);
   final RestaurantsRepository _repository;
 
-  Future<List<Restaurant>> getRestaurants({
-    List<String> filterByIds = const [],
-  }) {
-    return _repository.getRestaurants(filterByIds: filterByIds);
+  Future<List<Restaurant>> getRestaurants() {
+    return _repository.getRestaurants();
+  }
+
+  Future<List<Restaurant>> getFavoriteRestaurants() {
+    return _repository.getFavoriteRestaurants();
   }
 
   Future<Restaurant> getRestaurant(String id) {

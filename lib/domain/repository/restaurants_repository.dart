@@ -10,10 +10,16 @@ class RestaurantsRepository {
 
   final FavoriteRestaurantsDatasource _favoriteRestaurantsDatasource;
   final RestaurantsDatasource _restaurantsDatasource;
-  Future<List<Restaurant>> getRestaurants({
-    List<String> filterByIds = const [],
-  }) {
-    return _restaurantsDatasource.getRestaurants(filterByIds: filterByIds);
+  Future<List<Restaurant>> getRestaurants() {
+    return _restaurantsDatasource.getRestaurants();
+  }
+
+  Future<List<Restaurant>> getFavoriteRestaurants() async {
+    final favoriteRestaurantIds =
+        await _favoriteRestaurantsDatasource.getListRestaurantsIds();
+    return _restaurantsDatasource.getRestaurants(
+      filterByIds: favoriteRestaurantIds,
+    );
   }
 
   Future<Restaurant> getRestaurant(String id) {
