@@ -7,7 +7,7 @@ class RestaurantsInitial extends RestaurantsState {}
 class LoadingRestaurantsState extends RestaurantsState {}
 
 class ResultRestaurantsState extends RestaurantsState {
-  final RestaurantQueryResult listRestaurants;
+  final Map<String, RestaurantQueryResult> listRestaurants;
   ResultRestaurantsState(this.listRestaurants);
 }
 

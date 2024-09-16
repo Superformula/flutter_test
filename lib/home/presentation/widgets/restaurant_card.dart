@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating/flutter_rating.dart';
-import 'package:restaurant_tour/models/restaurant.dart';
+import 'package:restaurant_tour/home/models/restaurant.dart';
 
 import '../../../navigator.dart';
 import '../../../typography.dart';

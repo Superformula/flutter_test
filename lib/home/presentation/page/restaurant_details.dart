@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:restaurant_tour/home/presentation/widgets/comment.dart';
-import 'package:restaurant_tour/models/restaurant.dart';
+import 'package:restaurant_tour/home/models/restaurant.dart';
 
 import '../../../typography.dart';
 import '../widgets/custom_divider.dart';
@@ -24,6 +24,7 @@ class RestaurantDetails extends StatelessWidget {
         title: HeaderHome(
           text: restaurant.name!,
           isDetailsPage: true,
+          restaurantId: restaurant.id!,
         ),
         centerTitle: false,
       ),
@@ -131,7 +132,7 @@ class RestaurantDetails extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 16.0),
               child: Text(
-                '${restaurant.reviews!.length}  reviews',
+                '${restaurant.reviews!.length} reviews',
                 style: AppTextStyles.openRegularTitle,
               ),
             ),

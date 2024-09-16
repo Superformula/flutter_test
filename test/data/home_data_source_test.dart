@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:restaurant_tour/home/data/datasources/home_data_source.dart';
 import 'package:restaurant_tour/home/failures/failures.dart';
-import 'package:restaurant_tour/models/restaurant.dart';
+import 'package:restaurant_tour/home/models/restaurant.dart';
 
 class MockDio extends Mock implements Dio {}
 

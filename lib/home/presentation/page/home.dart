@@ -57,10 +57,37 @@ class HomePage extends StatelessWidget {
               } else if (state is ResultRestaurantsState) {
                 return TabBarView(
                   children: [
-                    AllRestaurantsTab(
-                      allRestaurants: state.listRestaurants.restaurants ?? [],
+                    RefreshIndicator(
+                      onRefresh: () {
+                        context
+                            .read<RestaurantsBloc>()
+                            .add(GetAllRestaurantsEvent());
+                        return Future.delayed(
+                          const Duration(seconds: 0),
+                        );
+                      },
+                      child: AllRestaurantsTab(
+                        allRestaurants: state.listRestaurants['allRestaurants']
+                                ?.restaurants ??
+                            [],
+                      ),
                     ),
-                    const MyFavoritiesTab(),
+                    RefreshIndicator(
+                      onRefresh: () {
+                        context
+                            .read<RestaurantsBloc>()
+                            .add(GetAllRestaurantsEvent());
+                        return Future.delayed(
+                          const Duration(seconds: 0),
+                        );
+                      },
+                      child: MyFavoritiesTab(
+                        favoritiesRestaurants: state
+                                .listRestaurants['favoritiesRestaurants']
+                                ?.restaurants ??
+                            [],
+                      ),
+                    ),
                   ],
                 );
               } else if (state is ErrorRestaurantsState) {

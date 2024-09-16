@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../models/restaurant.dart';
+import '../../models/restaurant.dart';
 import '../../domain/usecases/get_all_restaurants.dart';
 import '../../failures/failures.dart';
 part 'home_event.dart';

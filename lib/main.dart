@@ -3,16 +3,19 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:restaurant_tour/app.dart';
-import 'package:restaurant_tour/models/restaurant.dart';
+import 'package:restaurant_tour/home/models/restaurant.dart';
 import 'package:restaurant_tour/query.dart';
+
+import 'home/services/module_communication.dart';
 
 const _apiKey =
     'nR4hTLTG9yrxOefBEzGgaEn7pZwmXsyigjye-VSHOed-JNqkKKdOVEmwjv6Z0J54PziaI6XVwDPt0rcgIbknCEiYbWFQW_vx4Hss6qGrg_HaQWxUiIJOYY4mtDbkZnYx';
 const _baseUrl = 'https://api.yelp.com/v3/graphql';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // runApp(const RestaurantTour());
+  await moduleCommunicationInit();
   runApp(
     MaterialApp(
       home: MyApp(),
@@ -30,6 +33,16 @@ class RestaurantTour extends StatelessWidget {
       home: HomePage(),
     );
   }
+}
+
+Future<bool> moduleCommunicationInit() async {
+  bool storageError = false;
+  try {
+    await ModuleCommunication.init();
+  } catch (error) {
+    storageError = true;
+  }
+  return storageError;
 }
 
 // TODO: Architect code

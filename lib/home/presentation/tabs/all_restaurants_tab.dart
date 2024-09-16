@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_tour/home/presentation/widgets/restaurant_card.dart';
 
-import '../../../models/restaurant.dart';
+import '../../models/restaurant.dart';
 
 class AllRestaurantsTab extends StatefulWidget {
   final List<Restaurant> allRestaurants;
