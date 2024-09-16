@@ -3,8 +3,8 @@ import 'package:restaurant_tour/domain/models/restaurant/gateway/restaurant_enti
 import 'package:restaurant_tour/ui/foundations/typography.dart';
 import 'package:restaurant_tour/ui/pages/detail_restaurant/widgets/detail_info_widget.dart';
 import 'package:restaurant_tour/ui/pages/detail_restaurant/widgets/fav_btn_widget.dart';
+import 'package:restaurant_tour/ui/pages/detail_restaurant/widgets/review_list_widget.dart';
 import 'package:restaurant_tour/ui/tokens/colors.dart';
-import 'package:restaurant_tour/ui/widgets/divider_widget.dart';
 import 'package:restaurant_tour/ui/widgets/image_widget.dart';
 
 class RestaurantDetailsPage extends StatelessWidget {
@@ -16,45 +16,53 @@ class RestaurantDetailsPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: OsColors.bgColor,
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          icon: const Icon(Icons.arrow_back),
+        ),
+        shadowColor: OsColors.shadowColor,
+        surfaceTintColor: OsColors.bgColor,
         title: Text(
           restaurant!.name,
           style: AppTextStyles.loraRegularTitle,
           overflow: TextOverflow.ellipsis,
         ),
         backgroundColor: OsColors.light,
-        actions: [
-          FavoriteBtnWidget(
-            restaurant: restaurant!,
-          ),
-        ],
+        actions: [FavoriteBtnWidget(restaurant: restaurant!)],
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ImageWidget(
+      body: CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(
+            child: ImageWidget(
               id: restaurant!.id,
               imageUrl: restaurant!.photos.first,
               height: 361,
               withd: double.infinity,
             ),
-            const SizedBox(height: 8.0),
-            Padding(
-              padding: const EdgeInsets.all(24.0),
-              child: Column(
-                children: [
-                  DetailInfoWidget(
-                    price: restaurant!.price,
-                    category: restaurant!.categories.first.title,
-                    isOpen: restaurant!.hours.isNotEmpty && restaurant!.hours.first.isOpenNow,
-                    address: restaurant!.location.formattedAddress,
-                    rating: restaurant!.rating,
-                  ),
-                  const DividerWidget(),
-                  const SizedBox(height: 16.0),
-                  // const Spacer(),
-                ],
-              ),
+          ),
+          _restaurantInfo(),
+          ReviewListWidget(
+            restaurant: restaurant!,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _restaurantInfo() {
+    return SliverToBoxAdapter(
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(24, 24, 24, 0),
+        child: Column(
+          children: [
+            DetailInfoWidget(
+              price: restaurant!.price,
+              category: restaurant!.categories.first.title,
+              isOpen: restaurant!.hours.isNotEmpty && restaurant!.hours.first.isOpenNow,
+              address: restaurant!.location.formattedAddress,
+              rating: restaurant!.rating,
             ),
           ],
         ),

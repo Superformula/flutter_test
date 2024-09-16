@@ -65,7 +65,6 @@ class DetailInfoWidget extends StatelessWidget {
         ],
       ),
       const DividerWidget(),
-      const SizedBox(height: 16.0),
     ];
   }
 }
