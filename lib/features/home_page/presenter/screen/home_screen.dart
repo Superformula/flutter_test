@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:restaurant_tour/repositories/yelp_repository.dart';
 
 class HomeScreen extends StatelessWidget {
