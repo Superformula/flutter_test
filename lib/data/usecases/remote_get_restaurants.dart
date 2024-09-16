@@ -6,11 +6,11 @@ import '../../domain/usecases/usecases.dart';
 import '../../infra/http/http.dart';
 import '../models/models.dart';
 
-class GraphqlGetRestaurants implements GetRestaurants {
+class RemoteGetRestaurants implements GetRestaurants {
   final HttpClient<Map, String?> _client;
   final String _url;
 
-  const GraphqlGetRestaurants({
+  const RemoteGetRestaurants({
     required HttpClient<Map, String?> client,
     required String url,
   })  : _client = client,

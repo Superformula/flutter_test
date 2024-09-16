@@ -1,1 +1,1 @@
-export 'graphql_get_restaurants.dart';
+export 'remote_get_restaurants.dart';

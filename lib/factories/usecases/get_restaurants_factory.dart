@@ -5,5 +5,5 @@ import '../factories.dart';
 GetRestaurants makeGetRestaurants() {
   final client = makeHttpAdapter();
   final url = makeApiUrl();
-  return GraphqlGetRestaurants(client: client, url: url);
+  return RemoteGetRestaurants(client: client, url: url);
 }
