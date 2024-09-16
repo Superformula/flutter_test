@@ -24,6 +24,7 @@ class _HomeState extends State<HomePage> with SingleTickerProviderStateMixin {
     tabController = TabController(length: 2, vsync: this);
     super.initState();
     cubit.fetchRestaurants();
+    favoriteCubit.loadRestaurants();
   }
 
   @override
