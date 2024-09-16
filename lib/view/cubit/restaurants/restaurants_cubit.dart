@@ -11,35 +11,31 @@ class RestaurantsCubit extends Cubit<RestaurantsState> {
   Future<void> fetchRestaurants() async {
     emit(state.copyWith(status: RestaurantsStatus.loading));
 
-    try {
-      final result = await yelpRepo.getRestaurants();
+    final result = await yelpRepo.getRestaurants();
 
-      final isValidResult = result != null &&
-          result.restaurants != null &&
-          result.restaurants!.isNotEmpty;
-
-      if (isValidResult) {
-        emit(
-          state.copyWith(
-            status: RestaurantsStatus.success,
-            restaurants: result.restaurants,
-          ),
-        );
-      } else {
-        emit(
-          state.copyWith(
-            status: RestaurantsStatus.failure,
-            errorMessage: 'An unexpected error occurred',
-          ),
-        );
-      }
-    } catch (e) {
-      emit(
-        state.copyWith(
+    emit(
+      result.fold(
+        () => state.copyWith(
           status: RestaurantsStatus.failure,
-          errorMessage: 'Failed to fetch restaurants: $e',
+          errorMessage: 'An unexpected error occurred',
         ),
-      );
-    }
+        (queryResult) {
+          final restaurants = queryResult.restaurants;
+          final isValidResult = restaurants != null && restaurants.isNotEmpty;
+
+          if (isValidResult) {
+            return state.copyWith(
+              status: RestaurantsStatus.success,
+              restaurants: restaurants,
+            );
+          }
+
+          return state.copyWith(
+            status: RestaurantsStatus.failure,
+            errorMessage: 'Invalid restaurants',
+          );
+        },
+      ),
+    );
   }
 }
