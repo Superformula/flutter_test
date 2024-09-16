@@ -19,7 +19,7 @@ class RestaurantBloc extends Bloc<RestaurantEvent, RestaurantState> {
       CheckFavoriteEvent event,
       Emitter<RestaurantState> emit,
       ) async {
-    emit(const LoadingState());
+    emit(const AppBarLoadingState());
     try {
       List<String> favoriteIds = hiveHelper.getAllFavoriteIds();
       bool isFavorite = favoriteIds.contains(event.restaurant.id);
@@ -34,7 +34,7 @@ class RestaurantBloc extends Bloc<RestaurantEvent, RestaurantState> {
       AddFavoriteEvent event,
       Emitter<RestaurantState> emit,
       ) async {
-    emit(const LoadingState());
+    emit(const AppBarLoadingState());
     try {
       await hiveHelper.addFavorite(event.restaurantId);
       emit(const VerifiedState(isFavorite: true));
@@ -47,7 +47,7 @@ class RestaurantBloc extends Bloc<RestaurantEvent, RestaurantState> {
       RemoveFavoriteEvent event,
       Emitter<RestaurantState> emit,
       ) async {
-    emit(const LoadingState());
+    emit(const AppBarLoadingState());
     try {
       await hiveHelper.removeFavorite(event.restaurantId);
       emit(const VerifiedState(isFavorite: false));

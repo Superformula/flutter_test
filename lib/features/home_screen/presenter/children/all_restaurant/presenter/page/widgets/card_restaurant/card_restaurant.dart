@@ -1,8 +1,12 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:restaurant_tour/core/models/restaurant.dart';
+import 'package:restaurant_tour/features/home_screen/presenter/children/all_restaurant/presenter/page/widgets/card_restaurant/status_indicator.dart';
+import 'package:restaurant_tour/features/home_screen/presenter/children/favorite_restaurants/presenter/bloc/favorite_restaurants_bloc.dart';
 import 'package:restaurant_tour/shared/rate_stars.dart';
-import 'package:restaurant_tour/features/home_screen/presenter/page/widgets/card_restaurant/status_indicator.dart';
+
 
 
 class CardRestaurant extends StatelessWidget {
@@ -17,7 +21,11 @@ class CardRestaurant extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.pushNamed('restaurant-screen', extra: restaurant);
+        context.pushNamed('restaurant-screen', extra: restaurant).then((result) {
+          if (result == true) {
+            context.read<FavoriteRestaurantsBloc>().add(const InitialEvent());
+          }
+        });
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(
@@ -37,8 +45,8 @@ class CardRestaurant extends StatelessWidget {
                       height: 90,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(5),
-                        child: Image.network(
-                          restaurant.photos!.first,
+                        child: CachedNetworkImage(
+                          imageUrl: restaurant.photos!.first,
                           fit: BoxFit.cover,
                         ),
                       ),

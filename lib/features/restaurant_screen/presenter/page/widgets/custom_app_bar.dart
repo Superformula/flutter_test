@@ -19,39 +19,35 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isFavorite = false;
     return AppBar(
       leading: BackButton(
         onPressed: () {
-          context.pop();
+          context.pop(!isFavorite);
         },
       ),
       title: Text(title),
       actions: [
         BlocBuilder<RestaurantBloc, RestaurantState>(
           builder: (context, state) {
-            if (state is LoadingState) {
+            if (state is AppBarLoadingState) {
               return const CircularProgressIndicator();
             } else if (state is VerifiedState) {
+              isFavorite = state.isFavorite;
               return IconButton(
                 icon: Icon(
-                  state.isFavorite ? Icons.favorite : Icons.favorite_border,
-                  color: state.isFavorite ? Colors.red : null,
+                  isFavorite ? Icons.favorite : Icons.favorite_border,
+                  color: isFavorite ? Colors.red : null,
                 ),
                 onPressed: () {
-                  if (!state.isFavorite) {
-                    context.read<RestaurantBloc>().add(
-                      AddFavoriteEvent(restaurantId: restaurant.id!),
-                    );
-                    context.read<RestaurantBloc>().add(
-                      CheckFavoriteEvent(restaurant: restaurant),
-                    );
+                  if (!isFavorite) {
+                    context
+                        .read<RestaurantBloc>()
+                        .add(AddFavoriteEvent(restaurantId: restaurant.id!));
                   } else {
-                    context.read<RestaurantBloc>().add(
-                      RemoveFavoriteEvent(restaurantId: restaurant.id!),
-                    );
-                    context.read<RestaurantBloc>().add(
-                      CheckFavoriteEvent(restaurant: restaurant),
-                    );
+                    context
+                        .read<RestaurantBloc>()
+                        .add(RemoveFavoriteEvent(restaurantId: restaurant.id!));
                   }
                 },
               );

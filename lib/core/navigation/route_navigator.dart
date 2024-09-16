@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:restaurant_tour/core/models/restaurant.dart';
-import 'package:restaurant_tour/features/home_screen/presenter/page/home_screen.dart';
+import 'package:restaurant_tour/features/home_screen/home_screen.dart';
 import 'package:restaurant_tour/features/restaurant_screen/presenter/page/restaurant_screen.dart';
 import 'package:restaurant_tour/features/splash_screen/presenter/splash_screen.dart';
 

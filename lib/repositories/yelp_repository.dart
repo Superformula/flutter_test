@@ -57,7 +57,7 @@ class YelpRepository {
 
   String _getQuery(int offset) {
     return '''
-      query getRestaurants {
+    query getRestaurants($offset: Int) {
         search(location: "Las Vegas", limit: 20, offset: $offset) {
           total    
           business {

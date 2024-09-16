@@ -11,7 +11,9 @@ environment:
   flutter: ">=3.19.6"
 
 dependencies:
+  animate_do: ^3.3.4
   bloc_test: ^9.1.7
+  cached_network_image: ^3.4.1
   dio: ^5.7.0
   equatable: ^2.0.5
   flutter:
