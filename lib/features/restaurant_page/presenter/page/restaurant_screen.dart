@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:restaurant_tour/core/helpers/hive_helper.dart';
 import 'package:restaurant_tour/core/models/restaurant.dart';
 import 'package:restaurant_tour/features/restaurant_page/presenter/bloc/restaurant_bloc.dart';
 import 'package:restaurant_tour/features/restaurant_page/presenter/page/widgets/raiting_area.dart';
@@ -7,7 +8,6 @@ import 'package:restaurant_tour/features/restaurant_page/presenter/page/widgets/
 import 'package:restaurant_tour/features/restaurant_page/presenter/page/widgets/reviews_area.dart';
 
 import 'widgets/custom_app_bar.dart';
-
 
 class RestaurantScreen extends StatelessWidget {
   const RestaurantScreen({super.key, required this.restaurant});
@@ -17,8 +17,17 @@ class RestaurantScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<RestaurantBloc>(
-      create: (context) => RestaurantBloc(),
-      child: _Page(restaurant: restaurant),
+      create: (context) => RestaurantBloc(
+        hiveHelper: HiveHelper(),
+      ),
+      child: Builder(
+        builder: (context) {
+          context.read<RestaurantBloc>().add(
+            CheckFavoriteEvent(restaurant: restaurant),
+          );
+          return _Page(restaurant: restaurant);
+        },
+      ),
     );
   }
 }
@@ -31,7 +40,7 @@ class _Page extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: restaurant.name),
+      appBar: CustomAppBar(title: restaurant.name!, restaurant: restaurant),
       body: _Body(restaurant: restaurant),
     );
   }

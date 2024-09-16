@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:restaurant_tour/core/app_init.dart';
 import 'package:restaurant_tour/core/navigation/route_navigator.dart';
 
 Future<void> main() async {
