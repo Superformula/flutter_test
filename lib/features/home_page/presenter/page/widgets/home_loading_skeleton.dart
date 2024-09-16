@@ -6,13 +6,15 @@ class HomeLoadingSkeleton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
-      children: [
-        RestaurantCardSkeleton(),
-        RestaurantCardSkeleton(),
-        RestaurantCardSkeleton(),
-        RestaurantCardSkeleton(),
-      ],
+    const int itemCount = 6;
+
+    return Expanded(
+      child: ListView.builder(
+        itemCount: itemCount,
+        itemBuilder: (BuildContext context, int index) {
+          return const RestaurantCardSkeleton();
+        },
+      ),
     );
   }
 }

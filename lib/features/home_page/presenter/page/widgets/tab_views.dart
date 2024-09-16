@@ -13,19 +13,13 @@ class TabViews extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        SizedBox(
-          height: 200,
-          child: TabBarView(
-            children: [
-              AllRestaurantsTab(),
-              MyFavoritesTab(),
-            ],
-          ),
-        ),
-      ],
+    return Flexible(
+      child: TabBarView(
+        children: [
+          AllRestaurantsTab(restaurantList: restaurantList),
+          MyFavoritesTab(),
+        ],
+      ),
     );
   }
 }
