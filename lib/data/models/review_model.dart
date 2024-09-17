@@ -28,7 +28,7 @@ class ReviewModel {
     try {
       return ReviewModel(
         id: json['id'] ?? '',
-        rating: json['rating'] ?? 5,
+        rating: (json['rating'] ?? 5.0).round(),
         text: json['text'] ?? '',
         user: UserModel.fromJson(json['user']),
       );

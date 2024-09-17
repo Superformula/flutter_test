@@ -24,7 +24,7 @@ class UserModel {
     try {
       return UserModel(
         id: json['id'] ?? '',
-        imageUrl: json['imageUrl'] ?? '',
+        imageUrl: json['image_url'] ?? '',
         name: json['name'] ?? '',
       );
     } catch (_) {
