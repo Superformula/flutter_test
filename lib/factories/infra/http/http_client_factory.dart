@@ -7,7 +7,7 @@ HttpAdapter makeHttpAdapter() {
   final headers = {
     'Content-Type': 'application/graphql',
     'Authorization':
-        'Bearer 1hH9pW24WpBHxamMbgShaygY4eqRSW5NZq3e6eVImPkhFU8RR4KHIZ59pJ0D5YL4GCizkxjdxegx1f5igGGQuVEMER8gR-Jo8JpT1V6D3OUjUcucwL8uF5pxNqzlZnYx',
+        'Bearer Ea0b8FWXPxS9mv3nTITKruISxVsKVPqW02EP4egupETca6psxfSgIjgAxKBYxOCu0LSluKYwBJWI15YPJXfL6aVRdxCGhP8uhQXcTpBVMn8NPIN8zU7_K3iTJuzoZnYx',
   };
   return HttpAdapter(client: client, headers: headers);
 }
