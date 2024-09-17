@@ -5,11 +5,11 @@ import '../../infra/http/http.dart';
 import '../models/models.dart';
 
 class RemoteGetRestaurants implements GetRestaurants {
-  final HttpClient<Map, String?> _client;
+  final HttpClient<Map?, String?> _client;
   final String _url;
 
   const RemoteGetRestaurants({
-    required HttpClient<Map, String?> client,
+    required HttpClient<Map?, String?> client,
     required String url,
   })  : _client = client,
         _url = url;
@@ -53,7 +53,7 @@ class RemoteGetRestaurants implements GetRestaurants {
   Future<List<RestaurantEntity>> call() async {
     try {
       final response = await _client.request(url: _url, method: 'post', data: query);
-      return (response['data']['search']['business'] as List).map((item) => RemoteRestaurantModel.fromJson(item).toEntity()).toList();
+      return (response?['data']['search']['business'] as List).map((item) => RemoteRestaurantModel.fromJson(item).toEntity()).toList();
     } catch (_) {
       throw DomainError.unexpected;
     }
