@@ -6,14 +6,21 @@ class _RestaurantItem extends StatelessWidget {
   const _RestaurantItem(this._restaurant);
 
   void _onItemTapped(BuildContext context) {
+    void onFavorite() {
+      final cubit = context.read<CubitRestaurantTourPresenter>();
+      if (_restaurant is FavoriteRestaurantEntity) {
+        cubit.removeFavoriteRestaurant(_restaurant as FavoriteRestaurantEntity);
+      } else {
+        cubit.addFavoriteRestaurant(_restaurant);
+      }
+    }
+
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => RestaurantDetailPage(
+        builder: (_) => RestaurantDetailPage(
           restaurant: _restaurant,
-          onFavorite: () {
-            context.read<CubitRestaurantTourPresenter>().addFavoriteRestaurants(_restaurant);
-          },
+          onFavorite: onFavorite,
         ),
       ),
     );
@@ -39,7 +46,7 @@ class _RestaurantItem extends StatelessWidget {
         ),
         child: Row(
           children: [
-            _Image(_restaurant.heroImage),
+            _Image(_restaurant.photos.isEmpty ? '' : _restaurant.photos.first),
             const SizedBox(width: 12),
             Flexible(
               child: Column(
@@ -47,12 +54,12 @@ class _RestaurantItem extends StatelessWidget {
                 children: [
                   Text(_restaurant.name, style: AppTextStyles.loraRegularTitle),
                   const SizedBox(height: 4),
-                  const Text('\$\$\$\$ Italian', style: AppTextStyles.openRegularText),
+                  Text(_restaurant.price, style: AppTextStyles.openRegularText),
                   const SizedBox(height: 4),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Stars(_restaurant.rating),
+                      Stars(_restaurant.rating.round()),
                       Status(_restaurant.isOpen),
                     ],
                   ),

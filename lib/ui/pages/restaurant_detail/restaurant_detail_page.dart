@@ -40,9 +40,10 @@ class RestaurantDetailPage extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          SizedBox(
+          Container(
             height: 360,
-            child: Image.network(_restaurant.heroImage),
+            color: Colors.black12,
+            child: _restaurant.photos.isEmpty ? const NoImage() : Image.network(_restaurant.photos.first, fit: BoxFit.cover),
           ),
           Padding(
             padding: const EdgeInsets.all(24),
@@ -52,7 +53,7 @@ class RestaurantDetailPage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text('\$\$\$\$ Italian', style: AppTextStyles.openRegularText),
+                    Text(_restaurant.price, style: AppTextStyles.openRegularText),
                     Status(_restaurant.isOpen),
                   ],
                 ),

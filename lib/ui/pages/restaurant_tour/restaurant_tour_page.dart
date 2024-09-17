@@ -36,7 +36,6 @@ class _RestaurantTourPageState extends State<RestaurantTourPage> with SingleTick
   }
 
   void _dispose() {
-    _bloc.dispose();
     _tabController.dispose();
   }
 

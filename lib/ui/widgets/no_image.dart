@@ -12,7 +12,7 @@ class NoImage extends StatelessWidget {
     return Center(
       child: Text(
         'No image',
-        style: style ?? AppTextStyles.openRegularText,
+        style: style ?? AppTextStyles.openRegularHeadline,
       ),
     );
   }

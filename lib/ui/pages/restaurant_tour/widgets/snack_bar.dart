@@ -4,7 +4,7 @@ void showSnackBar(BuildContext context, {required RestaurantErrorState state}) {
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
       elevation: 0,
-      backgroundColor: Colors.red.withOpacity(.8),
+      backgroundColor: Colors.red,
       duration: const Duration(milliseconds: 2000),
       content: Text(
         state.message,

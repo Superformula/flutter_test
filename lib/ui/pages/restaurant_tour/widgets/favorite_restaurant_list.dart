@@ -5,19 +5,25 @@ class _FavoriteRestaurantList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final favoriteRestaurantList = context.read<CubitRestaurantTourPresenter>().favoriteRestaurantList;
-    if (favoriteRestaurantList.isEmpty) {
-      return const _MessageContent('No favorites.');
-    } else {
-      return ListView.separated(
-        itemCount: favoriteRestaurantList.length,
-        padding: const EdgeInsets.all(16),
-        itemBuilder: (context, index) {
-          final restaurant = favoriteRestaurantList[index];
-          return _RestaurantItem(restaurant);
-        },
-        separatorBuilder: (_, __) => const SizedBox(height: 12),
-      );
-    }
+    final cubit = context.read<CubitRestaurantTourPresenter>();
+    return BlocBuilder(
+      bloc: cubit,
+      builder: (context, state) {
+        final favoriteRestaurantList = cubit.favoriteRestaurantList;
+        if (favoriteRestaurantList.isEmpty) {
+          return const _MessageContent('No favorites.');
+        } else {
+          return ListView.separated(
+            itemCount: favoriteRestaurantList.length,
+            padding: const EdgeInsets.all(16),
+            itemBuilder: (context, index) {
+              final restaurant = favoriteRestaurantList[index];
+              return _RestaurantItem(restaurant);
+            },
+            separatorBuilder: (_, __) => const SizedBox(height: 12),
+          );
+        }
+      },
+    );
   }
 }

@@ -5,5 +5,6 @@ abstract class RestaurantTourPresenter {
   Future<void> getAllRestaurants();
   List<FavoriteRestaurantEntity> get favoriteRestaurantList;
   Future<void> getFavoriteRestaurants();
-  Future<void> addFavoriteRestaurants(RestaurantEntity restaurant);
+  Future<void> addFavoriteRestaurant(RestaurantEntity restaurant);
+  Future<void> removeFavoriteRestaurant(FavoriteRestaurantEntity favoriteRestaurant);
 }

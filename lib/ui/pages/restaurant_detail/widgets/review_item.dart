@@ -7,6 +7,7 @@ class _ReviewItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final userImage = _review.user.imageUrl;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -19,11 +20,13 @@ class _ReviewItem extends StatelessWidget {
         const SizedBox(height: 8),
         Row(
           children: [
-            SizedBox(
-              height: 40,
-              width: 40,
-              child: CircleAvatar(
-                child: Image.network(_review.user.imageUrl),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(32),
+              child: Container(
+                height: 40,
+                width: 40,
+                decoration: const BoxDecoration(shape: BoxShape.circle),
+                child: userImage.isEmpty ? const Icon(Icons.person) : Image.network(_review.user.imageUrl, fit: BoxFit.fill),
               ),
             ),
             const SizedBox(width: 8),
