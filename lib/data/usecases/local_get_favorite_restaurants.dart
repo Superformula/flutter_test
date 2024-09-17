@@ -19,7 +19,7 @@ class LocalGetFavoriteRestaurants implements GetFavoriteRestaurants {
       final result = await cache.fetch('favorite_restaurants');
       if (result == null) return [];
       final jsonDecoded = jsonDecode(result);
-      return (jsonDecoded as List).map((article) => RestaurantModel.fromJson(article).toFavoriteEntity()).toList();
+      return (jsonDecoded as List).map((article) => LocalRestaurantModel.fromJson(article).toEntity()).toList();
     } catch (_) {
       throw DomainError.unexpected;
     }

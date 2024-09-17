@@ -14,11 +14,8 @@ class LocalSaveFavoriteRestaurants implements SaveFavoriteRestaurants {
   @override
   Future<void> call(List<RestaurantEntity> restaurants) async {
     try {
-      final value = jsonEncode(restaurants.map((restaurant) => RestaurantModel.fromEntity(restaurant).toJson()).toList());
-      return await cache.save(
-        key: 'favorite_restaurants',
-        value: value,
-      );
+      final value = jsonEncode(restaurants.map((restaurant) => LocalRestaurantModel.fromEntity(restaurant).toJson()).toList());
+      return await cache.save(key: 'favorite_restaurants', value: value);
     } catch (_) {
       throw DomainError.unexpected;
     }

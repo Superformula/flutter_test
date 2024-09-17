@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 import '../../domain/entities/entities.dart';
 import '../../domain/helpers/helpers.dart';
 import '../../domain/usecases/usecases.dart';
@@ -55,9 +53,8 @@ class RemoteGetRestaurants implements GetRestaurants {
   Future<List<RestaurantEntity>> call() async {
     try {
       final response = await _client.request(url: _url, method: 'post', data: query);
-      return (response['data']['search']['business'] as List).map((item) => RestaurantModel.fromJson(item).toEntity()).toList();
-    } catch (e, s) {
-      debugPrintStack(label: 'Error $e', stackTrace: s);
+      return (response['data']['search']['business'] as List).map((item) => RemoteRestaurantModel.fromJson(item).toEntity()).toList();
+    } catch (_) {
       throw DomainError.unexpected;
     }
   }

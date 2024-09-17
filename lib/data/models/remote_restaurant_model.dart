@@ -1,5 +1,3 @@
-import 'package:flutter/foundation.dart';
-
 import '../../domain/entities/entities.dart';
 import '../../domain/helpers/helpers.dart';
 import 'models.dart';
@@ -40,8 +38,7 @@ class RemoteRestaurantModel {
         rating: json['rating'] ?? 5.0,
         reviews: (json['reviews'] as List).map(((item) => ReviewModel.fromJson(item))).toList(),
       );
-    } catch (e, s) {
-      debugPrintStack(label: 'Error $e', stackTrace: s);
+    } catch (_) {
       throw DomainError.unexpected;
     }
   }
