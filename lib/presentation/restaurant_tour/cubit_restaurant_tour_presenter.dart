@@ -36,6 +36,56 @@ class CubitRestaurantTourPresenter extends Cubit<RestaurantState> implements Res
     }
   }
 
+  void _updateRestaurantAsFavorite(
+    RestaurantEntity restaurant,
+    FavoriteRestaurantEntity favoriteRestaurant,
+  ) {
+    final index = _restaurantList.indexOf(restaurant);
+    _restaurantList[index] = favoriteRestaurant;
+    _favoriteRestaurantList.add(favoriteRestaurant);
+  }
+
+  void _removeFavoriteRestaurant(
+    RestaurantEntity restaurant,
+    FavoriteRestaurantEntity favoriteRestaurant,
+  ) {
+    final index = _restaurantList.indexOf(favoriteRestaurant);
+    if (index != -1) _restaurantList[index] = restaurant;
+    _favoriteRestaurantList.remove(favoriteRestaurant);
+  }
+
+  RestaurantEntity _makeRestaurantFromFavoriteRestaurant(
+    FavoriteRestaurantEntity favoriteRestaurant,
+  ) {
+    return RestaurantEntity(
+      id: favoriteRestaurant.id,
+      categories: favoriteRestaurant.categories,
+      isOpen: favoriteRestaurant.isOpen,
+      address: favoriteRestaurant.address,
+      name: favoriteRestaurant.name,
+      photos: favoriteRestaurant.photos,
+      price: favoriteRestaurant.price,
+      rating: favoriteRestaurant.rating,
+      reviews: favoriteRestaurant.reviews,
+    );
+  }
+
+  FavoriteRestaurantEntity _makeFavoriteRestaurantFromRestaurant(
+    RestaurantEntity restaurant,
+  ) {
+    return FavoriteRestaurantEntity(
+      id: restaurant.id,
+      categories: restaurant.categories,
+      isOpen: restaurant.isOpen,
+      address: restaurant.address,
+      name: restaurant.name,
+      photos: restaurant.photos,
+      price: restaurant.price,
+      rating: restaurant.rating,
+      reviews: restaurant.reviews,
+    );
+  }
+
   final _restaurantList = <RestaurantEntity>[];
   final _favoriteRestaurantList = <FavoriteRestaurantEntity>[];
 
@@ -51,9 +101,8 @@ class CubitRestaurantTourPresenter extends Cubit<RestaurantState> implements Res
       emit(RestaurantLoadingState());
       _favoriteRestaurantList.addAll(await _getFavoriteRestaurants());
       emit(RestaurantSuccessState());
-    } catch (e, s) {
-      debugPrintStack(label: 'Error - getFavoriteRestaurants - $e', stackTrace: s);
-      emit(RestaurantErrorState('An error occurred when get favorite restaurants'));
+    } catch (_) {
+      emit(RestaurantErrorState('Error loading favorite restaurants. Please try again later.'));
     }
   }
 
@@ -63,23 +112,31 @@ class CubitRestaurantTourPresenter extends Cubit<RestaurantState> implements Res
       emit(RestaurantLoadingState());
       _restaurantList.addAll(await _getRestaurants());
       emit(RestaurantSuccessState());
-    } catch (e, s) {
-      debugPrintStack(label: 'Error - getAllRestaurants - $e', stackTrace: s);
-      emit(RestaurantErrorState('An error occurred when searching for the restaurants'));
+    } catch (_) {
+      emit(RestaurantErrorState('Oops! We had trouble finding the restaurants.'));
     }
   }
 
   @override
-  Future<void> addFavoriteRestaurants() async {
+  Future<void> addFavoriteRestaurant(RestaurantEntity restaurant) async {
     try {
-      _saveFavoriteRestaurants(_favoriteRestaurantList);
-    } catch (e, s) {
-      debugPrintStack(label: 'Error - addFavoriteRestaurants - $e', stackTrace: s);
+      final favoriteRestaurant = _makeFavoriteRestaurantFromRestaurant(restaurant);
+      _updateRestaurantAsFavorite(restaurant, favoriteRestaurant);
+      await _saveFavoriteRestaurants(_favoriteRestaurantList);
+    } catch (_) {
+      emit(RestaurantErrorState('Error fetching restaurants. Try again later.'));
     }
   }
 
-  void dispose() {
-    _restaurantList.clear();
-    _favoriteRestaurantList.clear();
+  @override
+  Future<void> removeFavoriteRestaurant(FavoriteRestaurantEntity favoriteRestaurant) async {
+    try {
+      final restaurant = _makeRestaurantFromFavoriteRestaurant(favoriteRestaurant);
+      _removeFavoriteRestaurant(restaurant, favoriteRestaurant);
+      await _saveFavoriteRestaurants(_favoriteRestaurantList);
+      emit(RestaurantSuccessState());
+    } catch (_) {
+      emit(RestaurantErrorState('Oops! There was an issue removing the restaurant from your favorites.'));
+    }
   }
 }
