@@ -48,16 +48,16 @@ class RestaurantModel {
   factory RestaurantModel.fromJson(Map json) {
     try {
       return RestaurantModel(
-        id: json['id'],
+        id: json['id'] ?? '',
         categories: (json['categories'] as List).map((item) => CategoryModel.fromJson(json)).toList(),
-        displayCategory: json['displayCategory'],
-        heroImage: json['heroImage'],
-        isOpen: json['isOpen'],
-        address: json['address'],
-        name: json['name'],
-        photos: json['photos'],
-        price: json['price'],
-        rating: json['rating'],
+        displayCategory: json['displayCategory'] ?? '',
+        heroImage: json['heroImage'] ?? '',
+        isOpen: json['isOpen'] ?? true,
+        address: json['address'] ?? '',
+        name: json['name'] ?? '',
+        photos: List.from(json['photos'] ?? []),
+        price: json['price'] ?? '',
+        rating: json['rating'] ?? 5,
         reviews: (json['reviews'] as List).map(((item) => ReviewModel.fromJson(item))).toList(),
       );
     } catch (_) {

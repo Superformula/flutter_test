@@ -27,9 +27,9 @@ class ReviewModel {
   factory ReviewModel.fromJson(Map json) {
     try {
       return ReviewModel(
-        id: json['id'],
-        rating: json['rating'],
-        text: json['text'],
+        id: json['id'] ?? '',
+        rating: json['rating'] ?? 5,
+        text: json['text'] ?? '',
         user: UserModel.fromJson(json['user']),
       );
     } catch (_) {

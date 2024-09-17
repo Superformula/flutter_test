@@ -20,8 +20,8 @@ class CategoryModel {
   factory CategoryModel.fromJson(Map json) {
     try {
       return CategoryModel(
-        title: json['title'],
-        alias: json['alias'],
+        title: json['title'] ?? '',
+        alias: json['alias'] ?? '',
       );
     } catch (_) {
       throw DomainError.unexpected;

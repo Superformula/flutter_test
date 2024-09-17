@@ -23,9 +23,9 @@ class UserModel {
   factory UserModel.fromJson(Map json) {
     try {
       return UserModel(
-        id: json['id'],
-        imageUrl: json['imageUrl'],
-        name: json['name'],
+        id: json['id'] ?? '',
+        imageUrl: json['imageUrl'] ?? '',
+        name: json['name'] ?? '',
       );
     } catch (_) {
       throw DomainError.unexpected;
