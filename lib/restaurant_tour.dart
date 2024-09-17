@@ -10,15 +10,8 @@ class RestaurantTour extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Restaurant Tour',
-      initialRoute: '/',
-      routes: {
-        '/': (_) => makeRestaurantTourPage(),
-      },
-      theme: ThemeData.from(
-        colorScheme: ColorScheme.fromSwatch(
-          backgroundColor: const Color(0xFFFAFAFA),
-        ),
-      ),
+      home: makeRestaurantTourPage(),
+      theme: ThemeData.from(colorScheme: ColorScheme.fromSwatch(backgroundColor: const Color(0xFFFAFAFA))),
     );
   }
 }
