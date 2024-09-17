@@ -27,6 +27,7 @@ class RestaurantDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        forceMaterialTransparency: true,
         leading: const _ArrowBackIcon(),
         actions: [
           _FavoriteIcon(
