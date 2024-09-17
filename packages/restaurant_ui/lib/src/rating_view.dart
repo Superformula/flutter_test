@@ -8,15 +8,14 @@ class RatingView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final stars = rating.truncate();
-    return SizedBox(
-      height: 20,
-      child: Row(
-        children: List.filled(
-          stars,
-          const Icon(
-            Icons.star,
-            color: Colors.yellow,
-          ),
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: List.filled(
+        stars,
+        const Icon(
+          Icons.star,
+          color: Colors.yellow,
+          size: 16,
         ),
       ),
     );
