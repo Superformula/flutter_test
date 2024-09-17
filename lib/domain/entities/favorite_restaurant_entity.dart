@@ -4,8 +4,6 @@ class FavoriteRestaurantEntity extends RestaurantEntity {
   FavoriteRestaurantEntity({
     required super.id,
     required super.categories,
-    required super.displayCategory,
-    required super.heroImage,
     required super.isOpen,
     required super.address,
     required super.name,
