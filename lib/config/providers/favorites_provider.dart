@@ -1,45 +1,34 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:restaurant_tour/config/constants/constants.dart';
+import 'package:restaurant_tour/domain/models/restaurant/gateway/local_storage_gateway.dart';
 import 'package:restaurant_tour/domain/models/restaurant/gateway/restaurant_entity.dart';
-import 'package:restaurant_tour/infrastructure/helpers/mappers/restaurant.dart';
-import 'package:restaurant_tour/infrastructure/helpers/mappers/restaurant_data_to_restaurants.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:restaurant_tour/domain/usecase/restaurant/local_storage_use_case.dart';
 
 class FavoritesProvider extends ChangeNotifier {
+  final LocalStorageGatewayInterface localStorageGateway;
+  final LocalStorageUseCase localStorageUseCase;
+
   List<RestaurantEntity> _favoriteRestaurants = [];
 
-  FavoritesProvider() {
+  FavoritesProvider({required this.localStorageGateway})
+      : localStorageUseCase = LocalStorageUseCase(localStorageGatewayInterface: localStorageGateway) {
     _loadFavorites();
   }
 
   List<RestaurantEntity> get favoriteRestaurants => _favoriteRestaurants;
+
   Future<void> _loadFavorites() async {
-    final prefs = await SharedPreferences.getInstance();
-    final List<String>? favoriteRestaurantsJson = prefs.getStringList(AppConstants.keyFavoriteRestaurants);
-    if (favoriteRestaurantsJson != null) {
-      _favoriteRestaurants = favoriteRestaurantsJson.map((json) {
-        final restaurantInfra = Restaurant.fromJson(jsonDecode(json));
-        return RestaurantMapper.fromInfrastructure(restaurantInfra);
-      }).toList();
-    }
+    _favoriteRestaurants = (await localStorageUseCase.getFavoriteRestaurants()) ?? [];
     notifyListeners();
   }
 
   Future<void> toggleFavorite(RestaurantEntity restaurant) async {
-    final prefs = await SharedPreferences.getInstance();
-    if (_favoriteRestaurants.any((r) => r.id == restaurant.id)) {
+    if (isFavorite(restaurant.id)) {
+      await localStorageUseCase.deleteFavoriteRestaurant(restaurant.id);
       _favoriteRestaurants.removeWhere((r) => r.id == restaurant.id);
     } else {
+      await localStorageUseCase.addFavoriteRestaurant(restaurant);
       _favoriteRestaurants.add(restaurant);
     }
-
-    final favoriteRestaurantsJson = _favoriteRestaurants.map((restaurant) {
-      final restaurantInfra = RestaurantMapper.toInfrastructure(restaurant);
-      return jsonEncode(restaurantInfra.toJson());
-    }).toList();
-
-    prefs.setStringList(AppConstants.keyFavoriteRestaurants, favoriteRestaurantsJson);
     notifyListeners();
   }
 

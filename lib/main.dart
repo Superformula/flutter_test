@@ -7,10 +7,14 @@ import 'package:restaurant_tour/config/providers/favorites_provider.dart';
 import 'package:restaurant_tour/config/providers/restaurant_providers.dart';
 import 'package:restaurant_tour/config/routes/app_routes.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:restaurant_tour/infrastructure/driven_adapters/api/local_storage_api.dart';
 import 'package:restaurant_tour/infrastructure/driven_adapters/api/restaurant_api.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   await dotenv.load(fileName: AppConstants.env);
+  final sharedPreferences = await SharedPreferences.getInstance();
+
   runApp(
     MultiProvider(
       providers: [
@@ -24,7 +28,11 @@ void main() async {
             ),
           ),
         ),
-        ChangeNotifierProvider(create: (_) => FavoritesProvider()),
+        ChangeNotifierProvider(
+          create: (context) => FavoritesProvider(
+            localStorageGateway: LocalStorageApi(prefs: sharedPreferences),
+          ),
+        ),
       ],
       child: const RestaurantTour(),
     ),

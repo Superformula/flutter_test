@@ -10,11 +10,15 @@ class LocalStorageUseCase {
     return localStorageGatewayInterface.getFavoriteRestaurants();
   }
 
-  Future<void> addFavoriteRestaurant() {
-    return localStorageGatewayInterface.addFavoriteRestaurant();
+  Future<void> addFavoriteRestaurant(RestaurantEntity restaurant) {
+    return localStorageGatewayInterface.addFavoriteRestaurant(restaurant);
   }
 
-  Future<void> deleteFavoriteRestaurant() {
-    return localStorageGatewayInterface.deleteFavoriteRestaurant();
+  Future<void> deleteFavoriteRestaurant(String restaurantId) {
+    return localStorageGatewayInterface.deleteFavoriteRestaurant(restaurantId);
+  }
+
+  bool isFavorite(String restaurantId) {
+    return localStorageGatewayInterface.isFavorite(restaurantId);
   }
 }
