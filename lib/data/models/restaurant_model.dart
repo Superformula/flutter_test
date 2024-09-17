@@ -68,6 +68,7 @@ class RestaurantModel {
   Map<String, dynamic> toJson() {
     return {
       'id': id,
+      'name': name,
       'categories': categories.map((category) => category.toJson()).toList(),
       'displayCategory': displayCategory,
       'heroImage': heroImage,
