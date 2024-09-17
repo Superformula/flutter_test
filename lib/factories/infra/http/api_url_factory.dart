@@ -1,1 +1,3 @@
-String makeApiUrl() => 'https://api.yelp.com/v3/graphql';
+import '../../../core/core.dart';
+
+String makeApiUrl() => ENV.baseUrl;
