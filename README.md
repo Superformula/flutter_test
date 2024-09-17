@@ -1,5 +1,54 @@
 # Restaurant Tour
 
+## Overview
+
+As part of the solution to the Superformula challenge, I implemented **Clean Architecture** by separating the project into layers: domain, infrastructure, and UI. I also used the **Provider** package for state management and **Shared Preferences** to store favorite items locally. Additionally, I incorporated various testing approaches, including unit, widget, golden, and integration tests. The UI design follows the principles of atomic design.
+![App Demo](lib/screenshots/restaurant_tour_demo.gif)
+
+<img src="screenshots/restaurant_tour_demo.gif" width="306" height="617"> 
+
+## Technologies and Packages Used
+
+- **Flutter**: Core framework for building the mobile application.
+- **Provider**: Used for state management, allowing reactive UI updates and separation of business logic.
+- **Shared Preferences**: To persist local data such as favorite restaurants across app sessions.
+- **Mocktail**: To mock API responses during development and testing.
+- **Dio**: HTTP client for making API requests.
+- **Integration, widget, Unit Testing (golden)**: Mocks and test utilities for thoroughly testing features and API interactions.
+
+## Project Structure
+
+The app is organized into three main layers:
+package structure
+
+<img src="screenshots/folders.png" width="276" height="497">
+
+### 1. **Domain Layer**
+   - **Entities**: Defines the core business objects such as `RestaurantEntity`.
+   - **Use Cases**: Contains the business logic. Example: Fetching restaurants or marking a restaurant as a favorite.
+   - **Repositories**: Interfaces that act as contracts for the infrastructure layer.
+
+### 2. **Infrastructure Layer**
+   - **Data Sources**: API integrations and local data handling using Shared Preferences.
+   - **Mappers**: Translates data between different layers (e.g., API model to domain entities).
+   - **Repositories Implementations**: Concrete implementations of domain repositories using data sources.
+
+### 3. **UI Layer**
+   - **Widgets**: Flutter UI components such as `RestaurantListPage`, `FavoritesRestaurantsPage`, and `RestaurantDetailsPage`.
+   - **State Management**: Handled by `RestaurantProvider` and `FavoritesProvider`, allowing efficient data handling and UI updates.
+   - **Utilities**: Helpers for managing colors, styles, and constants throughout the app.
+
+## Yelp API Configuration
+
+To ensure the app works correctly, you need to configure the Yelp API key. Follow these steps:
+
+1. Create a `.env` file in the root of the project.
+2. Add your Yelp API key to the `.env` file with the following format:
+
+```bash
+YELP_API_KEY=your_api_key_here
+```
+##
 Welcome to Superformula's Coding challenge, we are excited to see what you can build!
 
 This take home test aims to evaluate your skills in building a Flutter application. We are looking for a well-structured and well-tested application that demonstrates your knowledge of Flutter and the Dart language.
