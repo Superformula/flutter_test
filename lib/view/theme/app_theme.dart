@@ -2,16 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class AppTheme {
-  static const Color _primaryColor =
-      Color(0xFF007AFF); // Replace with your desired primary color
-  static const Color _accentColor =
-      Color(0xFFF0F0F0); // Replace with your desired accent color
-
   static final ThemeData lightTheme = ThemeData(
     colorSchemeSeed: Colors.black,
     fontFamily: 'OpenSans',
-    cardTheme:
-        CardTheme(color: Colors.white, surfaceTintColor: Colors.transparent),
+    cardTheme: const CardTheme(
+        color: Colors.white, surfaceTintColor: Colors.transparent),
     textTheme: const TextTheme(
       headlineMedium: TextStyle(
         fontWeight: FontWeight.w400,

@@ -1,30 +1,64 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:get_it/get_it.dart';
 import 'package:restaurant_tour/models/restaurant.dart';
+import 'package:restaurant_tour/presentation/favorites/favorites_restaurants_bloc.dart';
+import 'package:restaurant_tour/presentation/restaurants/restaurants_bloc.dart';
 import 'package:restaurant_tour/view/widgets/restaurant_open.dart';
 import 'package:restaurant_tour/view/widgets/restaurant_star_rating.dart';
 import 'package:restaurant_tour/view/widgets/review_tile.dart';
 
-class RestaurantPage extends StatelessWidget {
-  const RestaurantPage(this.restaurant, {super.key});
+class RestaurantPage extends StatefulWidget {
+  const RestaurantPage({
+    super.key,
+    required this.restaurant,
+  });
   final Restaurant restaurant;
+
+  @override
+  State<RestaurantPage> createState() => _RestaurantPageState();
+}
+
+class _RestaurantPageState extends State<RestaurantPage> {
+  late bool isFavoriteState = false;
+  @override
+  void initState() {
+    isFavoriteState = widget.restaurant.isFavorite ?? false;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(restaurant.name ?? 'Restaurant Name'),
+        title: Text(widget.restaurant.name ?? 'Restaurant Name'),
         actions: [
-          IconButton(onPressed: () {}, icon: Icon(Icons.favorite_outline))
+          IconButton(
+              onPressed: () {
+                GetIt.I.get<FavoritesRestaurantsBloc>().add((isFavoriteState)
+                    ? RemoveFavoriteRestaurant(widget.restaurant)
+                    : AddFavoriteRestaurant(widget.restaurant));
+
+                GetIt.I.get<RestaurantsBloc>().add(LoadRestaurants());
+
+                setState(() {
+                  isFavoriteState = !isFavoriteState;
+                });
+              },
+              icon: (isFavoriteState)
+                  ? const Icon(Icons.favorite)
+                  : const Icon(Icons.favorite_outline))
         ],
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
             Hero(
-              tag: restaurant.id ?? 'restaurant_id',
+              tag: widget.restaurant.id ?? 'restaurant_id',
               child: Image.network(
                 height: 375,
-                restaurant.photos?.first ?? 'https://picsum.photos/375/361',
+                widget.restaurant.photos?.first ??
+                    'https://picsum.photos/375/361',
               ),
             ),
             Padding(
@@ -39,17 +73,17 @@ class RestaurantPage extends StatelessWidget {
                       Row(
                         children: [
                           Text(
-                            restaurant.price ?? "\$\$",
+                            widget.restaurant.price ?? "\$\$",
                             style: Theme.of(context).textTheme.bodyMedium,
                           ),
                           Gap(4),
                           Text(
-                            restaurant.categories?.first.title ?? "",
+                            widget.restaurant.categories?.first.title ?? "",
                             style: Theme.of(context).textTheme.bodyMedium,
                           ),
                         ],
                       ),
-                      RestaurantOpen(restaurant.isOpen)
+                      RestaurantOpen(widget.restaurant.isOpen)
                     ],
                   ),
                   const Gap(16),
@@ -58,7 +92,8 @@ class RestaurantPage extends StatelessWidget {
                   const Text('Address'),
                   const Gap(16),
                   Text(
-                    restaurant.location?.formattedAddress ?? 'Address info',
+                    widget.restaurant.location?.formattedAddress ??
+                        'Address info',
                     style: Theme.of(context).textTheme.titleLarge!.copyWith(
                         fontFamily: 'OpenSans', fontWeight: FontWeight.w600),
                   ),
@@ -77,13 +112,13 @@ class RestaurantPage extends StatelessWidget {
   }
 
   Widget _buildReviewSection(BuildContext context) {
-    return (restaurant.reviews != null)
+    return (widget.restaurant.reviews != null)
         ? Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Gap(16),
               Text(
-                '${restaurant.reviews!.length} Reviews',
+                '${widget.restaurant.reviews!.length} Reviews',
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
               Gap(16),
@@ -91,13 +126,13 @@ class RestaurantPage extends StatelessWidget {
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
-                    return ReviewTile(restaurant.reviews![index]);
+                    return ReviewTile(widget.restaurant.reviews![index]);
                   },
                   separatorBuilder: (context, index) => const Padding(
                         padding: EdgeInsets.symmetric(vertical: 8.0),
                         child: Divider(),
                       ),
-                  itemCount: restaurant.reviews!.length),
+                  itemCount: widget.restaurant.reviews!.length),
             ],
           )
         : const Text('This restaurant has no reviews');
@@ -112,7 +147,7 @@ class RestaurantPage extends StatelessWidget {
         const Gap(16),
         Row(
           children: [
-            Text(restaurant.rating.toString(),
+            Text(widget.restaurant.rating.toString(),
                 style: Theme.of(context)
                     .textTheme
                     .headlineLarge!
