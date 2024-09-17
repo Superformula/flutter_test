@@ -20,7 +20,7 @@ RemoteRestaurantModel makeRemoteRestaurantModel() {
   );
 }
 
-LocalRestaurantModel makeLocalResturantModel() {
+LocalRestaurantModel makeLocalRestaurantModel() {
   return LocalRestaurantModel(
     id: faker.guid.guid(),
     categories: makeListCategoryModel(),
@@ -148,7 +148,35 @@ List<Map> makeRemoteRestaurantsJson() {
 }
 
 List<Map> makeLocalRestaurantsJson() {
-  return List.generate(5, (_) => makeLocalResturantModel().toJson());
+  return List.generate(5, (_) => makeLocalRestaurantModel().toJson());
+}
+
+Map makeCategoryJson() {
+  return {
+    'title': faker.lorem.word(),
+    'alias': faker.lorem.word(),
+  };
+}
+
+Map makeReviewJson() {
+  return {
+    'id': faker.guid.guid(),
+    'rating': faker.randomGenerator.integer(5, min: 1),
+    'text': faker.lorem.sentence(),
+    'user': {
+      'id': faker.guid.guid(),
+      'image_url': '',
+      'name': faker.person.name(),
+    },
+  };
+}
+
+Map makeUserJson() {
+  return {
+    'id': faker.guid.guid(),
+    'image_url': '',
+    'name': faker.person.name(),
+  };
 }
 
 Map makeInvalidJson() {
