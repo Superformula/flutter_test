@@ -6,6 +6,7 @@ import '../../widgets/widgets.dart';
 
 part 'widgets/arrow_back_icon.dart';
 part 'widgets/divider.dart';
+part 'widgets/image.dart';
 part 'widgets/favorite_icon.dart';
 part 'widgets/rating.dart';
 part 'widgets/review_item.dart';
@@ -33,18 +34,11 @@ class RestaurantDetailPage extends StatelessWidget {
             onFavorite: _onFavorite,
           ),
         ],
-        title: Text(
-          _restaurant.name,
-          style: AppTextStyles.loraRegularHeadline,
-        ),
+        title: Text(_restaurant.name, style: AppTextStyles.loraRegularHeadline),
       ),
       body: ListView(
         children: [
-          Container(
-            height: 360,
-            color: Colors.black12,
-            child: _restaurant.photos.isEmpty ? const NoImage() : Image.network(_restaurant.photos.first, fit: BoxFit.cover),
-          ),
+          _Image(photos: _restaurant.photos),
           Padding(
             padding: const EdgeInsets.all(24),
             child: Column(
