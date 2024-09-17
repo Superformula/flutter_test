@@ -14,6 +14,7 @@ class RestaurantListBloc
       : _repository = repository,
         super(const RestaurantListLoading()) {
     on<FetchRestaurantList>(_onFetchRestaurantList);
+    on<GoToRestaurantDetail>(_onGoToRestaurantDetail);
   }
 
   final RestaurantRepository _repository;
@@ -31,5 +32,12 @@ class RestaurantListBloc
       emit(RestaurantListError(message: e.toString()));
       addError(e);
     }
+  }
+
+  FutureOr<void> _onGoToRestaurantDetail(
+    GoToRestaurantDetail event,
+    Emitter<RestaurantListState> emit,
+  ) {
+    emit(RestaurantDetail(restaurant: event.restaurant));
   }
 }

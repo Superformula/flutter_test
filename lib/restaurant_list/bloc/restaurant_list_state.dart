@@ -28,3 +28,12 @@ final class RestaurantListData extends RestaurantListState {
   @override
   List<Object?> get props => [restaurants];
 }
+
+final class RestaurantDetail extends RestaurantListState {
+  const RestaurantDetail({required this.restaurant});
+
+  final Restaurant restaurant;
+
+  @override
+  List<Object?> get props => [restaurant];
+}

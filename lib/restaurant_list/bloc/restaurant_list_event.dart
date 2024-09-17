@@ -9,3 +9,12 @@ sealed class RestaurantListEvent extends Equatable {
 class FetchRestaurantList extends RestaurantListEvent {
   const FetchRestaurantList();
 }
+
+class GoToRestaurantDetail extends RestaurantListEvent {
+  const GoToRestaurantDetail({required this.restaurant});
+
+  final Restaurant restaurant;
+
+  @override
+  List<Object?> get props => [restaurant];
+}
