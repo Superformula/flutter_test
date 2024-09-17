@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../core/core.dart';
 import '../../../domain/entities/entities.dart';
 import '../../../presentation/presentation.dart';
-import '../../../typography.dart';
 import '../../widgets/widgets.dart';
 import '../pages.dart';
 

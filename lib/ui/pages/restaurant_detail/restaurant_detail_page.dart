@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/core.dart';
 import '../../../domain/entities/entities.dart';
-import '../../../typography.dart';
 import '../../widgets/widgets.dart';
 
 part 'widgets/arrow_back_icon.dart';

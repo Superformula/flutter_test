@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../typography.dart';
+import '../../core/core.dart';
 
 class NoImage extends StatelessWidget {
   final TextStyle? style;

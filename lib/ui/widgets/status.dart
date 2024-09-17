@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../typography.dart';
+import '../../core/core.dart';
 
 class Status extends StatelessWidget {
   final bool _isOpen;
