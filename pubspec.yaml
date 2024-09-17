@@ -11,8 +11,12 @@ environment:
   flutter: ">=3.19.6"
 
 dependencies:
+  dio: ^5.7.0
+  equatable: ^2.0.5
   flutter:
     sdk: flutter
+  flutter_bloc: ^8.1.6
+  flutter_dotenv: ^5.1.0
   http: ^1.2.2
   json_annotation: ^4.9.0
 
