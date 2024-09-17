@@ -6,9 +6,9 @@ class RestaurantUseCase {
 
   RestaurantUseCase({required this.restaurantGateway});
 
-  Future<List<RestaurantEntity>?> fetchRestaurants() async {
+  Future<List<RestaurantEntity>?> fetchRestaurants({int offset = 0}) async {
     try {
-      return await restaurantGateway.getRestaurants();
+      return await restaurantGateway.getRestaurants(offset: offset);
     } catch (e) {
       print('Error fetching restaurants: $e');
       return null;

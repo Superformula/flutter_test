@@ -16,6 +16,7 @@ class RestaurantListPage extends StatefulWidget {
 
 class _RestaurantListPageState extends State<RestaurantListPage> {
   late RestaurantProvider _restaurantProvider;
+  final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
@@ -24,11 +25,25 @@ class _RestaurantListPageState extends State<RestaurantListPage> {
       _restaurantProvider = Provider.of<RestaurantProvider>(context, listen: false);
       _restaurantProvider.getRestaurants();
     });
+
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels >= _scrollController.position.maxScrollExtent &&
+          !_restaurantProvider.isLoading &&
+          _restaurantProvider.hasMore) {
+        _restaurantProvider.loadMoreRestaurants();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
   }
 
   /// The Pull refresh function
   Future<void> _onRefresh() async {
-    await _restaurantProvider.getRestaurants();
+    await _restaurantProvider.getRestaurants(offset: 0);
   }
 
   @override
@@ -39,7 +54,7 @@ class _RestaurantListPageState extends State<RestaurantListPage> {
         onRefresh: _onRefresh,
         child: Consumer<RestaurantProvider>(
           builder: (context, provider, child) {
-            if (provider.isLoading) {
+            if (provider.isLoading && provider.restaurants == null) {
               return const Center(
                 child: CircularProgressIndicator(
                   color: OsColors.secondaryColor,
@@ -52,6 +67,7 @@ class _RestaurantListPageState extends State<RestaurantListPage> {
             } else {
               final restaurants = provider.restaurants!;
               return CustomScrollView(
+                controller: _scrollController,
                 physics: const BouncingScrollPhysics(
                   parent: AlwaysScrollableScrollPhysics(),
                 ),
@@ -60,6 +76,19 @@ class _RestaurantListPageState extends State<RestaurantListPage> {
                   SliverList(
                     delegate: SliverChildBuilderDelegate(
                       (context, index) {
+                        if (index == restaurants.length) {
+                          return provider.isLoading
+                              ? const Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Center(
+                                    child: CircularProgressIndicator(
+                                      color: OsColors.secondaryColor,
+                                    ),
+                                  ),
+                                )
+                              : const SizedBox.shrink();
+                        }
+
                         final restaurant = restaurants[index];
                         bool isOpenNow = false;
                         if (restaurant.hours.isNotEmpty) {
@@ -73,7 +102,7 @@ class _RestaurantListPageState extends State<RestaurantListPage> {
                           ),
                         );
                       },
-                      childCount: restaurants.length,
+                      childCount: restaurants.length + 1,
                     ),
                   ),
                   const SliverPadding(padding: EdgeInsets.only(top: 16.0)),

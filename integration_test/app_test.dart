@@ -18,7 +18,7 @@ class MockRestaurantGateway extends Mock implements RestaurantGateway {}
 class MockLocalStorageUseCase extends Mock implements LocalStorageUseCase {}
 
 class MockRestaurantProvider extends RestaurantProvider {
-  late List<RestaurantEntity> _restaurants;
+  late List<RestaurantEntity> _restaurants = [];
   bool _isLoading = true;
   MockRestaurantProvider(RestaurantGateway restaurantGateway) : super(restaurantGateway: restaurantGateway);
 
@@ -29,7 +29,7 @@ class MockRestaurantProvider extends RestaurantProvider {
   bool get isLoading => _isLoading;
 
   @override
-  Future<void> getRestaurants() async {
+  Future<void> getRestaurants({int offset = 0}) async {
     _restaurants = [
       RestaurantEntity(
         id: '1',
@@ -76,6 +76,24 @@ void main() {
 
     when(() => mockLocalStorageUseCase.deleteFavoriteRestaurant(any())).thenAnswer((_) async => Future.value());
     final prefs = await SharedPreferences.getInstance();
+
+    await tester.pumpWidget(
+      MultiProvider(
+        providers: [
+          ChangeNotifierProvider<RestaurantProvider>(
+            create: (_) => MockRestaurantProvider(mockRestaurantGateway),
+          ),
+          ChangeNotifierProvider(
+            create: (_) => FavoritesProvider(localStorageGateway: LocalStorageApi(prefs: prefs)),
+          ),
+        ],
+        child: const MaterialApp(
+          home: Scaffold(
+            body: RestaurantListPage(),
+          ),
+        ),
+      ),
+    );
 
     await tester.pumpWidget(
       MultiProvider(

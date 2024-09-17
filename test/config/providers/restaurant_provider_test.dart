@@ -16,9 +16,9 @@ void main() {
   });
 
   group('RestaurantProvider Tests', () {
-    test('should fetch and load restaurants successfully', () async {
+    test('should fetch and load restaurants successfully with pagination', () async {
       // Arrange
-      final List<RestaurantEntity> mockRestaurants = [
+      final List<RestaurantEntity> mockRestaurantsPage1 = [
         RestaurantEntity(
           id: '1',
           name: 'Restaurant 1',
@@ -31,14 +31,30 @@ void main() {
           reviews: [],
         ),
       ];
+      final List<RestaurantEntity> mockRestaurantsPage2 = [
+        RestaurantEntity(
+          id: '2',
+          name: 'Restaurant 2',
+          price: '\$\$',
+          rating: 4.5,
+          categories: [],
+          hours: [],
+          location: Location(formattedAddress: 'Address 2'),
+          photos: ['https://example.com/photo2.jpg'],
+          reviews: [],
+        ),
+      ];
 
-      when(() => mockRestaurantGateway.getRestaurants(offset: 0)).thenAnswer((_) async => mockRestaurants);
+      when(() => mockRestaurantGateway.getRestaurants(offset: 0)).thenAnswer((_) async => mockRestaurantsPage1);
+      when(() => mockRestaurantGateway.getRestaurants(offset: 1)).thenAnswer((_) async => mockRestaurantsPage2);
 
       // Act
       await restaurantProvider.getRestaurants();
 
       // Assert
-      expect(restaurantProvider.restaurants, mockRestaurants);
+      expect(restaurantProvider.restaurants, mockRestaurantsPage1);
+      expect(restaurantProvider.restaurants?.length, 1);
+
       expect(restaurantProvider.isLoading, isFalse);
       expect(restaurantProvider.errorMessage, isNull);
     });
@@ -51,7 +67,7 @@ void main() {
       await restaurantProvider.getRestaurants();
 
       // Assert
-      expect(restaurantProvider.restaurants, isNull);
+      expect(restaurantProvider.restaurants, isEmpty);
       expect(restaurantProvider.isLoading, isFalse);
     });
 
