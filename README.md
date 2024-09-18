@@ -48,4 +48,9 @@ Restaurant from yelp API.
 
 ### Demo
 
-![demo](screenshots/flutter_test.webm)
+<img src="https://github.com/user-attachments/assets/4fab1086-6c1d-47e6-af72-ec883d76a3fe" width="280" />
+<img src="https://github.com/user-attachments/assets/e5854e3b-2560-439e-b803-65dd61f711e6" width="280" />
+<img src="https://github.com/user-attachments/assets/704c0f3e-d77c-437b-ac28-f9235585f645" width="280" />
+<img src="https://github.com/user-attachments/assets/4b122518-e465-45a1-a54a-ba21a6bc57ee" width="280"/>
+
+
