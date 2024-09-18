@@ -21,7 +21,7 @@ void main() {
       () => httpClient.request(
         url: any(named: 'url'),
         method: any(named: 'method'),
-        data: any(named: 'data')
+        data: any(named: 'data'),
       ),
     );
   }

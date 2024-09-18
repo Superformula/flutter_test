@@ -25,7 +25,7 @@ class _ReviewItem extends StatelessWidget {
               child: Container(
                 height: 40,
                 width: 40,
-                decoration: const BoxDecoration(shape: BoxShape.circle),
+                decoration: const BoxDecoration(shape: BoxShape.circle, color: Colors.black12),
                 child: userImage.isEmpty ? const Icon(Icons.person) : Image.network(_review.user.imageUrl, fit: BoxFit.fill),
               ),
             ),
