@@ -17,8 +17,14 @@ class UserAvatar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const CircleAvatar(
-          child: Icon(Icons.person),
+        CircleAvatar(
+          child: urlImage != null
+              ? ClipOval(
+                  child: DsImageNetwork(
+                    urlImage: urlImage,
+                  ),
+                )
+              : const Icon(Icons.person),
         ),
         const SizedBox(width: DsSizes.xxs),
         DsText(name),

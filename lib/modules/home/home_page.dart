@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:restaurant_tour/core/routes.dart';
 import 'package:restaurant_tour/design_system/design_system.dart';
 import 'package:restaurant_tour/modules/home/bloc/home_bloc.dart';
 import 'package:restaurant_tour/modules/home/repository/home_repository.dart';
@@ -61,6 +62,12 @@ class _Content extends StatelessWidget {
                 RestaurantList(
                   loading: state is LoadingRestaurantsState,
                   restaurants: state.model.restaurants ?? [],
+                  onSelected: (restaurant) {
+                    Navigator.of(context).pushNamed(
+                      RoutePaths.restaurantDetail,
+                      arguments: restaurant,
+                    );
+                  },
                 ),
                 const Center(
                   child: Text('Tab 2'),

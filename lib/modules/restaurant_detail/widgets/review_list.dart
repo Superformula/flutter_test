@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 
+import 'package:restaurant_tour/core/models/restaurant.dart';
 import 'package:restaurant_tour/design_system/design_system.dart';
 
 class ReviewList extends StatelessWidget {
-  const ReviewList({super.key});
+  const ReviewList({
+    super.key,
+    required this.reviews,
+  });
+
+  final List<Review> reviews;
 
   @override
   Widget build(BuildContext context) {
@@ -14,25 +20,32 @@ class ReviewList extends StatelessWidget {
       padding: const EdgeInsets.symmetric(
         vertical: DsSizes.md,
       ),
-      itemCount: 10,
+      itemCount: reviews.length,
       itemBuilder: (context, index) {
-        return const Padding(
-          padding: EdgeInsets.symmetric(
+        final currentReview = reviews[index];
+        print(currentReview.text);
+
+        return Padding(
+          padding: const EdgeInsets.symmetric(
             vertical: DsSizes.xxxs,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               DsRating(
-                initialRating: 3,
+                initialRating: currentReview.rating?.toDouble() ?? 0.0,
                 itemCount: 5,
               ),
-              SizedBox(height: DsSizes.xxxs),
-              DsText(
-                'Const class cannot remove fields: Library:package:restaurant_tour/modules/home/widgets/image_network_loading.dart Class: ImageNetworkLoading. Try performing a hot restart instead.',
+              const SizedBox(height: DsSizes.xxxs),
+              if (currentReview.text != null)
+                DsText(
+                  currentReview.text ?? 'No content',
+                ),
+              const SizedBox(height: DsSizes.xxxs),
+              UserAvatar(
+                name: '${currentReview.user?.name}',
+                urlImage: currentReview.user?.imageUrl,
               ),
-              SizedBox(height: DsSizes.xxxs),
-              UserAvatar(name: 'User Name test'),
             ],
           ),
         );

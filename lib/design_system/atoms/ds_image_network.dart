@@ -9,6 +9,7 @@ class DsImageNetwork extends StatelessWidget {
     this.fit,
     this.height,
     this.width = 100,
+    this.isRounded,
   });
 
   final String? urlImage;
@@ -17,6 +18,7 @@ class DsImageNetwork extends StatelessWidget {
   final BoxFit? fit;
   final double? height;
   final double width;
+  final bool? isRounded;
 
   @override
   Widget build(BuildContext context) {
@@ -26,33 +28,53 @@ class DsImageNetwork extends StatelessWidget {
             color: Colors.grey.shade300,
             size: width,
           )
-        : Padding(
+        : _RoundedBorderImage(
+            isRounded: isRounded ?? false,
+            child: Image.network(
+              urlImage!,
+              fit: fit ?? BoxFit.fill,
+              width: width,
+              height: height ?? width,
+              loadingBuilder: (context, child, loadingProgress) =>
+                  loadingProgress == null
+                      ? child
+                      : Center(
+                          child: SizedBox(
+                            width: width,
+                            height: height ?? width,
+                            child: const CircularProgressIndicator(),
+                          ),
+                        ),
+              errorBuilder: (context, error, stackTrace) =>
+                  errorIcon ??
+                  Icon(
+                    Icons.image,
+                    size: width,
+                  ),
+            ),
+          );
+  }
+}
+
+class _RoundedBorderImage extends StatelessWidget {
+  const _RoundedBorderImage({
+    required this.isRounded,
+    required this.child,
+  });
+
+  final bool isRounded;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return isRounded
+        ? Padding(
             padding: const EdgeInsets.all(16.0),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(8),
-              child: Image.network(
-                urlImage!,
-                fit: fit ?? BoxFit.fill,
-                width: width,
-                height: height ?? width,
-                loadingBuilder: (context, child, loadingProgress) =>
-                    loadingProgress == null
-                        ? child
-                        : Center(
-                            child: SizedBox(
-                              width: width,
-                              height: height ?? width,
-                              child: const CircularProgressIndicator(),
-                            ),
-                          ),
-                errorBuilder: (context, error, stackTrace) =>
-                    errorIcon ??
-                    Icon(
-                      Icons.image,
-                      size: width,
-                    ),
-              ),
+              child: child,
             ),
-          );
+          )
+        : child;
   }
 }

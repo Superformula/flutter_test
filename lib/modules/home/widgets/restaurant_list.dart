@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:restaurant_tour/core/models/restaurant.dart';
-import 'package:restaurant_tour/core/routes.dart';
 import 'package:restaurant_tour/modules/home/widgets/restaurant_card.dart';
 
 class RestaurantList extends StatelessWidget {
@@ -9,10 +8,12 @@ class RestaurantList extends StatelessWidget {
     super.key,
     required this.loading,
     required this.restaurants,
+    required this.onSelected,
   });
 
   final bool loading;
   final List<Restaurant> restaurants;
+  final Function(Restaurant restaurant) onSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +28,7 @@ class RestaurantList extends StatelessWidget {
       itemBuilder: (context, index) {
         final currentRestaurant = restaurants[index];
         return InkWell(
-          onTap: () => Navigator.of(context).pushNamed(
-            RoutePaths.restaurantDetail,
-          ),
+          onTap: () => onSelected(currentRestaurant),
           child: RestaurantCard(
             restaurant: currentRestaurant,
           ),

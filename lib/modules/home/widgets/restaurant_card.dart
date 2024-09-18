@@ -24,6 +24,7 @@ class RestaurantCard extends StatelessWidget {
         children: [
           DsImageNetwork(
             urlImage: restaurant.heroImage,
+            isRounded: true,
           ),
           Expanded(
             child: Column(
