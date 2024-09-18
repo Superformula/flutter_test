@@ -13,6 +13,11 @@ class RestaurantListView extends StatelessWidget {
     return BlocConsumer<RestaurantListBloc, RestaurantListState>(
       listener: (context, state) {
         if (state is RestaurantDetail) {
+          // Store bloc references before the async operation
+          final restaurantListBloc = context.read<RestaurantListBloc>();
+          final favoriteRestaurantsBloc =
+              context.read<FavoriteRestaurantsBloc>();
+
           Navigator.push(
             context,
             MaterialPageRoute(
@@ -22,12 +27,9 @@ class RestaurantListView extends StatelessWidget {
             ),
           ).then(
             (_) {
-              context
-                  .read<RestaurantListBloc>()
-                  .add(const FetchRestaurantList());
-              context
-                  .read<FavoriteRestaurantsBloc>()
-                  .add(const FetchFavoriteRestaurants());
+              // Use the stored bloc references
+              restaurantListBloc.add(const FetchRestaurantList());
+              favoriteRestaurantsBloc.add(const FetchFavoriteRestaurants());
             },
           );
         }
