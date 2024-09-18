@@ -1,5 +1,7 @@
 part of '../restaurant_tour_page.dart';
 
+const restaurantListKey = Key('_RestaurantList');
+
 class _RestaurantList extends StatelessWidget {
   const _RestaurantList();
 
@@ -10,6 +12,7 @@ class _RestaurantList extends StatelessWidget {
       return const _MessageContent('No restaurants.');
     } else {
       return ListView.separated(
+        key: restaurantListKey,
         padding: const EdgeInsets.all(16),
         itemCount: restaurantList.length,
         itemBuilder: (context, index) {

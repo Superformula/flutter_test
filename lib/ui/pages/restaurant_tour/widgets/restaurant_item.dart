@@ -1,5 +1,7 @@
 part of '../restaurant_tour_page.dart';
 
+Key restaurantItemKey(String id) => Key('_RestaurantItem::$id');
+
 class _RestaurantItem extends StatelessWidget {
   final RestaurantEntity _restaurant;
 
@@ -29,6 +31,7 @@ class _RestaurantItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      key: restaurantItemKey(_restaurant.id),
       onTap: () => _onItemTapped(context),
       child: Container(
         padding: const EdgeInsets.all(8),

@@ -1,5 +1,7 @@
 part of '../restaurant_tour_page.dart';
 
+const favoriteRestaurantListKey = Key('_FavoriteRestaurantList');
+
 class _FavoriteRestaurantList extends StatelessWidget {
   const _FavoriteRestaurantList();
 
@@ -14,6 +16,7 @@ class _FavoriteRestaurantList extends StatelessWidget {
           return const _MessageContent('No favorites.');
         } else {
           return ListView.separated(
+            key: favoriteRestaurantListKey,
             itemCount: favoriteRestaurantList.length,
             padding: const EdgeInsets.all(16),
             itemBuilder: (context, index) {
