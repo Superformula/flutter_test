@@ -1,0 +1,21 @@
+name: restaurant_models
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  pull_request:
+    paths:
+      - "packages/restaurant_models/**"
+      - ".github/workflows/restaurant_models.yaml"
+    branches:
+      - master
+
+jobs:
+  build:
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v1
+    with:
+      working_directory: packages/restaurant_models
+      min_coverage: 80
+      coverage_excludes: '*.g.dart'

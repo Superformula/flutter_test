@@ -1,84 +1,91 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'package:restaurant_tour/models/restaurant.dart';
-import 'package:restaurant_tour/query.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:http/http.dart';
+import 'package:restaurant_gql_client/restaurant_gql_client.dart';
+import 'package:restaurant_repository/restaurant_repository.dart';
+import 'package:restaurant_tour/favorite_restaurants_list/bloc/favorite_restaurants_bloc.dart';
+import 'package:restaurant_tour/favorite_restaurants_list/view/view.dart';
+import 'package:restaurant_tour/restaurant_detail/restaurant_detail.dart';
+import 'package:restaurant_tour/restaurant_list/restaurant_list.dart';
+import 'package:restaurant_ui/restaurant_ui.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-const _apiKey = '<PUT YOUR API KEY HERE>';
-const _baseUrl = 'https://api.yelp.com/v3/graphql';
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final client = Client();
+  const apiKey = String.fromEnvironment('API_KEY');
+  const baseUrl = 'https://api.yelp.com/v3/graphql';
+  final gqlClient = RestaurantGqlClient(client, baseUrl, apiKey);
+  final sharedPreferences = await SharedPreferences.getInstance();
+  final repository = RestaurantRepository(gqlClient, sharedPreferences);
 
-void main() {
-  runApp(const RestaurantTour());
+  runApp(RestaurantTour(restaurantRepository: repository));
 }
 
 class RestaurantTour extends StatelessWidget {
-  const RestaurantTour({super.key});
+  const RestaurantTour({super.key, required this.restaurantRepository});
+
+  final RestaurantRepository restaurantRepository;
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: 'Restaurant Tour',
-      home: HomePage(),
+    return RepositoryProvider.value(
+      value: restaurantRepository,
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => RestaurantListBloc(
+              restaurantRepository,
+            )..add(const FetchRestaurantList()),
+          ),
+          BlocProvider(
+            create: (context) => FavoriteRestaurantsBloc(restaurantRepository)
+              ..add(const FetchFavoriteRestaurants()),
+          ),
+          BlocProvider(
+            create: (context) => RestaurantDetailBloc(restaurantRepository),
+          ),
+        ],
+        child: const MaterialApp(
+          title: 'Restaurant Tour',
+          home: HomePage(),
+        ),
+      ),
     );
   }
 }
 
-// TODO: Architect code
-// This is just a POC of the API integration
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
-  Future<RestaurantQueryResult?> getRestaurants({int offset = 0}) async {
-    final headers = {
-      'Authorization': 'Bearer $_apiKey',
-      'Content-Type': 'application/graphql',
-    };
-
-    try {
-      final response = await http.post(
-        Uri.parse(_baseUrl),
-        headers: headers,
-        body: query(offset),
-      );
-
-      if (response.statusCode == 200) {
-        return RestaurantQueryResult.fromJson(
-          jsonDecode(response.body)['data']['search'],
-        );
-      } else {
-        print('Failed to load restaurants: ${response.statusCode}');
-        return null;
-      }
-    } catch (e) {
-      print('Error fetching restaurants: $e');
-      return null;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: const Text(
+            'Restaurant Tour',
+            style: AppTextStyles.loraRegularHeadline,
+          ),
+          bottom: const TabBar(
+            tabs: [
+              Text(
+                'All Restaurants',
+                style: AppTextStyles.loraRegularTitle,
+              ),
+              Text(
+                'My Favorites',
+                style: AppTextStyles.loraRegularTitle,
+              ),
+            ],
+          ),
+        ),
+        body: const TabBarView(
           children: [
-            const Text('Restaurant Tour'),
-            ElevatedButton(
-              child: const Text('Fetch Restaurants'),
-              onPressed: () async {
-                try {
-                  final result = await getRestaurants();
-                  if (result != null) {
-                    print('Fetched ${result.restaurants!.length} restaurants');
-                  } else {
-                    print('No restaurants fetched');
-                  }
-                } catch (e) {
-                  print('Failed to fetch restaurants: $e');
-                }
-              },
-            ),
+            RestaurantListView(),
+            FavoriteRestaurantsListView(),
           ],
         ),
       ),

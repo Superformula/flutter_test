@@ -11,17 +11,30 @@ environment:
   flutter: ">=3.19.6"
 
 dependencies:
+  bloc: ^8.1.4
   flutter:
     sdk: flutter
+  flutter_bloc: ^8.1.6
   http: ^1.2.2
-  json_annotation: ^4.9.0
+  restaurant_gql_client:
+    path: packages/restaurant_gql_client
+  restaurant_models:
+    path: packages/restaurant_models
+  restaurant_ui:
+    path: packages/restaurant_ui
+  restaurant_repository:
+    path: packages/restaurant_repository
+  equatable: ^2.0.5
+  shared_preferences: ^2.3.2
+
+
 
 dev_dependencies:
+  bloc_test: ^9.1.7
   flutter_test:
     sdk: flutter
   flutter_lints: ^4.0.0
-  build_runner: ^2.4.10
-  json_serializable: ^6.8.0
+  mocktail: ^1.0.4
 
 flutter:
   generate: true
@@ -45,4 +58,4 @@ flutter:
           style: italic
         - asset: assets/fonts/OpenSans/OpenSans-SemiBold.ttf
           weight: 600
-        
+

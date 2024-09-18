@@ -1,0 +1,20 @@
+name: movie_repository
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  pull_request:
+    paths:
+      - "packages/restaurant_repository/**"
+      - ".github/workflows/restaurant_repository.yaml"
+    branches:
+      - master
+
+jobs:
+  build:
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v1
+    with:
+      working_directory: packages/restaurant_repository
+      min_coverage: 80

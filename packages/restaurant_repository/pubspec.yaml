@@ -1,0 +1,19 @@
+name: restaurant_repository
+description: Repository for restaurants
+version: 0.1.0+1
+publish_to: none
+
+environment:
+  sdk: ^3.4.4
+
+dependencies:
+  restaurant_gql_client:
+    path: ../restaurant_gql_client
+  restaurant_models:
+    path: ../restaurant_models
+  shared_preferences: 2.3.2
+
+dev_dependencies:
+  mocktail: ^1.0.4
+  test: ^1.20.0
+  very_good_analysis: ^6.0.0

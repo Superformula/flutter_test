@@ -1,202 +1,56 @@
-# Restaurant Tour
+# Superformula Flutter Test
 
-Welcome to Superformula's Coding challenge, we are excited to see what you can build!
+Restaurant from yelp API.
 
-This take home test aims to evaluate your skills in building a Flutter application. We are looking for a well-structured and well-tested application that demonstrates your knowledge of Flutter and the Dart language.
+### Installing
 
-We are not looking for pixel perfect designs, but we are looking for a well-structured application that demonstrates your skills and best practices developing a flutter application. We know there are many ways to solve a problem, and we are interested in seeing how you approach this one. If you have any questions, please don't hesitate to ask.
+1. Clone the repository:
 
-Things we'll be looking on your submission:
-- App structure for scalability
-- Error and optional (?) handling
-- Widget tree optimization
-- State management
-- Test coverage
+   ```bash
+   git clone https://github.com/enzoftware/flutter_test.git
+   cd flutter_test
+   ```
 
-Think of the app you'll be building as the final product, do not over engineer it for possible future features, but do not under engineer it either. We are looking for a balance. We want that the functionalities that you implement are well thought out and implemented.
+2. Install the dependencies:
 
-As an example, for the favorites feature you can simply use SharedPreferences, you don't need to use a complex database solution, but we're looking for a solid shared preferences implementation.
+   ```bash
+   flutter pub get
+   ```
 
+3. Add your API Key:
+  Create `api_keys.json`, and follow the `api_keys_example.json` to add your TheMovieDB API key:
 
+     ```json
+    {
+      "API_KEY":"your_api_key"
+    }
+     ```
 
-Be sure to read **all** of this document carefully, and follow the guidelines within.
+4. Run the app on an emulator or physical device:
 
-## Vendorized Flutter
+   ```bash
+   flutter run --dart-define-from-file api_keys.json
+   ```
 
-3. We use [fvm](https://fvm.app/) for managing the flutter version within the project. Using terminal, while being on the test repository, install the tools dependencies by running the following commands:
+### Project Structure
 
-    ```sh
-    dart pub global activate fvm
-    ```
-
-    The output of the command will ask to add the folder `./pub-cache/bin` to your PATH variables, if you didn't already. If that is the case, add it to your environment variables, and restart the terminal.
-
-    ```sh
-    export PATH="$PATH":"$HOME/.pub-cache/bin" # Add this to your environment variables
-    ```
-
-4. Install the project's flutter version using `fvm`.
-
-    ```sh
-    fvm use
-    ```
-
-5. From now on, you will run all the flutter commands with the `fvm` prefix. Get all the projects dependencies.
-
-    ```sh
-    fvm flutter pub get
-    ```
-
-More information on the approach can be found here:
-
-> hhttps://fvm.app/docs/getting_started/installation
-
-From the root directory:
-
-
-### IDE Setup
-
-<details>
-<summary>Use with VSCode</summary>
-<p>
-
-If you're a VScode user link the new Flutter SDK path in your settings
-`$projectRoot/.vscode/settings.json` (create if it doesn't exist yet)
-
-```json
-{
-  "dart.flutterSdkPath": ".fvm/flutter_sdk"
-}
+``` bash
+/lib
+  /favorite_restaurants_list  #favorite restaurants features
+  /restaurant_detail  # Detail for restaurant
+  /restaurant_list  # Restaurant list
+/packages
+  /restaurant_gql_client   # API client to handle Yelp requests
+  /restaurant_models   # Models for restaurant
+  /restaurant_repository   # Repository layer abstracting API logic
+  /restaurant_ui    # Reusable UI components
 ```
 
+### Demo
 
-</p>
-</details>
+<img src="https://github.com/user-attachments/assets/4fab1086-6c1d-47e6-af72-ec883d76a3fe" width="280" />
+<img src="https://github.com/user-attachments/assets/e5854e3b-2560-439e-b803-65dd61f711e6" width="280" />
+<img src="https://github.com/user-attachments/assets/704c0f3e-d77c-437b-ac28-f9235585f645" width="280" />
+<img src="https://github.com/user-attachments/assets/4b122518-e465-45a1-a54a-ba21a6bc57ee" width="280"/>
 
-<details>
-<summary>Use with IntelliJ / Android Studio</summary>
-<p>
 
-Go to `Preferences > Languages & Frameworks > Flutter` and set the Flutter SDK path to `$projectRoot/.fvm/flutter_sdk`
-
-<img width="800" alt="IntelliJ Settings" src="https://user-images.githubusercontent.com/1096485/64658026-3a1fdd00-d436-11e9-9457-556059f68e2c.png">
-
-</p>
-</details>
-
-## Requirements
-
-### App Structure
-
-#### Restaurant List Page
-
-- Tab Bar
-  - List of favorites (stored client side)
-  - List of businesses
-    - Hero image
-    - Name
-    - Price
-    - Category
-    - Rating (rounded to the nearest value)
-    - Open/Closed
-
-#### Restaurant Detail View
-
-- Ability to favorite a business
-- Name
-- Hero image
-- Price and category
-- Address
-- Rating
-- Total reviews
-- List of reviews
-  - User name
-  - Rating
-  - User image
-  - Review Text (These are just snippets of the full review, usually like 3-4 lines long)
-
-#### Misc.
-
-- Clear documentation on the structure and architecture of your application.
-- Clear and logical commit messages.
-  - We suggest following [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
-
-## Test Coverage
-
-To demonstrate your experience writing different types of tests in Flutter please do the following:
-
-- We are looking to see how you write tests in Flutter. We are not looking for 100% coverage but we are looking for a good mix of unit and widget tests.
-- We are specially looking for you to cover at least one file for each domain layer (interface, application, repositories, etc).
-
-Feel free to add more tests as you see fit but the above is the minimum requirement.
-
-## Design
-
-- See this [Figma File](https://www.figma.com/file/KsEhQUp66m9yeVkvQ0hSZm/Flutter-Test?node-id=0%3A1) for design information related to the overall look and feel of the application. We do not expect pixel-perfection but would like the application to visually be close to what is specified in the Figma file.
-
-![List View](screenshots/listview.png)
-![Detail View](screenshots/detailview.png)
-
-## API
-
-The [Yelp GraphQL API](https://www.yelp.com/developers/graphql/guides/intro) is used as the API for this Application. We have provided the boilerplate of the API requests and backing data models to save you some time. To successfully make a request to the Yelp GraphQL API, please follow these steps:
-
-1. Please go to https://www.yelp.com/signup and sign up for a developer account.
-1. Once signed up, navigate to https://www.yelp.com/developers/v3/manage_app.
-1. Create a new app by filling out the required information.
-1. Once your app is created, scroll down and join the `Developer Beta`. This allows you to use the GraphQL API.
-1. Copy your API Key from your app page and paste it on `line 5` [yelp_repository.dart](app/lib/yelp_repository.dart) replacing the `<PUT YOUR API KEY HERE>` with your key.
-1. Run the app and tap the `Fetch Restaurants` button. If you see a log like `Fetched x restaurants` you are all set!
-
-## Technical Requirements
-
-### State Management
-
-Please restrict your usage of state management or dependency injection to the following options:
-
-1. [provider](https://pub.dev/packages/provider)
-2. [Riverpod](https://pub.dev/packages/riverpod)
-3. [bloc](https://pub.dev/packages/bloc)
-4. [get_it](https://pub.dev/packages/get_it)/[get_it_mixins](https://pub.dev/packages/get_it_mixin)
-5. [Mobx](https://pub.dev/packages/mobx)
-
-We ask this because this challenge values consistency and efficiency over ingenuity. Using commonly used libraries ensures that we can review your code in a timely manner and allows us to provide better feedback.
-
-## Coding Values
-
-At **Superformula** we strive to build applications that have
-
-- Consistent architecture
-- Extensible, clean code
-- Solid testing
-- Good security & performance best practices
-
-### Clear, consistent architecture
-
-Approach your submission as if it were a real world app. This includes Use any libraries that you would normally choose.
-
-_Please note: we're interested in your code & the way you solve the problem, not how well you can use a particular library or feature._
-
-### Easy to understand
-
-Writing boring code that is easy to follow is essential at **Superformula**.
-
-We're interested in your method and how you approach the problem just as much as we're interested in the end result.
-
-### Solid testing approach
-
-While the purpose of this challenge is not to gauge whether you can achieve 100% test coverage, we do seek to evaluate whether you know how & what to test.
-
-## Q&A
-
-> Where should I send back the result when I'm done?
-
-Please fork this repo and then send us a pull request to our repo when you think you are done. There is no deadline for this task unless otherwise noted to you directly.
-
-> What if I have a question?
-
-Just create a new issue in this repo and we will respond and get back to you quickly.
-
-## Review
-
-The coding challenge is a take-home test upon which we'll be conducting a thorough code review once complete. The review will consist of meeting some more of our mobile engineers and giving a review of the solution you have designed. Please be prepared to share your screen and run/demo the application to the group. During this process, the engineers will be asking questions.
