@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:restaurant_tour/core/models/restaurant.dart';
+import 'package:restaurant_tour/modules/home/widgets/list_skeleton.dart';
 import 'package:restaurant_tour/modules/home/widgets/restaurant_card.dart';
 
 class RestaurantList extends StatelessWidget {
@@ -18,9 +19,7 @@ class RestaurantList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (loading) {
-      return const Center(
-        child: CircularProgressIndicator(),
-      );
+      return const ListSkeleton();
     }
 
     return ListView.builder(
