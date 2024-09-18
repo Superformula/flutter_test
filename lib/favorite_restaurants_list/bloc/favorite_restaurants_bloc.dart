@@ -12,7 +12,7 @@ class FavoriteRestaurantsBloc
     extends Bloc<FavoriteRestaurantsEvent, FavoriteRestaurantsState> {
   FavoriteRestaurantsBloc(RestaurantRepository repository)
       : _repository = repository,
-        super(FavoriteRestaurantsLoading()) {
+        super(const FavoriteRestaurantsLoading()) {
     on<FetchFavoriteRestaurants>(_onFetchFavoriteRestaurants);
   }
 
@@ -23,7 +23,7 @@ class FavoriteRestaurantsBloc
     Emitter<FavoriteRestaurantsState> emit,
   ) async {
     try {
-      emit(FavoriteRestaurantsLoading());
+      emit(const FavoriteRestaurantsLoading());
       final response = await _repository.fetchFavoriteRestaurants();
       emit(FavoriteRestaurantsData(restaurants: response));
     } catch (e) {

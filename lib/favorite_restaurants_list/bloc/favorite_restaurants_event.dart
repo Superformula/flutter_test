@@ -7,4 +7,6 @@ sealed class FavoriteRestaurantsEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class FetchFavoriteRestaurants extends FavoriteRestaurantsEvent {}
+class FetchFavoriteRestaurants extends FavoriteRestaurantsEvent {
+  const FetchFavoriteRestaurants();
+}

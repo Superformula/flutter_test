@@ -7,7 +7,9 @@ sealed class FavoriteRestaurantsState extends Equatable {
   List<Object> get props => [];
 }
 
-final class FavoriteRestaurantsLoading extends FavoriteRestaurantsState {}
+final class FavoriteRestaurantsLoading extends FavoriteRestaurantsState {
+  const FavoriteRestaurantsLoading();
+}
 
 final class FavoriteRestaurantsError extends FavoriteRestaurantsState {
   const FavoriteRestaurantsError({required this.message});
