@@ -27,7 +27,7 @@ class RestaurantListView extends StatelessWidget {
                   .add(const FetchRestaurantList());
               context
                   .read<FavoriteRestaurantsBloc>()
-                  .add(FetchFavoriteRestaurants());
+                  .add(const FetchFavoriteRestaurants());
             },
           );
         }

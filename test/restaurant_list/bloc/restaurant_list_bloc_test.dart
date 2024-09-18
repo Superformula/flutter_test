@@ -51,7 +51,8 @@ void main() {
       expect: () => [
         const RestaurantListLoading(),
         const RestaurantListError(
-            message: 'Exception: Error fetching restaurants'),
+          message: 'Exception: Error fetching restaurants',
+        ),
       ],
     );
 
