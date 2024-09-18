@@ -59,7 +59,7 @@ void main() {
             .thenThrow(Exception('SharedPreferences error'));
 
         expect(
-          () async => await repository.isFavorite(restaurant.id!),
+          () async => repository.isFavorite(restaurant.id!),
           throwsA(isA<FetchRestaurantsException>()),
         );
       });
@@ -83,7 +83,7 @@ void main() {
             .thenThrow(Exception('SharedPreferences error'));
 
         expect(
-          () async => await repository.saveFavoriteRestaurant(restaurant),
+          () async => repository.saveFavoriteRestaurant(restaurant),
           throwsA(isA<SaveFavoriteRestaurantException>()),
         );
       });
@@ -109,7 +109,7 @@ void main() {
             .thenThrow(Exception('SharedPreferences error'));
 
         expect(
-          () async => await repository.deleteFavoriteRestaurant(restaurant),
+          () async => repository.deleteFavoriteRestaurant(restaurant),
           throwsA(isA<DeleteFavoriteRestaurantException>()),
         );
       });
@@ -141,7 +141,7 @@ void main() {
             .thenThrow(Exception('SharedPreferences error'));
 
         expect(
-          () async => await repository.fetchFavoriteRestaurants(),
+          () async => repository.fetchFavoriteRestaurants(),
           throwsA(isA<FetchRestaurantsException>()),
         );
       });
@@ -167,7 +167,7 @@ void main() {
             .thenThrow(Exception('GQL error'));
 
         expect(
-          () async => await repository.fetchRestaurants(),
+          () async => repository.fetchRestaurants(),
           throwsA(isA<FetchRestaurantsException>()),
         );
       });
