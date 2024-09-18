@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:restaurant_tour/core/models/restaurant.dart';
 import 'package:restaurant_tour/core/routes.dart';
 import 'package:restaurant_tour/design_system/design_system.dart';
 import 'package:restaurant_tour/modules/home/bloc/home_bloc.dart';
 import 'package:restaurant_tour/modules/home/repository/home_repository.dart';
 import 'package:restaurant_tour/modules/home/widgets/restaurant_list.dart';
+import 'package:restaurant_tour/modules/restaurant_detail/models/detail_page_arguments.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -41,6 +43,7 @@ class _Content extends StatelessWidget {
       builder: (context, state) {
         return DefaultTabController(
           length: 2,
+          initialIndex: state.model.initialIndex ?? 0,
           child: Scaffold(
             appBar: AppBar(
               title: const DsText(
@@ -62,15 +65,20 @@ class _Content extends StatelessWidget {
                 RestaurantList(
                   loading: state is LoadingRestaurantsState,
                   restaurants: state.model.restaurants ?? [],
-                  onSelected: (restaurant) {
-                    Navigator.of(context).pushNamed(
-                      RoutePaths.restaurantDetail,
-                      arguments: restaurant,
-                    );
-                  },
+                  onSelected: (restaurant) => _goDetail(
+                    context,
+                    restaurant: restaurant,
+                    isFromFavorite: false,
+                  ),
                 ),
-                const Center(
-                  child: Text('Tab 2'),
+                RestaurantList(
+                  loading: state is LoadingRestaurantsState,
+                  restaurants: state.model.favoriteRestaurants ?? [],
+                  onSelected: (restaurant) => _goDetail(
+                    context,
+                    restaurant: restaurant,
+                    isFromFavorite: true,
+                  ),
                 ),
               ],
             ),
@@ -78,5 +86,29 @@ class _Content extends StatelessWidget {
         );
       },
     );
+  }
+
+  _goDetail(
+    BuildContext context, {
+    required Restaurant restaurant,
+    required bool isFromFavorite,
+  }) {
+    Navigator.of(context)
+        .pushNamed(
+      RoutePaths.restaurantDetail,
+      arguments: DetailPageArgurments(
+        restaurant: restaurant,
+        isFromFavorite: isFromFavorite,
+      ),
+    )
+        .then((value) {
+      if (value == true) {
+        context.read<HomeBloc>().add(
+              LoadRestaurantsEvent(
+                onlyFavorites: isFromFavorite,
+              ),
+            );
+      }
+    });
   }
 }

@@ -12,7 +12,11 @@ part 'home_state.dart';
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc({required this.homeRepository})
       : super(
-          const HomeInitialState(Model()),
+          const HomeInitialState(
+            Model(
+              initialIndex: 0,
+            ),
+          ),
         ) {
     on<LoadRestaurantsEvent>(_onLoadRestaurantsEvent);
   }
@@ -25,11 +29,20 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   ) async {
     emit(LoadingRestaurantsState(state.model));
     try {
-      final restaurants = await homeRepository.getRestaurants();
+      final onlyFavorites = event.onlyFavorites;
+      List<Restaurant> restaurants = state.model.restaurants ?? [];
+      if (!onlyFavorites) {
+        restaurants = await homeRepository.getRestaurants();
+      }
+
+      final favoriteRestaurants = await homeRepository.getFavoriteRestaurants();
+
       emit(
         LoadedRestaurantsState(
           state.model.copyWith(
             restaurants: restaurants,
+            favoriteRestaurants: favoriteRestaurants,
+            initialIndex: onlyFavorites ? 1 : 0,
           ),
         ),
       );

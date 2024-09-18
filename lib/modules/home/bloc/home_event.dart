@@ -8,5 +8,10 @@ sealed class HomeEvent extends Equatable {
 }
 
 class LoadRestaurantsEvent extends HomeEvent {
-  const LoadRestaurantsEvent();
+  final bool onlyFavorites;
+
+  const LoadRestaurantsEvent({this.onlyFavorites = false});
+
+  @override
+  List<Object> get props => [onlyFavorites];
 }
