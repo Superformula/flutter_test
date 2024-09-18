@@ -12,7 +12,7 @@ class RestaurantDetailBloc
     extends Bloc<RestaurantDetailEvent, RestaurantDetailState> {
   RestaurantDetailBloc(RestaurantRepository repository)
       : _repository = repository,
-        super(RestaurantDetailLoading()) {
+        super(const RestaurantDetailLoading()) {
     on<ToggleRestaurantFavorite>(_onToggleRestaurantFavorite);
     on<FetchRestaurantIsFavorite>(_onFetchRestaurantIsFavorite);
   }
@@ -36,7 +36,7 @@ class RestaurantDetailBloc
     FetchRestaurantIsFavorite event,
     Emitter<RestaurantDetailState> emit,
   ) async {
-    emit(RestaurantDetailLoading());
+    emit(const RestaurantDetailLoading());
     final isFavorite = await _repository.isFavorite(event.restaurant.id ?? '');
     emit(RestaurantDetailLoaded(isFavorite: isFavorite));
   }

@@ -6,7 +6,9 @@ sealed class RestaurantDetailState extends Equatable {
   List<Object?> get props => [];
 }
 
-final class RestaurantDetailLoading extends RestaurantDetailState {}
+final class RestaurantDetailLoading extends RestaurantDetailState {
+  const RestaurantDetailLoading();
+}
 
 final class RestaurantDetailLoaded extends RestaurantDetailState {
   final bool isFavorite;
