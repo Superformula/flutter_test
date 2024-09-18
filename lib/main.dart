@@ -5,6 +5,7 @@ import 'package:restaurant_gql_client/restaurant_gql_client.dart';
 import 'package:restaurant_repository/restaurant_repository.dart';
 import 'package:restaurant_tour/favorite_restaurants_list/bloc/favorite_restaurants_bloc.dart';
 import 'package:restaurant_tour/favorite_restaurants_list/view/view.dart';
+import 'package:restaurant_tour/restaurant_detail/restaurant_detail.dart';
 import 'package:restaurant_tour/restaurant_list/restaurant_list.dart';
 import 'package:restaurant_ui/restaurant_ui.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -40,6 +41,9 @@ class RestaurantTour extends StatelessWidget {
           BlocProvider(
             create: (context) => FavoriteRestaurantsBloc(restaurantRepository)
               ..add(const FetchFavoriteRestaurants()),
+          ),
+          BlocProvider(
+            create: (context) => RestaurantDetailBloc(restaurantRepository),
           ),
         ],
         child: const MaterialApp(

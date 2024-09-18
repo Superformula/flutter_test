@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:restaurant_models/restaurant_models.dart';
-import 'package:restaurant_repository/restaurant_repository.dart';
 import 'package:restaurant_tour/restaurant_detail/restaurant_detail.dart';
 import 'package:restaurant_ui/restaurant_ui.dart';
 
@@ -12,10 +11,9 @@ class RestaurantDetailView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) =>
-          RestaurantDetailBloc(context.read<RestaurantRepository>())
-            ..add(FetchRestaurantIsFavorite(restaurant: restaurant)),
+    return BlocProvider.value(
+      value: context.read<RestaurantDetailBloc>()
+        ..add(FetchRestaurantIsFavorite(restaurant: restaurant)),
       child: BlocBuilder<RestaurantDetailBloc, RestaurantDetailState>(
         builder: (context, state) {
           if (state is RestaurantDetailLoading) {
