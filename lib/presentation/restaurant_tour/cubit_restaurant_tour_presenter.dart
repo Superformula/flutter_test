@@ -136,7 +136,7 @@ class CubitRestaurantTourPresenter extends Cubit<RestaurantState> implements Res
       _updateRestaurantAsFavorite(restaurant, favoriteRestaurant);
       await _saveFavoriteRestaurants(_favoriteRestaurantList);
     } catch (_) {
-      _setError('Error fetching restaurants. Try again later.');
+      _setError('Error favoriting restaurant. Try again later.');
     }
   }
 
