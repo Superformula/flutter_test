@@ -59,19 +59,21 @@ class RestaurantsRepository {
 
   Future<void> addFavoriteRestaurant(Restaurant restaurant) async {
     _favorites.add(restaurant.copyWith(isFavorite: true));
-    final restaurantIndex =
-        _restaurants.indexWhere((e) => e.id == restaurant.id);
-    _restaurants[restaurantIndex] = restaurant.copyWith(isFavorite: true);
-    await _favoriteRestaurantsDatasource
-        .addFavoriteRestaurant(restaurant.copyWith(isFavorite: true));
+    final restaurantIndex = _restaurants.indexWhere((e) => e == restaurant);
+    if (restaurantIndex != -1) {
+      _restaurants[restaurantIndex] = restaurant.copyWith(isFavorite: true);
+      await _favoriteRestaurantsDatasource
+          .addFavoriteRestaurant(restaurant.copyWith(isFavorite: true));
+    }
   }
 
   Future<void> removeFavoriteRestaurant(Restaurant restaurant) async {
-    final restaurantIndex =
-        _restaurants.indexWhere((e) => e.id == restaurant.id);
-    _restaurants[restaurantIndex] = restaurant.copyWith(isFavorite: false);
-    _favorites.remove(restaurant);
-    await _favoriteRestaurantsDatasource
-        .removeFavoriteRestaurant(restaurant.copyWith(isFavorite: false));
+    final restaurantIndex = _restaurants.indexWhere((e) => e == restaurant);
+    if (restaurantIndex != -1) {
+      _restaurants[restaurantIndex] = restaurant.copyWith(isFavorite: false);
+      _favorites.remove(restaurant);
+      await _favoriteRestaurantsDatasource
+          .removeFavoriteRestaurant(restaurant.copyWith(isFavorite: false));
+    }
   }
 }

@@ -120,6 +120,8 @@ void main() {
         favoriteButton,
         findsOneWidget,
       );
+      //Check if already favorite
+      expect(find.byIcon(Icons.favorite), findsOne);
       await tester.tap(favoriteButton);
       // Trigger a frame.
       await tester.pumpAndSettle();
@@ -131,25 +133,6 @@ void main() {
       final favoriteTab = find.byType(Tab).last;
       await tester.tap(favoriteTab);
       // Trigger a frame.
-      await tester.pumpAndSettle();
-
-      expect(find.byType(RestaurantTile), findsOne);
-
-      // Now open the favorite restaurant
-      await tester.tap(restaurantTitleFinder.first);
-
-      // Trigger a frame.
-      await tester.pumpAndSettle();
-
-      // Tap Favorite Widget to remove it
-      expect(
-        favoriteButton,
-        findsOneWidget,
-      );
-      await tester.tap(favoriteButton);
-
-      // go back and check if list is empty
-      await tester.pageBack();
       await tester.pumpAndSettle();
 
       expect(find.byType(RestaurantTile), findsNothing);

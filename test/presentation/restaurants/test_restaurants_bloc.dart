@@ -48,7 +48,7 @@ void main() {
   );
 
   blocTest(
-    'RestaurantsBloc should throw an  RestaurantsListError',
+    'RestaurantsBloc should throw an RestaurantsListError',
     setUp: () => when(usecase.getRestaurants()).thenAnswer(
       (_) async => [const Restaurant(id: 'id', name: 'restaurant')],
     ),

@@ -168,7 +168,7 @@ class Restaurant extends Equatable {
   }
 
   @override
-  List<Object?> get props => [id, isFavorite];
+  List<Object?> get props => [id];
 }
 
 @JsonSerializable()
