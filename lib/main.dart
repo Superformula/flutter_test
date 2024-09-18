@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:restaurant_tour/core/routes.dart';
 import 'package:restaurant_tour/core/services/dotenv_service.dart';
 
 void main() async {
@@ -19,13 +20,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'Flutter Test',
-      home: Scaffold(
-        body: Center(
-          child: Text('Env load test'),
-        ),
-      ),
+      initialRoute: RoutePaths.initial,
+      routes: getRoutes(),
     );
   }
 }
