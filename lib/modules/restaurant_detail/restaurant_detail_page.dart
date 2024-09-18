@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:restaurant_tour/modules/home/widgets/image_network_loading.dart';
+import 'package:restaurant_tour/design_system/components/image_network_loading.dart';
 import 'package:restaurant_tour/modules/restaurant_detail/widgets/review_list.dart';
 
 class RestaurantDetailPage extends StatelessWidget {
