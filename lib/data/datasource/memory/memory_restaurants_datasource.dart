@@ -36,7 +36,6 @@ class MemoryRestaurantsDatasource implements RestaurantsDatasource {
   Future<List<Restaurant>> getRestaurants(
       {int offset = 0, int limit = 10}) async {
     final result = restaurants.sublist(offset, offset + limit);
-    await Future.delayed(const Duration(seconds: 4));
     return Future.value(result);
   }
 }

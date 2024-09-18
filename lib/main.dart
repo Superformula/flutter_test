@@ -13,7 +13,8 @@ void main() {
 }
 
 class RestaurantTour extends StatefulWidget {
-  const RestaurantTour({super.key});
+  const RestaurantTour({super.key, this.testMode = false});
+  final bool testMode;
 
   @override
   State<RestaurantTour> createState() => _RestaurantTourState();
@@ -22,7 +23,7 @@ class RestaurantTour extends StatefulWidget {
 class _RestaurantTourState extends State<RestaurantTour> {
   @override
   void initState() {
-    setup();
+    setup(testMode: widget.testMode);
     super.initState();
   }
 
