@@ -62,14 +62,14 @@ void main() {
     mockSaveFavoriteRestaurantsCall().thenThrow(DomainError.unexpected);
   }
 
-  void expectSuccessFlowEventsEmitted() {
+  void expectSuccessFlowStatesEmitted() {
     expectLater(
       sut.stream,
       emitsInOrder([isA<RestaurantLoadingState>(), isA<RestaurantSuccessState>()]),
     );
   }
 
-  void expectErrorFlowEventsEmitted() {
+  void expectErrorFlowStatesEmitted() {
     expectLater(
       sut.stream,
       emitsInOrder([isA<RestaurantLoadingState>(), isA<RestaurantErrorState>()]),
@@ -107,7 +107,7 @@ void main() {
 
   group('getAllRestaurants', () {
     test('Should emits [RestaurantLoadingState, RestaurantSuccessState] when getAllRestaurants was success', () async {
-      expectSuccessFlowEventsEmitted();
+      expectSuccessFlowStatesEmitted();
       await sut.getAllRestaurants();
     });
 
@@ -120,14 +120,14 @@ void main() {
 
     test('Should emits [RestaurantLoadingState, RestaurantErrorState] when getAllRestaurants fails', () async {
       mockGetRestaurantsError();
-      expectErrorFlowEventsEmitted();
+      expectErrorFlowStatesEmitted();
       await sut.getAllRestaurants();
     });
   });
 
   group('getFavoriteRestaurants', () {
     test('Should emits [RestaurantLoadingState, RestaurantSuccessState] when getFavoriteRestaurants was success', () async {
-      expectSuccessFlowEventsEmitted();
+      expectSuccessFlowStatesEmitted();
       await sut.getFavoriteRestaurants();
     });
 
@@ -139,7 +139,7 @@ void main() {
 
     test('Should emits [RestaurantLoadingState, RestaurantErrorState] when getFavoriteRestaurants fails', () async {
       mockGetFavoriteRestaurantsError();
-      expectErrorFlowEventsEmitted();
+      expectErrorFlowStatesEmitted();
       await sut.getFavoriteRestaurants();
     });
   });
