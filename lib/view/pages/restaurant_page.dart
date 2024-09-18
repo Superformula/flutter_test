@@ -4,9 +4,13 @@ import 'package:get_it/get_it.dart';
 import 'package:restaurant_tour/models/restaurant.dart';
 import 'package:restaurant_tour/presentation/favorites/favorites_restaurants_bloc.dart';
 import 'package:restaurant_tour/presentation/restaurants/restaurants_bloc.dart';
-import 'package:restaurant_tour/view/widgets/restaurant_open.dart';
-import 'package:restaurant_tour/view/widgets/restaurant_star_rating.dart';
-import 'package:restaurant_tour/view/widgets/review_tile.dart';
+import 'package:restaurant_tour/view/widgets/address_widget.dart';
+import 'package:restaurant_tour/view/widgets/favorite_button_widget.dart';
+import 'package:restaurant_tour/view/widgets/overall_rating_widget.dart';
+import 'package:restaurant_tour/view/widgets/restaurant_category_price_widget.dart';
+import 'package:restaurant_tour/view/widgets/restaurant_hero_widget.dart';
+import 'package:restaurant_tour/view/widgets/restaurant_open_widget.dart';
+import 'package:restaurant_tour/view/widgets/review_list_widget.dart';
 
 class RestaurantPage extends StatefulWidget {
   const RestaurantPage({
@@ -33,33 +37,24 @@ class _RestaurantPageState extends State<RestaurantPage> {
       appBar: AppBar(
         title: Text(widget.restaurant.name ?? 'Restaurant Name'),
         actions: [
-          IconButton(
-              onPressed: () {
-                GetIt.I.get<FavoritesRestaurantsBloc>().add((isFavoriteState)
-                    ? RemoveFavoriteRestaurant(widget.restaurant)
-                    : AddFavoriteRestaurant(widget.restaurant));
+          FavoriteButtonWidget(
+            callback: (isFavorite) {
+              GetIt.I.get<FavoritesRestaurantsBloc>().add((isFavorite)
+                  ? AddFavoriteRestaurant(widget.restaurant)
+                  : RemoveFavoriteRestaurant(widget.restaurant));
 
-                GetIt.I.get<RestaurantsBloc>().add(LoadRestaurants());
-
-                setState(() {
-                  isFavoriteState = !isFavoriteState;
-                });
-              },
-              icon: (isFavoriteState)
-                  ? const Icon(Icons.favorite)
-                  : const Icon(Icons.favorite_outline))
+              GetIt.I.get<RestaurantsBloc>().add(LoadRestaurants());
+            },
+            isFavorite: widget.restaurant.isFavorite,
+          )
         ],
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Hero(
-              tag: widget.restaurant.id ?? 'restaurant_id',
-              child: Image.network(
-                height: 375,
-                widget.restaurant.photos?.first ??
-                    'https://picsum.photos/375/361',
-              ),
+            RestaurantHeroWidget(
+              imageUrl: widget.restaurant.photos?.first,
+              tag: widget.restaurant.id,
             ),
             Padding(
               padding:
@@ -70,96 +65,26 @@ class _RestaurantPageState extends State<RestaurantPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Row(
-                        children: [
-                          Text(
-                            widget.restaurant.price ?? "\$\$",
-                            style: Theme.of(context).textTheme.bodyMedium,
-                          ),
-                          Gap(4),
-                          Text(
-                            widget.restaurant.categories?.first.title ?? "",
-                            style: Theme.of(context).textTheme.bodyMedium,
-                          ),
-                        ],
-                      ),
-                      RestaurantOpen(widget.restaurant.isOpen)
+                      RestaurantCategoryPriceWidget(
+                          price: widget.restaurant.price,
+                          category: widget.restaurant.categories?.first.title),
+                      RestaurantOpenWidget(widget.restaurant.isOpen)
                     ],
                   ),
                   const Gap(16),
                   const Divider(),
-                  const Gap(16),
-                  const Text('Address'),
-                  const Gap(16),
-                  Text(
-                    widget.restaurant.location?.formattedAddress ??
-                        'Address info',
-                    style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                        fontFamily: 'OpenSans', fontWeight: FontWeight.w600),
-                  ),
-                  const Gap(16),
+                  AddressWidget(
+                      address: widget.restaurant.location?.formattedAddress),
                   const Divider(),
-                  _buildOverallRating(context),
+                  OverallRatingWidget(rating: widget.restaurant.rating),
                   const Divider(),
-                  _buildReviewSection(context)
+                  ReviewListWidget(reviews: widget.restaurant.reviews)
                 ],
               ),
             )
           ],
         ),
       ),
-    );
-  }
-
-  Widget _buildReviewSection(BuildContext context) {
-    return (widget.restaurant.reviews != null)
-        ? Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Gap(16),
-              Text(
-                '${widget.restaurant.reviews!.length} Reviews',
-                style: Theme.of(context).textTheme.bodyMedium,
-              ),
-              Gap(16),
-              ListView.separated(
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemBuilder: (context, index) {
-                    return ReviewTile(widget.restaurant.reviews![index]);
-                  },
-                  separatorBuilder: (context, index) => const Padding(
-                        padding: EdgeInsets.symmetric(vertical: 8.0),
-                        child: Divider(),
-                      ),
-                  itemCount: widget.restaurant.reviews!.length),
-            ],
-          )
-        : const Text('This restaurant has no reviews');
-  }
-
-  Widget _buildOverallRating(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Gap(16),
-        const Text('Overall Rating'),
-        const Gap(16),
-        Row(
-          children: [
-            Text(widget.restaurant.rating.toString(),
-                style: Theme.of(context)
-                    .textTheme
-                    .headlineLarge!
-                    .copyWith(fontFamily: 'Lora', fontWeight: FontWeight.bold)),
-            const Padding(
-              padding: const EdgeInsets.only(left: 2, top: 16.0),
-              child: const RestaurantStarRating(1),
-            ),
-          ],
-        ),
-        const Gap(16)
-      ],
     );
   }
 }

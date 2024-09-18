@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
-class RestaurantOpen extends StatelessWidget {
-  const RestaurantOpen(this.isOpen, {super.key});
+class RestaurantOpenWidget extends StatelessWidget {
+  const RestaurantOpenWidget(this.isOpen, {super.key});
   final bool isOpen;
   @override
   Widget build(BuildContext context) {

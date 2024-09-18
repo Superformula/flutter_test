@@ -28,7 +28,7 @@ class RestaurantListException extends AppException {
 class FavoritesRestaurantsListException extends AppException {
   FavoritesRestaurantsListException({
     code = "FAVORITES_RESTAURANTS_LIST_NOT_AVAILABLE",
-    description = "The favorite restaurant is not available at the moment",
+    description = "The favorite restaurant are not available at the moment",
   }) : super(code, description);
 }
 

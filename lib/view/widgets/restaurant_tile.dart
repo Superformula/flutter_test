@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:restaurant_tour/models/restaurant.dart';
-import 'package:restaurant_tour/view/pages/restaurant_page.dart';
-import 'package:restaurant_tour/view/widgets/restaurant_open.dart';
-import 'package:restaurant_tour/view/widgets/restaurant_star_rating.dart';
+import 'package:restaurant_tour/view/widgets/restaurant_open_widget.dart';
+import 'package:restaurant_tour/view/widgets/restaurant_star_rating_widget.dart';
 
 class RestaurantTile extends StatelessWidget {
   const RestaurantTile({required this.restaurant, super.key});
@@ -26,6 +25,8 @@ class RestaurantTile extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
                   child: Image.network(
+                      errorBuilder: (context, error, stackTrace) =>
+                          const Center(child: Icon(Icons.error)),
                       width: 88,
                       height: 88,
                       restaurant.photos?.first ??
@@ -62,8 +63,9 @@ class RestaurantTile extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          RestaurantStarRating(restaurant.rating?.toInt() ?? 2),
-                          RestaurantOpen(restaurant.isOpen)
+                          RestaurantStarRatingWidget(
+                              restaurant.rating?.toInt() ?? 2),
+                          RestaurantOpenWidget(restaurant.isOpen)
                         ],
                       )
                     ],

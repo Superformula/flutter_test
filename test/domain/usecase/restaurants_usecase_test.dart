@@ -29,17 +29,17 @@ void main() {
     expect(result.first, isA<Restaurant>());
   });
 
-  test('get restaurant should return a restaurant model', () async {
-    when(repository.getRestaurant('test')).thenAnswer(
-      (_) async => const Restaurant(
-        id: 'test',
-        name: 'Test unit',
-      ),
+  test('get favorite restaurants should return a list of favoirte restaurants',
+      () async {
+    when(repository.getFavoriteRestaurants()).thenAnswer(
+      (_) async =>
+          const [Restaurant(id: "123", name: "Unit Test", isFavorite: true)],
     );
-    final result = await usecase.getRestaurant('test');
-    expect(result, isA<Restaurant>());
+    final result = await usecase.getFavoriteRestaurants();
+    expect(result, isNotEmpty);
+    expect(result.first, isA<Restaurant>());
+    expect(result.first.isFavorite, true);
   });
-
   test('add favorite restaurant should save a restaurant', () async {
     const testRestaurant = Restaurant(id: 'test_id', name: 'Test Restaurant');
     when(repository.addFavoriteRestaurant(testRestaurant))
@@ -50,9 +50,16 @@ void main() {
 
   test('remove favorite restaurant should delete a restaurant', () async {
     const testRestaurant = Restaurant(id: 'test_id', name: 'Test Restaurant');
-    when(repository.addFavoriteRestaurant(testRestaurant))
+    when(repository.removeFavoriteRestaurant(testRestaurant))
         .thenAnswer((_) async => {});
     await usecase.removeFavoriteRestaurant(testRestaurant);
     verify(repository.removeFavoriteRestaurant(testRestaurant)).called(1);
+  });
+
+  test('add more favorite restaurant should add more restaurant to the list',
+      () async {
+    when(repository.getMoreRestaurants(10, 10)).thenAnswer((_) async => {});
+    await usecase.loadMoreRestaurants(offset: 10, limit: 10);
+    verify(repository.getMoreRestaurants(10, 10)).called(1);
   });
 }

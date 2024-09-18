@@ -37,7 +37,7 @@ void main() {
   );
 
   blocTest(
-    'RestaurantsBloc should error RestaurantsListError',
+    'RestaurantsBloc should throw an RestaurantsListError',
     setUp: () =>
         when(usecase.getRestaurants()).thenThrow(RestaurantListException()),
     build: () => RestaurantsBloc(usecase),
@@ -45,5 +45,25 @@ void main() {
     wait: const Duration(milliseconds: 300),
     expect: () => [isA<RestaurantsLoading>(), isA<RestaurantsError>()],
     verify: (bloc) => verify(usecase.getRestaurants()).called(1),
+  );
+
+  blocTest(
+    'RestaurantsBloc should throw an  RestaurantsListError',
+    setUp: () => when(usecase.getRestaurants()).thenAnswer(
+        (_) async => [const Restaurant(id: 'id', name: 'restaurant')]),
+    build: () => RestaurantsBloc(usecase),
+    act: (bloc) async {
+      bloc.add(LoadRestaurants());
+      await Future.delayed(const Duration(milliseconds: 500));
+      bloc.add(AddMoreRestaurants(limit: 10, offset: 10));
+    },
+    wait: const Duration(milliseconds: 300),
+    expect: () => [
+      isA<RestaurantsLoading>(),
+      isA<RestaurantsReady>(),
+      isA<RestaurantsReady>(),
+      isA<RestaurantsReady>(),
+    ],
+    verify: (bloc) => verify(usecase.getRestaurants()).called(2),
   );
 }

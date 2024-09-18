@@ -79,6 +79,7 @@ Restaurant _$RestaurantFromJson(Map<String, dynamic> json) => Restaurant(
       location: json['location'] == null
           ? null
           : Location.fromJson(json['location'] as Map<String, dynamic>),
+      isFavorite: json['isFavorite'] as bool?,
     );
 
 Map<String, dynamic> _$RestaurantToJson(Restaurant instance) =>
@@ -92,6 +93,7 @@ Map<String, dynamic> _$RestaurantToJson(Restaurant instance) =>
       'hours': instance.hours,
       'reviews': instance.reviews,
       'location': instance.location,
+      'isFavorite': instance.isFavorite,
     };
 
 RestaurantQueryResult _$RestaurantQueryResultFromJson(

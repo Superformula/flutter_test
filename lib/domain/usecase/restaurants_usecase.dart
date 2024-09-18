@@ -13,15 +13,15 @@ class RestaurantsUsecase {
     return _repository.getFavoriteRestaurants();
   }
 
-  Future<Restaurant> getRestaurant(String id) {
-    return _repository.getRestaurant(id);
-  }
-
   Future<void> addFavoriteRestaurant(Restaurant restaurant) {
     return _repository.addFavoriteRestaurant(restaurant);
   }
 
   Future<void> removeFavoriteRestaurant(Restaurant restaurant) {
     return _repository.removeFavoriteRestaurant(restaurant);
+  }
+
+  Future loadMoreRestaurants({required int offset, required int limit}) {
+    return _repository.getMoreRestaurants(offset, limit);
   }
 }

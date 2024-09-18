@@ -3,12 +3,12 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i4;
+import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:restaurant_tour/domain/repository/restaurants_repository.dart'
-    as _i3;
-import 'package:restaurant_tour/models/restaurant.dart' as _i2;
+    as _i2;
+import 'package:restaurant_tour/models/restaurant.dart' as _i4;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -23,86 +23,70 @@ import 'package:restaurant_tour/models/restaurant.dart' as _i2;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeRestaurant_0 extends _i1.SmartFake implements _i2.Restaurant {
-  _FakeRestaurant_0(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
-}
-
 /// A class which mocks [RestaurantsRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockRestaurantsRepository extends _i1.Mock
-    implements _i3.RestaurantsRepository {
+    implements _i2.RestaurantsRepository {
   @override
-  _i4.Future<List<_i2.Restaurant>> getRestaurants() => (super.noSuchMethod(
+  _i3.Future<List<_i4.Restaurant>> getRestaurants() => (super.noSuchMethod(
         Invocation.method(
           #getRestaurants,
           [],
         ),
-        returnValue: _i4.Future<List<_i2.Restaurant>>.value(<_i2.Restaurant>[]),
+        returnValue: _i3.Future<List<_i4.Restaurant>>.value(<_i4.Restaurant>[]),
         returnValueForMissingStub:
-            _i4.Future<List<_i2.Restaurant>>.value(<_i2.Restaurant>[]),
-      ) as _i4.Future<List<_i2.Restaurant>>);
+            _i3.Future<List<_i4.Restaurant>>.value(<_i4.Restaurant>[]),
+      ) as _i3.Future<List<_i4.Restaurant>>);
 
   @override
-  _i4.Future<List<_i2.Restaurant>> getFavoriteRestaurants() =>
+  _i3.Future<void> getMoreRestaurants(
+    int? offset,
+    int? limit,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getMoreRestaurants,
+          [
+            offset,
+            limit,
+          ],
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
+
+  @override
+  _i3.Future<List<_i4.Restaurant>> getFavoriteRestaurants() =>
       (super.noSuchMethod(
         Invocation.method(
           #getFavoriteRestaurants,
           [],
         ),
-        returnValue: _i4.Future<List<_i2.Restaurant>>.value(<_i2.Restaurant>[]),
+        returnValue: _i3.Future<List<_i4.Restaurant>>.value(<_i4.Restaurant>[]),
         returnValueForMissingStub:
-            _i4.Future<List<_i2.Restaurant>>.value(<_i2.Restaurant>[]),
-      ) as _i4.Future<List<_i2.Restaurant>>);
+            _i3.Future<List<_i4.Restaurant>>.value(<_i4.Restaurant>[]),
+      ) as _i3.Future<List<_i4.Restaurant>>);
 
   @override
-  _i4.Future<_i2.Restaurant> getRestaurant(String? id) => (super.noSuchMethod(
-        Invocation.method(
-          #getRestaurant,
-          [id],
-        ),
-        returnValue: _i4.Future<_i2.Restaurant>.value(_FakeRestaurant_0(
-          this,
-          Invocation.method(
-            #getRestaurant,
-            [id],
-          ),
-        )),
-        returnValueForMissingStub:
-            _i4.Future<_i2.Restaurant>.value(_FakeRestaurant_0(
-          this,
-          Invocation.method(
-            #getRestaurant,
-            [id],
-          ),
-        )),
-      ) as _i4.Future<_i2.Restaurant>);
-
-  @override
-  _i4.Future<void> addFavoriteRestaurant(_i2.Restaurant? restaurant) =>
+  _i3.Future<void> addFavoriteRestaurant(_i4.Restaurant? restaurant) =>
       (super.noSuchMethod(
         Invocation.method(
           #addFavoriteRestaurant,
           [restaurant],
         ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
 
   @override
-  _i4.Future<void> removeFavoriteRestaurant(_i2.Restaurant? restaurant) =>
+  _i3.Future<void> removeFavoriteRestaurant(_i4.Restaurant? restaurant) =>
       (super.noSuchMethod(
         Invocation.method(
           #removeFavoriteRestaurant,
           [restaurant],
         ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
 }
