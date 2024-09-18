@@ -5,10 +5,10 @@ import 'package:restaurant_tour/design_system/tokens/tokens.dart';
 
 enum TextVariant {
   /// fontSize: 18
-  title(fontSize: 18),
+  title(fontSize: 24),
 
   /// fontSize: 16
-  subTitle(fontSize: 16),
+  subTitle(fontSize: 18),
 
   /// fontSize: 14
   medium(fontSize: 14),
@@ -25,14 +25,16 @@ enum TextVariant {
 }
 
 class DsText extends StatelessWidget {
-  const DsText({
+  const DsText(
+    this.text, {
     super.key,
-    required this.text,
-    required this.textVariant,
+    this.textVariant = TextVariant.medium,
     this.isBold,
     this.fontFamily,
     this.textAlign,
     this.color,
+    this.fontWeight,
+    this.fontStyle,
   });
 
   final String text;
@@ -41,16 +43,20 @@ class DsText extends StatelessWidget {
   final String? fontFamily;
   final TextAlign? textAlign;
   final Color? color;
+  final FontWeight? fontWeight;
+  final FontStyle? fontStyle;
 
   @override
   Widget build(BuildContext context) {
     return _BasicText(
       text: text,
       fontSize: textVariant.fontSize,
-      fontWeight: isBold == true ? FontWeight.w700 : FontWeight.w400,
+      fontWeight:
+          fontWeight ?? (isBold == true ? FontWeight.w700 : FontWeight.w400),
       color: color ?? DsColors.black,
       fontFamily: fontFamily ?? AppFonts.primary,
       textAlign: textAlign,
+      fontStyle: fontStyle,
     );
   }
 }
@@ -63,6 +69,7 @@ class _BasicText extends StatelessWidget {
     required this.fontWeight,
     required this.color,
     required this.fontFamily,
+    this.fontStyle,
   });
 
   final String text;
@@ -71,6 +78,7 @@ class _BasicText extends StatelessWidget {
   final FontWeight fontWeight;
   final Color color;
   final String fontFamily;
+  final FontStyle? fontStyle;
 
   @override
   Widget build(BuildContext context) {
@@ -82,6 +90,7 @@ class _BasicText extends StatelessWidget {
         fontSize: fontSize,
         fontWeight: fontWeight,
         color: color,
+        fontStyle: fontStyle,
       ),
     );
   }

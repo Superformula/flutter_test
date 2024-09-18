@@ -18,4 +18,10 @@ class DsSizes {
 
   /// xxs: 10
   static const xxs = 10.0;
+
+  /// xxxs: 8
+  static const xxxs = 8.0;
+
+  /// min: 4
+  static const min = 4.0;
 }

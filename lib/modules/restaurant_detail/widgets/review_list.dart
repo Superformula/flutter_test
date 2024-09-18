@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:restaurant_tour/design_system/design_system.dart';
 
 class ReviewList extends StatelessWidget {
   const ReviewList({super.key});
@@ -12,46 +12,27 @@ class ReviewList extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       separatorBuilder: (context, index) => const Divider(),
       padding: const EdgeInsets.symmetric(
-        vertical: 16,
+        vertical: DsSizes.md,
       ),
       itemCount: 10,
       itemBuilder: (context, index) {
-        return Padding(
-          padding: const EdgeInsets.symmetric(
-            vertical: 8,
+        return const Padding(
+          padding: EdgeInsets.symmetric(
+            vertical: DsSizes.xxxs,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              RatingBar.builder(
+              DsRating(
                 initialRating: 3,
-                minRating: 1,
-                direction: Axis.horizontal,
-                allowHalfRating: true,
                 itemCount: 5,
-                itemSize: 16,
-                itemPadding: const EdgeInsets.symmetric(horizontal: 2),
-                itemBuilder: (context, index) => const Icon(
-                  Icons.star,
-                  color: Colors.amber,
-                ),
-                onRatingUpdate: (value) {
-                  print(value);
-                },
               ),
-              const SizedBox(height: 8),
-              const Text(
+              SizedBox(height: DsSizes.xxxs),
+              DsText(
                 'Const class cannot remove fields: Library:package:restaurant_tour/modules/home/widgets/image_network_loading.dart Class: ImageNetworkLoading. Try performing a hot restart instead.',
               ),
-              const SizedBox(height: 8),
-              const Row(
-                children: [
-                  CircleAvatar(
-                    child: Icon(Icons.person),
-                  ),
-                  Text('User name'),
-                ],
-              ),
+              SizedBox(height: DsSizes.xxxs),
+              UserAvatar(name: 'User Name test'),
             ],
           ),
         );

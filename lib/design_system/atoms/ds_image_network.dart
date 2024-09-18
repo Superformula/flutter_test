@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ImageNetworkLoading extends StatelessWidget {
-  const ImageNetworkLoading({
+class DsImageNetwork extends StatelessWidget {
+  const DsImageNetwork({
     super.key,
     this.urlImage,
     this.emptyIcon,

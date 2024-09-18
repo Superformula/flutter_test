@@ -4,8 +4,8 @@ class AppFonts {
   AppFonts._();
 
   /// DsFonts.lora
-  static const primary = DsFonts.lora;
+  static const primary = DsFonts.openSans;
 
   /// DsFonts.openSans
-  static const secundary = DsFonts.openSans;
+  static const secundary = DsFonts.lora;
 }
