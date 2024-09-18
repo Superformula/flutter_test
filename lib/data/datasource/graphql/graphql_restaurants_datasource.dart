@@ -36,7 +36,8 @@ class GraphqlRestaurantsDatasource implements RestaurantsDatasource {
         return restaurantsResult.restaurants ?? [];
       } else {
         throw RestaurantListException(
-            description: 'Failed to load restaurants: ${response.statusCode}');
+          description: 'Failed to load restaurants: ${response.statusCode}',
+        );
       }
     } catch (e) {
       throw RestaurantListException(

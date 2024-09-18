@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class AppTheme {
   static final ThemeData lightTheme = ThemeData(
     colorSchemeSeed: Colors.black,
     fontFamily: 'OpenSans',
     cardTheme: const CardTheme(
-        color: Colors.white, surfaceTintColor: Colors.transparent),
+      color: Colors.white,
+      surfaceTintColor: Colors.transparent,
+    ),
     textTheme: const TextTheme(
       headlineMedium: TextStyle(
         fontWeight: FontWeight.w400,
@@ -34,27 +35,29 @@ class AppTheme {
       surfaceTintColor: Colors.transparent,
       elevation: 1,
       titleTextStyle: TextStyle(
-          fontFamily: 'Lora',
-          fontWeight: FontWeight.w700,
-          fontSize: 18.0,
-          color: Colors.black),
+        fontFamily: 'Lora',
+        fontWeight: FontWeight.w700,
+        fontSize: 18.0,
+        color: Colors.black,
+      ),
     ),
     indicatorColor: Colors.black,
     tabBarTheme: const TabBarTheme(
-        tabAlignment: TabAlignment.center,
-        indicatorColor: Colors.black,
-        labelStyle: TextStyle(
-          fontFamily: 'OpenSans',
-          fontWeight: FontWeight.w600,
-          fontSize: 14.0,
-        ),
-        dividerColor: Colors.transparent,
-        labelColor: Colors.black,
-        unselectedLabelColor: Color(0xFF606060),
-        unselectedLabelStyle: TextStyle(
-          fontFamily: 'OpenSans',
-          fontWeight: FontWeight.w600,
-          fontSize: 14.0,
-        )),
+      tabAlignment: TabAlignment.center,
+      indicatorColor: Colors.black,
+      labelStyle: TextStyle(
+        fontFamily: 'OpenSans',
+        fontWeight: FontWeight.w600,
+        fontSize: 14.0,
+      ),
+      dividerColor: Colors.transparent,
+      labelColor: Colors.black,
+      unselectedLabelColor: Color(0xFF606060),
+      unselectedLabelStyle: TextStyle(
+        fontFamily: 'OpenSans',
+        fontWeight: FontWeight.w600,
+        fontSize: 14.0,
+      ),
+    ),
   );
 }

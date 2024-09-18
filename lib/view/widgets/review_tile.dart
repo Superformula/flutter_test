@@ -18,7 +18,7 @@ class ReviewTile extends StatelessWidget {
           review.text ?? 'no comment',
           style: Theme.of(context).textTheme.bodyMedium,
         ),
-        Gap(12),
+        const Gap(12),
         Row(
           children: [
             CircleAvatar(
@@ -26,12 +26,13 @@ class ReviewTile extends StatelessWidget {
                 child: Icon(Icons.error),
               ),
               foregroundImage: NetworkImage(
-                  review.user?.imageUrl ?? 'https://picsum.photos/200/300'),
+                review.user?.imageUrl ?? 'https://picsum.photos/200/300',
+              ),
             ),
             const Gap(8),
-            Text(review.user?.name ?? 'user name')
+            Text(review.user?.name ?? 'user name'),
           ],
-        )
+        ),
       ],
     );
   }

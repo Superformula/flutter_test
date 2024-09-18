@@ -14,7 +14,7 @@ class RestaurantStarRatingWidget extends StatelessWidget {
             Icons.star,
             size: 12,
             color: starColor,
-          )
+          ),
       ],
     );
   }

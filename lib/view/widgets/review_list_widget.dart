@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:restaurant_tour/models/restaurant.dart';
@@ -20,16 +19,17 @@ class ReviewListWidget extends StatelessWidget {
               ),
               const Gap(16),
               ListView.separated(
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemBuilder: (context, index) {
-                    return ReviewTile(reviews![index]);
-                  },
-                  separatorBuilder: (context, index) => const Padding(
-                        padding: EdgeInsets.symmetric(vertical: 8.0),
-                        child: Divider(),
-                      ),
-                  itemCount: reviews!.length),
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemBuilder: (context, index) {
+                  return ReviewTile(reviews![index]);
+                },
+                separatorBuilder: (context, index) => const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 8.0),
+                  child: Divider(),
+                ),
+                itemCount: reviews!.length,
+              ),
             ],
           )
         : const Text('This restaurant has no reviews');

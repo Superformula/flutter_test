@@ -24,7 +24,7 @@ class RestaurantOpenWidget extends StatelessWidget {
             size: 8,
             color: isOpen ? Colors.green : Colors.red,
           ),
-        )
+        ),
       ],
     );
   }

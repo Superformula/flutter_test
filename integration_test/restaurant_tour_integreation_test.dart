@@ -14,9 +14,11 @@ void main() {
     testWidgets('Tapping on RestaurantTitle navigates to correct page',
         (WidgetTester tester) async {
       // init
-      await tester.pumpWidget(const RestaurantTour(
-        testMode: true,
-      ));
+      await tester.pumpWidget(
+        const RestaurantTour(
+          testMode: true,
+        ),
+      );
       await tester.pumpAndSettle();
 
       // find and tap restaurant tile
@@ -36,9 +38,11 @@ void main() {
 
     testWidgets('Tapping on Favorite Tab navigates to correct page',
         (WidgetTester tester) async {
-      await tester.pumpWidget(const RestaurantTour(
-        testMode: true,
-      ));
+      await tester.pumpWidget(
+        const RestaurantTour(
+          testMode: true,
+        ),
+      );
       await tester.pumpAndSettle();
 
       await tester.tap(find.byType(Tab).last);
@@ -56,9 +60,11 @@ void main() {
     testWidgets(
         'Tapping on FavoriteButtonWidget add Restaurant to Favorite Restaurant List page',
         (WidgetTester tester) async {
-      await tester.pumpWidget(const RestaurantTour(
-        testMode: true,
-      ));
+      await tester.pumpWidget(
+        const RestaurantTour(
+          testMode: true,
+        ),
+      );
       await tester.pumpAndSettle();
 
       final restaurantTitleFinder =
@@ -93,9 +99,11 @@ void main() {
         'Tapping on FavoriteButtonWidget again removes Restaurant to Favorite Restaurant List page',
         (WidgetTester tester) async {
       //Init
-      await tester.pumpWidget(const RestaurantTour(
-        testMode: true,
-      ));
+      await tester.pumpWidget(
+        const RestaurantTour(
+          testMode: true,
+        ),
+      );
       await tester.pumpAndSettle();
 
       // Tap first Restaurant on the list

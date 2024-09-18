@@ -50,7 +50,8 @@ void main() {
   blocTest(
     'RestaurantsBloc should throw an  RestaurantsListError',
     setUp: () => when(usecase.getRestaurants()).thenAnswer(
-        (_) async => [const Restaurant(id: 'id', name: 'restaurant')]),
+      (_) async => [const Restaurant(id: 'id', name: 'restaurant')],
+    ),
     build: () => RestaurantsBloc(usecase),
     act: (bloc) async {
       bloc.add(LoadRestaurants());

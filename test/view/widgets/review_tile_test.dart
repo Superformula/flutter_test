@@ -8,12 +8,12 @@ void main() {
   testWidgets('ReviewTile displays review details correctly',
       (WidgetTester tester) async {
     // Create sample Review and User objects
-    final user =
+    const user =
         User(name: 'John Doe', imageUrl: 'https://picsum.photos/200/300');
-    final review = Review(rating: 4, text: 'Great food!', user: user);
+    const review = Review(rating: 4, text: 'Great food!', user: user);
 
     await tester.pumpWidget(
-      MaterialApp(
+      const MaterialApp(
         home: Scaffold(
           body: ReviewTile(review),
         ),
@@ -21,8 +21,10 @@ void main() {
     );
     await tester.pump();
     // Verify star rating
-    expect(find.widgetWithIcon(RestaurantStarRatingWidget, Icons.star),
-        findsNWidgets(review.rating!.toInt()));
+    expect(
+      find.widgetWithIcon(RestaurantStarRatingWidget, Icons.star),
+      findsNWidgets(review.rating!.toInt()),
+    );
 
     // Verify review text
     expect(find.text(review.text!), findsOneWidget);

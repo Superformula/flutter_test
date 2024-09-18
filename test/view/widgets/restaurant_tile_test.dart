@@ -41,11 +41,15 @@ void main() {
     expect(find.text(restaurant.categories!.first.title!), findsOneWidget);
 
     // Verify star rating
-    expect(find.widgetWithIcon(RestaurantStarRatingWidget, Icons.star),
-        findsNWidgets(restaurant.rating!.toInt()));
+    expect(
+      find.widgetWithIcon(RestaurantStarRatingWidget, Icons.star),
+      findsNWidgets(restaurant.rating!.toInt()),
+    );
 
     // Verify open status
     expect(
-        find.widgetWithText(RestaurantOpenWidget, 'Open Now'), findsOneWidget);
+      find.widgetWithText(RestaurantOpenWidget, 'Open Now'),
+      findsOneWidget,
+    );
   });
 }

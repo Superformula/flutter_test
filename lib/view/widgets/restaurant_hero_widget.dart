@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
 class RestaurantHeroWidget extends StatelessWidget {
-  const RestaurantHeroWidget(
-      {required this.imageUrl, required this.tag, super.key});
+  const RestaurantHeroWidget({
+    required this.imageUrl,
+    required this.tag,
+    super.key,
+  });
   final String? tag;
   final String? imageUrl;
 

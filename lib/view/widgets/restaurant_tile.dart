@@ -1,6 +1,4 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:restaurant_tour/models/restaurant.dart';
 import 'package:restaurant_tour/view/widgets/restaurant_open_widget.dart';
@@ -25,12 +23,12 @@ class RestaurantTile extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
                   child: Image.network(
-                      errorBuilder: (context, error, stackTrace) =>
-                          const Center(child: Icon(Icons.error)),
-                      width: 88,
-                      height: 88,
-                      restaurant.photos?.first ??
-                          'https://picsum.photos/200/300'),
+                    errorBuilder: (context, error, stackTrace) =>
+                        const Center(child: Icon(Icons.error)),
+                    width: 88,
+                    height: 88,
+                    restaurant.photos?.first ?? 'https://picsum.photos/200/300',
+                  ),
                 ),
               ),
               const Gap(12),
@@ -53,7 +51,7 @@ class RestaurantTile extends StatelessWidget {
                             restaurant.price ?? "\$\$",
                             style: Theme.of(context).textTheme.bodyMedium,
                           ),
-                          Gap(4),
+                          const Gap(4),
                           Text(
                             restaurant.categories?.first.title ?? "",
                             style: Theme.of(context).textTheme.bodyMedium,
@@ -64,14 +62,15 @@ class RestaurantTile extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           RestaurantStarRatingWidget(
-                              restaurant.rating?.toInt() ?? 2),
-                          RestaurantOpenWidget(restaurant.isOpen)
+                            restaurant.rating?.toInt() ?? 2,
+                          ),
+                          RestaurantOpenWidget(restaurant.isOpen),
                         ],
-                      )
+                      ),
                     ],
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ),

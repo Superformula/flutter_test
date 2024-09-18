@@ -33,7 +33,9 @@ class RestaurantsRepository {
 
   Future<void> getMoreRestaurants(int offset, int limit) async {
     final newRemoteRestaurants = await _restaurantsDatasource.getRestaurants(
-        offset: offset, limit: limit);
+      offset: offset,
+      limit: limit,
+    );
     _restaurants.addAll(
       newRemoteRestaurants
           .map(
@@ -48,7 +50,8 @@ class RestaurantsRepository {
       final favoritesRestaurants =
           await _favoriteRestaurantsDatasource.getFavoritesRestaurants();
       _favorites.addAll(
-          favoritesRestaurants.map((e) => e.copyWith(isFavorite: true)));
+        favoritesRestaurants.map((e) => e.copyWith(isFavorite: true)),
+      );
     }
 
     return _favorites.toList();

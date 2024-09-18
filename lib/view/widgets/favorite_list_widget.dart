@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -21,23 +20,25 @@ class _FavoriteListWidgetState extends State<FavoriteListWidget> {
       builder: (context, state) {
         if (state is FavoritesRestaurantsReady) {
           return ListView.separated(
-              separatorBuilder: (context, index) => const SizedBox(
-                    height: 2,
-                  ),
-              itemCount: state.favoritesRestaurants.length,
-              itemBuilder: (context, index) {
-                return GestureDetector(
-                  onTap: () => Navigator.of(context).push(
-                    MaterialPageRoute<RestaurantPage>(
-                      builder: (context) => RestaurantPage(
-                        restaurant: state.favoritesRestaurants[index],
-                      ),
+            separatorBuilder: (context, index) => const SizedBox(
+              height: 2,
+            ),
+            itemCount: state.favoritesRestaurants.length,
+            itemBuilder: (context, index) {
+              return GestureDetector(
+                onTap: () => Navigator.of(context).push(
+                  MaterialPageRoute<RestaurantPage>(
+                    builder: (context) => RestaurantPage(
+                      restaurant: state.favoritesRestaurants[index],
                     ),
                   ),
-                  child: RestaurantTile(
-                      restaurant: state.favoritesRestaurants[index]),
-                );
-              });
+                ),
+                child: RestaurantTile(
+                  restaurant: state.favoritesRestaurants[index],
+                ),
+              );
+            },
+          );
         }
         if (state is FavoriteRestaurantsListError) {
           return Center(

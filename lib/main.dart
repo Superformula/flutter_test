@@ -1,10 +1,6 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:restaurant_tour/di/di.dart';
-import 'package:restaurant_tour/models/restaurant.dart';
-import 'package:restaurant_tour/data/datasource/graphql/query.dart';
 import 'package:restaurant_tour/view/pages/main_page.dart';
 import './view/theme/app_theme.dart';
 
@@ -33,14 +29,15 @@ class _RestaurantTourState extends State<RestaurantTour> {
       title: 'Restaurant Tour',
       theme: AppTheme.lightTheme,
       home: FutureBuilder(
-          future: GetIt.I.allReady(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.done) {
-              return const MainPage();
-            } else {
-              return const Center(child: CircularProgressIndicator());
-            }
-          }),
+        future: GetIt.I.allReady(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            return const MainPage();
+          } else {
+            return const Center(child: CircularProgressIndicator());
+          }
+        },
+      ),
     );
   }
 }

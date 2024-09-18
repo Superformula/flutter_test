@@ -10,7 +10,7 @@ void main() {
     const price = "\$\$";
     const category = "Italian";
     await tester.pumpWidget(
-      MaterialApp(
+      const MaterialApp(
         home: Scaffold(
           body: RestaurantCategoryPriceWidget(price: price, category: category),
         ),
@@ -22,7 +22,7 @@ void main() {
 
     // Test with null price and category
     await tester.pumpWidget(
-      MaterialApp(
+      const MaterialApp(
         home: Scaffold(
           body: RestaurantCategoryPriceWidget(price: null, category: null),
         ),

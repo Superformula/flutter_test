@@ -8,11 +8,13 @@ final class RestaurantsInitial extends RestaurantsState {}
 final class RestaurantsLoading extends RestaurantsState {}
 
 final class RestaurantsReady extends RestaurantsState {
-  RestaurantsReady(this.restaurants,
-      {this.isLoadingMore = false,
-      this.size = 10,
-      this.limit = 10,
-      this.hasError = false});
+  RestaurantsReady(
+    this.restaurants, {
+    this.isLoadingMore = false,
+    this.size = 10,
+    this.limit = 10,
+    this.hasError = false,
+  });
   final List<Restaurant> restaurants;
   final bool isLoadingMore;
   final bool hasError;

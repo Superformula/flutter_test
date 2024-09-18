@@ -39,14 +39,16 @@ class _RestaurantPageState extends State<RestaurantPage> {
         actions: [
           FavoriteButtonWidget(
             callback: (isFavorite) {
-              GetIt.I.get<FavoritesRestaurantsBloc>().add((isFavorite)
-                  ? AddFavoriteRestaurant(widget.restaurant)
-                  : RemoveFavoriteRestaurant(widget.restaurant));
+              GetIt.I.get<FavoritesRestaurantsBloc>().add(
+                    (isFavorite)
+                        ? AddFavoriteRestaurant(widget.restaurant)
+                        : RemoveFavoriteRestaurant(widget.restaurant),
+                  );
 
               GetIt.I.get<RestaurantsBloc>().add(LoadRestaurants());
             },
             isFavorite: widget.restaurant.isFavorite,
-          )
+          ),
         ],
       ),
       body: SingleChildScrollView(
@@ -66,22 +68,24 @@ class _RestaurantPageState extends State<RestaurantPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       RestaurantCategoryPriceWidget(
-                          price: widget.restaurant.price,
-                          category: widget.restaurant.categories?.first.title),
-                      RestaurantOpenWidget(widget.restaurant.isOpen)
+                        price: widget.restaurant.price,
+                        category: widget.restaurant.categories?.first.title,
+                      ),
+                      RestaurantOpenWidget(widget.restaurant.isOpen),
                     ],
                   ),
                   const Gap(16),
                   const Divider(),
                   AddressWidget(
-                      address: widget.restaurant.location?.formattedAddress),
+                    address: widget.restaurant.location?.formattedAddress,
+                  ),
                   const Divider(),
                   OverallRatingWidget(rating: widget.restaurant.rating),
                   const Divider(),
-                  ReviewListWidget(reviews: widget.restaurant.reviews)
+                  ReviewListWidget(reviews: widget.restaurant.reviews),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),

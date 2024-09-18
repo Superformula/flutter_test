@@ -1,13 +1,7 @@
-import 'dart:io';
-
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
-import 'package:mockito/mockito.dart';
-import 'package:network_image_mock/network_image_mock.dart';
-
 import 'package:restaurant_tour/models/restaurant.dart';
 import 'package:restaurant_tour/presentation/favorites/favorites_restaurants_bloc.dart';
 import 'package:restaurant_tour/view/widgets/favorite_list_widget.dart';
@@ -24,21 +18,25 @@ void main() {
 
     whenListen<FavoritesRestaurantsState>(
       mockBloc,
-      Stream.fromIterable([
-        FavoritesRestaurantsLoading(),
-        FavoritesRestaurantsReady(const [
-          Restaurant(
+      Stream.fromIterable(
+        [
+          FavoritesRestaurantsLoading(),
+          FavoritesRestaurantsReady(const [
+            Restaurant(
               id: '1',
               name: 'Restaurant 1',
               rating: 4.5,
-              photos: ['https://picsum.photos/200/300']),
-          Restaurant(
+              photos: ['https://picsum.photos/200/300'],
+            ),
+            Restaurant(
               id: '2',
               name: 'Restaurant 2',
               rating: 4.2,
-              photos: ['https://picsum.photos/200/300']),
-        ])
-      ]),
+              photos: ['https://picsum.photos/200/300'],
+            ),
+          ]),
+        ],
+      ),
       initialState: FavoritesRestaurantsInitial(),
     );
 

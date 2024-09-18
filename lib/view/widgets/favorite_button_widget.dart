@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
 class FavoriteButtonWidget extends StatefulWidget {
-  const FavoriteButtonWidget(
-      {required this.callback, required this.isFavorite, super.key});
+  const FavoriteButtonWidget({
+    required this.callback,
+    required this.isFavorite,
+    super.key,
+  });
   final Function(bool) callback;
   final bool? isFavorite;
 
@@ -21,14 +24,15 @@ class _FavoriteButtonWidgetState extends State<FavoriteButtonWidget> {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-        onPressed: () {
-          setState(() {
-            isFavoriteState = !isFavoriteState;
-          });
-          widget.callback(isFavoriteState);
-        },
-        icon: (isFavoriteState)
-            ? const Icon(Icons.favorite)
-            : const Icon(Icons.favorite_outline));
+      onPressed: () {
+        setState(() {
+          isFavoriteState = !isFavoriteState;
+        });
+        widget.callback(isFavoriteState);
+      },
+      icon: (isFavoriteState)
+          ? const Icon(Icons.favorite)
+          : const Icon(Icons.favorite_outline),
+    );
   }
 }
