@@ -26,27 +26,33 @@ class DsImageNetwork extends StatelessWidget {
             color: Colors.grey.shade300,
             size: width,
           )
-        : Image.network(
-            urlImage!,
-            fit: fit ?? BoxFit.cover,
-            width: width,
-            height: height ?? width,
-            loadingBuilder: (context, child, loadingProgress) =>
-                loadingProgress == null
-                    ? child
-                    : Center(
-                        child: SizedBox(
-                          width: width,
-                          height: height ?? width,
-                          child: const CircularProgressIndicator(),
-                        ),
-                      ),
-            errorBuilder: (context, error, stackTrace) =>
-                errorIcon ??
-                Icon(
-                  Icons.image,
-                  size: width,
-                ),
+        : Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: Image.network(
+                urlImage!,
+                fit: fit ?? BoxFit.fill,
+                width: width,
+                height: height ?? width,
+                loadingBuilder: (context, child, loadingProgress) =>
+                    loadingProgress == null
+                        ? child
+                        : Center(
+                            child: SizedBox(
+                              width: width,
+                              height: height ?? width,
+                              child: const CircularProgressIndicator(),
+                            ),
+                          ),
+                errorBuilder: (context, error, stackTrace) =>
+                    errorIcon ??
+                    Icon(
+                      Icons.image,
+                      size: width,
+                    ),
+              ),
+            ),
           );
   }
 }

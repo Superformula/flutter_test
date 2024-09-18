@@ -28,7 +28,7 @@ class DsRating extends StatelessWidget {
   Widget build(BuildContext context) {
     return RatingBar.builder(
       initialRating: initialRating,
-      minRating: minRating ?? 1,
+      minRating: minRating ?? 0,
       direction: Axis.horizontal,
       allowHalfRating: true,
       itemCount: itemCount,
