@@ -86,6 +86,18 @@ class CubitRestaurantTourPresenter extends Cubit<RestaurantState> implements Res
     );
   }
 
+  void _setLoading() {
+    emit(RestaurantLoadingState());
+  }
+
+  void _setSuccess() {
+    emit(RestaurantSuccessState());
+  }
+
+  void _setError(String message) {
+    emit(RestaurantErrorState(message));
+  }
+
   final _restaurantList = <RestaurantEntity>[];
   final _favoriteRestaurantList = <FavoriteRestaurantEntity>[];
 
@@ -98,22 +110,22 @@ class CubitRestaurantTourPresenter extends Cubit<RestaurantState> implements Res
   @override
   Future<void> getFavoriteRestaurants() async {
     try {
-      emit(RestaurantLoadingState());
+      _setLoading();
       _favoriteRestaurantList.addAll(await _getFavoriteRestaurants());
-      emit(RestaurantSuccessState());
+      _setSuccess();
     } catch (_) {
-      emit(RestaurantErrorState('Error loading favorite restaurants. Please try again later.'));
+      _setError('Error loading favorite restaurants. Please try again later.');
     }
   }
 
   @override
   Future<void> getAllRestaurants() async {
     try {
-      emit(RestaurantLoadingState());
+      _setLoading();
       _restaurantList.addAll(await _getRestaurants());
-      emit(RestaurantSuccessState());
+      _setSuccess();
     } catch (_) {
-      emit(RestaurantErrorState('Oops! We had trouble finding the restaurants.'));
+      _setError('Oops! We had trouble finding the restaurants.');
     }
   }
 
@@ -124,7 +136,7 @@ class CubitRestaurantTourPresenter extends Cubit<RestaurantState> implements Res
       _updateRestaurantAsFavorite(restaurant, favoriteRestaurant);
       await _saveFavoriteRestaurants(_favoriteRestaurantList);
     } catch (_) {
-      emit(RestaurantErrorState('Error fetching restaurants. Try again later.'));
+      _setError('Error fetching restaurants. Try again later.');
     }
   }
 
@@ -134,9 +146,9 @@ class CubitRestaurantTourPresenter extends Cubit<RestaurantState> implements Res
       final restaurant = _makeRestaurantFromFavoriteRestaurant(favoriteRestaurant);
       _removeFavoriteRestaurant(restaurant, favoriteRestaurant);
       await _saveFavoriteRestaurants(_favoriteRestaurantList);
-      emit(RestaurantSuccessState());
+      _setSuccess();
     } catch (_) {
-      emit(RestaurantErrorState('Oops! There was an issue removing the restaurant from your favorites.'));
+      _setError('Oops! There was an issue removing the restaurant from your favorites.');
     }
   }
 }
