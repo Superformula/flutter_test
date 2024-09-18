@@ -1,23 +1,49 @@
 // ignore_for_file: avoid_dynamic_calls
 
 import 'dart:convert';
+import 'dart:developer';
 import 'package:http/http.dart' as http;
 import 'package:restaurant_gql_client/src/query/query.dart';
 import 'package:restaurant_models/restaurant_models.dart';
 
+/// {@template api_exception}
+/// Custom exception for handling API errors with status codes and messages.
+/// {@endtemplate}
+class ApiException implements Exception {
+  /// {@macro api_exception}
+  ApiException(this.statusCode, this.message);
+
+  /// HTTP status code of the API response.
+  final int statusCode;
+
+  /// Error message returned or custom message if any.
+  final String message;
+
+  @override
+  String toString() =>
+      'ApiException(statusCode: $statusCode, message: $message)';
+}
+
 /// {@template restaurant_gql_client}
-/// Restaurant gql client
+/// A client for interacting with the restaurant GraphQL API to fetch
+/// restaurant data such as reviews, categories, and location.
 /// {@endtemplate}
 class RestaurantGqlClient {
   /// {@macro restaurant_gql_client}
-  RestaurantGqlClient(http.Client client) : _client = client;
+  RestaurantGqlClient(http.Client client, String baseUrl, String apiKey)
+      : _client = client,
+        _baseUrl = baseUrl,
+        _apiKey = apiKey;
 
   final http.Client _client;
+  final String _baseUrl;
+  final String _apiKey;
 
-  final _apiKey =
-      'roS-1EKDfvra02o49ijcGyuMKiAbNE0DmyQRr_r3O6mvQZURUi4MN6jZkrvEnM8pTof4FZmvHXti0aEkySa0sk5qVZneTHaVfBz-DNzgaACBEil3ArqEcs9kEZfoZnYx';
-  final _baseUrl = 'https://api.yelp.com/v3/graphql';
-
+  /// Fetches restaurants from the GraphQL API with an optional [offset] for
+  /// pagination.
+  ///
+  /// Returns a [RestaurantQueryResult] or throws an [ApiException] if the
+  /// request fails.
   Future<RestaurantQueryResult?> getRestaurants({int offset = 0}) async {
     final headers = {
       'Authorization': 'Bearer $_apiKey',
@@ -32,16 +58,18 @@ class RestaurantGqlClient {
       );
 
       if (response.statusCode == 200) {
-        return RestaurantQueryResult.fromJson(
-          jsonDecode(response.body)['data']['search'],
-        );
+        final data = jsonDecode(response.body)['data']['search'];
+        return RestaurantQueryResult.fromJson(data);
       } else {
-        print('Failed to load restaurants: ${response.statusCode}');
-        return null;
+        log(
+          'Failed to fetch restaurants: ${response.statusCode},'
+          ' ${response.body}',
+        );
+        throw ApiException(response.statusCode, 'Failed to load restaurants');
       }
     } catch (e) {
-      print('Error fetching restaurants: $e');
-      return null;
+      log('Error fetching restaurants: $e');
+      throw ApiException(500, 'An unexpected error occurred: $e');
     }
   }
 }
