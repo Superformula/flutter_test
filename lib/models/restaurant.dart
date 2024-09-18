@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'restaurant.g.dart';
@@ -85,7 +86,7 @@ class Location {
 }
 
 @JsonSerializable()
-class Restaurant {
+class Restaurant extends Equatable {
   final String? id;
   final String? name;
   final String? price;
@@ -95,6 +96,7 @@ class Restaurant {
   final List<Hours>? hours;
   final List<Review>? reviews;
   final Location? location;
+  final bool? isFavorite;
 
   const Restaurant({
     this.id,
@@ -106,7 +108,34 @@ class Restaurant {
     this.hours,
     this.reviews,
     this.location,
+    this.isFavorite,
   });
+
+  Restaurant copyWith({
+    String? id,
+    String? name,
+    String? price,
+    double? rating,
+    List<String>? photos,
+    List<Category>? categories,
+    List<Hours>? hours,
+    List<Review>? reviews,
+    Location? location,
+    bool? isFavorite,
+  }) {
+    return Restaurant(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      price: price ?? this.price,
+      rating: rating ?? this.rating,
+      photos: photos ?? this.photos,
+      categories: categories ?? this.categories,
+      hours: hours ?? this.hours,
+      reviews: reviews ?? this.reviews,
+      location: location ?? this.location,
+      isFavorite: isFavorite ?? this.isFavorite,
+    );
+  }
 
   factory Restaurant.fromJson(Map<String, dynamic> json) =>
       _$RestaurantFromJson(json);
@@ -137,6 +166,9 @@ class Restaurant {
     }
     return false;
   }
+
+  @override
+  List<Object?> get props => [id];
 }
 
 @JsonSerializable()

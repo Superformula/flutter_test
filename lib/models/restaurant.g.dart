@@ -38,15 +38,17 @@ Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
 
 Review _$ReviewFromJson(Map<String, dynamic> json) => Review(
       id: json['id'] as String?,
-      rating: json['rating'] as int?,
+      rating: (json['rating'] as num?)?.toInt(),
       user: json['user'] == null
           ? null
           : User.fromJson(json['user'] as Map<String, dynamic>),
+      text: json['text'] as String?,
     );
 
 Map<String, dynamic> _$ReviewToJson(Review instance) => <String, dynamic>{
       'id': instance.id,
       'rating': instance.rating,
+      'text': instance.text,
       'user': instance.user,
     };
 
@@ -77,6 +79,7 @@ Restaurant _$RestaurantFromJson(Map<String, dynamic> json) => Restaurant(
       location: json['location'] == null
           ? null
           : Location.fromJson(json['location'] as Map<String, dynamic>),
+      isFavorite: json['isFavorite'] as bool?,
     );
 
 Map<String, dynamic> _$RestaurantToJson(Restaurant instance) =>
@@ -90,12 +93,13 @@ Map<String, dynamic> _$RestaurantToJson(Restaurant instance) =>
       'hours': instance.hours,
       'reviews': instance.reviews,
       'location': instance.location,
+      'isFavorite': instance.isFavorite,
     };
 
 RestaurantQueryResult _$RestaurantQueryResultFromJson(
         Map<String, dynamic> json) =>
     RestaurantQueryResult(
-      total: json['total'] as int?,
+      total: (json['total'] as num?)?.toInt(),
       restaurants: (json['business'] as List<dynamic>?)
           ?.map((e) => Restaurant.fromJson(e as Map<String, dynamic>))
           .toList(),

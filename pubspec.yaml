@@ -11,10 +11,19 @@ environment:
   flutter: ">=3.19.6"
 
 dependencies:
+  bloc: ^8.1.4
+  bloc_concurrency: ^0.2.5
+  bloc_test: ^9.1.7
+  equatable: ^2.0.5
   flutter:
     sdk: flutter
+  flutter_bloc: ^8.1.6
+  gap: ^3.0.1
+  get_it: ^7.7.0
   http: ^1.2.2
   json_annotation: ^4.9.0
+  logger: ^2.4.0
+  shared_preferences: ^2.3.2
 
 dev_dependencies:
   flutter_test:
@@ -22,6 +31,12 @@ dev_dependencies:
   flutter_lints: ^4.0.0
   build_runner: ^2.4.10
   json_serializable: ^6.8.0
+  test: ^1.25.2
+  mockito: ^5.4.4
+  network_image_mock: ^2.1.1
+  integration_test:
+    sdk: flutter
+
 
 flutter:
   generate: true

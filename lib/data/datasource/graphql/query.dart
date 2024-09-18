@@ -1,6 +1,6 @@
-String query(int offset) => '''
+String query(int offset, int limit) => '''
   query getRestaurants {
-    search(location: "Las Vegas", limit: 20, offset: $offset) {
+    search(location: "Las Vegas", limit: $limit, offset: $offset) {
       total    
       business {
         id
