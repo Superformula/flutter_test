@@ -17,7 +17,9 @@ class RestaurantHeroWidget extends StatelessWidget {
         errorBuilder: (context, error, stackTrace) =>
             const Center(child: Icon(Icons.error)),
         imageUrl ?? 'https://picsum.photos/375/361',
-        fit: BoxFit.fitWidth,
+        height: 361,
+        width: MediaQuery.of(context).size.width,
+        fit: BoxFit.fill,
       ),
     );
   }

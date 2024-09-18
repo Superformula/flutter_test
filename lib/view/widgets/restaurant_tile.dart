@@ -23,6 +23,7 @@ class RestaurantTile extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
                   child: Image.network(
+                    fit: BoxFit.fill,
                     errorBuilder: (context, error, stackTrace) =>
                         const Center(child: Icon(Icons.error)),
                     width: 88,
