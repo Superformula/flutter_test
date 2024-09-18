@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 import 'package:restaurant_tour/common/exceptions/exceptions.dart';
 import 'package:restaurant_tour/data/datasource/graphql/query.dart';
 import 'package:restaurant_tour/domain/datasource/restaurants_datasource.dart';
@@ -27,13 +28,22 @@ class GraphqlRestaurantsDatasource implements RestaurantsDatasource {
       );
 
       if (response.statusCode == 200) {
-        debugPrint(
-          jsonDecode(response.body)['data']['search'],
-        );
-        final restaurantsResult = RestaurantQueryResult.fromJson(
-          jsonDecode(response.body)['data']['search'],
-        );
-        return restaurantsResult.restaurants ?? [];
+        var logger = Logger();
+        logger.t("Trace log");
+
+        final map = jsonDecode(response.body);
+        final data = map['data'] as Map<String, dynamic>;
+        final search = data['search'] as Map<String, dynamic>;
+        final total = search['total'] as int;
+        final businessesJson = search['business'] as List;
+
+        final businesses = businessesJson
+            .map((business) => Restaurant.fromJson(business))
+            .toList();
+
+        debugPrint('Total restaurants: $total');
+
+        return businesses ?? [];
       } else {
         throw RestaurantListException(
           description: 'Failed to load restaurants: ${response.statusCode}',

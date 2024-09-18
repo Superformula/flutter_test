@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:restaurant_tour/data/datasource/graphql/graphql_restaurants_datasource.dart';
 import 'package:restaurant_tour/data/datasource/local/sp_favorite_restaurants_datasource.dart';
 import 'package:restaurant_tour/data/datasource/memory/memory_restaurants_datasource.dart';
 import 'package:restaurant_tour/domain/datasource/favorite_restaurants_datasource.dart';
@@ -22,7 +23,7 @@ void setup({testMode = false}) {
     dependsOn: [InitDependency(SharedPreferences)],
   );
   getIt.registerSingleton<RestaurantsDatasource>(
-    MemoryRestaurantsDatasource(),
+    testMode ? MemoryRestaurantsDatasource() : GraphqlRestaurantsDatasource(),
   );
 
   getIt.registerSingletonAsync<RestaurantsRepository>(
