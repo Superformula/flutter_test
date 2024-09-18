@@ -7,6 +7,7 @@ This take home test aims to evaluate your skills in building a Flutter applicati
 We are not looking for pixel perfect designs, but we are looking for a well-structured application that demonstrates your skills and best practices developing a flutter application. We know there are many ways to solve a problem, and we are interested in seeing how you approach this one. If you have any questions, please don't hesitate to ask.
 
 Things we'll be looking on your submission:
+
 - App structure for scalability
 - Error and optional (?) handling
 - Widget tree optimization
@@ -16,8 +17,6 @@ Things we'll be looking on your submission:
 Think of the app you'll be building as the final product, do not over engineer it for possible future features, but do not under engineer it either. We are looking for a balance. We want that the functionalities that you implement are well thought out and implemented.
 
 As an example, for the favorites feature you can simply use SharedPreferences, you don't need to use a complex database solution, but we're looking for a solid shared preferences implementation.
-
-
 
 Be sure to read **all** of this document carefully, and follow the guidelines within.
 
@@ -53,7 +52,6 @@ More information on the approach can be found here:
 
 From the root directory:
 
-
 ### IDE Setup
 
 <details>
@@ -68,7 +66,6 @@ If you're a VScode user link the new Flutter SDK path in your settings
   "dart.flutterSdkPath": ".fvm/flutter_sdk"
 }
 ```
-
 
 </p>
 </details>
@@ -115,7 +112,7 @@ Go to `Preferences > Languages & Frameworks > Flutter` and set the Flutter SDK p
   - User image
   - Review Text (These are just snippets of the full review, usually like 3-4 lines long)
 
-#### Misc.
+#### Misc
 
 - Clear documentation on the structure and architecture of your application.
 - Clear and logical commit messages.
@@ -141,8 +138,8 @@ Feel free to add more tests as you see fit but the above is the minimum requirem
 
 The [Yelp GraphQL API](https://www.yelp.com/developers/graphql/guides/intro) is used as the API for this Application. We have provided the boilerplate of the API requests and backing data models to save you some time. To successfully make a request to the Yelp GraphQL API, please follow these steps:
 
-1. Please go to https://www.yelp.com/signup and sign up for a developer account.
-1. Once signed up, navigate to https://www.yelp.com/developers/v3/manage_app.
+1. Please go to <https://www.yelp.com/signup> and sign up for a developer account.
+1. Once signed up, navigate to <https://www.yelp.com/developers/v3/manage_app>.
 1. Create a new app by filling out the required information.
 1. Once your app is created, scroll down and join the `Developer Beta`. This allows you to use the GraphQL API.
 1. Copy your API Key from your app page and paste it on `line 5` [yelp_repository.dart](app/lib/yelp_repository.dart) replacing the `<PUT YOUR API KEY HERE>` with your key.
@@ -200,3 +197,7 @@ Just create a new issue in this repo and we will respond and get back to you qui
 ## Review
 
 The coding challenge is a take-home test upon which we'll be conducting a thorough code review once complete. The review will consist of meeting some more of our mobile engineers and giving a review of the solution you have designed. Please be prepared to share your screen and run/demo the application to the group. During this process, the engineers will be asking questions.
+
+## Demo
+
+![demo](screenshots/flutter_test.webm)

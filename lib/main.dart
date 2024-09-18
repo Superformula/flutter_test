@@ -12,8 +12,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final client = Client();
-  const apiKey = 'apiKey';
-  const baseUrl = 'baseUr';
+  const apiKey = String.fromEnvironment('API_KEY');
+  const baseUrl = 'https://api.yelp.com/v3/graphql';
   final gqlClient = RestaurantGqlClient(client, baseUrl, apiKey);
   final sharedPreferences = await SharedPreferences.getInstance();
   final repository = RestaurantRepository(gqlClient, sharedPreferences);
@@ -39,7 +39,7 @@ class RestaurantTour extends StatelessWidget {
           ),
           BlocProvider(
             create: (context) => FavoriteRestaurantsBloc(restaurantRepository)
-              ..add(FetchFavoriteRestaurants()),
+              ..add(const FetchFavoriteRestaurants()),
           ),
         ],
         child: const MaterialApp(
