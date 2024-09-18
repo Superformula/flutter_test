@@ -10,7 +10,7 @@ on:
       - "packages/restaurant_repository/**"
       - ".github/workflows/restaurant_repository.yaml"
     branches:
-      - main
+      - master
 
 jobs:
   build:

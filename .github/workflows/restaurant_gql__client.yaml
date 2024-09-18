@@ -10,7 +10,7 @@ on:
       - "packages/restaurant_gql_client/**"
       - ".github/workflows/restaurant_gql_client.yaml"
     branches:
-      - main
+      - master
 
 jobs:
   build:
