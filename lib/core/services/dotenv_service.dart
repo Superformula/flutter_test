@@ -19,7 +19,6 @@ class DotenvService {
         defaultValue: 'dev',
       );
 
-  String get env => _environment;
-  String get apiKey => dotenv.get('API_KEY');
-  String get apiUrl => dotenv.get('API_URL');
+  static final apiKey = dotenv.get('API_KEY');
+  static final apiUrl = dotenv.get('API_URL');
 }
